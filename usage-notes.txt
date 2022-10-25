@@ -1,0 +1,29 @@
+#---CLI Commands-------------------
+npx next -h
+|
+| //---Management
+├-> npx next build
+├-> npx next info
+├-> npx next lint --dir utils
+|
+| //---Running
+├-> npx next dev -p 3000 -H 0.0.0.0 #dev
+├-> npx next start -p 3000 #prod
+|
+| //---Exporting (static build)
+├-> "build": "next build && next export" #update package.json with this to export
+├-> npm run build #creates 'out/' folder with static build
+| // features unsupported in static exports:
+└-┬-> Image Optimization (default loader)
+  ├-> Internationalized Routing
+  ├-> API Routes
+  ├-> Rewrites
+  ├-> Redirects
+  ├-> Headers
+  ├-> Middleware
+  ├-> Incremental Static Regeneration
+  ├-> fallback: true
+  └-> getServerSideProps
+
+
+#---?------------------------------
