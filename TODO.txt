@@ -1,0 +1,26 @@
+#---Things to add------------------
+- Learn MUI Theming
+- Port to TypeScript
+- Touch up usage USAGE.txt
+- 
+
+#---Planning-----------------------
+Home/
+  NavBar[
+    AboutMe/
+      > Social links
+      Resume/
+        > Resume
+        > Download button
+    MathTutoring/
+      🚧 (schedule tutoring time)
+    ShopTime/
+      🚧 (rent shoptime)
+    Software/
+      🚧 (plant-daddy, sleepydocs, chaos-game)
+  ]
+  > BlogPosts (Cards linking to posts)
+  /blogs
+    /:blogId
+
+#---?------------------------------
