@@ -1,8 +1,8 @@
 #---Things to add------------------
 - Learn MUI Theming
-- Port to TypeScript
-- Touch up usage USAGE.txt
 - 
+(eventually)
+- Port to TypeScript
 
 #---Planning-----------------------
 Home/
