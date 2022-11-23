@@ -1,59 +1,61 @@
-#---CLI Commands-------------------
-| //---Help message
-|   └-> npx next -h
-|
-| //---Management
-|   ├-> npx next build
-|   ├-> npx next info
-|   └-> npx next lint --dir utils
-|
-| //---Running
-|   ├-> npx next dev -p 3000 #dev
-|   └-> npx next start -p 3000 #prod
-|
-| //---Exporting (static build)
-|   package.json
-|     `
-|       "scripts": {
-|         "build": "next build && next export"
-|       }
-|     `
-|
-| //---Features unsupported in static exports:
-|   - Image Optimization (default loader)
-|   - Internationalized Routing
-|   - API Routes
-|   - Rewrites
-|   - Redirects
-|   - Headers
-|   - Middleware
-|   - Incremental Static Regeneration
-|   - fallback: true
-|   - getServerSideProps
+#───CLI Commands───────────────────
+│ //───Help message
+│   └-> npx next -h
+│
+│ //───Management
+│   ├-> npx next build
+│   ├-> npx next info
+│   └-> npx next lint --dir utils
+│
+│ //───Running
+│   ├-> npx next dev -p 3000 #dev
+│   └-> npx next start -p 3000 #prod
+│
+│ //───Exporting (static build)
+│   package.json
+│     `
+│       "scripts": {
+│         "build": "next build && next export"
+│       }
+│     `
+│
+│ //───Features unsupported in static exports:
+│   - Image Optimization (default loader)
+│   - Internationalized Routing
+│   - API Routes
+│   - Rewrites
+│   - Redirects
+│   - Headers
+│   - Middleware
+│   - Incremental Static Regeneration
+│   - fallback: true
+│   - getServerSideProps
+└─
 
 
 #---ESLint-------------------------
-| // https://eslint.org/docs/latest/rules/
-|
-| //---install & init
-|   ├-> npm i eslint --save-dev
-|   └-> npm init @eslint/config
-|
-| //---running
-|   └-> npx eslint index.js
-|
-| //---ignore code
-|   file.js
-|     `
-|        /* eslint-disable no-alert, <rule-name> */
-|          // ignored code goes here...
-|        /* eslint-enable no-alert, <rule-name> */
-|     `
-|
-| //---npm script
-|   .eslintrc.json
-|     `
-|       "scripts": {
-|         "lint": "eslint ./"
-|       }
-|     `
+│ // https://eslint.org/docs/latest/rules/
+│
+│ //───install & init
+│   ├-> npm i eslint --save-dev
+│   └-> npm init @eslint/config
+│
+│ //───running
+│   └-> npx eslint index.js
+│
+│ //───ignore code
+│   file.js
+│     `
+│        /* eslint-disable no-alert, <rule-name> */
+│          // ignored code goes here...
+│        /* eslint-enable no-alert, <rule-name> */
+│     `
+│
+│ //───npm script
+│   .eslintrc.json
+│     `
+│       "scripts": {
+│         "lint": "eslint ./"
+│       }
+│     `
+└─

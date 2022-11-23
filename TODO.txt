@@ -1,26 +1,17 @@
-#---Things to add------------------
-- Learn MUI Theming
-- 
-(eventually)
+---Now
+- navbar
+- mui theming
+- favicon
+- custom 404
+- configure 'Head' component
+- about
+- 'ComingSoon' component
+  - shoptime
+  - software
+  - tutoring
+  - furniture
+- blog posts
+
+
+---Eventually
 - Port to TypeScript
-
-#---Planning-----------------------
-Home/
-  NavBar[
-    AboutMe/
-      > Social links
-      Resume/
-        > Resume
-        > Download button
-    MathTutoring/
-      🚧 (schedule tutoring time)
-    ShopTime/
-      🚧 (rent shoptime)
-    Software/
-      🚧 (plant-daddy, sleepydocs, chaos-game)
-  ]
-  > BlogPosts (Cards linking to posts)
-  /blogs
-    /:blogId
-
-#---?------------------------------

@@ -127,3 +127,7 @@
     filter: invert(1);
   }
 }
+
+.debug {
+  border: 2px solid tomato
+}
