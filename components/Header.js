@@ -13,9 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from 'next/link';
+import styles from '../styles/Home.module.css'
 
 const pages = ['Furniture', 'Tutoring', 'Shop Time', 'Software'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
 export default function Header() {
@@ -38,8 +38,11 @@ export default function Header() {
   };
 
   return (
+    // <Container maxWidth='false'>
+    //   dingus
+    // </Container>
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="false">
         <Toolbar disableGutters>
 
           {/* Logo */}
@@ -62,7 +65,7 @@ export default function Header() {
             LOGO
           </Typography>
           
-          {/* ? */}
+          {/* Nav Links */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -74,8 +77,6 @@ export default function Header() {
             >
               <MenuIcon />
             </IconButton>
-
-            {/* Nav Links */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -134,35 +135,13 @@ export default function Header() {
 
           {/* About Me */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Link href='/about'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/sleepy-assets/sleepyserver-05.png" />
+                <Avatar alt="Sleepy Boy" src="/sleepy-assets/sleepyserver-05.png" />
               </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+            </Link>
 
+          </Box>
 
         </Toolbar>
       </Container>

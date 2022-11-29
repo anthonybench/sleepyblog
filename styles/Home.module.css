@@ -129,5 +129,6 @@
 }
 
 .debug {
-  border: 2px solid tomato
+  border: 2px solid tomato;
+  padding: 0
 }
