@@ -1,6 +1,9 @@
----Now
+---Now---------------------------
 - navbar
 - mui theming
+
+
+---Post Deployment Test----------
 - favicon
 - custom 404
 - configure 'Head' component
@@ -13,5 +16,5 @@
 - blog posts
 
 
----Eventually
+---Eventually--------------------
 - Port to TypeScript
