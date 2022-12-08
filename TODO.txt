@@ -3,7 +3,7 @@
 - mui theming
 
 
-[nginx test deployment]
+! [nginx test deployment]
 
 
 ---Post Deployment Test----------
@@ -12,7 +12,7 @@
 - configure 'Head' component
 
 
-[make next template]
+! [make next template]
 
 
 ---Post Template-----------------
