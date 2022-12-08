@@ -3,10 +3,19 @@
 - mui theming
 
 
+[nginx test deployment]
+
+
 ---Post Deployment Test----------
 - favicon
 - custom 404
 - configure 'Head' component
+
+
+[make next template]
+
+
+---Post Template-----------------
 - about
 - 'ComingSoon' component
   - shoptime
