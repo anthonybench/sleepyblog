@@ -1,14 +1,16 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import { unstable_noStore as noStore } from 'next/cache';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+
 export default function Page({
-  blogPost
+  params
 }:{
-  blogPost:{id:number}
+  params:{id:number}
 }) {
   return (
-    <main>
-      <div>
-        TODO: blog view <br />
-        Blog {blogPost.id}
-      </div>
-    </main>
+    <>
+      TODO: blog view ({params.id})
+    </>
   );
 }
