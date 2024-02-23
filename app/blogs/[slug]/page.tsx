@@ -17,11 +17,11 @@ export const metadata: Metadata = {
 export default function Page({
   params
 }:{
-  params:{id:number}
+  params:{slug:any}
 }) {
   return (
     <>
-      TODO: blog view ({params.id})
+      TODO: blog ({params.slug})
     </>
   );
 }

@@ -5,8 +5,6 @@ import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 export default function Page() {
   return (
-      <>
-        TODO: tutoring under construction
-      </>
+    <h3>TODO: tutoring self-promotion</h3>
   );
 }

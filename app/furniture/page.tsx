@@ -5,8 +5,6 @@ import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 export default function Page() {
   return (
-      <>
-        TODO: furniture under construction
-      </>
+    <h3>TODO: furniture teaser & link to anthonybench custom furnishing</h3>
   );
 }

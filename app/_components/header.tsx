@@ -9,8 +9,8 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { comfortaa } from "@/app/lib/fonts";
-import "@/app/lib/utils.css";
+import { comfortaa } from "@/app/_lib/fonts";
+import "@/app/_lib/utils.css";
 import {
   Select,
   SelectContent,
@@ -19,7 +19,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/app/components/select"
+} from "@/app/_components/select"
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -31,19 +31,19 @@ const themes = [
   { id: 3, name: "Midnight" },
 ];
 
-export default function Header() {
+export default function Header({className}:{className: string}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selected, setSelected] = useState(themes[0]);
 
   return (
-    <header className="flex justify-between items-center p-4 debug">
-      <nav className="flex justify-between" aria-label="">
-        <Link href="/" className={`${comfortaa.className} flex items-center`}>
-          <h1 className="text-5xl font-bold">SleepyBlog</h1>
-        </Link>
+    <header className={`${className} flex justify-between items-center`}>
+      <Link href="/" className={`${comfortaa.className}`}>
+        <h1 className="">SleepyBlog</h1>
+      </Link>
 
+      <div className={`w-1/6`}>
         <Select defaultValue={themes[0].id.toString()}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="">
             <SelectValue />
           </SelectTrigger>
           <SelectContent defaultChecked>
@@ -55,7 +55,7 @@ export default function Header() {
             </SelectGroup>
           </SelectContent>
         </Select>
-      </nav>
+      </div>
     </header>
   );
 }
