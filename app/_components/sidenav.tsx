@@ -90,11 +90,11 @@ export default function SideNav({ className }: { className: any }) {
           <div className="flex h-5 items-center justify-center space-x-4 text-sm py-7">
             <Link href="https://github.com/anthonybench/sleepyblog/blob/main/README.md">
               <Image
-                src="/img/github_dark_120px_plus.png"
+                src="/img/github_dark.png"
                 width={40} // width & height must have an aspect ratio identical to source image
                 height={40}
                 className=""
-                alt="Screenshots of the dashboard project showing desktop version"
+                alt="see website source"
               />
             </Link>
           </div>

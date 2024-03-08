@@ -1,5 +1,6 @@
+- resume modal sucks, make a better one
+- send resume functionality
 - fix nav links
-- /about content
 - sleepyblog special font
 - ensure image aspect ratios
 

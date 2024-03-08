@@ -24,9 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12`}>
-        <SideNav className={`col-span-2 row-span-12 debug`} />
-        <Header className={`debug col-span-10 row-span-1 px-5`} />
-        <main className={`col-span-10 row-span-11 debug`}>
+        <SideNav className={`col-span-2 row-span-12`} />
+        <Header className={`col-span-10 row-span-1 px-5`} />
+        <main className={`col-span-10 row-span-11`}>
           <ScrollArea className="h-full rounded-md p-10 border">
             {children}
           </ScrollArea>
