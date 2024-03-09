@@ -1,4 +1,3 @@
-- resume modal sucks, make a better one
 - send resume functionality
 - fix nav links
 - sleepyblog special font

@@ -44,36 +44,41 @@ export default function SideNav({ className }: { className: any }) {
   // Construct the formatted string with ordinal suffix for the day
   const formattedDate = `${monthName} ${day}${getOrdinalSuffix(day)}, ${year}`;
   return (
-    <div className={`${className} flex h-screen`}>
-      <div className={`flex flex-col items-center justify-between gap-2 p-5`}>
-        <Link href="/" ><Image
-          src="/img/holo.jpg" // relative to public, starts with '/'
-          width={150} // width & height must have an aspect ratio identical to source image
-          height={150}
-          className=""
-          alt="Screenshots of the dashboard project showing desktop version"
-        /></Link>
-
-        <nav>
-          {links.map((link) => {
-            const LinkIcon = link.icon;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={clsx(
-                  "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
-                  {
-                    "bg-sky-100 text-blue-600": pathname === link.href,
-                  },
-                )}
-              >
-                <LinkIcon className="" />
-                <p className="hidden md:block">{link.name}</p>
-              </Link>
-            );
-          })}
-        </nav>
+    <div className={`${className}`}>
+      <div
+        className={`flex h-screen flex-col items-center justify-between gap-2 pt-10`}
+      >
+        <div className={`w-full`}>
+          <Link href="/">
+            <Image
+              src="/img/holo.jpg" // relative to public, starts with '/'
+              width={150} // width & height must have an aspect ratio identical to source image
+              height={150}
+              className=""
+              alt="Screenshots of the dashboard project showing desktop version"
+            />
+          </Link>
+          <nav className={`w-full`}>
+            {links.map((link) => {
+              const LinkIcon = link.icon;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={clsx(
+                    "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+                    {
+                      "bg-sky-100 text-blue-600": pathname === link.href,
+                    },
+                  )}
+                >
+                  <LinkIcon className="w-6" />
+                  <p className="hidden md:block">{link.name}</p>
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
 
         <footer>
           <div className="space-y-1">
@@ -87,7 +92,7 @@ export default function SideNav({ className }: { className: any }) {
             </p>
           </div>
           {/* <Separator className="my-4" /> */}
-          <div className="flex h-5 items-center justify-center space-x-4 text-sm py-7">
+          <div className="flex h-5 items-center justify-center space-x-4 py-7 text-sm">
             <Link href="https://github.com/anthonybench/sleepyblog/blob/main/README.md">
               <Image
                 src="/img/github_dark.png"

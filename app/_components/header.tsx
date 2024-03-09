@@ -38,7 +38,7 @@ export default function Header({className}:{className: string}) {
   return (
     <header className={`${className} flex justify-between items-center`}>
       <Link href="/" className={`${comfortaa.className}`}>
-        <h1 className="">SleepyBlog</h1>
+        <h1 className={`text-6xl`}>SleepyBlog</h1>
       </Link>
 
       <div className={`w-1/6`}>
