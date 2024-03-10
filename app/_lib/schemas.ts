@@ -1,5 +1,15 @@
 // below is merely an example of creating typescript types
 
+export type Blog = {
+  slug: string;
+  title: string;
+  date: string;
+  coverImage: string;
+  excerpt: string;
+  content: string;
+  preview?: boolean;
+};
+
 /*
   // This file contains type definitions for your data.
   // It describes the shape of the data, and what data type each property should accept.

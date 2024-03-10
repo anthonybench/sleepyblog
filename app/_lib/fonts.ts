@@ -1,5 +1,5 @@
 import { MoreHorizontal } from 'lucide-react';
-import { Inter, Lusitana, JetBrains_Mono, Fira_Code, Roboto_Mono, Single_Day, Moirai_One, Comfortaa } from 'next/font/google';
+import { Inter, Lusitana, JetBrains_Mono, Fira_Code, Roboto_Mono, Single_Day, Moirai_One, Comfortaa, Playball, Sacramento, Great_Vibes, Alex_Brush } from 'next/font/google';
  
 export const inter = Inter(
   { subsets: ['latin'] }
@@ -20,6 +20,22 @@ export const roboto_mono = Roboto_Mono({
   subsets: ['latin'],
   weight: ['400', '700'],
 });
+export const playball = Playball({
+  subsets: ['latin'],
+  weight: ['400'],
+});
+export const sacramento = Sacramento({
+  subsets: ['latin'],
+  weight: ['400'],
+});
+export const great_vibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: ['400'],
+})
+export const alex_brush = Alex_Brush({
+  subsets: ['latin'],
+  weight: ['400'],
+})
 // Sixtyfour :: how do i install it?
 // export const single_day = Single_Day({
 //   subsets: ['latin'],

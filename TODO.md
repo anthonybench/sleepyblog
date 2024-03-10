@@ -1,16 +1,15 @@
-- send resume functionality
-- fix nav links
-- sleepyblog special font
+// HOT
+- use correct dates
 - ensure image aspect ratios
+- blog search functionality
+- posts headed with automatic image carousel
 
-
-- /blogs/[slug] content
-
-
+// WARM
+- send resume functionality
 - fix theme picker selection (resets on refresh)
-- make themes
+- theme functionality
 
-
+// COLD
 - accessability
 - mobile/responsiveness
 - next features
@@ -18,6 +17,7 @@
   - loading.tsx
   - not-found.tsx
 
-
+// BACKLOG
 - readme
 - ci/cd
+- sleepyboy technologist asset

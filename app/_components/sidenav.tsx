@@ -13,6 +13,7 @@ import {
 import clsx from "clsx";
 import "@/app/_lib/globals.css";
 import { Separator } from "@/app/_components/separator";
+import { dateFormatter } from "@/app/_lib/dateformatter";
 
 const links = [
   { name: "About", href: "/about", icon: IdentificationIcon },
@@ -21,28 +22,29 @@ const links = [
   { name: "Furniture", href: "/furniture", icon: WrenchScrewdriverIcon },
 ];
 
-function getOrdinalSuffix(day: number) {
-  const unitsDigit = day % 10;
-  if (unitsDigit === 1 && day !== 11) {
-    return "st";
-  } else if (unitsDigit === 2 && day !== 12) {
-    return "nd";
-  } else if (unitsDigit === 3 && day !== 13) {
-    return "rd";
-  } else {
-    return "th";
-  }
-}
+// function getOrdinalSuffix(day: number) {
+//   const unitsDigit = day % 10;
+//   if (unitsDigit === 1 && day !== 11) {
+//     return "st";
+//   } else if (unitsDigit === 2 && day !== 12) {
+//     return "nd";
+//   } else if (unitsDigit === 3 && day !== 13) {
+//     return "rd";
+//   } else {
+//     return "th";
+//   }
+// }
 
 export default function SideNav({ className }: { className: any }) {
   const pathname = usePathname();
   const today = new Date();
-  const monthName = today.toLocaleString("default", { month: "long" });
-  const day = today.getDate();
-  const year = today.getFullYear();
+  // const monthName = today.toLocaleString("default", { month: "long" });
+  // const day = today.getDate();
+  // const year = today.getFullYear();
 
   // Construct the formatted string with ordinal suffix for the day
-  const formattedDate = `${monthName} ${day}${getOrdinalSuffix(day)}, ${year}`;
+  // const formattedDate = `${monthName} ${day}${getOrdinalSuffix(day)}, ${year}`;
+  const formattedDate = dateFormatter(today)
   return (
     <div className={`${className}`}>
       <div
@@ -55,7 +57,7 @@ export default function SideNav({ className }: { className: any }) {
               width={150} // width & height must have an aspect ratio identical to source image
               height={150}
               className=""
-              alt="Screenshots of the dashboard project showing desktop version"
+              alt="SleepyBoy typing on laptop"
             />
           </Link>
           <nav className={`w-full`}>

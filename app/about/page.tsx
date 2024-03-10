@@ -43,7 +43,7 @@ export default function Page({ className }: { className: string }) {
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
+    // subtitle.style.color = "#f00";
   }
 
   function closeModal() {
@@ -56,11 +56,13 @@ export default function Page({ className }: { className: string }) {
       <p className={`flex`}>
         Hi, I'm Isaac 👋
         <br />
-        I live at the intersection of data & dev-ops.
+        I live at the intersection of dev-ops & data.
+        <br />
+        I deeply admire simplicity.
         <br />
         An Alaskan who loves the pacific northwest.
         <br />
-        A passionate woodworker, skateboarder, and shredder of beat saber.
+        Passionate woodworker, skateboarder, and shredder of beat saber.
         <br />
         <br />
         Life long engineer, professional kid.

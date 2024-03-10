@@ -9,7 +9,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { comfortaa } from "@/app/_lib/fonts";
+import { alex_brush } from "@/app/_lib/fonts";
 import "@/app/_lib/utils.css";
 import {
   Select,
@@ -37,7 +37,7 @@ export default function Header({className}:{className: string}) {
 
   return (
     <header className={`${className} flex justify-between items-center`}>
-      <Link href="/" className={`${comfortaa.className}`}>
+      <Link href="/" className={`${alex_brush.className}`}>
         <h1 className={`text-6xl`}>SleepyBlog</h1>
       </Link>
 
