@@ -1,5 +1,5 @@
 import { MoreHorizontal } from 'lucide-react';
-import { Inter, Lusitana, JetBrains_Mono, Fira_Code, Roboto_Mono, Single_Day, Moirai_One, Comfortaa, Playball, Sacramento, Great_Vibes, Alex_Brush } from 'next/font/google';
+import { Inter, Lusitana, JetBrains_Mono, Fira_Code, Roboto_Mono, Single_Day, Moirai_One, Comfortaa, Playball, Sacramento, Great_Vibes, Alex_Brush, Cookie } from 'next/font/google';
  
 export const inter = Inter(
   { subsets: ['latin'] }
@@ -33,6 +33,10 @@ export const great_vibes = Great_Vibes({
   weight: ['400'],
 })
 export const alex_brush = Alex_Brush({
+  subsets: ['latin'],
+  weight: ['400'],
+})
+export const cookie = Cookie({
   subsets: ['latin'],
   weight: ['400'],
 })
