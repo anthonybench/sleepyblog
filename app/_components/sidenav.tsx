@@ -22,29 +22,11 @@ const links = [
   { name: "Furniture", href: "/furniture", icon: WrenchScrewdriverIcon },
 ];
 
-// function getOrdinalSuffix(day: number) {
-//   const unitsDigit = day % 10;
-//   if (unitsDigit === 1 && day !== 11) {
-//     return "st";
-//   } else if (unitsDigit === 2 && day !== 12) {
-//     return "nd";
-//   } else if (unitsDigit === 3 && day !== 13) {
-//     return "rd";
-//   } else {
-//     return "th";
-//   }
-// }
 
 export default function SideNav({ className }: { className: any }) {
   const pathname = usePathname();
-  const today = new Date();
-  // const monthName = today.toLocaleString("default", { month: "long" });
-  // const day = today.getDate();
-  // const year = today.getFullYear();
+  const lastUpdatedDate = dateFormatter(new Date());
 
-  // Construct the formatted string with ordinal suffix for the day
-  // const formattedDate = `${monthName} ${day}${getOrdinalSuffix(day)}, ${year}`;
-  const formattedDate = dateFormatter(today)
   return (
     <div className={`${className}`}>
       <div
@@ -90,7 +72,7 @@ export default function SideNav({ className }: { className: any }) {
             <p className="text-sm text-muted-foreground">
               Last Updated:
               <br />
-              {formattedDate}
+              {lastUpdatedDate}
             </p>
           </div>
           {/* <Separator className="my-4" /> */}

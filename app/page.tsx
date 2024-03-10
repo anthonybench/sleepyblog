@@ -5,7 +5,7 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { notFound } from "next/navigation";
 import { Blog } from "@/app/_lib/schemas";
 import { BlogPreview } from "@/app/_components/blogpreview";
-import { getAllBlogs } from "@/app/_lib/blogs";
+import { getAllBlogs, getFilteredBlogs } from "@/app/_lib/blogs";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Search from "@/app/_components/search";
 
@@ -13,9 +13,13 @@ type Props = {
   blogs: Blog[];
 };
 
-export default function Home({ className }: { className: string }) {
-  const blogs = getAllBlogs();
-  const today = new Date();
+export default function Home(
+  { className, searchParams }: { className: string, searchParams?: {
+    query?: string;
+  } }
+) {
+  const query = searchParams?.query || '';
+  const blogs = getFilteredBlogs(query);
   return (
     <div className={`${className} `}>
       <div className={`pb-10`}>
@@ -26,7 +30,7 @@ export default function Home({ className }: { className: string }) {
           <BlogPreview
             key={blog.slug}
             title={blog.title}
-            date={today}
+            date={new Date(blog.date)}
             excerpt={blog.excerpt}
             slug={blog.slug}
           />

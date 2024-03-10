@@ -2,6 +2,7 @@ import { Blog } from "@/app/_lib/schemas";
 import fs from "fs";
 import matter from "gray-matter";
 import { join } from "path";
+import { dateFormatter } from "./dateformatter";
 
 const postsDirectory = join(process.cwd(), "_posts");
 
@@ -22,6 +23,20 @@ export function getAllBlogs(): Blog[] {
   const slugs = getPostSlugs();
   const posts = slugs
     .map((slug) => getPostBySlug(slug))
+    // sort posts by date in descending order
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+  return posts;
+}
+
+export function getFilteredBlogs(searchString: string): Blog[] {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug))
+    .filter(
+      (blog) =>
+        blog.title.toLowerCase().includes(searchString.toLowerCase()) ||
+        dateFormatter(new Date(blog.date)).toLowerCase().includes(searchString.toLowerCase())
+    )
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
   return posts;

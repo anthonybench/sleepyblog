@@ -1,11 +1,9 @@
 // HOT
-- use correct dates
-- ensure image aspect ratios
-- blog search functionality
+- send resume functionality
 - posts headed with automatic image carousel
 
 // WARM
-- send resume functionality
+- ensure image aspect ratios
 - fix theme picker selection (resets on refresh)
 - theme functionality
 
