@@ -33,15 +33,17 @@ export default function SideNav({ className }: { className: any }) {
         className={`flex h-screen flex-col items-center justify-between gap-2 pt-10`}
       >
         <div className={`w-full`}>
-          <Link href="/">
-            <Image
-              src="/img/holo.jpg" // relative to public, starts with '/'
-              width={150} // width & height must have an aspect ratio identical to source image
-              height={150}
-              className=""
-              alt="SleepyBoy typing on laptop"
-            />
-          </Link>
+          <div className={`flex justify-center`}>
+            <Link href="/">
+              <Image
+                src="/img/holo.jpg" // relative to public, starts with '/'
+                width={150} // width & height must have an aspect ratio identical to source image
+                height={150}
+                className=""
+                alt="SleepyBoy typing on laptop"
+              />
+            </Link>
+          </div>
           <nav className={`w-full`}>
             {links.map((link) => {
               const LinkIcon = link.icon;
@@ -56,8 +58,9 @@ export default function SideNav({ className }: { className: any }) {
                     },
                   )}
                 >
+                  <span className={`pl-4`}></span>
                   <LinkIcon className="w-6" />
-                  <p className="hidden md:block">{link.name}</p>
+                  <p className="hidden md:block pl-1">{link.name}</p>
                 </Link>
               );
             })}

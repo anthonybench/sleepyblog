@@ -8,6 +8,7 @@
 - theme functionality
 
 // COLD
+- modal has weird error, and only works on the first button press, afterwards needing refresh
 - accessability
 - mobile/responsiveness
 - next features
