@@ -10,6 +10,7 @@ import markdownToHtml from "@/app/_lib/markdowntohtml";
 import { notFound } from "next/navigation";
 
 
+
 export const metadata: Metadata = {
   title: {
     template: '%s | SleepyBlog',
@@ -35,7 +36,7 @@ export default async function Page({
       {/* blog :: ({params.slug}) */}
       <BlogHeader
         title={blog.title}
-        coverImage={blog.coverImage}
+        media={blog.media}
         date={today}
       />
       <BlogBody

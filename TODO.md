@@ -1,6 +1,5 @@
 // HOT
 - send resume functionality
-- posts headed with automatic image carousel
 
 // WARM
 - ensure image aspect ratios

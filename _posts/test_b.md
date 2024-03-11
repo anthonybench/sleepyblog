@@ -1,7 +1,7 @@
 ---
 title: "✨Test Blog B✨"
 excerpt: "This is the excerpt, which i'm guessing will be the 'preview'..."
-coverImage: "/img/holo.jpg"
+media: ["/img/holo.jpg","/img/holo.jpg","/img/holo.jpg","/img/holo.jpg"]
 date: "2020-03-16" # yyyy-mm-dd
 ---
 
