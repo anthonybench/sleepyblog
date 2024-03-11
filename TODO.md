@@ -2,7 +2,8 @@
 - send resume functionality
 
 // WARM
-- ensure image aspect ratios
+- correct image aspect ratios
+- correct video height/width
 - fix theme picker selection (resets on refresh)
 - theme functionality
 

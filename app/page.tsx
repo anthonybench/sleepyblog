@@ -28,7 +28,6 @@ export default function Home(
       {blogs.map((blog) => (
         <div className={`pb-5`}>
           <BlogPreview
-            key={blog.slug}
             title={blog.title}
             date={new Date(blog.date)}
             excerpt={blog.excerpt}

@@ -13,7 +13,6 @@ import { Button } from "@/app/_components/button";
 import { Input } from "@/app/_components/input";
 import { Label } from "@/app/_components/label";
 import { PaperPlaneIcon, CheckIcon } from "@radix-ui/react-icons";
-import { Check } from "lucide-react";
 
 const customStyles = {
   content: {
@@ -54,7 +53,7 @@ export default function Page({ className }: { className: string }) {
     <div className={`${className} flex flex-col`}>
       {/* 1 : Blurb */}
       <p className={`flex`}>
-        Hi, I'm Isaac 👋
+        Hi, I&apos;m Isaac 👋
         <br />
         I live at the intersection of dev-ops & data.
         <br />
@@ -144,7 +143,7 @@ export default function Page({ className }: { className: string }) {
                 className={``}
                 href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
               >
-                View resume's{" "}
+                View resume&apos;s{" "}
                 <Image
                   src="/img/latex.svg" // relative to public, starts with '/'
                   width={43} // width & height must have an aspect ratio identical to source image
