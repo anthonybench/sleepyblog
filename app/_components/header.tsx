@@ -31,12 +31,12 @@ const themes = [
   { id: 3, name: "Midnight" },
 ];
 
-export default function Header({className}:{className: string}) {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selected, setSelected] = useState(themes[0]);
 
   return (
-    <header className={`${className} flex justify-between items-center`}>
+    <header className={`flex justify-between items-center px-3 h-full`}>
       <Link href="/" className={`${cookie.className}`}>
         <h1 className={`text-6xl`}>SleepyBlog</h1>
       </Link>

@@ -16,7 +16,7 @@ import { PaperPlaneIcon, CheckIcon } from "@radix-ui/react-icons";
 
 const customStyles = {
   content: {
-    position: "absolute",
+    // position: "fixed",
     top: "40px",
     left: "40px",
     right: "40px",
@@ -24,14 +24,14 @@ const customStyles = {
     border: "1px solid #ccc",
     background: "#fff",
     overflow: "auto",
-    WebkitOverflowScrolling: "touch",
+    // WebkitOverflowScrolling: "touch",
     borderRadius: "3rem",
     outline: "none",
     padding: "2px",
   },
 };
 
-export default function Page({ className }: { className: string }) {
+export default function Page() {
   let zoomLevel: number = 1;
   let subtitle: any;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -50,7 +50,7 @@ export default function Page({ className }: { className: string }) {
   }
 
   return (
-    <div className={`${className} flex flex-col`}>
+    <div className={`flex flex-col leading-7`}>
       {/* 1 : Blurb */}
       <p className={`flex`}>
         Hi, I&apos;m Isaac 👋

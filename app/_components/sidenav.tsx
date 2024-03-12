@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
-import { useSearchParams, usePathname, useRouter } from "next/navigation"; // usePathname forces addition of "use client" directive
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import {
   IdentificationIcon,
   CodeBracketIcon,
@@ -12,7 +12,6 @@ import {
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import "@/app/_lib/globals.css";
-import { Separator } from "@/app/_components/separator";
 import { dateFormatter } from "@/app/_lib/dateformatter";
 
 const links = [
@@ -23,12 +22,11 @@ const links = [
 ];
 
 
-export default function SideNav({ className }: { className: any }) {
+export default function SideNav() {
   const pathname = usePathname();
   const lastUpdatedDate = dateFormatter(new Date());
 
   return (
-    <div className={`${className}`}>
       <div
         className={`flex h-screen flex-col items-center justify-between gap-2 pt-10`}
       >
@@ -92,6 +90,5 @@ export default function SideNav({ className }: { className: any }) {
           </div>
         </footer>
       </div>
-    </div>
   );
 }

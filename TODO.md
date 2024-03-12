@@ -20,3 +20,4 @@
 - readme
 - ci/cd
 - sleepyboy technologist asset
+- export const metadata: Metadata = {...}

@@ -14,19 +14,19 @@ type Props = {
 };
 
 export default function Home(
-  { className, searchParams }: { className: string, searchParams?: {
+  { searchParams }: { searchParams?: {
     query?: string;
   } }
 ) {
   const query = searchParams?.query || '';
   const blogs = getFilteredBlogs(query);
   return (
-    <div className={`${className} `}>
+    <div className={``}>
       <div className={`pb-10`}>
         <Search placeholder="Search by date or title..." />
       </div>
       {blogs.map((blog) => (
-        <div className={`pb-5`}>
+        <div key={blog.slug} className={`pb-5`}>
           <BlogPreview
             title={blog.title}
             date={new Date(blog.date)}
