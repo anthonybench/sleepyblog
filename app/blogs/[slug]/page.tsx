@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { BlogBody } from "@/app/_components/blogbody";
 import { BlogHeader } from "@/app/_components/blogheader";
 import { getAllBlogs, getPostBySlug } from "@/app/_lib/blogs";
-import markdownToHtml from "@/app/_lib/markdowntohtml";
+import { markdownToHtml } from "@/app/_lib/markdowntohtml";
 import { notFound } from "next/navigation";
 
 
