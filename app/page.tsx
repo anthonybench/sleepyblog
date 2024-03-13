@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 import { Blog } from "@/app/_lib/schemas";
 import { BlogPreview } from "@/app/_components/blogpreview";
 import { getAllBlogs, getFilteredBlogs } from "@/app/_lib/blogs";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Search from "@/app/_components/search";
 
 type Props = {

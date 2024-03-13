@@ -16,7 +16,6 @@ import { PaperPlaneIcon, CheckIcon } from "@radix-ui/react-icons";
 
 const customStyles = {
   content: {
-    // position: "fixed",
     top: "40px",
     left: "40px",
     right: "40px",
@@ -24,7 +23,6 @@ const customStyles = {
     border: "1px solid #ccc",
     background: "#fff",
     overflow: "auto",
-    // WebkitOverflowScrolling: "touch",
     borderRadius: "3rem",
     outline: "none",
     padding: "2px",

@@ -5,10 +5,6 @@ import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { cookie } from "@/app/_lib/fonts";
 import "@/app/_lib/utils.css";
 import {
