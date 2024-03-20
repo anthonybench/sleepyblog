@@ -27,6 +27,12 @@ export function BlogHeader({ title, media, date }: Props) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
+  const year = date.getFullYear().toString().padStart(2, '0').slice(-2); // Ensure two digits
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed
+  const day = date.getDate().toString().padStart(2, '0');
+  const dateString = `${year}_${month}_${day}`;
+  const imagePrefix = `/assets/posts/${dateString}`;
+  console.log(`${imagePrefix}`)
   return (
     <>
       <h1 className={`text-4xl`}>{title}</h1>
@@ -44,16 +50,16 @@ export function BlogHeader({ title, media, date }: Props) {
             {media.map((_, index) => (
               <CarouselItem key={index}>
                 <div className={`flex justify-center`}>
-                  {isImage(_) ? (
+                  {isImage(`${imagePrefix}${_}`) ? (
                     <Image
-                      src={_}
+                      src={`${imagePrefix}${_}`}
                       width={150}
                       height={150}
                       alt="SleepyBoy typing on laptop"
                     />
                   ) : (
                     <video controls width={500} height={500}>
-                      <source src={_} />
+                      <source src={`${imagePrefix}${_}`} />
                     </video>
                   )}
                 </div>

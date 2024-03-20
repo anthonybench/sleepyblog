@@ -1,8 +1,8 @@
 ---
 title: "✨Test Blog A✨"
 excerpt: "This is the excerpt, which i'm guessing will be the 'preview'..."
-media: ["/img/holo.jpg", "/video/test.mov"]
-date: "2020-02-16" # yyyy-mm-dd
+media: ["/holo.jpg", "/test.mov"]
+date: "2024-03-19" # yyyy-mm-dd
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.

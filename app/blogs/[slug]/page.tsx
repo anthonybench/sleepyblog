@@ -31,10 +31,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return notFound();
   }
   const content = await markdownToHtml(blog.content || "");
-  const today = new Date();
   return (
     <article>
-      <BlogHeader title={blog.title} media={blog.media} date={today} />
+      <BlogHeader title={blog.title} media={blog.media} date={new Date(`${blog.date}T00:00:00`)} />
       <BlogBody content={content} />
     </article>
   );

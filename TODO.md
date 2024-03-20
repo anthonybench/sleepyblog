@@ -6,6 +6,7 @@
 - send resume functionality
 - theme functionality
 - evolve app/error.tsx
+- evolve app/blogs/[slug]/not-found.tsx
 - public/favicon.ico
 
 ## STAGING
