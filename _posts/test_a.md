@@ -13,10 +13,12 @@ Venenatis cras sed felis eget velit. Consectetur libero id faucibus nisl tincidu
 
 > This is a block quote.
 > This is an `inline snippet` in a block quote.
->> This is a block quote with two arrows.
-  > this is an indented block quote.
+>
+> > This is a block quote with two arrows.
+> > this is an indented block quote.
 
 ## Code snippets
+
 `this is an inline snippet`
 
 ```
@@ -31,14 +33,16 @@ for i in 'team':
 ```
 
 ## Basic markup
+
 **bold**
 
-*italic*
+_italic_
 
-***bold-italic***
+**_bold-italic_**
 
 ## Table
+
 | Column 1 | Column 2 |
-| --- | --- |
+| -------- | -------- |
 | Cell 1-1 | Cell 1-2 |
 | Cell 2-1 | Cell 2-2 |

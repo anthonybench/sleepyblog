@@ -12,12 +12,14 @@ type Props = {
   blogs: Blog[];
 };
 
-export default function Home(
-  { searchParams }: { searchParams?: {
+export default function Home({
+  searchParams,
+}: {
+  searchParams?: {
     query?: string;
-  } }
-) {
-  const query = searchParams?.query || '';
+  };
+}) {
+  const query = searchParams?.query || "";
   const blogs = getFilteredBlogs(query);
   return (
     <div className={``}>

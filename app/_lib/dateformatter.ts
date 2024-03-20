@@ -11,7 +11,7 @@ function getOrdinalSuffix(day: number) {
   }
 }
 
-export function dateFormatter(date:Date) {
+export function dateFormatter(date: Date) {
   const monthName = date.toLocaleString("default", { month: "long" });
   const day = date.getDate();
   const year = date.getFullYear();

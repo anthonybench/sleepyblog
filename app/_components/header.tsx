@@ -15,7 +15,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/app/_components/select"
+} from "@/app/_components/select";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -32,7 +32,7 @@ export default function Header() {
   const [selected, setSelected] = useState(themes[0]);
 
   return (
-    <header className={`flex justify-between items-center px-3 h-full`}>
+    <header className={`flex h-full items-center justify-between px-3`}>
       <Link href="/" className={`${cookie.className}`}>
         <h1 className={`text-6xl`}>SleepyBlog</h1>
       </Link>
@@ -45,8 +45,10 @@ export default function Header() {
           <SelectContent defaultChecked>
             <SelectGroup defaultValue="Dracula">
               <SelectLabel>Theme</SelectLabel>
-              {themes.map((theme)=>(
-                <SelectItem key={theme.id} value={theme.id.toString()}>{theme.name}</SelectItem>
+              {themes.map((theme) => (
+                <SelectItem key={theme.id} value={theme.id.toString()}>
+                  {theme.name}
+                </SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>

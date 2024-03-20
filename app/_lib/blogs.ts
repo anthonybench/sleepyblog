@@ -35,7 +35,9 @@ export function getFilteredBlogs(searchString: string): Blog[] {
     .filter(
       (blog) =>
         blog.title.toLowerCase().includes(searchString.toLowerCase()) ||
-        dateFormatter(new Date(blog.date)).toLowerCase().includes(searchString.toLowerCase())
+        dateFormatter(new Date(blog.date))
+          .toLowerCase()
+          .includes(searchString.toLowerCase()),
     )
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));

@@ -1,23 +1,22 @@
-// HOT
+// GO
+
 - send resume functionality
-
-// WARM
-- correct image aspect ratios
-- correct video height/width
-- fix theme picker selection (resets on refresh)
 - theme functionality
+- error.tsx (custom 404)
+- favicon
 
-// COLD
+// STAGING
+
+- correct video height/width
+- correct image aspect ratios
 - modal has weird error, and only works on the first button press, afterwards needing refresh
 - accessability
 - mobile/responsiveness
-- next features
-  - error.tsx
-  - loading.tsx
-  - not-found.tsx
+- export const metadata: Metadata = {...}
 
 // BACKLOG
+
 - readme
 - ci/cd
-- sleepyboy technologist asset
-- export const metadata: Metadata = {...}
+- sleepyboy 'technologist' asset
+- sleepyboy 'under construction' asset

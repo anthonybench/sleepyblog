@@ -18,7 +18,7 @@ type Props = {
 };
 
 const isImage = (path: string): boolean => {
-  const substrings = ['.jpg', '.jpeg', '.png', '.gif'];
+  const substrings = [".jpg", ".jpeg", ".png", ".gif"];
   return substrings.some((substring) => path.includes(substring));
 };
 
@@ -52,10 +52,7 @@ export function BlogHeader({ title, media, date }: Props) {
                       alt="SleepyBoy typing on laptop"
                     />
                   ) : (
-                    <video controls
-                      width={500}
-                      height={500}
-                    >
+                    <video controls width={500} height={500}>
                       <source src={_} />
                     </video>
                   )}

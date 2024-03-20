@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Modal = ({ children, onClose }:{ children:any, onClose:any}) => {
+const Modal = ({ children, onClose }: { children: any; onClose: any }) => {
   return (
     <div className="modal">
       <div className="modal-content">
