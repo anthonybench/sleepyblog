@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { dateFormatter } from "../_lib/dateformatter";
+import { dateFormatter } from "../_lib/utils";
 import {
   Carousel,
   CarouselContent,

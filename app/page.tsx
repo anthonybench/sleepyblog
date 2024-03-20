@@ -1,17 +1,16 @@
-import Image from "next/image";
-import Link from "next/link";
-import { unstable_noStore as noStore } from "next/cache";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { notFound } from "next/navigation";
-import { Blog } from "@/app/_lib/schemas";
+//───────────────────────────┐
+//         Imports           │
+//───────────────────────────┘
+// react
+import React from "react";
+// 1st party
+import { getFilteredBlogs } from "@/app/_lib/blogs";
 import { BlogPreview } from "@/app/_components/blogpreview";
-import { getAllBlogs, getFilteredBlogs } from "@/app/_lib/blogs";
 import Search from "@/app/_components/search";
 
-type Props = {
-  blogs: Blog[];
-};
-
+//───────────────────────────┐
+//          View             │
+//───────────────────────────┘
 export default function Home({
   searchParams,
 }: {

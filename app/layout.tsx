@@ -1,17 +1,28 @@
+//───────────────────────────┐
+//         Imports           │
+//───────────────────────────┘
+// next
 import type { Metadata } from "next";
-import { jetbrains_mono } from "@/app/_lib/fonts";
+// 1st party
 import "@/app/_lib/globals.css";
 import "@/app/_lib/utils.css";
+import { jetbrains_mono } from "@/app/_lib/fonts";
 import Header from "@/app/_components/header";
-import SideNav from "@/app/_components/sidenav";
 import { ScrollArea } from "@/app/_components/scroll-area";
+import SideNav from "@/app/_components/sidenav";
 
+//───────────────────────────┐
+//         Params            │
+//───────────────────────────┘
 export const metadata: Metadata = {
   title: "SleepyBlog",
-  description: "A blog so sleepy",
-  metadataBase: new URL("https://next-learn-dashboard.vercel.sh"), // TODO: what is a metadataBase
+  description: "a blog most sleepy",
+  metadataBase: new URL("http://sleepyblog.org"),
 };
 
+//───────────────────────────┐
+//          View             │
+//───────────────────────────┘
 export default function RootLayout({
   children,
 }: Readonly<{

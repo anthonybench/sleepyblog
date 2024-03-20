@@ -1,6 +1,6 @@
 import Link from "next/link";
 import "@/app/_lib/utils.css";
-import { dateFormatter } from "@/app/_lib/dateformatter";
+import { dateFormatter } from "@/app/_lib/utils";
 import {
   Card,
   CardContent,

@@ -1,20 +1,26 @@
 "use client";
+//───────────────────────────┐
+//         Imports           │
+//───────────────────────────┘
+// next
 import Image from "next/image";
 import Link from "next/link";
-import { unstable_noStore as noStore } from "next/cache";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { Separator } from "@/app/_components/separator";
-import "@/app/_lib/globals.css";
-import { useState } from "react";
-// import Modal from "@/app/_components/modal";
-import Modal from "react-modal";
+// react
 import React from "react";
+// 3rd party
+import { PaperPlaneIcon } from "@radix-ui/react-icons";
+import Modal from "react-modal";
+// 1st party
+import "@/app/_lib/globals.css";
+import { Separator } from "@/app/_components/separator";
 import { Button } from "@/app/_components/button";
 import { Input } from "@/app/_components/input";
 import { Label } from "@/app/_components/label";
-import { PaperPlaneIcon, CheckIcon } from "@radix-ui/react-icons";
 
-const customStyles = {
+//───────────────────────────┐
+//         Params            │
+//───────────────────────────┘
+const customStyles = { // resume modal styles
   content: {
     top: "40px",
     left: "40px",
@@ -29,6 +35,9 @@ const customStyles = {
   },
 };
 
+//───────────────────────────┐
+//          View             │
+//───────────────────────────┘
 export default function Page() {
   let zoomLevel: number = 1;
   let subtitle: any;
@@ -49,7 +58,7 @@ export default function Page() {
 
   return (
     <div className={`flex flex-col leading-7`}>
-      {/* 1 : Blurb */}
+      {/* 1: Blurb */}
       <p className={`flex`}>
         Hi, I&apos;m Isaac 👋
         <br />
@@ -64,8 +73,7 @@ export default function Page() {
         <br />
         Life long engineer, professional kid.
       </p>
-
-      {/* 2 : Connect with me */}
+      {/* 2: Social Links */}
       <div className={`flex justify-center py-5 pt-20`}>
         <div>
           <div className="space-y-1">
@@ -78,7 +86,7 @@ export default function Page() {
             <Link href="https://linkedin.com/in/anthonybench">
               <Image
                 src="/img/linkedin.png"
-                width={40} // width & height must have an aspect ratio identical to source image
+                width={40}
                 height={40}
                 alt="connect with me on linkedin"
               />
@@ -87,7 +95,7 @@ export default function Page() {
             <Link href="https://github.com/anthonybench">
               <Image
                 src="/img/github_dark.png"
-                width={40} // width & height must have an aspect ratio identical to source image
+                width={40}
                 height={40}
                 alt="connect with me on github"
               />
@@ -95,14 +103,12 @@ export default function Page() {
           </div>
         </div>
       </div>
-
       {/* 3 : Resume */}
       <div className={`grow`}>
         <div className="my-4">
           <Separator />
         </div>
         <div className="">
-          {/* View my Resume */}
           <div>
             <div className={`flex justify-center`}>
               <Button variant="secondary" className={``} onClick={openModal}>
@@ -143,8 +149,8 @@ export default function Page() {
               >
                 View resume&apos;s{" "}
                 <Image
-                  src="/img/latex.svg" // relative to public, starts with '/'
-                  width={43} // width & height must have an aspect ratio identical to source image
+                  src="/img/latex.svg"
+                  width={43}
                   height={43}
                   className="inline"
                   alt="LaTeX logo"

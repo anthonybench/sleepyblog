@@ -1,21 +1,22 @@
-// GO
+## GO-GO
+- refactor app/_components/*
+- organize public/*
 
+## GO
 - send resume functionality
 - theme functionality
-- error.tsx (custom 404)
-- favicon
+- evolve app/error.tsx
+- public/favicon.ico
 
-// STAGING
-
+## STAGING
+- blogs --> posts
 - correct video height/width
 - correct image aspect ratios
 - modal has weird error, and only works on the first button press, afterwards needing refresh
 - accessability
 - mobile/responsiveness
-- export const metadata: Metadata = {...}
 
-// BACKLOG
-
+## BACKLOG
 - readme
 - ci/cd
 - sleepyboy 'technologist' asset

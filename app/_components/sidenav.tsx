@@ -12,7 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import "@/app/_lib/globals.css";
-import { dateFormatter } from "@/app/_lib/dateformatter";
+import { dateFormatter } from "@/app/_lib/utils";
 
 const links = [
   { name: "About", href: "/about", icon: IdentificationIcon },
