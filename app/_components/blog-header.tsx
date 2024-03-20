@@ -1,5 +1,14 @@
 "use client";
+//───────────────────────────┐
+//         Imports           │
+//───────────────────────────┘
+// next
 import Image from "next/image";
+// react
+import * as React from "react";
+// 3rd party
+import Autoplay from "embla-carousel-autoplay";
+// 1st party
 import { dateFormatter } from "../_lib/utils";
 import {
   Carousel,
@@ -8,9 +17,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/app/_components/carousel";
-import * as React from "react";
-import Autoplay from "embla-carousel-autoplay";
 
+//───────────────────────────┐
+//         Params            │
+//───────────────────────────┘
 type Props = {
   title: string;
   media: string[];
@@ -22,6 +32,9 @@ const isImage = (path: string): boolean => {
   return substrings.some((substring) => path.includes(substring));
 };
 
+//───────────────────────────┐
+//          View             │
+//───────────────────────────┘
 export function BlogHeader({ title, media, date }: Props) {
   const formattedDate = dateFormatter(date);
   const plugin = React.useRef(
@@ -49,7 +62,7 @@ export function BlogHeader({ title, media, date }: Props) {
           <CarouselContent>
             {media.map((_, index) => (
               <CarouselItem key={index}>
-                <div className={`flex justify-center`}>
+                <div className={`flex justify-center items-center h-full bg-slate-600`}> 
                   {isImage(`${imagePrefix}${_}`) ? (
                     <Image
                       src={`${imagePrefix}${_}`}

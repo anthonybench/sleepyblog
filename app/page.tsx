@@ -5,7 +5,7 @@
 import React from "react";
 // 1st party
 import { getFilteredBlogs } from "@/app/_lib/blogs";
-import { BlogPreview } from "@/app/_components/blogpreview";
+import { BlogPreview } from "@/app/_components/blog-preview";
 import Search from "@/app/_components/search";
 
 //───────────────────────────┐

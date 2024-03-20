@@ -9,7 +9,7 @@ import "@/app/_lib/utils.css";
 import { jetbrains_mono } from "@/app/_lib/fonts";
 import Header from "@/app/_components/header";
 import { ScrollArea } from "@/app/_components/scroll-area";
-import SideNav from "@/app/_components/sidenav";
+import SideNav from "@/app/_components/side-nav";
 
 //───────────────────────────┐
 //         Params            │

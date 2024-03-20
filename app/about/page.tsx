@@ -94,7 +94,7 @@ export default function Page() {
             <Separator orientation="vertical" />
             <Link href="https://github.com/anthonybench">
               <Image
-                src="/img/github_dark.png"
+                src="/assets/general/github_dark.png"
                 width={40}
                 height={40}
                 alt="connect with me on github"
@@ -123,7 +123,7 @@ export default function Page() {
               contentLabel="Example Modal"
             >
               <div style={{ transform: `scale(${zoomLevel})` }}>
-                <iframe src="/assets/resume.pdf" width="100%" height="800" />
+                <iframe src="/assets/general/resume.pdf" width="100%" height="800" />
               </div>
             </Modal>
           </div>
@@ -142,6 +142,7 @@ export default function Page() {
                 </Button>
               </div>
             </div>
+            <div className="flex items-end">
             <Button variant="outline">
               <Link
                 className={``}
@@ -149,7 +150,7 @@ export default function Page() {
               >
                 View resume&apos;s{" "}
                 <Image
-                  src="/img/latex.svg"
+                  src="/assets/general/latex.svg"
                   width={43}
                   height={43}
                   className="inline"
@@ -158,6 +159,7 @@ export default function Page() {
                 source.
               </Link>
             </Button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,9 @@
+//───────────────────────────┐
+//         Imports           │
+//───────────────────────────┘
+// next
 import Link from "next/link";
+// 1st party
 import "@/app/_lib/utils.css";
 import { dateFormatter } from "@/app/_lib/utils";
 import {
@@ -9,6 +14,9 @@ import {
   CardTitle,
 } from "@/app/_components/card";
 
+//───────────────────────────┐
+//         Params            │
+//───────────────────────────┘
 type Props = {
   title: string;
   date: Date;
@@ -16,6 +24,9 @@ type Props = {
   slug: string;
 };
 
+//───────────────────────────┐
+//          View             │
+//───────────────────────────┘
 export function BlogPreview({ title, date, excerpt, slug }: Props) {
   return (
     <Link as={`/blogs/${slug}`} href="/blogs/[slug]">

@@ -1,9 +1,13 @@
 "use client"; // because im calling usePathname()
-
+//───────────────────────────┐
+//         Imports           │
+//───────────────────────────┘
+// next
 import Image from "next/image";
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+// 3rd party
 import {
   IdentificationIcon,
   CodeBracketIcon,
@@ -11,9 +15,13 @@ import {
   WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
+// 1st party
 import "@/app/_lib/globals.css";
 import { dateFormatter } from "@/app/_lib/utils";
 
+//───────────────────────────┐
+//         Params            │
+//───────────────────────────┘
 const links = [
   { name: "About", href: "/about", icon: IdentificationIcon },
   { name: "Software", href: "/software", icon: CodeBracketIcon },
@@ -21,6 +29,9 @@ const links = [
   { name: "Furniture", href: "/furniture", icon: WrenchScrewdriverIcon },
 ];
 
+//───────────────────────────┐
+//          View             │
+//───────────────────────────┘
 export default function SideNav() {
   const pathname = usePathname();
   const lastUpdatedDate = dateFormatter(new Date());
@@ -33,10 +44,10 @@ export default function SideNav() {
         <div className={`flex justify-center`}>
           <Link href="/">
             <Image
-              src="/img/holo.jpg" // relative to public, starts with '/'
-              width={150} // width & height must have an aspect ratio identical to source image
+              src="/assets/general/holo.jpg"
+              width={150}
               height={150}
-              className=""
+              className={``}
               alt="SleepyBoy typing on laptop"
             />
           </Link>
@@ -75,12 +86,11 @@ export default function SideNav() {
             {lastUpdatedDate}
           </p>
         </div>
-        {/* <Separator className="my-4" /> */}
         <div className="flex h-5 items-center justify-center space-x-4 py-7 text-sm">
           <Link href="https://github.com/anthonybench/sleepyblog/blob/main/README.md">
             <Image
-              src="/img/github_dark.png"
-              width={40} // width & height must have an aspect ratio identical to source image
+              src="/assets/general/github_dark.png"
+              width={40}
               height={40}
               className=""
               alt="see website source"

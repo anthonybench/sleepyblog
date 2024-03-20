@@ -1,7 +1,15 @@
 "use client"; // error.tsx must always be a client component
-
+//───────────────────────────┐
+//         Imports           │
+//───────────────────────────┘
+// react
 import { useEffect } from "react";
+// 1st party
+import "@/app/_lib/utils.css";
 
+//───────────────────────────┐
+//          View             │
+//───────────────────────────┘
 export default function Error({
   error,
   reset,

@@ -7,8 +7,8 @@ import { notFound } from "next/navigation";
 // 1st party
 import { getPostBySlug } from "@/app/_lib/blogs";
 import { markdownToHtml } from "@/app/_lib/markdowntohtml";
-import { BlogBody } from "@/app/_components/blogbody";
-import { BlogHeader } from "@/app/_components/blogheader";
+import { BlogBody } from "@/app/_components/blog-body";
+import { BlogHeader } from "@/app/_components/blog-header";
 
 //───────────────────────────┐
 //         Params            │
