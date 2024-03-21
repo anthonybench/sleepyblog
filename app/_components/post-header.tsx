@@ -35,14 +35,14 @@ const isImage = (path: string): boolean => {
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export function BlogHeader({ title, media, date }: Props) {
+export function PostHeader({ title, media, date }: Props) {
   const formattedDate = dateFormatter(date);
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
-  const year = date.getFullYear().toString().padStart(2, '0').slice(-2); // Ensure two digits
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed
-  const day = date.getDate().toString().padStart(2, '0');
+  const year = date.getFullYear().toString().padStart(2, "0").slice(-2); // Ensure two digits
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
+  const day = date.getDate().toString().padStart(2, "0");
   const dateString = `${year}_${month}_${day}`;
   const imagePrefix = `/assets/posts/${dateString}`;
   return (
@@ -61,7 +61,9 @@ export function BlogHeader({ title, media, date }: Props) {
           <CarouselContent>
             {media.map((_, index) => (
               <CarouselItem key={index}>
-                <div className={`flex justify-center items-center h-full bg-slate-600`}> 
+                <div
+                  className={`flex h-full items-center justify-center bg-slate-600`}
+                >
                   {isImage(`${imagePrefix}${_}`) ? (
                     <Image
                       src={`${imagePrefix}${_}`}

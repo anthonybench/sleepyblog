@@ -2,9 +2,9 @@
 //         Imports           │
 //───────────────────────────┘
 // next
-import Link from 'next/link';
+import Link from "next/link";
 // 3rd party
-import { FaceFrownIcon } from '@heroicons/react/24/outline';
+import { FaceFrownIcon } from "@heroicons/react/24/outline";
 
 //───────────────────────────┐
 //         Params            │

@@ -20,7 +20,8 @@ import { Label } from "@/app/_components/label";
 //───────────────────────────┐
 //         Params            │
 //───────────────────────────┘
-const customStyles = { // resume modal styles
+const customStyles = {
+  // resume modal styles
   content: {
     top: "40px",
     left: "40px",
@@ -123,7 +124,11 @@ export default function Page() {
               contentLabel="Example Modal"
             >
               <div style={{ transform: `scale(${zoomLevel})` }}>
-                <iframe src="/assets/general/resume.pdf" width="100%" height="800" />
+                <iframe
+                  src="/assets/general/resume.pdf"
+                  width="100%"
+                  height="800"
+                />
               </div>
             </Modal>
           </div>
@@ -143,22 +148,22 @@ export default function Page() {
               </div>
             </div>
             <div className="flex items-end">
-            <Button variant="outline">
-              <Link
-                className={``}
-                href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
-              >
-                View resume&apos;s{" "}
-                <Image
-                  src="/assets/general/latex.svg"
-                  width={43}
-                  height={43}
-                  className="inline"
-                  alt="LaTeX logo"
-                />{" "}
-                source.
-              </Link>
-            </Button>
+              <Button variant="outline">
+                <Link
+                  className={``}
+                  href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
+                >
+                  View resume&apos;s{" "}
+                  <Image
+                    src="/assets/general/latex.svg"
+                    width={43}
+                    height={43}
+                    className="inline"
+                    alt="LaTeX logo"
+                  />{" "}
+                  source.
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

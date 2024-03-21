@@ -1,10 +1,10 @@
 ## GO
-- blogs --> posts
 - send resume functionality
 - evolve app/error.tsx
 - evolve app/blogs/[slug]/not-found.tsx
 
 ## STAGING
+
 - theme functionality
 - correct video height/width
 - correct image aspect ratios
@@ -13,6 +13,7 @@
 - mobile/responsiveness
 
 ## BACKLOG
+
 - readme
 - ci/cd
 - public/favicon.ico

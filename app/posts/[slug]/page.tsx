@@ -5,10 +5,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 // 1st party
-import { getPostBySlug } from "@/app/_lib/blogs";
+import { getPostBySlug } from "@/app/_lib/posts";
 import { markdownToHtml } from "@/app/_lib/markdowntohtml";
-import { BlogBody } from "@/app/_components/blog-body";
-import { BlogHeader } from "@/app/_components/blog-header";
+import { PostBody } from "@/app/_components/post-body";
+import { PostHeader } from "@/app/_components/post-header";
 
 //───────────────────────────┐
 //         Params            │
@@ -26,15 +26,19 @@ export const metadata: Metadata = {
 //          View             │
 //───────────────────────────┘
 export default async function Page({ params }: { params: { slug: string } }) {
-  const blog = getPostBySlug(params.slug);
-  if (!blog.slug) {
+  const post = getPostBySlug(params.slug);
+  if (!post.slug) {
     return notFound();
   }
-  const content = await markdownToHtml(blog.content || "");
+  const content = await markdownToHtml(post.content || "");
   return (
     <article>
-      <BlogHeader title={blog.title} media={blog.media} date={new Date(`${blog.date}T00:00:00`)} />
-      <BlogBody content={content} />
+      <PostHeader
+        title={post.title}
+        media={post.media}
+        date={new Date(`${post.date}T00:00:00`)}
+      />
+      <PostBody content={content} />
     </article>
   );
 }

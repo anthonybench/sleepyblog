@@ -4,8 +4,8 @@
 // react
 import React from "react";
 // 1st party
-import { getFilteredBlogs } from "@/app/_lib/blogs";
-import { BlogPreview } from "@/app/_components/blog-preview";
+import { getFilteredPosts } from "@/app/_lib/posts";
+import { PostPreview } from "@/app/_components/post-preview";
 import Search from "@/app/_components/search";
 
 //───────────────────────────┐
@@ -19,19 +19,19 @@ export default function Home({
   };
 }) {
   const query = searchParams?.query || "";
-  const blogs = getFilteredBlogs(query);
+  const posts = getFilteredPosts(query);
   return (
     <div className={``}>
       <div className={`pb-10`}>
         <Search placeholder="Search by date or title..." />
       </div>
-      {blogs.map((blog) => (
-        <div key={blog.slug} className={`pb-5`}>
-          <BlogPreview
-            title={blog.title}
-            date={new Date(blog.date)}
-            excerpt={blog.excerpt}
-            slug={blog.slug}
+      {posts.map((post) => (
+        <div key={post.slug} className={`pb-5`}>
+          <PostPreview
+            title={post.title}
+            date={new Date(post.date)}
+            excerpt={post.excerpt}
+            slug={post.slug}
           />
         </div>
       ))}

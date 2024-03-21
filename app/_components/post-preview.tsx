@@ -27,9 +27,9 @@ type Props = {
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export function BlogPreview({ title, date, excerpt, slug }: Props) {
+export function PostPreview({ title, date, excerpt, slug }: Props) {
   return (
-    <Link as={`/blogs/${slug}`} href="/blogs/[slug]">
+    <Link as={`/posts/${slug}`} href="/posts/[slug]">
       <Card className="hover:bg-sky-100 hover:text-blue-600">
         <CardHeader>
           <CardTitle>{title}</CardTitle>

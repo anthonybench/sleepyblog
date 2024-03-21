@@ -1,4 +1,4 @@
-import { Blog } from "@/app/_lib/schemas";
+import { Post } from "@/app/_lib/schemas";
 import fs from "fs";
 import matter from "gray-matter";
 import { join } from "path";
@@ -14,10 +14,9 @@ export function getPostBySlug(slug: string) {
   const realSlug = slug.replace(/\.md$/, "");
   const fullPath = join(postsDirectory, `${realSlug}.md`);
   try {
-
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
-    return { ...data, slug: realSlug, content } as Blog;
+    return { ...data, slug: realSlug, content } as Post;
   } catch {
     return {
       slug: "",
@@ -25,13 +24,12 @@ export function getPostBySlug(slug: string) {
       date: "",
       media: [],
       excerpt: "",
-      content: ""
-    } as Blog
+      content: "",
+    } as Post;
   }
-
 }
 
-export function getAllBlogs(): Blog[] {
+export function getAllPosts(): Post[] {
   const slugs = getPostSlugs();
   const posts = slugs
     .map((slug) => getPostBySlug(slug))
@@ -40,14 +38,14 @@ export function getAllBlogs(): Blog[] {
   return posts;
 }
 
-export function getFilteredBlogs(searchString: string): Blog[] {
+export function getFilteredPosts(searchString: string): Post[] {
   const slugs = getPostSlugs();
   const posts = slugs
     .map((slug) => getPostBySlug(slug))
     .filter(
-      (blog) =>
-        blog.title.toLowerCase().includes(searchString.toLowerCase()) ||
-        dateFormatter(new Date(blog.date))
+      (post) =>
+        post.title.toLowerCase().includes(searchString.toLowerCase()) ||
+        dateFormatter(new Date(post.date))
           .toLowerCase()
           .includes(searchString.toLowerCase()),
     )
@@ -55,4 +53,3 @@ export function getFilteredBlogs(searchString: string): Blog[] {
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
   return posts;
 }
-
