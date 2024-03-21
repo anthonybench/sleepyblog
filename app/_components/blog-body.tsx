@@ -2,7 +2,7 @@
 //         Imports           │
 //───────────────────────────┘
 // 1st party
-import markdownStyles from "./markdownstyles.module.css";
+import markdownStyles from "./post-styles.module.css";
 
 //───────────────────────────┐
 //         Params            │

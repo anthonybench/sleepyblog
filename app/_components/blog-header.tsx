@@ -45,7 +45,6 @@ export function BlogHeader({ title, media, date }: Props) {
   const day = date.getDate().toString().padStart(2, '0');
   const dateString = `${year}_${month}_${day}`;
   const imagePrefix = `/assets/posts/${dateString}`;
-  console.log(`${imagePrefix}`)
   return (
     <>
       <h1 className={`text-4xl`}>{title}</h1>
