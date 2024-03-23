@@ -30,7 +30,7 @@ function classNames(...classes: any) {
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export default function Header({ currentTheme, onThemeChange }: ThemeProps) {
+export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
   return (
     <header className={`flex h-full items-center justify-between px-3`}>
       <Link href="/" className={`${cookie.className}`}>
