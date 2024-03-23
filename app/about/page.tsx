@@ -37,17 +37,11 @@ const customStyles = {
   },
 };
 const socialLinks = [
-  // {
-  //   id: 1,
-  //   linkUrl: "https://linkedin.com/in/anthonybench",
-  //   imgSource: "/assets/general/linkedin.png",
-  //   imgAlt: "connect with me on linkedin",
-  // },
   {
     id: 1,
     linkUrl: "https://github.com/anthonybench",
     imgSource: "/assets/general/github_dark.png",
-    imgAlt: "connect with me on github",
+    imgAlt: "follow me on github",
   },
   {
     id: 2,
@@ -59,8 +53,14 @@ const socialLinks = [
     id: 3,
     linkUrl: "https://monkeytype.com/profile/boysleepy",
     imgSource: "/assets/general/monkeytype.png",
-    imgAlt: "follow me on duolingo",
+    imgAlt: "connect with me on monkeytype",
   },
+  // {
+  //   id: 4,
+  //   linkUrl: "https://linkedin.com/in/anthonybench",
+  //   imgSource: "/assets/general/linkedin.png",
+  //   imgAlt: "connect with me on linkedin",
+  // },
 ];
 
 //───────────────────────────┐
