@@ -17,6 +17,8 @@ import {
   SelectValue,
 } from "@/app/_components/select";
 import { ThemeProps } from "@/app/_lib/schemas";
+import { themes } from "@/app/_lib/themes";
+import { getThemeByName } from "@/app/_lib/utils";
 
 //───────────────────────────┐
 //         Params            │
@@ -24,35 +26,26 @@ import { ThemeProps } from "@/app/_lib/schemas";
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
-const themes = [
-  // first is default
-  { id: 1, name: "Dracula" },
-  { id: 2, name: "Vanilla" },
-  { id: 3, name: "Midnight" },
-];
 
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
+export default function Header({ currentTheme, onThemeChange }: ThemeProps) {
   return (
     <header className={`flex h-full items-center justify-between px-3`}>
       <Link href="/" className={`${cookie.className}`}>
         <h1 className={`text-6xl`}>SleepyBlog</h1>
       </Link>
       <div className={`w-1/6`}>
-        <Select
-          onValueChange={onThemeChange}
-          defaultValue={themes[0].name.toString()}
-        >
+        <Select onValueChange={onThemeChange} defaultValue={themes[0].name}>
           <SelectTrigger>
             <SelectValue placeholder="Dracula" />
           </SelectTrigger>
           <SelectContent defaultChecked>
-            <SelectGroup>
+            <SelectGroup defaultValue={themes[0].name}>
               <SelectLabel>Theme</SelectLabel>
               {themes.map((theme) => (
-                <SelectItem key={theme.id} value={theme.name.toString()}>
+                <SelectItem key={theme.name} value={theme.name}>
                   {theme.name}
                 </SelectItem>
               ))}

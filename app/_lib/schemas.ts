@@ -8,28 +8,30 @@ export type Post = {
   preview?: boolean;
 };
 
-export interface ThemeProps {
-  selectedTheme: string;
-  onThemeChange: (newTheme: string) => void;
-}
-
-// 🚧
 export type Theme = {
+  name: string;
   lightDark: string;
+  layoutBg: string;
+  mainBg: string;
   text: {
     primary: string;
     secondary: string;
   };
-  mainBg: string;
-  layoutBg: string;
-  blogPreview: {
+  smallButton: {
+    // send-email & return-home
+    bg: string;
+    hoverBg: string;
+  };
+  cardButton: {
+    // nav-links & post-previews
     bg: string;
     hoverBg: string;
     hoverPrimary: string;
     hoverSecondary: string;
   };
-  button: {
-    bg: string;
-    hoverBg: string;
-  };
 };
+
+export interface ThemeProps {
+  selectedTheme: Theme;
+  onThemeChange: (newTheme: string) => void;
+}

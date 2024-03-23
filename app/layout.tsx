@@ -1,24 +1,24 @@
+"use client";
 //───────────────────────────┐
 //         Imports           │
 //───────────────────────────┘
-// next
-import type { Metadata } from "next";
+// react
+import { useState } from "react";
 // 1st party
 import "@/app/_lib/globals.css";
 import "@/app/_lib/utils.css";
 import { jetbrains_mono } from "@/app/_lib/fonts";
-import HeaderWrapper from "@/app/_components/header-wrapper";
+import Header from "@/app/_components/header";
 import { ScrollArea } from "@/app/_components/scroll-area";
 import SideNav from "@/app/_components/side-nav";
+import { themes } from "@/app/_lib/themes";
+import { Theme } from "@/app/_lib/schemas";
+import { getThemeByName } from "@/app/_lib/utils";
 
 //───────────────────────────┐
 //         Params            │
 //───────────────────────────┘
-export const metadata: Metadata = {
-  title: "SleepyBlog",
-  description: "a blog most sleepy",
-  metadataBase: new URL("http://sleepyblog.org"),
-};
+const defaultTheme = getThemeByName("dracula");
 
 //───────────────────────────┐
 //          View             │
@@ -28,6 +28,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [selectedTheme, setSelectedTheme] = useState<Theme>(defaultTheme);
+  const handleThemeChange = (newTheme: string) => {
+    setSelectedTheme(getThemeByName(newTheme));
+  };
   return (
     <html lang="en">
       <body
@@ -37,7 +41,10 @@ export default function RootLayout({
           <SideNav />
         </div>
         <div className={`col-span-10 row-span-1 px-5`}>
-          <HeaderWrapper />
+          <Header
+            selectedTheme={selectedTheme}
+            onThemeChange={handleThemeChange}
+          />
         </div>
         <main className={`col-span-10 row-span-11`}>
           <ScrollArea className="h-full rounded-md border p-10">

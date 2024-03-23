@@ -1,12 +1,23 @@
 //───────────────────────────┐
 //         Imports           │
 //───────────────────────────┘
+// next
+import type { Metadata } from "next";
 // react
 import React from "react";
 // 1st party
 import { getFilteredPosts } from "@/app/_lib/posts";
 import { PostPreview } from "@/app/_components/post-preview";
 import Search from "@/app/_components/search";
+
+//───────────────────────────┐
+//         Params            │
+//───────────────────────────┘
+export const metadata: Metadata = {
+  title: "SleepyBlog",
+  description: "Home | Blog Posts",
+  metadataBase: new URL("http://sleepyblog.org"),
+};
 
 //───────────────────────────┐
 //          View             │

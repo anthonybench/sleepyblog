@@ -15,8 +15,8 @@ import { PostHeader } from "@/app/_components/post-header";
 //───────────────────────────┘
 export const metadata: Metadata = {
   title: {
-    template: "%s | SleepyBlog",
-    default: "Sleepyblog",
+    template: "Blog Post | %s",
+    default: "Blog Post",
   },
   description: "A blog most sleepy",
   metadataBase: new URL("http://sleepyblog.org"),

@@ -89,7 +89,7 @@ export default function Page() {
       <Script src="https://platform.linkedin.com/badges/js/profile.js" />
 
       {/* Blurb */}
-      <p className={``}>
+      <p>
         Hi, I&apos;m Isaac 👋
         <br />
         I live at the intersection of dev-ops & data.

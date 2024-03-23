@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { themes } from "@/app/_lib/themes";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -23,4 +24,8 @@ export function dateFormatter(date: Date) {
   const day = date.getDate();
   const year = date.getFullYear();
   return `${monthName} ${day}${getOrdinalSuffix(day)}, ${year}`;
+}
+
+export function getThemeByName(name: string) {
+  return themes.filter((item) => item.name === name)[0];
 }
