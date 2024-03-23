@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import "@/app/_lib/globals.css";
 import "@/app/_lib/utils.css";
 import { jetbrains_mono } from "@/app/_lib/fonts";
-import Header from "@/app/_components/header";
+import HeaderWrapper from "@/app/_components/header-wrapper";
 import { ScrollArea } from "@/app/_components/scroll-area";
 import SideNav from "@/app/_components/side-nav";
 
@@ -37,7 +37,7 @@ export default function RootLayout({
           <SideNav />
         </div>
         <div className={`col-span-10 row-span-1 px-5`}>
-          <Header />
+          <HeaderWrapper />
         </div>
         <main className={`col-span-10 row-span-11`}>
           <ScrollArea className="h-full rounded-md border p-10">

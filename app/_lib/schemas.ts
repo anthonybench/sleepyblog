@@ -7,3 +7,8 @@ export type Post = {
   content: string;
   preview?: boolean;
 };
+
+export interface ThemeProps {
+  selectedTheme: string;
+  onThemeChange: (newTheme: string) => void;
+}

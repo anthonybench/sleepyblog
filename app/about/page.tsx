@@ -86,7 +86,7 @@ export default function Page() {
           <div className="flex h-5 items-center justify-center space-x-4 text-sm">
             <Link href="https://linkedin.com/in/anthonybench">
               <Image
-                src="/img/linkedin.png"
+                src="/assets/general/linkedin.png"
                 width={40}
                 height={40}
                 alt="connect with me on linkedin"
