@@ -27,6 +27,7 @@
 - sleepyboy 'under construction' asset
 - sleepyboy 'post not found' asset
 - public/favicon.ico
+- real posts
 
 ## BACKLOG
 - mobile/responsiveness
