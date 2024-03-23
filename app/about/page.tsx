@@ -39,28 +39,34 @@ const customStyles = {
 const socialLinks = [
   {
     id: 1,
-    linkUrl: "https://github.com/anthonybench",
-    imgSource: "/assets/general/github_dark.png",
+    linkUrl: "github.com/anthonybench",
+    imgSource: "github_dark.png",
     imgAlt: "follow me on github",
   },
   {
     id: 2,
-    linkUrl: "https://duolingo.com/profile/thesleepyboy",
-    imgSource: "/assets/general/duolingo.svg",
+    linkUrl: "duolingo.com/profile/thesleepyboy",
+    imgSource: "duolingo.svg",
     imgAlt: "follow me on duolingo",
   },
   {
     id: 3,
-    linkUrl: "https://monkeytype.com/profile/boysleepy",
-    imgSource: "/assets/general/monkeytype.png",
-    imgAlt: "connect with me on monkeytype",
+    linkUrl: "monkeytype.com/profile/boysleepy",
+    imgSource: "monkeytype.png",
+    imgAlt: "see my stats on monkeytype",
   },
-  // {
-  //   id: 4,
-  //   linkUrl: "https://linkedin.com/in/anthonybench",
-  //   imgSource: "/assets/general/linkedin.png",
-  //   imgAlt: "connect with me on linkedin",
-  // },
+  {
+    id: 4,
+    linkUrl: "pypi.org/user/sleepyboy",
+    imgSource: "pypi.png",
+    imgAlt: "view my pypi projects",
+  },
+  {
+    id: 5,
+    linkUrl: "hub.docker.com/u/sleepyboy",
+    imgSource: "docker.png",
+    imgAlt: "view my dockerhub projects",
+  },
 ];
 
 //───────────────────────────┐
@@ -68,27 +74,22 @@ const socialLinks = [
 //───────────────────────────┘
 export default function Page() {
   let zoomLevel: number = 1;
-  let subtitle: any;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = "#f00";
-  }
-
   function closeModal() {
     setIsOpen(false);
   }
+  let dingus = true; // light or dark linkedin badge
 
   return (
     <div className={`flex flex-col leading-7`}>
       <Script src="https://platform.linkedin.com/badges/js/profile.js" />
+
       {/* 1: Blurb */}
-      <p className={`flex`}>
+      <p className={``}>
         Hi, I&apos;m Isaac 👋
         <br />
         I live at the intersection of dev-ops & data.
@@ -102,42 +103,27 @@ export default function Page() {
         <br />
         Life long engineer, professional kid.
       </p>
-      {/* linkedin badge */}
-      <div
-        className="badge-base LI-profile-badge"
-        data-locale="en_US"
-        data-size="medium"
-        data-theme="dark"
-        data-type="VERTICAL"
-        data-vanity="anthonybench"
-        data-version="v1"
-      >
-        <a
-          className="badge-base__link LI-simple-link"
-          href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
-        ></a>
-      </div>
-      <div
-        className="badge-base LI-profile-badge"
-        data-locale="en_US"
-        data-size="medium"
-        data-theme="light"
-        data-type="VERTICAL"
-        data-vanity="anthonybench"
-        data-version="v1"
-      >
-        <a
-          className="badge-base__link LI-simple-link"
-          href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
-        ></a>
-      </div>
 
       {/* 2: Social Links */}
       <div className={`flex justify-center py-5 pt-20`}>
-        <div>
+        <div className="">
           <div className="space-y-1">
             <h4 className="flex justify-center text-sm font-medium leading-none">
-              <p>Connect with me!</p>
+              {/* DARK LI BADGE */}
+              <div
+                className="badge-base LI-profile-badge mx-auto pl-10"
+                data-locale="en_US"
+                data-size="small"
+                data-theme={`${dingus ? "light" : "dark"}`}
+                data-type="VERTICAL"
+                data-vanity="anthonybench"
+                data-version="v1"
+              >
+                <a
+                  className="badge-base__link LI-simple-link"
+                  href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
+                ></a>
+              </div>
             </h4>
           </div>
           <Separator className="my-4" />
@@ -147,9 +133,9 @@ export default function Page() {
                 <>
                   {link.id !== 1 && <Separator orientation="vertical" />}
 
-                  <Link href={link.linkUrl}>
+                  <Link href={`https://${link.linkUrl}`}>
                     <Image
-                      src={link.imgSource}
+                      src={`/assets/general/${link.imgSource}`}
                       width={40}
                       height={40}
                       alt={link.imgAlt}
@@ -166,16 +152,16 @@ export default function Page() {
         <div className="my-4">
           <Separator />
         </div>
-        <div className="">
+        <div>
           <div>
             <div className={`flex justify-center`}>
-              <Button variant="secondary" className={``} onClick={openModal}>
+              <Button variant="secondary" onClick={openModal}>
                 See my resume
               </Button>
             </div>
             <Modal
               isOpen={modalIsOpen}
-              onAfterOpen={afterOpenModal}
+              // onAfterOpen={afterOpenModal}
               onRequestClose={closeModal}
               style={customStyles}
               contentLabel="Example Modal"
@@ -190,11 +176,10 @@ export default function Page() {
             </Modal>
           </div>
           <div className={`flex justify-around px-5`}>
-            <div className={``}>
+            <div>
               <Label htmlFor="email_resume">Send resume to your inbox</Label>
               <div className="flex w-full max-w-sm items-center space-x-2">
                 <Input
-                  className={``}
                   id="email_resume"
                   type="email"
                   placeholder="Email"
@@ -207,7 +192,6 @@ export default function Page() {
             <div className="flex items-end">
               <Button variant="outline">
                 <Link
-                  className={``}
                   href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
                 >
                   View resume&apos;s{" "}

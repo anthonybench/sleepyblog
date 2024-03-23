@@ -1,5 +1,4 @@
 ## GO
-- position linkedin badge
 - theme implementations
   - github logo (light vs. dark)
   - linkedin badge (light vs. dark)
