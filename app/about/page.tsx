@@ -88,7 +88,7 @@ export default function Page() {
     <div className={`flex flex-col leading-7`}>
       <Script src="https://platform.linkedin.com/badges/js/profile.js" />
 
-      {/* 1: Blurb */}
+      {/* Blurb */}
       <p className={``}>
         Hi, I&apos;m Isaac 👋
         <br />
@@ -104,12 +104,12 @@ export default function Page() {
         Life long engineer, professional kid.
       </p>
 
-      {/* 2: Social Links */}
+      {/* Social Links */}
       <div className={`flex justify-center py-5 pt-20`}>
         <div className="">
           <div className="space-y-1">
             <h4 className="flex justify-center text-sm font-medium leading-none">
-              {/* DARK LI BADGE */}
+              {/* Linkedin Badge */}
               <div
                 className="badge-base LI-profile-badge mx-auto pl-10"
                 data-locale="en_US"
@@ -127,12 +127,12 @@ export default function Page() {
             </h4>
           </div>
           <Separator className="my-4" />
+          {/* Small Links */}
           <div className="flex h-5 items-center justify-center space-x-4 text-sm">
             {socialLinks.map((link) => {
               return (
-                <>
+                <span key={link.id}>
                   {link.id !== 1 && <Separator orientation="vertical" />}
-
                   <Link href={`https://${link.linkUrl}`}>
                     <Image
                       src={`/assets/general/${link.imgSource}`}
@@ -141,13 +141,13 @@ export default function Page() {
                       alt={link.imgAlt}
                     />
                   </Link>
-                </>
+                </span>
               );
             })}
           </div>
         </div>
       </div>
-      {/* 3 : Resume */}
+      {/* Resume */}
       <div className={`grow`}>
         <div className="my-4">
           <Separator />
@@ -179,11 +179,7 @@ export default function Page() {
             <div>
               <Label htmlFor="email_resume">Send resume to your inbox</Label>
               <div className="flex w-full max-w-sm items-center space-x-2">
-                <Input
-                  id="email_resume"
-                  type="email"
-                  placeholder="Email"
-                />
+                <Input id="email_resume" type="email" placeholder="Email" />
                 <Button type="submit">
                   <PaperPlaneIcon />
                 </Button>
@@ -191,9 +187,7 @@ export default function Page() {
             </div>
             <div className="flex items-end">
               <Button variant="outline">
-                <Link
-                  href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
-                >
+                <Link href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls">
                   View resume&apos;s{" "}
                   <Image
                     src="/assets/general/latex.svg"
