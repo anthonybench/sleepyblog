@@ -17,21 +17,20 @@
   - about 'send email' button color
 
 - send resume functionality
-- evolve app/error.tsx
 - evolve app/blogs/[slug]/not-found.tsx
 
 ## STAGING
+- readme
 - correct video height/width
 - correct image aspect ratios
-- modal has weird error, and only works on the first button press, afterwards needing refresh
-- accessability
-- mobile/responsiveness
-
-## BACKLOG
-- readme
-- ci/cd
-- public/favicon.ico
 - sleepyboy 'technologist' asset
 - sleepyboy 'under construction' asset
 - sleepyboy 'post not found' asset
+- public/favicon.ico
+
+## BACKLOG
+- mobile/responsiveness
+- pre-commit/husky run prettier
 - sleepyboy 'something went wrong' asset
+- evolve app/error.tsx
+- accessability
