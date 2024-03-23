@@ -5,6 +5,7 @@
 // next
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 // react
 import React from "react";
 // 3rd party
@@ -35,6 +36,32 @@ const customStyles = {
     padding: "2px",
   },
 };
+const socialLinks = [
+  // {
+  //   id: 1,
+  //   linkUrl: "https://linkedin.com/in/anthonybench",
+  //   imgSource: "/assets/general/linkedin.png",
+  //   imgAlt: "connect with me on linkedin",
+  // },
+  {
+    id: 1,
+    linkUrl: "https://github.com/anthonybench",
+    imgSource: "/assets/general/github_dark.png",
+    imgAlt: "connect with me on github",
+  },
+  {
+    id: 2,
+    linkUrl: "https://duolingo.com/profile/thesleepyboy",
+    imgSource: "/assets/general/duolingo.svg",
+    imgAlt: "follow me on duolingo",
+  },
+  {
+    id: 3,
+    linkUrl: "https://monkeytype.com/profile/boysleepy",
+    imgSource: "/assets/general/monkeytype.png",
+    imgAlt: "follow me on duolingo",
+  },
+];
 
 //───────────────────────────┐
 //          View             │
@@ -59,6 +86,7 @@ export default function Page() {
 
   return (
     <div className={`flex flex-col leading-7`}>
+      <Script src="https://platform.linkedin.com/badges/js/profile.js" />
       {/* 1: Blurb */}
       <p className={`flex`}>
         Hi, I&apos;m Isaac 👋
@@ -74,33 +102,62 @@ export default function Page() {
         <br />
         Life long engineer, professional kid.
       </p>
+      {/* linkedin badge */}
+      <div
+        className="badge-base LI-profile-badge"
+        data-locale="en_US"
+        data-size="medium"
+        data-theme="dark"
+        data-type="VERTICAL"
+        data-vanity="anthonybench"
+        data-version="v1"
+      >
+        <a
+          className="badge-base__link LI-simple-link"
+          href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
+        ></a>
+      </div>
+      <div
+        className="badge-base LI-profile-badge"
+        data-locale="en_US"
+        data-size="medium"
+        data-theme="light"
+        data-type="VERTICAL"
+        data-vanity="anthonybench"
+        data-version="v1"
+      >
+        <a
+          className="badge-base__link LI-simple-link"
+          href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
+        ></a>
+      </div>
+
       {/* 2: Social Links */}
       <div className={`flex justify-center py-5 pt-20`}>
         <div>
           <div className="space-y-1">
-            <h4 className="text-sm font-medium leading-none">
-              Connect with me!
+            <h4 className="flex justify-center text-sm font-medium leading-none">
+              <p>Connect with me!</p>
             </h4>
           </div>
           <Separator className="my-4" />
           <div className="flex h-5 items-center justify-center space-x-4 text-sm">
-            <Link href="https://linkedin.com/in/anthonybench">
-              <Image
-                src="/assets/general/linkedin.png"
-                width={40}
-                height={40}
-                alt="connect with me on linkedin"
-              />
-            </Link>
-            <Separator orientation="vertical" />
-            <Link href="https://github.com/anthonybench">
-              <Image
-                src="/assets/general/github_dark.png"
-                width={40}
-                height={40}
-                alt="connect with me on github"
-              />
-            </Link>
+            {socialLinks.map((link) => {
+              return (
+                <>
+                  {link.id !== 1 && <Separator orientation="vertical" />}
+
+                  <Link href={link.linkUrl}>
+                    <Image
+                      src={link.imgSource}
+                      width={40}
+                      height={40}
+                      alt={link.imgAlt}
+                    />
+                  </Link>
+                </>
+              );
+            })}
           </div>
         </div>
       </div>
