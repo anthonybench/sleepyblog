@@ -18,6 +18,7 @@ import clsx from "clsx";
 // 1st party
 import "@/app/_lib/globals.css";
 import { dateFormatter } from "@/app/_lib/utils";
+import lastUpdatedDate from "@/app/last-updated-date";
 
 //───────────────────────────┐
 //         Params            │
@@ -34,7 +35,14 @@ const links = [
 //───────────────────────────┘
 export default function SideNav() {
   const pathname = usePathname();
-  const lastUpdatedDate = dateFormatter(new Date());
+  // const { lastUpdatedDate } = getConfig();
+  const formatedDate = dateFormatter(
+    new Date(
+      lastUpdatedDate.year,
+      lastUpdatedDate.month - 1,
+      lastUpdatedDate.day,
+    ) as Date,
+  );
 
   return (
     <div
@@ -83,7 +91,7 @@ export default function SideNav() {
           <p className="text-sm text-muted-foreground">
             Last Updated:
             <br />
-            {lastUpdatedDate}
+            {formatedDate}
           </p>
         </div>
         <div className="flex h-5 items-center justify-center space-x-4 py-7 text-sm">

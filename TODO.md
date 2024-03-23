@@ -1,5 +1,4 @@
 ## GO
-- theme functionality
 - last updated date
 - linkedin badge
 - overhaul socials
