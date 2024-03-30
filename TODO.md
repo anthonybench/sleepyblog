@@ -4,11 +4,13 @@
   - header
   - sidenav
   - blog view
-- theme implementations
 
 - linkedin badge doesn't appear until refresh
 - post image & video broken in prod
+- email not sending in prod
 - vertical dividers on social links not showing
+
+- theme implementations
 
 ## STAGING
 - correct video height/width
