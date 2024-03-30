@@ -8,15 +8,26 @@ import Link from "next/link";
 import Script from "next/script";
 // react
 import React from "react";
+import { useForm } from "react-hook-form";
 // 3rd party
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import Modal from "react-modal";
 // 1st party
 import "@/app/_lib/globals.css";
+import EmailSender from "@/app/_components/email-sender";
 import { Separator } from "@/app/_components/separator";
 import { Button } from "@/app/_components/button";
 import { Input } from "@/app/_components/input";
 import { Label } from "@/app/_components/label";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/app/_components/form";
 
 //───────────────────────────┐
 //         Params            │
@@ -105,13 +116,13 @@ export default function Page() {
       </p>
 
       {/* Social Links */}
-      <div className={`flex justify-center py-5 pt-20`}>
-        <div className="">
-          <div className="space-y-1">
+      <div className={`pt-15 flex justify-start py-5`}>
+        <div className=" pb-10">
+          <div className="">
             <h4 className="flex justify-center text-sm font-medium leading-none">
               {/* Linkedin Badge */}
               <div
-                className="badge-base LI-profile-badge mx-auto pl-10"
+                className="badge-base LI-profile-badge pl-10"
                 data-locale="en_US"
                 data-size="small"
                 data-theme={`${dingus ? "light" : "dark"}`}
@@ -132,13 +143,16 @@ export default function Page() {
             {socialLinks.map((link) => {
               return (
                 <span key={link.id}>
-                  {link.id !== 1 && <Separator orientation="vertical" />}
+                  {link.id !== 1 && (
+                    <Separator className="" orientation="vertical" />
+                  )}
                   <Link href={`https://${link.linkUrl}`}>
                     <Image
                       src={`/assets/general/${link.imgSource}`}
                       width={40}
                       height={40}
                       alt={link.imgAlt}
+                      className="inline pt-3"
                     />
                   </Link>
                 </span>
@@ -176,15 +190,22 @@ export default function Page() {
             </Modal>
           </div>
           <div className={`flex justify-around px-5`}>
-            <div>
+            {/* 🚧 */}
+            <EmailSender />
+            {/* <div>
               <Label htmlFor="email_resume">Send resume to your inbox</Label>
               <div className="flex w-full max-w-sm items-center space-x-2">
-                <Input id="email_resume" type="email" placeholder="Email" />
+                <Input
+                  id="email_resume"
+                  type="email"
+                  placeholder="my_inbox@mail.com"
+                />
                 <Button type="submit">
                   <PaperPlaneIcon />
                 </Button>
               </div>
-            </div>
+            </div> */}
+            {/* 🚧 */}
             <div className="flex items-end">
               <Button variant="outline">
                 <Link href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls">
