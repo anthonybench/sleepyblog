@@ -5,8 +5,7 @@
 // next
 import Image from "next/image";
 import Link from "next/link";
-import { unstable_noStore as noStore } from "next/cache";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 // 3rd party
 import {
   IdentificationIcon,
@@ -18,7 +17,7 @@ import clsx from "clsx";
 // 1st party
 import "@/app/_lib/globals.css";
 import { dateFormatter } from "@/app/_lib/utils";
-import lastUpdatedDate from "@/app/last-updated-date";
+import { lastUpdatedDate } from "@/app/last-updated-date";
 
 //───────────────────────────┐
 //         Params            │
@@ -35,7 +34,6 @@ const links = [
 //───────────────────────────┘
 export default function SideNav() {
   const pathname = usePathname();
-  // const { lastUpdatedDate } = getConfig();
   const formatedDate = dateFormatter(
     new Date(
       lastUpdatedDate.year,

@@ -35,3 +35,9 @@ export interface ThemeProps {
   selectedTheme: Theme;
   onThemeChange: (newTheme: string) => void;
 }
+
+export type SleepyDate = {
+  year: number;
+  month: number;
+  day: number;
+};
