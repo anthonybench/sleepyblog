@@ -20,11 +20,11 @@
 - sleepyboy 'post not found' asset
 - favicon
 - real posts
+- readme
 
 ## BACKLOG
 - robots.txt
 - evolve app/blogs/[slug]/not-found.tsx
-- readme
 - mobile/responsiveness
 - pre-commit/husky run prettier
 - sleepyboy 'something went wrong' asset
