@@ -20,7 +20,6 @@
 - sleepyboy 'post not found' asset
 - favicon
 - real posts
-- readme
 
 ## BACKLOG
 - robots.txt
