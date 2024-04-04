@@ -44,7 +44,8 @@ export function PostHeader({ title, media, date }: Props) {
   const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
   const day = date.getDate().toString().padStart(2, "0");
   const dateString = `${year}_${month}_${day}`;
-  const imagePrefix = `/assets/posts/${dateString}`;
+  const imagePrefix = `/assets/posts/${dateString}/`;
+  console.log(imagePrefix);
   return (
     <>
       <h1 className={`text-4xl`}>{title}</h1>

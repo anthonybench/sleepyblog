@@ -13,16 +13,14 @@
 - theme implementations
 
 ## STAGING
-- correct video height/width
-- correct image aspect ratios
-- sleepyboy 'technologist' asset
-- sleepyboy 'under construction' asset
-- sleepyboy 'post not found' asset
-- favicon
+- *sleepyboy 'technologist' asset
+- *sleepyboy 'under construction' asset
+- *sleepyboy 'post not found' asset
 - real posts
 
 ## BACKLOG
 - robots.txt
+- move post-header props schema to schemas.ts
 - evolve app/blogs/[slug]/not-found.tsx
 - mobile/responsiveness
 - pre-commit/husky run prettier

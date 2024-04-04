@@ -28,7 +28,7 @@ export const sendResumeEmail = async (to: string) => {
     attachments: [
       {
         filename: "Isaac_Yep_Resume.pdf",
-        path: "public/assets/general/resume.pdf",
+        path: "public/assets/general/Isaac_Yep_Resume.pdf",
         // content: fs.createReadStream('public/assets/general/resume.pdf')
       },
     ],

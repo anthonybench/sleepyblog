@@ -182,7 +182,7 @@ export default function Page() {
             >
               <div style={{ transform: `scale(${zoomLevel})` }}>
                 <iframe
-                  src="/assets/general/resume.pdf"
+                  src="/assets/general/Isaac_Yep_Resume.pdf"
                   width="100%"
                   height="800"
                 />
