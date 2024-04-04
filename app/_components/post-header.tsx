@@ -45,7 +45,7 @@ export function PostHeader({ title, media, date }: Props) {
   const day = date.getDate().toString().padStart(2, "0");
   const dateString = `${year}_${month}_${day}`;
   const imagePrefix = `/assets/posts/${dateString}/`;
-  console.log(imagePrefix);
+  // console.log(imagePrefix);
   return (
     <>
       <h1 className={`text-4xl`}>{title}</h1>
@@ -60,21 +60,21 @@ export function PostHeader({ title, media, date }: Props) {
           }}
         >
           <CarouselContent>
-            {media.map((_, index) => (
+            {media.map((relPath, index) => (
               <CarouselItem key={index}>
                 <div
                   className={`flex h-full items-center justify-center bg-slate-600`}
                 >
-                  {isImage(`${imagePrefix}${_}`) ? (
+                  {isImage(`${imagePrefix}${relPath}`) ? (
                     <Image
-                      src={`${imagePrefix}${_}`}
+                      src={`${imagePrefix}${relPath}`}
                       width={150}
-                      height={150}
-                      alt="SleepyBoy typing on laptop"
+                      height={100}
+                      alt="Holo the wise wolf"
                     />
                   ) : (
                     <video controls width={500} height={500}>
-                      <source src={`${imagePrefix}${_}`} />
+                      <source src={`${imagePrefix}${relPath}`} />
                     </video>
                   )}
                 </div>

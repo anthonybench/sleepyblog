@@ -52,7 +52,7 @@ export default function SideNav() {
             <Image
               src="/assets/general/holo.jpg"
               width={150}
-              height={150}
+              height={100}
               className={``}
               alt="SleepyBoy typing on laptop"
             />
