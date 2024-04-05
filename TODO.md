@@ -1,8 +1,8 @@
 ## GO
 - smoothen format (ignore mobile)
-  - about view
   - header
   - sidenav
+  - about view
   - blog view
 
 - linkedin badge doesn't appear until refresh
@@ -13,7 +13,6 @@
 
 ## STAGING
 - *sleepyboy 'technologist' asset
-- *sleepyboy 'post not found' asset
 
 - real posts
 
@@ -22,7 +21,8 @@
 - move post-header props schema to schemas.ts
 - evolve app/blogs/[slug]/not-found.tsx
 - mobile/responsiveness
-- sleepyboy 'something went wrong' asset
+- *sleepyboy 'something went wrong' asset
+- *sleepyboy 'post not found' asset
 - pre-commit/husky run prettier
 - evolve app/error.tsx
 - accessability
