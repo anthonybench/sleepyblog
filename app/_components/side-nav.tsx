@@ -44,15 +44,15 @@ export default function SideNav() {
 
   return (
     <div
-      className={`flex h-screen flex-col items-center justify-between gap-2 pt-10`}
+      className={`flex h-screen flex-col items-center justify-between gap-2`}
     >
       <div className={`w-full`}>
         <div className={`flex justify-center`}>
           <Link href="/">
             <Image
-              src="/assets/general/holo.jpg"
-              width={150}
-              height={100}
+              src="/assets/general/sleepyboy_technologist.png"
+              width={200}
+              height={200}
               className={``}
               alt="SleepyBoy typing on laptop"
             />

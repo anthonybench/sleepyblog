@@ -14,7 +14,6 @@
 ## STAGING
 - *sleepyboy 'technologist' asset
 - *sleepyboy 'post not found' asset
-- *sleepyboy hat favicon asset
 
 - real posts
 
@@ -23,8 +22,8 @@
 - move post-header props schema to schemas.ts
 - evolve app/blogs/[slug]/not-found.tsx
 - mobile/responsiveness
-- pre-commit/husky run prettier
 - sleepyboy 'something went wrong' asset
+- pre-commit/husky run prettier
 - evolve app/error.tsx
 - accessability
 - rewrite
