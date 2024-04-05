@@ -5,6 +5,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+// 1st party
+import { UnderConstruction } from "../_components/under-construction";
 
 //───────────────────────────┐
 //         Params            │
@@ -19,5 +21,10 @@ export const metadata: Metadata = {
 //          View             │
 //───────────────────────────┘
 export default function Page() {
-  return <h3>TODO: software projects gallery</h3>;
+  return (
+    <>
+      <h3>Software projects gallery...</h3>
+      <UnderConstruction />
+    </>
+  );
 }
