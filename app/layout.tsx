@@ -46,7 +46,7 @@ export default function RootLayout({
             onThemeChange={handleThemeChange}
           />
         </div>
-        <main className={`col-span-10 row-span-11`}>
+        <main className={`col-span-10 row-span-11 mt-5`}>
           <ScrollArea className="h-full rounded-md border p-10">
             {children}
           </ScrollArea>

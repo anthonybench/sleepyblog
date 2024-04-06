@@ -51,8 +51,8 @@ export default function SideNav() {
           <Link href="/">
             <Image
               src="/assets/general/sleepyboy_technologist.png"
-              width={200}
-              height={200}
+              width={1000}
+              height={1000}
               className={``}
               alt="SleepyBoy typing on laptop"
             />

@@ -1,6 +1,5 @@
 ## GO
 - smoothen format (ignore mobile)
-  - header
   - sidenav
   - about view
   - blog view
