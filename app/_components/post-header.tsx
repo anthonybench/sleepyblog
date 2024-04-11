@@ -28,8 +28,8 @@ type Props = {
 };
 
 const isImage = (path: string): boolean => {
-  const substrings = [".jpg", ".jpeg", ".png", ".gif"];
-  return substrings.some((substring) => path.includes(substring));
+  const substrings = [".jpg", ".jpeg", ".png", ".gif", ".svg"];
+  return substrings.some((substring) => path.toLowerCase().includes(substring));
 };
 
 //───────────────────────────┐
@@ -45,11 +45,10 @@ export function PostHeader({ title, media, date }: Props) {
   const day = date.getDate().toString().padStart(2, "0");
   const dateString = `${year}_${month}_${day}`;
   const imagePrefix = `/assets/posts/${dateString}/`;
-  // console.log(imagePrefix);
   return (
     <>
       <h1 className={`text-4xl`}>{title}</h1>
-      <div className={`flex justify-center`}>
+      <div className={`flex justify-center py-5`}>
         <Carousel
           plugins={[plugin.current]}
           className="w-full max-w-xs"
@@ -68,13 +67,14 @@ export function PostHeader({ title, media, date }: Props) {
                   {isImage(`${imagePrefix}${relPath}`) ? (
                     <Image
                       src={`${imagePrefix}${relPath}`}
-                      width={150}
+                      width={250}
                       height={100}
                       alt="Holo the wise wolf"
                     />
                   ) : (
-                    <video controls width={500} height={500}>
+                    <video controls width={500} height={500} preload="metadata">
                       <source src={`${imagePrefix}${relPath}`} />
+                      Your browser does not support the html video element.
                     </video>
                   )}
                 </div>
@@ -85,7 +85,7 @@ export function PostHeader({ title, media, date }: Props) {
           <CarouselNext />
         </Carousel>
       </div>
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-2xl flex justify-center">
         <div className="mb-6 text-lg">{formattedDate}</div>
       </div>
     </>

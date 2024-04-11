@@ -1,8 +1,7 @@
 ## GO
 - smoothen format (ignore mobile)
-  - sidenav
   - about view
-  - blog view
+  - sidenav
 
 - linkedin badge doesn't appear until refresh
 - post image & video broken in prod

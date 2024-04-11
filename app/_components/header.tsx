@@ -5,7 +5,7 @@
 // next
 import Link from "next/link";
 // 1st party
-import { cookie } from "@/app/_lib/fonts";
+import { comfortaa } from "@/app/_lib/fonts";
 import "@/app/_lib/utils.css";
 import {
   Select,
@@ -23,20 +23,16 @@ import { getThemeByName } from "@/app/_lib/utils";
 //───────────────────────────┐
 //         Params            │
 //───────────────────────────┘
-// function classNames(...classes: any) {
-//   return classes.filter(Boolean).join(" ");
-// }
+const title = `SleepyBlog`
 
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
 export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
   return (
-
-    <header className={`flex h-full items-end justify-between px-3 m-0 pr-5`}>
-
-      <Link href="/" className={`${cookie.className}`}>
-        <h1 className={`text-6xl`}>SleepyBlog</h1>
+    <header className={`m-0 flex h-full items-end justify-between px-3 pr-5`}>
+      <Link href="/" className={`${comfortaa.className}`}>
+        <h1 className={`text-6xl`}>{title}</h1>
       </Link>
 
       <div className={`w-1/6`}>
@@ -56,7 +52,6 @@ export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
           </SelectContent>
         </Select>
       </div>
-
     </header>
   );
 }

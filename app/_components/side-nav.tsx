@@ -50,6 +50,7 @@ export default function SideNav() {
         <div className={`flex justify-center`}>
           <Link href="/">
             <Image
+              // src="/assets/general/sleepyboy_technologist_cropped.png"
               src="/assets/general/sleepyboy_technologist.png"
               width={1000}
               height={1000}
@@ -58,6 +59,7 @@ export default function SideNav() {
             />
           </Link>
         </div>
+
         <nav className={`w-full`}>
           {links.map((link) => {
             const LinkIcon = link.icon;
