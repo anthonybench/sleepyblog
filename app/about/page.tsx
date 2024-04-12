@@ -61,12 +61,6 @@ const socialLinks = [
     imgAlt: "follow me on duolingo",
   },
   {
-    id: 3,
-    linkUrl: "monkeytype.com/profile/boysleepy",
-    imgSource: "monkeytype.png",
-    imgAlt: "see my stats on monkeytype",
-  },
-  {
     id: 4,
     linkUrl: "pypi.org/user/sleepyboy",
     imgSource: "pypi.png",
@@ -117,16 +111,16 @@ export default function Page() {
 
       {/* Social Links */}
       <div className={`pt-15 flex justify-start py-5`}>
-        <div className=" pb-10">
-          <div className="">
-            <h4 className="flex justify-center text-sm font-medium leading-none">
+        <div className="pb-10">
+          <div className="flex">
+            <span className="flex">
               {/* Linkedin Badge */}
               <div
-                className="badge-base LI-profile-badge pl-10"
+                className="badge-base LI-profile-badge"
                 data-locale="en_US"
-                data-size="small"
+                data-size="medium"
                 data-theme={`${dingus ? "light" : "dark"}`}
-                data-type="VERTICAL"
+                data-type="HORIZONTAL"
                 data-vanity="anthonybench"
                 data-version="v1"
               >
@@ -135,42 +129,45 @@ export default function Page() {
                   href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
                 ></a>
               </div>
-            </h4>
+              <Separator className="mr-5" orientation="vertical" />
+              <div className="flex flex-col justify-center space-y-3 text-sm">
+                {socialLinks.map((link) => {
+                  return (
+                    <span className="" key={link.id}>
+                      {link.id !== 1 && <Separator className="mb-3" />}
+                      <Link href={`https://${link.linkUrl}`}>
+                        <Image
+                          src={`/assets/general/${link.imgSource}`}
+                          width={40}
+                          height={40}
+                          alt={link.imgAlt}
+                        />
+                      </Link>
+                    </span>
+                  );
+                })}
+              </div>
+            </span>
           </div>
-          <Separator className="my-4" />
           {/* Small Links */}
-          <div className="flex h-5 items-center justify-center space-x-4 text-sm">
-            {socialLinks.map((link) => {
-              return (
-                <span key={link.id}>
-                  {link.id !== 1 && (
-                    <Separator className="" orientation="vertical" />
-                  )}
-                  <Link href={`https://${link.linkUrl}`}>
-                    <Image
-                      src={`/assets/general/${link.imgSource}`}
-                      width={40}
-                      height={40}
-                      alt={link.imgAlt}
-                      className="inline pt-3"
-                    />
-                  </Link>
-                </span>
-              );
-            })}
-          </div>
         </div>
       </div>
+
       {/* Resume */}
       <div className={`grow`}>
         <div className="my-4">
           <Separator />
         </div>
         <div>
-          <div>
+          {/* Send Resume */}
+          <div className="flex justify-center">
+            <EmailSender />
+          </div>
+          {/* View Resume */}
+          <div className={`flex justify-around px-5`}>
             <div className={`flex justify-center`}>
               <Button variant="secondary" onClick={openModal}>
-                See my resume
+                View resume
               </Button>
             </div>
             <Modal
@@ -188,24 +185,7 @@ export default function Page() {
                 />
               </div>
             </Modal>
-          </div>
-          <div className={`flex justify-around px-5`}>
-            {/* 🚧 */}
-            <EmailSender />
-            {/* <div>
-              <Label htmlFor="email_resume">Send resume to your inbox</Label>
-              <div className="flex w-full max-w-sm items-center space-x-2">
-                <Input
-                  id="email_resume"
-                  type="email"
-                  placeholder="my_inbox@mail.com"
-                />
-                <Button type="submit">
-                  <PaperPlaneIcon />
-                </Button>
-              </div>
-            </div> */}
-            {/* 🚧 */}
+            {/* View Resume LaTeX */}
             <div className="flex items-end">
               <Button variant="outline">
                 <Link href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls">
@@ -217,7 +197,7 @@ export default function Page() {
                     className="inline"
                     alt="LaTeX logo"
                   />{" "}
-                  source.
+                  source
                 </Link>
               </Button>
             </div>

@@ -10,8 +10,6 @@
 - theme implementations
 
 ## STAGING
-- *sleepyboy 'technologist' asset
-
 - real posts
 
 ## BACKLOG

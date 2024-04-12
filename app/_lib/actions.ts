@@ -5,7 +5,7 @@ import fs from "fs";
 
 const emailSubject = "Isaac Yep; Resume";
 
-const emailBodyOpening = `<h3>Hey! Looking forward to meeting you 👋</h3><p>This email was sent via automation from my personal website <a href="https://sleepyblog.org">✨SleepyBlog✨</a><br/>If this was sent to you by mistake, feel free to ignore it. Otherwise, feel free to reply to this email to schedule with me 🗓️</p><p>See my attached resume for more information on my background, and <a href="https://linkedin.com/in/anthonybench">✨connect with me on LinkedIn✨</a> if you haven't already.</p>`;
+const emailBodyOpening = `<h3>Hey! Looking forward to meeting you 👋</h3><p>This email was sent via automation from my personal website <a href="https://sleepyblog.org">✨SleepyBlog✨</a><br/>If this was sent to you by mistake, feel free to ignore it. Otherwise, feel free to reply to this email to schedule with me 🗓️</p><p>See my attached resume for more information, and <a href="https://linkedin.com/in/anthonybench">✨connect with me on LinkedIn✨</a> if you haven't already.</p>`;
 
 export const sendResumeEmail = async (to: string) => {
   const transporter = nodemailer.createTransport({

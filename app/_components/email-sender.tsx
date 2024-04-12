@@ -43,6 +43,14 @@ const sendButton = (emailWasSent: boolean) => {
     </Button>
   );
 };
+const buttonInputCombo = (emailWasSent: boolean, field: any) => {
+  return (
+    <>
+      <Input placeholder="address@email.com" {...field} />
+      {sendButton(emailWasSent)}
+    </>
+  );
+};
 
 //───────────────────────────┐
 //          View             │
@@ -67,15 +75,13 @@ export default function EmailSender() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Username</FormLabel> */}
+            <FormItem className={`mb-5 rounded-lg border border-blue-500 p-1`}>
+              <FormLabel>
+                {sendButton(emailSent)} Send my resume to your inbox
+              </FormLabel>
               <FormControl>
                 <Input placeholder="address@email.com" {...field} />
               </FormControl>
-              <FormDescription>
-                {sendButton(emailSent)}
-                Send my resume to your inbox.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
