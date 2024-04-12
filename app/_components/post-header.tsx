@@ -85,7 +85,7 @@ export function PostHeader({ title, media, date }: Props) {
           <CarouselNext />
         </Carousel>
       </div>
-      <div className="mx-auto max-w-2xl flex justify-center">
+      <div className="mx-auto flex max-w-2xl justify-center">
         <div className="mb-6 text-lg">{formattedDate}</div>
       </div>
     </>

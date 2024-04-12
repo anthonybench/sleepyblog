@@ -1,7 +1,4 @@
-import {
-  JetBrains_Mono,
-  Comfortaa,
-} from "next/font/google";
+import { JetBrains_Mono, Comfortaa } from "next/font/google";
 
 export const jetbrains_mono = JetBrains_Mono({
   subsets: ["latin"],

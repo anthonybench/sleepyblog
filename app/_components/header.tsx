@@ -23,7 +23,7 @@ import { getThemeByName } from "@/app/_lib/utils";
 //───────────────────────────┐
 //         Params            │
 //───────────────────────────┘
-const title = `SleepyBlog`
+const title = `SleepyBlog`;
 
 //───────────────────────────┐
 //          View             │
