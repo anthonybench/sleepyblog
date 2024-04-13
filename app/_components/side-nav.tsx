@@ -85,10 +85,12 @@ export default function SideNav() {
       <footer className="mx-3">
         <div className="space-y-1">
           <h4 className="text-sm font-medium leading-none">
-            Authored by Isaac Yep
+            Authored by
+            <br />
+            <em>Isaac Yep</em>
           </h4>
           <p className="text-sm text-muted-foreground">
-            Last Updated:
+            Last updated
             <br />
             <em>{formatedDate}</em>
           </p>
