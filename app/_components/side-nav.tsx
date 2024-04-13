@@ -82,7 +82,7 @@ export default function SideNav() {
         </nav>
       </div>
 
-      <footer>
+      <footer className="mx-3">
         <div className="space-y-1">
           <h4 className="text-sm font-medium leading-none">
             Authored by Isaac Yep
@@ -90,7 +90,7 @@ export default function SideNav() {
           <p className="text-sm text-muted-foreground">
             Last Updated:
             <br />
-            {formatedDate}
+            <em>{formatedDate}</em>
           </p>
         </div>
         <div className="flex h-5 items-center justify-center space-x-4 py-7 text-sm">

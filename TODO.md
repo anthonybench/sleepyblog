@@ -1,6 +1,4 @@
 ## GO
-- adjust sidenav
-
 - linkedin disappears when you navigate away & back, refresh fixes it but kills my theme state so that's a no-go
 - post image & video broken in prod
 - email not sending in prod
