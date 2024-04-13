@@ -75,7 +75,7 @@ export default function EmailSender() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className={`mb-5 rounded-lg border border-blue-500 p-1`}>
+            <FormItem className={`mb-5 rounded-lg border border-grey-500 p-1`}>
               <FormLabel>
                 {sendButton(emailSent)} Send my resume to your inbox
               </FormLabel>

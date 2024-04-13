@@ -123,12 +123,13 @@ export default function Page() {
                 data-type="HORIZONTAL"
                 data-vanity="anthonybench"
                 data-version="v1"
-              >
+                >
                 <a
                   className="badge-base__link LI-simple-link"
                   href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
                 ></a>
               </div>
+              {/* Small Links */}
               <Separator className="mr-5" orientation="vertical" />
               <div className="flex flex-col justify-center space-y-3 text-sm">
                 {socialLinks.map((link) => {
@@ -149,7 +150,6 @@ export default function Page() {
               </div>
             </span>
           </div>
-          {/* Small Links */}
         </div>
       </div>
 

@@ -1,9 +1,7 @@
 ## GO
-- smoothen format (ignore mobile)
-  - about view
-  - sidenav
+- adjust sidenav
 
-- linkedin badge doesn't appear until refresh
+- linkedin disappears when you navigate away & back, refresh fixes it but kills my theme state so that's a no-go
 - post image & video broken in prod
 - email not sending in prod
 
