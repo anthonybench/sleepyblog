@@ -16,14 +16,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/app/_components/select";
-import { ThemeProps } from "@/app/_lib/schemas";
+// import { ThemeProps } from "@/app/_lib/schemas";
 import { themes } from "@/app/_lib/themes";
 import { getThemeByName } from "@/app/_lib/utils";
+import { Theme } from "@/app/_lib/schemas";
 
 //───────────────────────────┐
 //         Params            │
 //───────────────────────────┘
 const title = `SleepyBlog`;
+interface ThemeProps {
+  selectedTheme: Theme;
+  onThemeChange: (newTheme: string) => void;
+}
 
 //───────────────────────────┐
 //          View             │
@@ -42,7 +47,7 @@ export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
           </SelectTrigger>
           <SelectContent defaultChecked>
             <SelectGroup defaultValue={themes[0].name}>
-              <SelectLabel>Theme</SelectLabel>
+              <SelectLabel>✨Theme✨</SelectLabel>
               {themes.map((theme) => (
                 <SelectItem key={theme.name} value={theme.name}>
                   {theme.name}

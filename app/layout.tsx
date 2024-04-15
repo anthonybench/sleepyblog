@@ -35,10 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12`}
+        className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12 text-[${selectedTheme.text.primary}] bg-[${selectedTheme.layoutBg}]`}
       >
         <div className={`col-span-2 row-span-12`}>
-          <SideNav />
+          <SideNav selectedTheme={selectedTheme} />
         </div>
         <div className={`col-span-10 row-span-1 px-5`}>
           <Header
@@ -46,7 +46,9 @@ export default function RootLayout({
             onThemeChange={handleThemeChange}
           />
         </div>
-        <main className={`col-span-10 row-span-11 mt-5`}>
+        <main
+          className={`col-span-10 row-span-11 mt-5 bg-[${selectedTheme.mainBg}]`}
+        >
           <ScrollArea className="h-full rounded-md border p-10">
             {children}
           </ScrollArea>

@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import Modal from "react-modal";
 // 1st party
-import "@/app/_lib/globals.css";
+// import "@/app/_lib/globals.css";
 import EmailSender from "@/app/_components/email-sender";
 import { Separator } from "@/app/_components/separator";
 import { Button } from "@/app/_components/button";

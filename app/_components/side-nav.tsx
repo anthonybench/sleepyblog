@@ -15,9 +15,9 @@ import {
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 // 1st party
-import "@/app/_lib/globals.css";
 import { dateFormatter } from "@/app/_lib/utils";
 import { lastUpdatedDate } from "@/app/last-updated-date";
+import { Theme } from "@/app/_lib/schemas";
 
 //───────────────────────────┐
 //         Params            │
@@ -32,7 +32,10 @@ const links = [
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export default function SideNav() {
+export default function SideNav(props: {
+  selectedTheme: Theme;
+  [key: string]: any;
+}) {
   const pathname = usePathname();
   const formatedDate = dateFormatter(
     new Date(
@@ -67,7 +70,7 @@ export default function SideNav() {
                 key={link.name}
                 href={link.href}
                 className={clsx(
-                  "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+                  `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3 hover:bg-[${props.selectedTheme.cardButton.hoverBg}] bg-[${props.selectedTheme.cardButton.hoverBg}]`,
                   {
                     "bg-sky-100 text-blue-600": pathname === link.href,
                   },

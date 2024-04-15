@@ -31,7 +31,7 @@ export const themes: Theme[] = [
     mainBg: "#53597c",
     text: {
       primary: "#fb31a5",
-      secondary: "#bd93f9",
+      secondary: "#bd93f9", // also border color
     },
     smallButton: {
       bg: "#9ba0c0",
