@@ -17,6 +17,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/app/_components/carousel";
+import { themes } from "@/app/_lib/themes";
 
 //───────────────────────────┐
 //         Params            │

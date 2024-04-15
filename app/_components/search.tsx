@@ -7,6 +7,8 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 // 3rd party
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+// 1st party
+import { themes } from "@/app/_lib/themes";
 
 //───────────────────────────┐
 //          View             │

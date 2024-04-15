@@ -9,6 +9,7 @@ import React from "react";
 import { getFilteredPosts } from "@/app/_lib/posts";
 import { PostPreview } from "@/app/_components/post-preview";
 import Search from "@/app/_components/search";
+import { themes } from "@/app/_lib/themes";
 
 //───────────────────────────┐
 //         Params            │

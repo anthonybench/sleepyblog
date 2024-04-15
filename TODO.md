@@ -24,3 +24,4 @@
   - break up logic in about/page.tsx better
 - dockerize
 - port to aws ecs
+- post-preview props should go in schemas.ts
