@@ -123,7 +123,7 @@ export default function Page() {
                 data-type="HORIZONTAL"
                 data-vanity="anthonybench"
                 data-version="v1"
-                >
+              >
                 <a
                   className="badge-base__link LI-simple-link"
                   href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
