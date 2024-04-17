@@ -18,6 +18,8 @@ export type Theme = {
     l4: string;
   };
   background: {
+    frame: string;
+    content: string;
     card: string;
     cardHover: string;
     button: string;

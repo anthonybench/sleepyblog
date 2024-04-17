@@ -2,24 +2,23 @@ import { Theme } from "@/app/_lib/schemas";
 
 /*
   {
-    name: "",
-    lightDark: "",
-    layoutBg: "",
-    mainBg: "",
+    _name: "",
+    _light: true|false,
     text: {
-      primary: "",
-      secondary: "",
+      l1: "",
+      l2: "",
+      l3: "",
+      l4: "",
     },
-    smallButton: {
-      bg: "",
-      hoverBg: "",
+    background: {
+      frame: "",
+      content: "",
+      card: "",
+      cardHover: "",
+      button: "",
+      buttonHover: "",
     },
-    cardButton: {
-      bg: "",
-      hoverBg: "",
-      hoverPrimary: "",
-      hoverSecondary: "",
-    },
+    // in progress...
   },
 */
 
@@ -34,6 +33,8 @@ export const themes: Theme[] = [
       l4: "",
     },
     background: {
+      frame: "",
+      content: "",
       card: "",
       cardHover: "",
       button: "",
@@ -51,6 +52,8 @@ export const themes: Theme[] = [
       l4: "",
     },
     background: {
+      frame: "",
+      content: "",
       card: "",
       cardHover: "",
       button: "",
