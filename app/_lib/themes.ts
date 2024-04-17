@@ -25,43 +25,37 @@ import { Theme } from "@/app/_lib/schemas";
 
 export const themes: Theme[] = [
   {
-    name: "dracula",
-    lightDark: "dark",
-    layoutBg: "#282a36",
-    mainBg: "#53597c",
+    _name: "dracula",
+    _light: false,
     text: {
-      primary: "#fb31a5",
-      secondary: "#bd93f9", // also border color
+      l1: "",
+      l2: "",
+      l3: "",
+      l4: "",
     },
-    smallButton: {
-      bg: "#9ba0c0",
-      hoverBg: "#ffc4e6",
+    background: {
+      card: "",
+      cardHover: "",
+      button: "",
+      buttonHover: "",
     },
-    cardButton: {
-      bg: "#9ea4c8",
-      hoverBg: "#b5bad6",
-      hoverPrimary: "#8e0855",
-      hoverSecondary: "#491298",
-    },
+    // in progress...
   },
   {
-    name: "vanilla",
-    lightDark: "light",
-    layoutBg: "#d2d3db",
-    mainBg: "#fafafa",
+    _name: "vanilla",
+    _light: true,
     text: {
-      primary: "#000000",
-      secondary: "#363534",
+      l1: "",
+      l2: "",
+      l3: "",
+      l4: "",
     },
-    smallButton: {
-      bg: "#333333",
-      hoverBg: "#e3ca86",
+    background: {
+      card: "",
+      cardHover: "",
+      button: "",
+      buttonHover: "",
     },
-    cardButton: {
-      bg: "#c2c1be",
-      hoverBg: "#bfb9a8",
-      hoverPrimary: "#000000",
-      hoverSecondary: "#363534",
-    },
+    // in progress...
   },
 ];

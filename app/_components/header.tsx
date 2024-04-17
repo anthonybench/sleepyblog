@@ -41,16 +41,16 @@ export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
       </Link>
 
       <div className={`w-1/6`}>
-        <Select onValueChange={onThemeChange} defaultValue={themes[0].name}>
+        <Select onValueChange={onThemeChange} defaultValue={themes[0]._name}>
           <SelectTrigger>
             <SelectValue placeholder="Dracula" />
           </SelectTrigger>
           <SelectContent defaultChecked>
-            <SelectGroup defaultValue={themes[0].name}>
+            <SelectGroup defaultValue={themes[0]._name}>
               <SelectLabel>✨Theme✨</SelectLabel>
               {themes.map((theme) => (
-                <SelectItem key={theme.name} value={theme.name}>
-                  {theme.name}
+                <SelectItem key={theme._name} value={theme._name}>
+                  {theme._name}
                 </SelectItem>
               ))}
             </SelectGroup>

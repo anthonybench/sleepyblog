@@ -9,26 +9,21 @@ export type Post = {
 };
 
 export type Theme = {
-  name: string;
-  lightDark: string;
-  layoutBg: string;
-  mainBg: string;
+  _name: string;
+  _light: boolean;
   text: {
-    primary: string;
-    secondary: string;
+    l1: string;
+    l2: string;
+    l3: string;
+    l4: string;
   };
-  smallButton: {
-    // send-email & return-home
-    bg: string;
-    hoverBg: string;
+  background: {
+    card: string;
+    cardHover: string;
+    button: string;
+    buttonHover: string;
   };
-  cardButton: {
-    // nav-links & post-previews
-    bg: string;
-    hoverBg: string;
-    hoverPrimary: string;
-    hoverSecondary: string;
-  };
+  // in progress...
 };
 
 export type SleepyDate = {

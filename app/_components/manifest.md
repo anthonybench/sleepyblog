@@ -5,6 +5,7 @@
 - post-styles.module.css
 - side-nav.tsx
 under-construction.tsx
+- search.tsx
 
 ## shadcn
 - button.tsx
@@ -14,6 +15,5 @@ under-construction.tsx
 - input.tsx
 - label.tsx
 - scroll-area.tsx
-- search.tsx
 - select.tsx
 - separator.tsx

@@ -158,7 +158,7 @@ export default function Page() {
         <div className="my-4">
           <Separator />
         </div>
-        <div>
+        <div className="">
           {/* Send Resume */}
           <div className="flex justify-center">
             <EmailSender />

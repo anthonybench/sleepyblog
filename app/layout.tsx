@@ -7,11 +7,11 @@ import { useState } from "react";
 // 1st party
 import "@/app/_lib/globals.css";
 import "@/app/_lib/utils.css";
+import "@/app/_lib/themes.css";
 import { jetbrains_mono } from "@/app/_lib/fonts";
 import Header from "@/app/_components/header";
 import { ScrollArea } from "@/app/_components/scroll-area";
 import SideNav from "@/app/_components/side-nav";
-import { themes } from "@/app/_lib/themes";
 import { Theme } from "@/app/_lib/schemas";
 import { getThemeByName } from "@/app/_lib/utils";
 
@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12 text-[${selectedTheme.text.primary}] bg-[${selectedTheme.layoutBg}]`}
+        className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12`}
       >
         <div className={`col-span-2 row-span-12`}>
           <SideNav selectedTheme={selectedTheme} />
@@ -47,9 +47,11 @@ export default function RootLayout({
           />
         </div>
         <main
-          className={`col-span-10 row-span-11 mt-5 bg-[${selectedTheme.mainBg}]`}
+          className={`col-span-10 row-span-11 mt-5`}
         >
-          <ScrollArea className="h-full rounded-md border p-10">
+          <ScrollArea
+            className={`h-full border p-10`}
+          >
             {children}
           </ScrollArea>
         </main>

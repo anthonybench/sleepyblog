@@ -23,7 +23,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/app/_components/form";
-import { themes } from "@/app/_lib/themes";
 
 //───────────────────────────┐
 //         Params            │
@@ -42,14 +41,6 @@ const sendButton = (emailWasSent: boolean) => {
     <Button type="submit">
       <PaperPlaneIcon />
     </Button>
-  );
-};
-const buttonInputCombo = (emailWasSent: boolean, field: any) => {
-  return (
-    <>
-      <Input placeholder="address@email.com" {...field} />
-      {sendButton(emailWasSent)}
-    </>
   );
 };
 
@@ -81,7 +72,7 @@ export default function EmailSender() {
                 {sendButton(emailSent)} Send my resume to your inbox
               </FormLabel>
               <FormControl>
-                <Input placeholder="address@email.com" {...field} />
+                <Input placeholder="my-address@email.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

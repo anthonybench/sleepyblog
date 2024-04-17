@@ -18,6 +18,7 @@ import clsx from "clsx";
 import { dateFormatter } from "@/app/_lib/utils";
 import { lastUpdatedDate } from "@/app/last-updated-date";
 import { Theme } from "@/app/_lib/schemas";
+import "@/app/_lib/themes.css";
 
 //───────────────────────────┐
 //         Params            │
@@ -44,7 +45,6 @@ export default function SideNav(props: {
       lastUpdatedDate.day,
     ) as Date,
   );
-
   return (
     <div
       className={`flex h-screen flex-col items-center justify-between gap-2`}
@@ -70,7 +70,7 @@ export default function SideNav(props: {
                 key={link.name}
                 href={link.href}
                 className={clsx(
-                  `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3 hover:bg-[${props.selectedTheme.cardButton.hoverBg}] bg-[${props.selectedTheme.cardButton.hoverBg}]`,
+                  `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3`,
                   {
                     "bg-sky-100 text-blue-600": pathname === link.href,
                   },
@@ -85,7 +85,7 @@ export default function SideNav(props: {
         </nav>
       </div>
 
-      <footer className="mx-3">
+      <footer className={`mx-3`}>
         <div className="space-y-1">
           <h4 className="text-sm font-medium leading-none">
             Authored by

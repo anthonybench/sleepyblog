@@ -16,3 +16,8 @@
 .markdown h3 {
   @apply mb-4 mt-8 text-2xl leading-snug;
 }
+
+/* works! */
+/* .markdown code {
+  @apply text-[#50d71e]
+} */
