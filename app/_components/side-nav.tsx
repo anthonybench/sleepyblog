@@ -70,7 +70,7 @@ export default function SideNav(props: {
                 key={link.name}
                 href={link.href}
                 className={clsx(
-                  `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3`,
+                  `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3 ${props.selectedTheme.bg.card}`,
                   {
                     "bg-sky-100 text-blue-600": pathname === link.href,
                   },
@@ -101,7 +101,7 @@ export default function SideNav(props: {
         <div className="flex h-5 items-center justify-center space-x-4 py-7 text-sm">
           <Link href="https://github.com/anthonybench/sleepyblog/blob/main/README.md">
             <Image
-              src="/assets/general/github_dark.png"
+              src="/assets/general/github_light.png"
               width={40}
               height={40}
               className=""

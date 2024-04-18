@@ -27,5 +27,5 @@ export function dateFormatter(date: Date) {
 }
 
 export function getThemeByName(name: string) {
-  return themes.filter((item) => item.name === name)[0];
+  return themes.filter((item) => item._name === name)[0];
 }

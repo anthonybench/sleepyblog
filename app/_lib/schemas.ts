@@ -11,19 +11,17 @@ export type Post = {
 export type Theme = {
   _name: string;
   _light: boolean;
-  text: {
+  txt: {
     l1: string;
     l2: string;
     l3: string;
     l4: string;
   };
-  background: {
+  bg: {
     frame: string;
     content: string;
     card: string;
-    cardHover: string;
     button: string;
-    buttonHover: string;
   };
   // in progress...
 };

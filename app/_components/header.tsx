@@ -45,7 +45,7 @@ export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
           <SelectTrigger>
             <SelectValue placeholder="Dracula" />
           </SelectTrigger>
-          <SelectContent defaultChecked>
+          <SelectContent defaultChecked className={`${selectedTheme.bg.frame}`}>
             <SelectGroup defaultValue={themes[0]._name}>
               <SelectLabel>✨Theme✨</SelectLabel>
               {themes.map((theme) => (

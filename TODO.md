@@ -1,21 +1,21 @@
 ## GO
 - theme implementations
-  👉 change schema & such for your theme
 
 - finish sleepyboy technologist
 - replace react-modal with shadcn's dialog
 - filter unused packages
 - rewrite
 
-1. post image & video broken in prod
-2. email not sending in prod
-3. linkedin disappears when you navigate away & back, refresh fixes it but kills my theme state so that's a no-go
-4. can't navigate internal links when you refresh while in a post view
+- post image & video broken in prod
+- email not sending in prod
 
 ## STAGING
 - real posts
 
 ## BACKLOG
+- can't navigate internal links when you refresh while in a post view
+- standardize how theme props are passed
+- linkedin disappears when you navigate away & back, refresh fixes it but kills my theme state so that's a no-go
 - mobile/responsiveness
 - robots.txt
 - evolve app/blogs/[slug]/not-found.tsx
