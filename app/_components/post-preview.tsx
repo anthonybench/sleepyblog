@@ -1,3 +1,4 @@
+"use client";
 //───────────────────────────┐
 //         Imports           │
 //───────────────────────────┘
@@ -13,7 +14,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/_components/card";
-import { themes } from "@/app/_lib/themes";
+import { ThemeContext } from "@/app/_lib/themes";
+import { SelectGroup } from "@radix-ui/react-select";
 
 //───────────────────────────┐
 //         Params            │
@@ -30,16 +32,20 @@ type Props = {
 //───────────────────────────┘
 export function PostPreview({ title, date, excerpt, slug }: Props) {
   return (
-    <Link as={`/posts/${slug}`} href="/posts/[slug]">
-      <Card className="hover:bg-sky-100 hover:text-blue-600">
-        <CardHeader>
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>{dateFormatter(date)}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>{excerpt}</p>
-        </CardContent>
-      </Card>
-    </Link>
+    <ThemeContext.Consumer>
+      {(selectedTheme) => (
+        <Link as={`/posts/${slug}`} href="/posts/[slug]">
+          <Card className={`${selectedTheme.bg.card}`}>
+            <CardHeader>
+              <CardTitle>{title}</CardTitle>
+              <CardDescription>{dateFormatter(date)}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>{excerpt}</p>
+            </CardContent>
+          </Card>
+        </Link>
+      )}
+    </ThemeContext.Consumer>
   );
 }

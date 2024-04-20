@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h3>Tutoring self-promotion...</h3>
+      <h3>Coming Soon: my tutoring self-promotion...</h3>
       <UnderConstruction />
     </>
   );

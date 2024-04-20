@@ -14,6 +14,7 @@ import { ScrollArea } from "@/app/_components/scroll-area";
 import SideNav from "@/app/_components/side-nav";
 import { Theme } from "@/app/_lib/schemas";
 import { getThemeByName } from "@/app/_lib/utils";
+import { ThemeContext } from "@/app/_lib/themes";
 
 //───────────────────────────┐
 //         Params            │
@@ -34,22 +35,28 @@ export default function RootLayout({
   };
   return (
     <html lang="en">
-      <body
-        className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12 ${selectedTheme.txt.l2} ${selectedTheme.bg.frame}`}
-      >
-        <div className={`col-span-2 row-span-12 `}>
-          <SideNav selectedTheme={selectedTheme} />
-        </div>
-        <div className={`col-span-10 row-span-1 px-5`}>
-          <Header
-            selectedTheme={selectedTheme}
-            onThemeChange={handleThemeChange}
-          />
-        </div>
-        <main className={`col-span-10 row-span-11 mt-5 ${selectedTheme.txt.l1} ${selectedTheme.bg.content}`}>
-          <ScrollArea className={`h-full border p-10`}>{children}</ScrollArea>
-        </main>
-      </body>
+      <ThemeContext.Provider value={selectedTheme}>
+        <body
+          className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12 ${selectedTheme.txt.l4} ${selectedTheme.bg.frame}`}
+        >
+          <div className={`col-span-2 row-span-12 `}>
+            <SideNav
+            // selectedTheme={selectedTheme}
+            />
+          </div>
+          <div className={`col-span-10 row-span-1 px-5`}>
+            <Header
+              selectedTheme={selectedTheme}
+              onThemeChange={handleThemeChange}
+            />
+          </div>
+          <main
+            className={`col-span-10 row-span-11 mt-5 ${selectedTheme.txt.l1} ${selectedTheme.bg.content}`}
+          >
+            <ScrollArea className={`h-full border p-10`}>{children}</ScrollArea>
+          </main>
+        </body>
+      </ThemeContext.Provider>
     </html>
   );
 }

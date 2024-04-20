@@ -16,9 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/app/_components/select";
-// import { ThemeProps } from "@/app/_lib/schemas";
 import { themes } from "@/app/_lib/themes";
-import { getThemeByName } from "@/app/_lib/utils";
 import { Theme } from "@/app/_lib/schemas";
 
 //───────────────────────────┐
@@ -45,7 +43,10 @@ export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
           <SelectTrigger>
             <SelectValue placeholder="Dracula" />
           </SelectTrigger>
-          <SelectContent defaultChecked className={`${selectedTheme.bg.frame}`}>
+          <SelectContent
+            defaultChecked
+            className={`${selectedTheme.txt.l4} ${selectedTheme.bg.frame}`}
+          >
             <SelectGroup defaultValue={themes[0]._name}>
               <SelectLabel>✨Theme✨</SelectLabel>
               {themes.map((theme) => (

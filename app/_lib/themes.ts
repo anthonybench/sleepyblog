@@ -1,22 +1,25 @@
+"use client";
+import React from "react";
 import { Theme } from "@/app/_lib/schemas";
+import { getThemeByName } from "@/app/_lib/utils";
 
 /*
   {
     _name: "",
     _light: true|false,
-    text: {
+    txt: {
       l1: "text-[]",
       l2: "text-[]",
       l3: "text-[]",
       l4: "text-[]",
     },
-    background: {
+    pkg: {
       frame: "bg-[]",
       content: "bg-[]",
       card: "bg-[] hover:bg-[]",
       button: "bg-[] hover:bg-[]",
+      searchBar: "",
     },
-    // in progress...
   },
 */
 
@@ -25,34 +28,42 @@ export const themes: Theme[] = [
     _name: "dracula",
     _light: false,
     txt: {
-      l1: "text-[#fefeff]",
-      l2: "text-[#bd93f9]",
-      l3: "text-[#924ff2]",
-      l4: "text-[#6916e0]",
+      l1: "text-[#F8F8F3]",
+      l2: "text-[#6273A4]",
+      l3: "text-[#BC93F9]",
+      l4: "text-[#d3b6fc]",
+      l5: "text-[#ff79c6]",
     },
     bg: {
-      frame: "bg-[#44475a]",
-      content: "bg-[#858bb0]",
-      card: "bg-[#b1b5d0] hover:bg-[#c7cadf]",
-      button: "bg-[#282a36] hover:bg-[#b5bad6]",
+      // --> pkg
+      frame: "bg-[#282A36]",
+      content: "bg-[#858bb0]", // nope
+      card: "bg-[#20222C] text. hover:bg-[#BC93F9] hover:text-[#F8F8F3]", // nope
+      button:
+        "bg-[#282a36] text-[#d3b6fc] hover:bg-[#b5bad6] hover:text-[#F8F8F3]", // nope
+      searchBar:
+        "bg-[#858bb0] text-[#BC93F9] placeholder:text-[#F8F8F3] focus:border-[#ff79c6]", // nope
+      // peer-focus:text-gray-900
     },
-    // in progress...
   },
   {
     _name: "vanilla",
     _light: true,
     txt: {
-      l1: "text-[]",
-      l2: "text-[]",
+      l1: "text-[#020817]",
+      l2: "text-[#64758B]",
       l3: "text-[]",
       l4: "text-[]",
+      l5: "text-[]",
     },
     bg: {
-      frame: "bg-[]",
+      frame: "bg-[#FFF]",
       content: "bg-[]",
       card: "bg-[] hover:bg-[]",
       button: "bg-[] hover:bg-[]",
+      searchBar: "",
     },
-    // in progress...
   },
 ];
+
+export const ThemeContext = React.createContext(themes[0]);

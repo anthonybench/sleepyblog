@@ -23,6 +23,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/app/_components/form";
+import { ThemeContext } from "../_lib/themes";
 
 //───────────────────────────┐
 //         Params            │
@@ -35,11 +36,11 @@ const FormSchema = z.object({
 const sendButton = (emailWasSent: boolean) => {
   return emailWasSent ? (
     <Button type="submit">
-      <CheckIcon />
+      <CheckIcon className={`text-green`} />
     </Button>
   ) : (
     <Button type="submit">
-      <PaperPlaneIcon />
+      <PaperPlaneIcon className={``} />
     </Button>
   );
 };
@@ -61,24 +62,33 @@ export default function EmailSender() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem className={`border-grey-500 mb-5 rounded-lg border p-1`}>
-              <FormLabel>
-                {sendButton(emailSent)} Send my resume to your inbox
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="my-address@email.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </form>
-    </Form>
+    <ThemeContext.Consumer>
+      {(selectedTheme) => (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className={`w-2/3 space-y-6 `}
+          >
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem
+                  className={`border-grey-500 mb-5 rounded-lg border p-1`}
+                >
+                  <FormLabel>
+                    {sendButton(emailSent)} Send my resume to your inbox
+                  </FormLabel>
+                  <FormControl>
+                    <Input placeholder="my-address@email.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+      )}
+    </ThemeContext.Consumer>
   );
 }

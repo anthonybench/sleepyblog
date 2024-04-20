@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h3>Furniture teaser & link to anthonybench custom furnishing...</h3>
+      <h3>Coming Soon: my woodworking &amp; furniture gallery...</h3>
       <UnderConstruction />
     </>
   );

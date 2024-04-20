@@ -17,8 +17,9 @@ import clsx from "clsx";
 // 1st party
 import { dateFormatter } from "@/app/_lib/utils";
 import { lastUpdatedDate } from "@/app/last-updated-date";
-import { Theme } from "@/app/_lib/schemas";
+import { GithubLogo } from "@/app/_components/github-logo";
 import "@/app/_lib/themes.css";
+import { ThemeContext } from "../_lib/themes";
 
 //───────────────────────────┐
 //         Params            │
@@ -33,10 +34,7 @@ const links = [
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export default function SideNav(props: {
-  selectedTheme: Theme;
-  [key: string]: any;
-}) {
+export default function SideNav() {
   const pathname = usePathname();
   const formatedDate = dateFormatter(
     new Date(
@@ -46,70 +44,68 @@ export default function SideNav(props: {
     ) as Date,
   );
   return (
-    <div
-      className={`flex h-screen flex-col items-center justify-between gap-2`}
-    >
-      <div className={`w-full`}>
-        <div className={`flex justify-center`}>
-          <Link href="/">
-            <Image
-              src="/assets/general/sleepyboy_technologist_cropped_mid.png"
-              width={1000}
-              height={1000}
-              className={``}
-              alt="SleepyBoy typing on laptop"
-            />
-          </Link>
-        </div>
-
-        <nav className={`w-full`}>
-          {links.map((link) => {
-            const LinkIcon = link.icon;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={clsx(
-                  `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3 ${props.selectedTheme.bg.card}`,
-                  {
-                    "bg-sky-100 text-blue-600": pathname === link.href,
-                  },
-                )}
-              >
-                <span className={`pl-4`}></span>
-                <LinkIcon className="w-6" />
-                <p className="hidden pl-1 md:block">{link.name}</p>
+    <ThemeContext.Consumer>
+      {(selectedTheme) => (
+        <div
+          className={`flex h-screen flex-col items-center justify-between gap-2`}
+        >
+          <div className={`w-full`}>
+            <div className={`flex justify-center`}>
+              <Link href="/">
+                <Image
+                  src="/assets/general/sleepyboy_technologist_cropped_mid.png"
+                  width={1000}
+                  height={1000}
+                  className={``}
+                  alt="SleepyBoy typing on laptop"
+                />
               </Link>
-            );
-          })}
-        </nav>
-      </div>
+            </div>
 
-      <footer className={`mx-3`}>
-        <div className="space-y-1">
-          <h4 className="text-sm font-medium leading-none">
-            Authored by
-            <br />
-            <em>Isaac Yep</em>
-          </h4>
-          <p className="text-sm text-muted-foreground">
-            Last updated
-            <br />
-            <em>{formatedDate}</em>
-          </p>
+            <nav className={`w-full`}>
+              {links.map((link) => {
+                const LinkIcon = link.icon;
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={clsx(
+                      `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3 ${selectedTheme.txt.l4} ${selectedTheme.bg.card}`,
+                      {
+                        "bg-sky-100 text-blue-600": pathname === link.href,
+                      },
+                    )}
+                  >
+                    <span className={`pl-4`}></span>
+                    <LinkIcon className="w-6" />
+                    <p className="hidden pl-1 md:block">{link.name}</p>
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+
+          <footer className={`w-full px-5 ${selectedTheme.txt.l2}`}>
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground">
+                Authored by
+                <br />
+                <em>Isaac Yep</em>
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Last updated
+                <br />
+                <em>{formatedDate}</em>
+              </p>
+            </div>
+            <div className="flex h-5 items-center justify-center space-x-4 py-10 text-sm">
+              <Link href="https://github.com/anthonybench/sleepyblog/blob/main/README.md">
+                <GithubLogo />
+              </Link>
+            </div>
+          </footer>
         </div>
-        <div className="flex h-5 items-center justify-center space-x-4 py-7 text-sm">
-          <Link href="https://github.com/anthonybench/sleepyblog/blob/main/README.md">
-            <Image
-              src="/assets/general/github_light.png"
-              width={40}
-              height={40}
-              className=""
-              alt="see website source"
-            />
-          </Link>
-        </div>
-      </footer>
-    </div>
+      )}
+    </ThemeContext.Consumer>
   );
 }

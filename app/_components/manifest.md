@@ -2,6 +2,7 @@
 - header.tsx
 - modal.tsx
 - post-header.tsx
+- post-preview.tsx
 - post-styles.module.css
 - side-nav.tsx
 under-construction.tsx

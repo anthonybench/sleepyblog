@@ -16,12 +16,14 @@ export type Theme = {
     l2: string;
     l3: string;
     l4: string;
+    l5: string;
   };
   bg: {
     frame: string;
     content: string;
     card: string;
     button: string;
+    searchBar: string;
   };
   // in progress...
 };

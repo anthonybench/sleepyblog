@@ -8,7 +8,7 @@ import { useDebouncedCallback } from "use-debounce";
 // 3rd party
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 // 1st party
-import { themes } from "@/app/_lib/themes";
+import { ThemeContext } from "@/app/_lib/themes";
 
 //───────────────────────────┐
 //          View             │
@@ -29,19 +29,25 @@ export default function Search({ placeholder }: { placeholder: string }) {
   }, 300);
 
   return (
-    <div className="relative flex flex-1 flex-shrink-0">
-      <label htmlFor="search" className="sr-only">
-        Search
-      </label>
-      <input
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-        placeholder={placeholder}
-        onChange={(e) => {
-          handleSearch(e.target.value);
-        }}
-        defaultValue={searchParams.get("query")?.toString()}
-      />
-      <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-    </div>
+    <ThemeContext.Consumer>
+      {(selectedTheme) => (
+        <div className={`relative flex flex-1 flex-shrink-0`}>
+          <label htmlFor="search" className="sr-only">
+            Search
+          </label>
+          <input
+            className={`outline-none ${selectedTheme.bg.searchBar} peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2`}
+            placeholder={placeholder}
+            onChange={(e) => {
+              handleSearch(e.target.value);
+            }}
+            defaultValue={searchParams.get("query")?.toString()}
+          />
+          <MagnifyingGlassIcon
+            className={`absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 peer-focus:${selectedTheme.txt.l5} ${selectedTheme.txt.l1}`}
+          />
+        </div>
+      )}
+    </ThemeContext.Consumer>
   );
 }
