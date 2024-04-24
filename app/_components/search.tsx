@@ -36,7 +36,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
             Search
           </label>
           <input
-            className={`outline-none ${selectedTheme.bg.searchBar} peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2`}
+            className={`peer  block w-full rounded-md outline-none ${selectedTheme.pkg.searchBar} py-[9px] pl-10 text-sm outline-2`}
             placeholder={placeholder}
             onChange={(e) => {
               handleSearch(e.target.value);
@@ -44,7 +44,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
             defaultValue={searchParams.get("query")?.toString()}
           />
           <MagnifyingGlassIcon
-            className={`absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 peer-focus:${selectedTheme.txt.l5} ${selectedTheme.txt.l1}`}
+            className={`absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 ${selectedTheme.pkg.iconFocus}`}
           />
         </div>
       )}

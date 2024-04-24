@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/app/_components/select";
-import { themes } from "@/app/_lib/themes";
+import { ThemeContext, themes } from "@/app/_lib/themes";
 import { Theme } from "@/app/_lib/schemas";
 
 //───────────────────────────┐
@@ -33,31 +33,40 @@ interface ThemeProps {
 //───────────────────────────┘
 export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
   return (
-    <header className={`m-0 flex h-full items-end justify-between px-3 pr-5`}>
-      <Link href="/" className={`${comfortaa.className}`}>
-        <h1 className={`text-6xl`}>{title}</h1>
-      </Link>
+    <ThemeContext.Consumer>
+      {(selectedTheme) => (
+        <header
+          className={`m-0 flex h-full items-end justify-between px-3 pr-5`}
+        >
+          <Link href="/" className={`${comfortaa.className}`}>
+            <h1 className={`text-6xl ${selectedTheme.txt.title}`}>{title}</h1>
+          </Link>
 
-      <div className={`w-1/6`}>
-        <Select onValueChange={onThemeChange} defaultValue={themes[0]._name}>
-          <SelectTrigger>
-            <SelectValue placeholder="Dracula" />
-          </SelectTrigger>
-          <SelectContent
-            defaultChecked
-            className={`${selectedTheme.txt.l4} ${selectedTheme.bg.frame}`}
-          >
-            <SelectGroup defaultValue={themes[0]._name}>
-              <SelectLabel>✨Theme✨</SelectLabel>
-              {themes.map((theme) => (
-                <SelectItem key={theme._name} value={theme._name}>
-                  {theme._name}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
-    </header>
+          <div className={`w-1/6`}>
+            <Select
+              onValueChange={onThemeChange}
+              defaultValue={themes[0]._name}
+            >
+              <SelectTrigger className={`${selectedTheme.pkg.themePicker}`}>
+                <SelectValue placeholder="Dracula" />
+              </SelectTrigger>
+              <SelectContent
+                defaultChecked
+                className={`${selectedTheme.txt.subtitle} ${selectedTheme.pkg.frame}`}
+              >
+                <SelectGroup defaultValue={themes[0]._name}>
+                  <SelectLabel>✨Theme✨</SelectLabel>
+                  {themes.map((theme) => (
+                    <SelectItem key={theme._name} value={theme._name}>
+                      {theme._name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </header>
+      )}
+    </ThemeContext.Consumer>
   );
 }

@@ -18,7 +18,6 @@ import clsx from "clsx";
 import { dateFormatter } from "@/app/_lib/utils";
 import { lastUpdatedDate } from "@/app/last-updated-date";
 import { GithubLogo } from "@/app/_components/github-logo";
-import "@/app/_lib/themes.css";
 import { ThemeContext } from "../_lib/themes";
 
 //───────────────────────────┐
@@ -70,7 +69,7 @@ export default function SideNav() {
                     key={link.name}
                     href={link.href}
                     className={clsx(
-                      `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3 ${selectedTheme.txt.l4} ${selectedTheme.bg.card}`,
+                      `flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3 ${selectedTheme.pkg.navLink}`,
                       {
                         "bg-sky-100 text-blue-600": pathname === link.href,
                       },
@@ -85,7 +84,7 @@ export default function SideNav() {
             </nav>
           </div>
 
-          <footer className={`w-full px-5 ${selectedTheme.txt.l2}`}>
+          <footer className={`w-full px-5 ${selectedTheme.txt.muted}`}>
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">
                 Authored by

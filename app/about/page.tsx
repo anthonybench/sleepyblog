@@ -107,7 +107,7 @@ export default function Page() {
 
           {/* Social Links */}
           <div className={`pt-15 flex justify-start py-5`}>
-            <div className="pb-10">
+            <div className="pb-4">
               <div className="flex">
                 <span className="flex">
                   {/* Linkedin Badge */}
@@ -126,12 +126,19 @@ export default function Page() {
                     ></a>
                   </div>
                   {/* Small Links */}
-                  <Separator className="mr-5" orientation="vertical" />
+                  <Separator
+                    className={`mr-5 ${selectedTheme.pkg.separator} `}
+                    orientation="vertical"
+                  />
                   <div className="flex flex-col justify-center space-y-3 text-sm">
                     {socialLinks.map((link) => {
                       return (
                         <span className="" key={link.id}>
-                          {link.id !== 1 && <Separator className="mb-3" />}
+                          {link.id !== 1 && (
+                            <Separator
+                              className={`mb-3 ${selectedTheme.pkg.separator}`}
+                            />
+                          )}
                           <Link href={`https://${link.linkUrl}`}>
                             <Image
                               src={`/assets/general/${link.imgSource.includes("?") ? replaceQuestionMark(link.imgSource, `${selectedTheme._light ? "dark" : "light"}`) : link.imgSource}`}
@@ -151,20 +158,20 @@ export default function Page() {
 
           {/* Resume */}
           <div className={`grow`}>
-            <div className="my-4">
-              <Separator />
+            <div className="mb-4">
+              <Separator className={`${selectedTheme.pkg.separator}`} />
             </div>
             <div className="">
               {/* Send Resume */}
-              <div className="flex justify-center">
+              <div className="flex justify-center pt-5">
                 <EmailSender />
               </div>
               {/* View Resume */}
               <div className={`flex justify-around px-5`}>
                 <div className={`flex justify-center`}>
                   <Button
-                    className={`${selectedTheme.bg.button}`}
-                    variant="secondary"
+                    className={`${selectedTheme.pkg.button}`}
+                    variant="outline"
                     onClick={openModal}
                   >
                     View resume
@@ -188,8 +195,8 @@ export default function Page() {
                 {/* View Resume LaTeX */}
                 <div className={`flex items-end`}>
                   <Button
-                    className={`${selectedTheme.bg.button}`}
-                    variant="secondary"
+                    className={`${selectedTheme.pkg.button}`}
+                    variant="outline"
                   >
                     <Link href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls">
                       View resume&apos;s{" "}

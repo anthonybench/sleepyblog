@@ -35,13 +35,17 @@ export function PostPreview({ title, date, excerpt, slug }: Props) {
     <ThemeContext.Consumer>
       {(selectedTheme) => (
         <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <Card className={`${selectedTheme.bg.card}`}>
-            <CardHeader>
-              <CardTitle>{title}</CardTitle>
-              <CardDescription>{dateFormatter(date)}</CardDescription>
+          <Card className={`group ${selectedTheme.pkg.cardButton}`}>
+            <CardHeader className="">
+              <CardTitle className={`${selectedTheme.txt.cardButtonHover}`}>
+                <p className={``}>{title}</p>
+              </CardTitle>
+              <CardDescription className={`${selectedTheme.txt.cardButtonHover}`}>
+                {dateFormatter(date)}
+              </CardDescription>
             </CardHeader>
             <CardContent>
-              <p>{excerpt}</p>
+              <p className={`${selectedTheme.txt.content}`}>{excerpt}</p>
             </CardContent>
           </Card>
         </Link>

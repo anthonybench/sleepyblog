@@ -7,7 +7,6 @@ import { useState } from "react";
 // 1st party
 import "@/app/_lib/globals.css";
 import "@/app/_lib/utils.css";
-import "@/app/_lib/themes.css";
 import { jetbrains_mono } from "@/app/_lib/fonts";
 import Header from "@/app/_components/header";
 import { ScrollArea } from "@/app/_components/scroll-area";
@@ -37,7 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <ThemeContext.Provider value={selectedTheme}>
         <body
-          className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12 ${selectedTheme.txt.l4} ${selectedTheme.bg.frame}`}
+          className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12 ${selectedTheme.pkg.frame}`}
         >
           <div className={`col-span-2 row-span-12 `}>
             <SideNav
@@ -51,9 +50,10 @@ export default function RootLayout({
             />
           </div>
           <main
-            className={`col-span-10 row-span-11 mt-5 ${selectedTheme.txt.l1} ${selectedTheme.bg.content}`}
+            className={`col-span-10 row-span-11 mt-5 ${selectedTheme.pkg.content}`}
           >
-            <ScrollArea className={`h-full border p-10`}>{children}</ScrollArea>
+            <ScrollArea className={`h-full p-10`}>{children}</ScrollArea>
+            {/* <ScrollArea className={`h-full border border-[#d3b6fc] p-10`}>{children}</ScrollArea> */}
           </main>
         </body>
       </ThemeContext.Provider>

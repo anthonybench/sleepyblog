@@ -29,17 +29,15 @@ import { ThemeContext } from "../_lib/themes";
 //         Params            │
 //───────────────────────────┘
 const FormSchema = z.object({
-  email: z.string().min(6, {
-    message: "Email must be at least 6 characters.",
-  }),
+  email: z.string().email(),
 });
-const sendButton = (emailWasSent: boolean) => {
+const sendButton = (emailWasSent: boolean, style: string) => {
   return emailWasSent ? (
-    <Button type="submit">
-      <CheckIcon className={`text-green`} />
+    <Button type="submit" className={`${style}`}>
+      <CheckIcon className={` `} />
     </Button>
   ) : (
-    <Button type="submit">
+    <Button type="submit" className={`${style}`}>
       <PaperPlaneIcon className={``} />
     </Button>
   );
@@ -74,13 +72,18 @@ export default function EmailSender() {
               name="email"
               render={({ field }) => (
                 <FormItem
-                  className={`border-grey-500 mb-5 rounded-lg border p-1`}
+                  className={`mb-5 rounded-lg border ${selectedTheme.pkg.emailSender} p-1`}
                 >
                   <FormLabel>
-                    {sendButton(emailSent)} Send my resume to your inbox
+                    {sendButton(emailSent, selectedTheme.pkg.button)} Send my
+                    resume to your inbox
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="my-address@email.com" {...field} />
+                    <Input
+                      className={`${selectedTheme.pkg.searchBar}`}
+                      placeholder="my_address@email.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
