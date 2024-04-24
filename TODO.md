@@ -9,21 +9,25 @@
 ## STAGING
 - real posts
 
-## BACKLOG
-- replace react-modal with shadcn's dialog
-- selected navlink has static styles, make them dynamic
-- can't navigate internal links when you refresh while in a post view
-- linkedin badge doesn't respond to light/dark change, likely because it's some stupid script, maybe do a server-action thing
-- linkedin badge disappears when you navigate away & back, refresh fixes it but kills my theme state so that's a no-go
-- mobile/responsiveness
+## PRE-REWRITE
 - robots.txt
-- evolve app/blogs/[slug]/not-found.tsx
-- *sleepyboy 'something went wrong' asset
-- *sleepyboy 'post not found' asset
+- replace react-modal with shadcn's dialog
+- warning: "The label's for attribute doesn't match any element id."
+- mobile/responsiveness
+- linkedin badge is dumb:
+  - doesn't respond to light/dark change, likely because it's some stupid script, maybe do a server-action thing
+  - disappears when you navigate away & back, refresh fixes it but kills my theme state so that's a no-go
+- clsx isn't as great as i thought:
+  - clsx for 'active navlink highlight colors' only works for dracula/default
+  - selected navlink has static styles, can't figure out how to inject variables/string-interpolation
+- can't navigate internal links when you refresh while in a post view
 - pre-commit/husky run prettier
-- evolve app/error.tsx
+
+## POST-REWRITE
 - accessability
-- rewrite
+- evolve app/error.tsx:
+  - *sleepyboy 'something went wrong' asset
+- evolve app/blogs/[slug]/not-found.tsx:
+  - *sleepyboy 'post not found' asset
 - dockerize
 - port to aws ecs
-- warning: "The label's for attribute doesn't match any element id."
