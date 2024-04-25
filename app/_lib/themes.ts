@@ -68,11 +68,15 @@ export const themes: Theme[] = [
     },
     pkg: {
       frame: "bg-[#F1F5F9]",
-      navLink: "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#020817] text-[#020817] hover:text-white",
+      navLink:
+        "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#020817] text-[#020817] hover:text-white",
       content: "text-[#0F172A] bg-[#FFFFFF]",
-      cardButton: "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#D1D5DB] text-[#020817]",
-      button: "border-[#0F172A] bg-[#FFFFFF] text-[#0F172A] hover:bg-[#F8FAFC] hover:text-white",
-      searchBar: "bg-[#d1d5db] border-2 border-[#0F172A] placeholder:text-[#0F172A] focus:border-[#E2E8F0]",
+      cardButton:
+        "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#D1D5DB] text-[#020817]",
+      button:
+        "border-[#0F172A] bg-[#FFFFFF] text-[#0F172A] hover:bg-[#F8FAFC] hover:text-white",
+      searchBar:
+        "bg-[#d1d5db] border-2 border-[#0F172A] placeholder:text-[#0F172A] focus:border-[#E2E8F0]",
       separator: "bg-[#0F172A]",
       iconFocus: "peer-focus:stroke-[#E2E8F0]",
       themePicker: "bg-[#F1F5F9] text-[#0F172A] border-[#0F172A]",

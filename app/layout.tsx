@@ -2,6 +2,7 @@
 //───────────────────────────┐
 //         Imports           │
 //───────────────────────────┘
+// import Script from "next/script";
 // react
 import { useState } from "react";
 // 1st party
@@ -39,9 +40,7 @@ export default function RootLayout({
           className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12 ${selectedTheme.pkg.frame}`}
         >
           <div className={`col-span-2 row-span-12 `}>
-            <SideNav
-            // selectedTheme={selectedTheme}
-            />
+            <SideNav />
           </div>
           <div className={`col-span-10 row-span-1 px-5`}>
             <Header
@@ -52,8 +51,9 @@ export default function RootLayout({
           <main
             className={`col-span-10 row-span-11 mt-5 ${selectedTheme.pkg.content}`}
           >
-            <ScrollArea className={`h-full p-10`}>{children}</ScrollArea>
-            {/* <ScrollArea className={`h-full border border-[#d3b6fc] p-10`}>{children}</ScrollArea> */}
+            <ScrollArea className={`h-full p-10`}>
+              {children}
+            </ScrollArea>
           </main>
         </body>
       </ThemeContext.Provider>

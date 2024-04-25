@@ -1,7 +1,5 @@
 ## GO
 - finish sleepyboy technologist
-- break out linkedin badge as component
-- filter unused packages
 
 - post image & video broken in prod
 - email not sending in prod

@@ -40,7 +40,9 @@ export function PostPreview({ title, date, excerpt, slug }: Props) {
               <CardTitle className={`${selectedTheme.txt.cardButtonHover}`}>
                 <p className={``}>{title}</p>
               </CardTitle>
-              <CardDescription className={`${selectedTheme.txt.cardButtonHover}`}>
+              <CardDescription
+                className={`${selectedTheme.txt.cardButtonHover}`}
+              >
                 {dateFormatter(date)}
               </CardDescription>
             </CardHeader>

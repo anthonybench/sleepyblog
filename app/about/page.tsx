@@ -5,7 +5,6 @@
 // next
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 // react
 import React from "react";
 // 3rd party
@@ -14,6 +13,7 @@ import Modal from "react-modal";
 import EmailSender from "@/app/_components/email-sender";
 import { Separator } from "@/app/_components/separator";
 import { Button } from "@/app/_components/button";
+import { LinkedInBadge } from "@/app/_components/linkedin-badge";
 import { ThemeContext } from "../_lib/themes";
 
 //───────────────────────────┐
@@ -87,7 +87,7 @@ export default function Page() {
     <ThemeContext.Consumer>
       {(selectedTheme) => (
         <div className={`flex flex-col leading-7`}>
-          <Script src="https://platform.linkedin.com/badges/js/profile.js" />
+          {/* <Script src="https://platform.linkedin.com/badges/js/profile.js" /> */}
 
           {/* Blurb */}
           <p>
@@ -111,20 +111,7 @@ export default function Page() {
               <div className="flex">
                 <span className="flex">
                   {/* Linkedin Badge */}
-                  <div
-                    className="badge-base LI-profile-badge"
-                    data-locale="en_US"
-                    data-size="medium"
-                    data-theme={`${selectedTheme._light ? "light" : "dark"}`}
-                    data-type="HORIZONTAL"
-                    data-vanity="anthonybench"
-                    data-version="v1"
-                  >
-                    <a
-                      className="badge-base__link LI-simple-link"
-                      href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
-                    ></a>
-                  </div>
+                  <LinkedInBadge light={selectedTheme._light} />
                   {/* Small Links */}
                   <Separator
                     className={`mr-5 ${selectedTheme.pkg.separator} `}
