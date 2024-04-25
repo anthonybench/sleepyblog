@@ -51,9 +51,7 @@ export default function RootLayout({
           <main
             className={`col-span-10 row-span-11 mt-5 ${selectedTheme.pkg.content}`}
           >
-            <ScrollArea className={`h-full p-10`}>
-              {children}
-            </ScrollArea>
+            <ScrollArea className={`h-full p-10`}>{children}</ScrollArea>
           </main>
         </body>
       </ThemeContext.Provider>

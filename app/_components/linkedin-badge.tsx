@@ -21,7 +21,10 @@ export function LinkedInBadge({ light }: Props) {
   const liTheme = light ? "light" : "dark";
   return (
     <>
-      <Script strategy="beforeInteractive" src="https://platform.linkedin.com/badges/js/profile.js" />
+      <Script
+        strategy="beforeInteractive"
+        src="https://platform.linkedin.com/badges/js/profile.js"
+      />
       <div
         className="badge-base LI-profile-badge"
         data-locale="en_US"
