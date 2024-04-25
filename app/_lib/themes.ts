@@ -77,7 +77,7 @@ export const themes: Theme[] = [
         "border-[#0F172A] bg-[#FFFFFF] text-[#0F172A] hover:bg-[#F8FAFC] hover:text-white",
       searchBar:
         "bg-[#d1d5db] border-2 border-[#0F172A] placeholder:text-[#0F172A] focus:border-[#E2E8F0]",
-      separator: "bg-[#0F172A]",
+      separator: "bg-[#D1D5DB]",
       iconFocus: "peer-focus:stroke-[#E2E8F0]",
       themePicker: "bg-[#F1F5F9] text-[#0F172A] border-[#0F172A]",
       emailSender: "border-[#0F172A]",

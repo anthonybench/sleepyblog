@@ -13,7 +13,10 @@ import Modal from "react-modal";
 import EmailSender from "@/app/_components/email-sender";
 import { Separator } from "@/app/_components/separator";
 import { Button } from "@/app/_components/button";
-import { LinkedInBadge } from "@/app/_components/linkedin-badge";
+import {
+  LinkedInBadgeLight,
+  LinkedInBadgeDark,
+} from "@/app/_components/linkedin-badge";
 import { ThemeContext } from "../_lib/themes";
 
 //───────────────────────────┐
@@ -87,8 +90,6 @@ export default function Page() {
     <ThemeContext.Consumer>
       {(selectedTheme) => (
         <div className={`flex flex-col leading-7`}>
-          {/* <Script src="https://platform.linkedin.com/badges/js/profile.js" /> */}
-
           {/* Blurb */}
           <p>
             Hi, I&apos;m Isaac 👋
@@ -111,7 +112,12 @@ export default function Page() {
               <div className="flex">
                 <span className="flex">
                   {/* Linkedin Badge */}
-                  <LinkedInBadge light={selectedTheme._light} />
+                  <div className={`${selectedTheme._light ? "" : "hidden"}`}>
+                    <LinkedInBadgeLight />
+                  </div>
+                  <div className={`${selectedTheme._light ? "hidden" : ""}`}>
+                    <LinkedInBadgeDark />
+                  </div>
                   {/* Small Links */}
                   <Separator
                     className={`mr-5 ${selectedTheme.pkg.separator} `}

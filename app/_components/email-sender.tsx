@@ -34,10 +34,10 @@ const FormSchema = z.object({
 const sendButton = (emailWasSent: boolean, style: string) => {
   return emailWasSent ? (
     <Button type="submit" className={`${style}`}>
-      <CheckIcon className={` `} />
+      <CheckIcon width="18" height="18" color="green" />
     </Button>
   ) : (
-    <Button type="submit" className={`${style}`}>
+    <Button type="submit" className={`border ${style}`}>
       <PaperPlaneIcon className={``} />
     </Button>
   );

@@ -1,0 +1,9 @@
+User-agent: *
+
+Disallow: /dingus
+Disallow: /furniture
+Disallow: /software
+Disallow: /tutoring
+Disallow: /posts/*
+
+Allow: /about

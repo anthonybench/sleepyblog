@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 //───────────────────────────┐
 //         Imports           │
 //───────────────────────────┘
@@ -8,17 +8,9 @@ import Script from "next/script";
 import { ThemeContext } from "../_lib/themes";
 
 //───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
-type Props = {
-  light: boolean;
-};
-
-//───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export function LinkedInBadge({ light }: Props) {
-  const liTheme = light ? "light" : "dark";
+export function LinkedInBadgeLight() {
   return (
     <>
       <Script
@@ -29,7 +21,32 @@ export function LinkedInBadge({ light }: Props) {
         className="badge-base LI-profile-badge"
         data-locale="en_US"
         data-size="medium"
-        data-theme={liTheme}
+        data-theme="light"
+        data-type="HORIZONTAL"
+        data-vanity="anthonybench"
+        data-version="v1"
+      >
+        <a
+          className="badge-base__link LI-simple-link"
+          href="https://www.linkedin.com/in/anthonybench?trk=profile-badge"
+        ></a>
+      </div>
+    </>
+  );
+}
+
+export function LinkedInBadgeDark() {
+  return (
+    <>
+      <Script
+        strategy="beforeInteractive"
+        src="https://platform.linkedin.com/badges/js/profile.js"
+      />
+      <div
+        className="badge-base LI-profile-badge"
+        data-locale="en_US"
+        data-size="medium"
+        data-theme="dark"
         data-type="HORIZONTAL"
         data-vanity="anthonybench"
         data-version="v1"
@@ -49,5 +66,5 @@ export function LinkedInBadge({ light }: Props) {
   - lazyOnload
   - worker
 
-  (none fix the 2 issues with or without "use client")
+  (none fix the disappearing issue with or without "use client")
 */
