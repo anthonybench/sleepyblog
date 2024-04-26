@@ -40,24 +40,24 @@ export function PostHeader({ title, media, date }: Props) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
-  const year = date.getFullYear().toString().padStart(2, "0").slice(-2); // Ensure two digits
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
-  const day = date.getDate().toString().padStart(2, "0");
-  const dateString = `${year}_${month}_${day}`;
-  const imagePrefix = `/assets/posts/${dateString}/`;
+  // const year = date.getFullYear().toString().padStart(2, "0").slice(-2); // Ensure two digits
+  // const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
+  // const day = date.getDate().toString().padStart(2, "0");
+  // const dateString = `${year}_${month}_${day}`;
+  const imagePrefix = `/assets/posts/24-03-18/`;
   console.log(imagePrefix);
   return (
     <>
       <h1 className={`text-4xl`}>{title}</h1>
       <div className={`flex justify-center py-5`}>
         <Carousel
-          // plugins={[plugin.current]}
+          plugins={[plugin.current]}
           className="w-full max-w-xs"
-          // onMouseEnter={plugin.current.stop}
-          // onMouseLeave={plugin.current.reset}
-          // opts={{
-          //   loop: true,
-          // }}
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
+          opts={{
+            loop: true,
+          }}
         >
           <CarouselContent>
             {media.map((relPath, index) => (
