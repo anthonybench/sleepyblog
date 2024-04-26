@@ -17,7 +17,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/app/_components/carousel";
-import { themes } from "@/app/_lib/themes";
 
 //───────────────────────────┐
 //         Params            │
@@ -46,18 +45,19 @@ export function PostHeader({ title, media, date }: Props) {
   const day = date.getDate().toString().padStart(2, "0");
   const dateString = `${year}_${month}_${day}`;
   const imagePrefix = `/assets/posts/${dateString}/`;
+  console.log(imagePrefix);
   return (
     <>
       <h1 className={`text-4xl`}>{title}</h1>
       <div className={`flex justify-center py-5`}>
         <Carousel
-          plugins={[plugin.current]}
+          // plugins={[plugin.current]}
           className="w-full max-w-xs"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
-          opts={{
-            loop: true,
-          }}
+          // onMouseEnter={plugin.current.stop}
+          // onMouseLeave={plugin.current.reset}
+          // opts={{
+          //   loop: true,
+          // }}
         >
           <CarouselContent>
             {media.map((relPath, index) => (
@@ -70,7 +70,7 @@ export function PostHeader({ title, media, date }: Props) {
                       src={`${imagePrefix}${relPath}`}
                       width={250}
                       height={100}
-                      alt="Holo the wise wolf"
+                      alt="Post Image"
                     />
                   ) : (
                     <video controls width={500} height={500} preload="metadata">
@@ -82,8 +82,8 @@ export function PostHeader({ title, media, date }: Props) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="text-black" />
+          <CarouselNext className="text-black"  />
         </Carousel>
       </div>
       <div className="mx-auto flex max-w-2xl justify-center">
