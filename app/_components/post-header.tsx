@@ -9,7 +9,6 @@ import * as React from "react";
 // 3rd party
 import Autoplay from "embla-carousel-autoplay";
 // 1st party
-import { dateFormatter } from "../_lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -24,7 +23,8 @@ import {
 type Props = {
   title: string;
   media: string[];
-  date: Date;
+  mediaPrefix: string;
+  formattedDate: string;
 };
 
 const isImage = (path: string): boolean => {
@@ -35,17 +35,10 @@ const isImage = (path: string): boolean => {
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export function PostHeader({ title, media, date }: Props) {
-  const formattedDate = dateFormatter(date);
+export function PostHeader({ title, media, mediaPrefix, formattedDate }: Props) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
-  // const year = date.getFullYear().toString().padStart(2, "0").slice(-2); // Ensure two digits
-  // const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
-  // const day = date.getDate().toString().padStart(2, "0");
-  // const dateString = `${year}_${month}_${day}`;
-  const imagePrefix = `/assets/posts/24-03-18/`;
-  console.log(imagePrefix);
   return (
     <>
       <h1 className={`text-4xl`}>{title}</h1>
@@ -60,21 +53,21 @@ export function PostHeader({ title, media, date }: Props) {
           }}
         >
           <CarouselContent>
-            {media.map((relPath, index) => (
+            {media.map((fileName, index) => (
               <CarouselItem key={index}>
                 <div
                   className={`flex h-full items-center justify-center bg-slate-600`}
                 >
-                  {isImage(`${imagePrefix}${relPath}`) ? (
+                  {isImage(`${mediaPrefix}/${fileName}`) ? (
                     <Image
-                      src={`${imagePrefix}${relPath}`}
+                      src={`${mediaPrefix}/${fileName}`}
                       width={250}
                       height={100}
                       alt="Post Image"
                     />
                   ) : (
                     <video controls width={500} height={500} preload="metadata">
-                      <source src={`${imagePrefix}${relPath}`} />
+                      <source src={`${mediaPrefix}/${fileName}`} />
                       Your browser does not support the html video element.
                     </video>
                   )}

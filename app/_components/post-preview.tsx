@@ -6,7 +6,6 @@
 import Link from "next/link";
 // 1st party
 import "@/app/_lib/utils.css";
-import { dateFormatter } from "@/app/_lib/utils";
 import {
   Card,
   CardContent,
@@ -22,7 +21,7 @@ import { SelectGroup } from "@radix-ui/react-select";
 //───────────────────────────┘
 type Props = {
   title: string;
-  date: Date;
+  date: string;
   excerpt: string;
   slug: string;
 };
@@ -43,7 +42,7 @@ export function PostPreview({ title, date, excerpt, slug }: Props) {
               <CardDescription
                 className={`${selectedTheme.txt.cardButtonHover}`}
               >
-                {dateFormatter(date)}
+                {date}
               </CardDescription>
             </CardHeader>
             <CardContent>
