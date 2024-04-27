@@ -19,11 +19,22 @@ function getOrdinalSuffix(day: number) {
   }
 }
 
-export function dateFormatter(date: Date) {
+export function dateFormatter(dateString: string) {
+  // Split the date string into year, month, and day components
+  const [yearString, monthString, dayString] = dateString.split("-");
+
+  // Convert year, month, and day to numbers
+  const year = parseInt(yearString, 10);
+  const month = parseInt(monthString, 10) - 1; // Months are 0-indexed in JavaScript
+  const day = parseInt(dayString, 10);
+
+  // Create a Date object from the components
+  const date = new Date(year, month, day);
+
+  // Use the original dateFormatter logic with the Date object
   const monthName = date.toLocaleString("default", { month: "long" });
-  const day = date.getDate();
-  const year = date.getFullYear();
-  return `${monthName} ${day}${getOrdinalSuffix(day)}, ${year}`;
+  const dayWithSuffix = `${day}${getOrdinalSuffix(day)}`;
+  return `${monthName} ${dayWithSuffix}, ${year}`;
 }
 
 export function getThemeByName(name: string) {

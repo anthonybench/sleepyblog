@@ -9,8 +9,7 @@ import React from "react";
 import { getFilteredPosts } from "@/app/_lib/posts";
 import { PostPreview } from "@/app/_components/post-preview";
 import Search from "@/app/_components/search";
-import { ThemeContext } from "@/app/_lib/themes";
-import { dateFormatterAlt } from "@/app/_lib/dateformatteralt";
+import { dateFormatter } from "./_lib/utils";
 
 //───────────────────────────┐
 //         Params            │
@@ -42,7 +41,7 @@ export default function Home({
         <div key={post.slug} className={`pb-5`}>
           <PostPreview
             title={post.title}
-            date={dateFormatterAlt(post.date)}
+            date={dateFormatter(post.date)}
             excerpt={post.excerpt}
             slug={post.slug}
           />

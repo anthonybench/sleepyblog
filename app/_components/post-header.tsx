@@ -35,7 +35,12 @@ const isImage = (path: string): boolean => {
 //───────────────────────────┐
 //          View             │
 //───────────────────────────┘
-export function PostHeader({ title, media, mediaPrefix, formattedDate }: Props) {
+export function PostHeader({
+  title,
+  media,
+  mediaPrefix,
+  formattedDate,
+}: Props) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
@@ -76,7 +81,7 @@ export function PostHeader({ title, media, mediaPrefix, formattedDate }: Props) 
             ))}
           </CarouselContent>
           <CarouselPrevious className="text-black" />
-          <CarouselNext className="text-black"  />
+          <CarouselNext className="text-black" />
         </Carousel>
       </div>
       <div className="mx-auto flex max-w-2xl justify-center">

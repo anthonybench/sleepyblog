@@ -15,7 +15,7 @@ import {
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 // 1st party
-import { dateFormatterAlt } from "@/app/_lib/dateformatteralt";
+import { dateFormatter } from "../_lib/utils";
 import { lastUpdatedDate } from "@/app/last-updated-date";
 import { GithubLogo } from "@/app/_components/github-logo";
 import { ThemeContext } from "../_lib/themes";
@@ -35,14 +35,7 @@ const links = [
 //───────────────────────────┘
 export default function SideNav() {
   const pathname = usePathname();
-  // const formatedDate = dateFormatter(
-  //   new Date(
-  //     lastUpdatedDate.year,
-  //     lastUpdatedDate.month - 1,
-  //     lastUpdatedDate.day,
-  //   ) as Date,
-  // );
-  const formattedDate = dateFormatterAlt(lastUpdatedDate);
+  const formattedDate = dateFormatter(lastUpdatedDate);
   return (
     <ThemeContext.Consumer>
       {(selectedTheme) => (

@@ -8,26 +8,6 @@ export type Post = {
   preview?: boolean;
 };
 
-// export type Theme = {
-//   _name: string;
-//   _light: boolean;
-//   txt: {
-//     l1: string;
-//     l2: string;
-//     l3: string;
-//     l4: string;
-//     l5: string;
-//     iconFocus: string;
-//   };
-//   bg: {
-//     frame: string;
-//     content: string;
-//     card: string;
-//     button: string;
-//     searchBar: string;
-//     separator: string;
-//   };
-// };
 export type Theme = {
   _name: string;
   _light: boolean;
@@ -50,10 +30,4 @@ export type Theme = {
     themePicker: string;
     emailSender: string;
   };
-};
-
-export type SleepyDate = {
-  year: number;
-  month: number;
-  day: number;
 };

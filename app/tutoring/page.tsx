@@ -2,8 +2,6 @@
 //         Imports           │
 //───────────────────────────┘
 // next
-import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 // 1st party
 import { UnderConstruction } from "../_components/under-construction";

@@ -9,7 +9,7 @@ import { getPostBySlug } from "@/app/_lib/posts";
 import { markdownToHtml } from "@/app/_lib/markdowntohtml";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
-import { dateFormatterAlt } from "@/app/_lib/dateformatteralt";
+import { dateFormatter } from "@/app/_lib/utils";
 
 //───────────────────────────┐
 //         Params            │
@@ -38,7 +38,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         title={post.title}
         media={post.media}
         mediaPrefix={`/assets/posts/${post.date}`}
-        formattedDate={dateFormatterAlt(post.date)}
+        formattedDate={dateFormatter(post.date)}
       />
       <PostBody content={content} />
     </article>

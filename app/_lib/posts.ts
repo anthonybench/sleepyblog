@@ -45,7 +45,7 @@ export function getFilteredPosts(searchString: string): Post[] {
     .filter(
       (post) =>
         post.title.toLowerCase().includes(searchString.toLowerCase()) ||
-        dateFormatter(new Date(post.date))
+        dateFormatter(post.date)
           .toLowerCase()
           .includes(searchString.toLowerCase()),
     )
