@@ -1,14 +1,9 @@
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
 // next
 import Image from "next/image";
 // 1st party
 import "@/app/_lib/utils.css";
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export function UnderConstruction() {
   return (
     <div className={`flex justify-center`}>

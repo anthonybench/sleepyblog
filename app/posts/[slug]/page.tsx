@@ -1,6 +1,3 @@
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
 // next
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -11,9 +8,7 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import { dateFormatter } from "@/app/_lib/utils";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 export const metadata: Metadata = {
   title: {
     template: "Blog Post | %s",
@@ -23,9 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("http://sleepyblog.org"),
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
   if (!post.slug) {

@@ -1,15 +1,11 @@
 // "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import Script from "next/script";
 // 1st party
 import { ThemeContext } from "../_lib/themes";
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export function LinkedInBadgeLight() {
   return (
     <>

@@ -1,14 +1,9 @@
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
 // react
 import React from "react";
 // 1st party
 import { themes } from "@/app/_lib/themes";
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 const Modal = ({ children, onClose }: { children: any; onClose: any }) => {
   return (
     <div className="modal">

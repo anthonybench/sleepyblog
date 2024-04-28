@@ -18,6 +18,6 @@
 }
 
 /* works! */
-/* .markdown code {
-  @apply text-[#50d71e]
-} */
+.markdown code {
+  @apply text-[#a855f7];
+}

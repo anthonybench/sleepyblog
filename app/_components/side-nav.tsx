@@ -1,7 +1,5 @@
 "use client"; // because im calling usePathname()
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import Image from "next/image";
 import Link from "next/link";
@@ -20,9 +18,7 @@ import { lastUpdatedDate } from "@/app/last-updated-date";
 import { GithubLogo } from "@/app/_components/github-logo";
 import { ThemeContext } from "../_lib/themes";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 const links = [
   { name: "About", href: "/about", icon: IdentificationIcon },
   { name: "Software", href: "/software", icon: CodeBracketIcon },
@@ -30,9 +26,7 @@ const links = [
   { name: "Furniture", href: "/furniture", icon: WrenchScrewdriverIcon },
 ];
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function SideNav() {
   const pathname = usePathname();
   const formattedDate = dateFormatter(lastUpdatedDate);

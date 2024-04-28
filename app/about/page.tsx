@@ -1,7 +1,5 @@
 "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import Image from "next/image";
 import Link from "next/link";
@@ -19,9 +17,7 @@ import {
 } from "@/app/_components/linkedin-badge";
 import { ThemeContext } from "../_lib/themes";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 const customStyles = {
   // resume modal styles
   content: {
@@ -72,9 +68,7 @@ function replaceQuestionMark(str: string, replacement: string): string {
   return `${str.slice(0, questionMarkIndex)}${trimmedReplacement}${str.slice(questionMarkIndex + 1)}`;
 }
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function Page() {
   let zoomLevel: number = 1;
   const [modalIsOpen, setIsOpen] = React.useState(false);

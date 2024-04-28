@@ -1,7 +1,5 @@
 ## GO
 - real posts...
-- post image & video aspect-ratio handling
-- remove fancy comment stuffs
 
 ## PRE-REWRITE
 - replace react-modal with shadcn's dialog

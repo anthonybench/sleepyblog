@@ -1,21 +1,14 @@
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
 // next
 import type { Metadata } from "next";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 export const metadata: Metadata = {
   title: "SleepyBlog",
   description: "about the author",
   metadataBase: new URL("http://sleepyblog.org"),
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function Layout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

@@ -1,7 +1,5 @@
 "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // import Script from "next/script";
 // react
 import { useState } from "react";
@@ -16,14 +14,10 @@ import { Theme } from "@/app/_lib/schemas";
 import { getThemeByName } from "@/app/_lib/utils";
 import { ThemeContext } from "@/app/_lib/themes";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 const defaultTheme = getThemeByName("dracula");
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function RootLayout({
   children,
 }: Readonly<{

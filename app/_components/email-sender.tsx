@@ -1,7 +1,5 @@
 "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // react
 import { useState } from "react";
 import React from "react";
@@ -25,9 +23,7 @@ import {
 } from "@/app/_components/form";
 import { ThemeContext } from "../_lib/themes";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 const FormSchema = z.object({
   email: z.string().email(),
 });
@@ -43,9 +39,7 @@ const sendButton = (emailWasSent: boolean, style: string) => {
   );
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function EmailSender() {
   const [emailSent, setEmailSent] = useState<boolean>(false);
   const form = useForm<z.infer<typeof FormSchema>>({

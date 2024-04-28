@@ -1,7 +1,5 @@
 "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import Link from "next/link";
 // 1st party
@@ -19,18 +17,14 @@ import {
 import { ThemeContext, themes } from "@/app/_lib/themes";
 import { Theme } from "@/app/_lib/schemas";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 const title = `SleepyBlog`;
 interface ThemeProps {
   selectedTheme: Theme;
   onThemeChange: (newTheme: string) => void;
 }
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
   return (
     <ThemeContext.Consumer>

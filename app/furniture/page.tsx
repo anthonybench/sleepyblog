@@ -1,23 +1,16 @@
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
 // next
 import type { Metadata } from "next";
 // 1st party
 import { UnderConstruction } from "../_components/under-construction";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 export const metadata: Metadata = {
   title: "SleepyBlog",
   description: "Furniture Gallery",
   metadataBase: new URL("http://sleepyblog.org"),
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function Page() {
   return (
     <>

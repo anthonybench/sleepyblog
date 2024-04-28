@@ -1,15 +1,11 @@
 // "use client"; // because TODO
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import Image from "next/image";
 // 1st party
 import { ThemeContext } from "@/app/_lib/themes";
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export function GithubLogo() {
   return (
     <ThemeContext.Consumer>

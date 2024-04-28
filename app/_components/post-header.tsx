@@ -1,7 +1,5 @@
 "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import Image from "next/image";
 // react
@@ -17,9 +15,7 @@ import {
   CarouselPrevious,
 } from "@/app/_components/carousel";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 type Props = {
   title: string;
   media: string[];
@@ -32,9 +28,7 @@ const isImage = (path: string): boolean => {
   return substrings.some((substring) => path.toLowerCase().includes(substring));
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export function PostHeader({
   title,
   media,

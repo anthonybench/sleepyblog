@@ -1,7 +1,5 @@
 "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import Link from "next/link";
 // 1st party
@@ -16,9 +14,7 @@ import {
 import { ThemeContext } from "@/app/_lib/themes";
 import { SelectGroup } from "@radix-ui/react-select";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 type Props = {
   title: string;
   date: string;
@@ -26,9 +22,7 @@ type Props = {
   slug: string;
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export function PostPreview({ title, date, excerpt, slug }: Props) {
   return (
     <ThemeContext.Consumer>

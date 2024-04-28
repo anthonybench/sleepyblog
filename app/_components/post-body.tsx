@@ -1,7 +1,5 @@
 "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import Link from "next/link";
 // 3rd party
@@ -11,16 +9,12 @@ import markdownStyles from "./post-styles.module.css";
 import { Button } from "@/app/_components/button";
 import { ThemeContext } from "@/app/_lib/themes";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 type Props = {
   content: string;
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export function PostBody({ content }: Props) {
   return (
     <ThemeContext.Consumer>

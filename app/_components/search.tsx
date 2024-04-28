@@ -1,7 +1,5 @@
 "use client";
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
+
 // next
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
@@ -10,9 +8,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 // 1st party
 import { ThemeContext } from "@/app/_lib/themes";
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();

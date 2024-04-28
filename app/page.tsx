@@ -1,6 +1,3 @@
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
 // next
 import type { Metadata } from "next";
 // react
@@ -11,18 +8,14 @@ import { PostPreview } from "@/app/_components/post-preview";
 import Search from "@/app/_components/search";
 import { dateFormatter } from "./_lib/utils";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 export const metadata: Metadata = {
   title: "SleepyBlog",
   description: "Home | Blog Posts",
   metadataBase: new URL("http://sleepyblog.org"),
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default function Home({
   searchParams,
 }: {
