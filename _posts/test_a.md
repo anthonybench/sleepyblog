@@ -1,7 +1,7 @@
 ---
 title: "✨Test Blog A✨"
 excerpt: "This is the excerpt, which i'm guessing will be the 'preview'..."
-media: ["test.mov", "holo.jpg", "docker.png"] # /assets/posts/${dateString}/
+media: ["test.mov", "holo.jpg", "docker.png", "test_landscape_1.jpg", "test_landscape_2.jpg", "test_portrait.jpg"] # /assets/posts/yyyy-mm-dd/<name>
 date: "2024-03-19" # yyyy-mm-dd
 ---
 

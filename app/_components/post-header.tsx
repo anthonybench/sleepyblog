@@ -24,7 +24,7 @@ type Props = {
 };
 
 const isImage = (path: string): boolean => {
-  const substrings = [".jpg", ".jpeg", ".png", ".gif", ".svg"];
+  const substrings = [".jpg", ".jpeg", ".png", ".gif", ".svg"]; // .heic not supported by next yet
   return substrings.some((substring) => path.toLowerCase().includes(substring));
 };
 
@@ -60,12 +60,17 @@ export function PostHeader({
                   {isImage(`${mediaPrefix}/${fileName}`) ? (
                     <Image
                       src={`${mediaPrefix}/${fileName}`}
-                      width={250}
-                      height={100}
+                      width={3024}
+                      height={4032}
                       alt="Post Image"
                     />
                   ) : (
-                    <video controls width={500} height={500} preload="metadata">
+                    <video
+                      controls
+                      width={3024}
+                      height={4032}
+                      preload="metadata"
+                    >
                       <source src={`${mediaPrefix}/${fileName}`} />
                       Your browser does not support the html video element.
                     </video>
