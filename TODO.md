@@ -3,17 +3,17 @@
 
 ## PRE-REWRITE
 - replace react-modal with shadcn's dialog
-- email not sending in prod
 - clsx isn't as great as i thought:
   - clsx for 'active navlink highlight colors' only works for dracula/default
   - selected navlink has static styles, can't figure out how to inject variables/string-interpolation
+- email not sending in prod
+- pre-commit/husky run prettier
+- mobile/responsiveness
 - linkedin badge is dumb
   - switching themes adds weird padding thing around badge
   - linkedin badge disappears when you navigate away & back, refresh fixes it but kills my theme state so that's a no-go
-- mobile/responsiveness
-- pre-commit/husky run prettier
 - can't navigate internal links when you refresh while in a post view
-- warning: "The label's for attribute doesn't match any element id."
+- any remaining warnings
 
 ## POST-REWRITE
 - accessability

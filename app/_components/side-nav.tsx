@@ -87,7 +87,7 @@ export default function SideNav() {
               </p>
             </div>
             <div className="flex h-5 items-center justify-center space-x-4 py-10 text-sm">
-              <Link href="https://github.com/anthonybench/sleepyblog/blob/main/README.md">
+              <Link href="https://github.com/anthonybench/sleepyblog/blob/main/README.md" target="_blank">
                 <GithubLogo />
               </Link>
             </div>

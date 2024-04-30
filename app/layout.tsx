@@ -1,6 +1,7 @@
 "use client";
 
-// import Script from "next/script";
+// next
+import Script from "next/script";
 // react
 import { useState } from "react";
 // 1st party
@@ -33,6 +34,10 @@ export default function RootLayout({
         <body
           className={`${jetbrains_mono.className} grid h-screen grid-cols-12 grid-rows-12 ${selectedTheme.pkg.frame}`}
         >
+          {/* <Script
+            strategy="afterInteractive"
+            src="https://platform.linkedin.com/badges/js/profile.js"
+          /> */}
           <div className={`col-span-2 row-span-12 `}>
             <SideNav />
           </div>

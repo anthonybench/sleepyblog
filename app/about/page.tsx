@@ -126,7 +126,7 @@ export default function Page() {
                               className={`mb-3 ${selectedTheme.pkg.separator}`}
                             />
                           )}
-                          <Link href={`https://${link.linkUrl}`}>
+                          <Link href={`https://${link.linkUrl}`} target="_blank">
                             <Image
                               src={`/assets/general/${link.imgSource.includes("?") ? replaceQuestionMark(link.imgSource, `${selectedTheme._light ? "dark" : "light"}`) : link.imgSource}`}
                               width={40}
@@ -185,7 +185,7 @@ export default function Page() {
                     className={`${selectedTheme.pkg.button}`}
                     variant="outline"
                   >
-                    <Link href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls">
+                    <Link href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls" target="_blank">
                       View resume&apos;s{" "}
                       <Image
                         src={`/assets/general/latex_${selectedTheme._light ? "dark" : "light"}.svg`}
