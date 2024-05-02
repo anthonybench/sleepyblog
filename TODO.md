@@ -3,7 +3,7 @@
 
 ## PRE-REWRITE
 - update templates
-- move images to imgur
+- move images to imgur (maybe video too?)
 - date is both in filename and in metadata header, try to use filename so as to remove metadata field
 - replace react-modal with shadcn's dialog
 - posts media should work via co-location; should not have to enumerate filenames in respective assets folder
