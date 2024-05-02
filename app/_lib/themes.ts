@@ -74,7 +74,7 @@ export const themes: Theme[] = [
       cardButton:
         "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#D1D5DB] text-[#020817]",
       button:
-        "border-[#0F172A] bg-[#FFFFFF] text-[#0F172A] hover:bg-[#F8FAFC] hover:text-white",
+        "border-[#0F172A] bg-[#FFFFFF] text-[#0F172A] hover:bg-[#D1D5DB] hover:text-white",
       searchBar:
         "bg-[#d1d5db] border-2 border-[#0F172A] placeholder:text-[#0F172A] focus:border-[#E2E8F0]",
       separator: "bg-[#D1D5DB]",
