@@ -1,6 +1,3 @@
-## GO
-- real posts...
-
 ## PRE-REWRITE
 - update templates
 - tighten up github settings/restrictions
