@@ -40,7 +40,6 @@ export default function SideNav() {
             <div className={`flex justify-center`}>
               <Link href="/">
                 <Image
-                  // src="/assets/general/sleepyboy_technologist_dark.png"
                   src={`/assets/general/sleepyboy_technologist_${selectedTheme._light ? "light" : "dark"}.png`}
                   width={1000}
                   height={1000}
