@@ -1,8 +1,7 @@
 ## PRE-REWRITE
 - update templates
 - tighten up github settings/restrictions
-- leverage sub-layouts for metadata?
-  - linkedin link previews...
+- metadata everywhere
 - move images to imgur (maybe video too?)
 - date is both in filename and in metadata header, try to use filename so as to remove metadata field
 - replace react-modal with shadcn's dialog
