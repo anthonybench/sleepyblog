@@ -1,6 +1,5 @@
 ## PRE-REWRITE
 - update templates
-- tighten up github settings/restrictions
 - metadata everywhere
 - move images to imgur (maybe video too?)
 - date is both in filename and in metadata header, try to use filename so as to remove metadata field
@@ -9,14 +8,15 @@
 - clsx isn't as great as i thought:
   - clsx for 'active navlink highlight colors' only works for dracula/default
   - selected navlink has static styles, can't figure out how to inject variables/string-interpolation
-- evolve readme
 - email not sending in prod
-- pre-commit/husky run prettier
 - mobile/responsiveness
-- can't navigate internal links when you refresh while in a post view
 - replace last-updated-date.ts with github api call
   - https://docs.github.com/en/rest/branches/branches?apiVersion=2022-11-28
+- can't navigate internal links when you refresh while in a post view
+- pre-commit/husky run prettier
+- evolve readme
 - any remaining warnings
+
 
 ## POST-REWRITE
 - accessability
