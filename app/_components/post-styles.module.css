@@ -22,5 +22,5 @@
 }
 
 .markdown a {
-  @apply underline text-sky-500;
+  @apply text-sky-500 underline;
 }

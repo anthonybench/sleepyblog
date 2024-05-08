@@ -1,18 +1,20 @@
 ## PRE-REWRITE
-- update templates
-- metadata everywhere
-- move images to imgur (maybe video too?)
-- date is both in filename and in metadata header, try to use filename so as to remove metadata field
-- replace react-modal with shadcn's dialog
-- posts media should work via co-location; should not have to enumerate filenames in respective assets folder
 - clsx isn't as great as i thought:
   - clsx for 'active navlink highlight colors' only works for dracula/default
   - selected navlink has static styles, can't figure out how to inject variables/string-interpolation
-- email not sending in prod
-- mobile/responsiveness
+
+- move images to imgur (maybe video too?)
+
+- replace react-modal with shadcn's dialog
+
 - replace last-updated-date.ts with github api call
   - https://docs.github.com/en/rest/branches/branches?apiVersion=2022-11-28
-- can't navigate internal links when you refresh while in a post view
+
+- email not sending in prod
+
+- mobile/responsiveness
+
+- date is both in filename and in metadata header, try to use filename so as to remove metadata field
 - pre-commit/husky run prettier
 - evolve readme
 - any remaining warnings

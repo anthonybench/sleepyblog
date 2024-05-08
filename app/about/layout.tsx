@@ -4,7 +4,10 @@ import type { Metadata } from "next";
 // params
 export const metadata: Metadata = {
   title: "SleepyBlog",
-  description: "about the author",
+  description: "About the Author",
+  applicationName: "SleepyBlog",
+  creator: "Isaac Yep",
+  authors: [{ name: "Isaac Yep" }],
   metadataBase: new URL("http://sleepyblog.org"),
 };
 

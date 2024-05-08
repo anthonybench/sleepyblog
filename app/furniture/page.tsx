@@ -7,6 +7,9 @@ import { UnderConstruction } from "../_components/under-construction";
 export const metadata: Metadata = {
   title: "SleepyBlog",
   description: "Furniture Gallery",
+  applicationName: "SleepyBlog",
+  creator: "Isaac Yep",
+  authors: [{ name: "Isaac Yep" }],
   metadataBase: new URL("http://sleepyblog.org"),
 };
 

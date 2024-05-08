@@ -12,6 +12,9 @@ import { dateFormatter } from "./_lib/utils";
 export const metadata: Metadata = {
   title: "SleepyBlog",
   description: "Home | Blog Posts",
+  applicationName: "SleepyBlog",
+  creator: "Isaac Yep",
+  authors: [{ name: "Isaac Yep" }],
   metadataBase: new URL("http://sleepyblog.org"),
 };
 
