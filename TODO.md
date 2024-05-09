@@ -16,6 +16,7 @@
 - make it so media in a posts's carousel is automatically taken from it's corresponding public/assets/posts/\<date\> folder, so as to remove the relevant metadata field
 
 - pre-commit/husky run prettier
+- refactor/break-out complex views & components
 - any remaining warnings
 
 
