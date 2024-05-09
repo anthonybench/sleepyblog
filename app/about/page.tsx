@@ -12,6 +12,15 @@ import EmailSender from "@/app/_components/email-sender";
 import { Separator } from "@/app/_components/separator";
 import { Button } from "@/app/_components/button";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/app/_components/dialog";
+import {
   LinkedInBadgeLight,
   LinkedInBadgeDark,
 } from "@/app/_components/linkedin-badge";
@@ -67,18 +76,18 @@ function replaceQuestionMark(str: string, replacement: string): string {
   const trimmedReplacement = replacement.trim();
   return `${str.slice(0, questionMarkIndex)}${trimmedReplacement}${str.slice(questionMarkIndex + 1)}`;
 }
+// let zoomLevel: number = 1;
 
 // view
 export default function Page() {
-  let zoomLevel: number = 1;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  // const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
-  function closeModal() {
-    setIsOpen(false);
-  }
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
+  // function closeModal() {
+  //   setIsOpen(false);
+  // }
 
   return (
     <ThemeContext.Consumer>
@@ -158,16 +167,16 @@ export default function Page() {
               </div>
               {/* View Resume */}
               <div className={`flex justify-around px-5`}>
-                <div className={`flex justify-center`}>
-                  <Button
+                {/* <div className={`flex justify-center`}> */}
+                {/* <Button
                     className={`${selectedTheme.pkg.button}`}
                     variant="outline"
                     onClick={openModal}
                   >
                     View resume
-                  </Button>
-                </div>
-                <Modal
+                  </Button> */}
+                {/* </div> */}
+                {/* <Modal
                   isOpen={modalIsOpen}
                   // onAfterOpen={afterOpenModal}
                   onRequestClose={closeModal}
@@ -181,7 +190,53 @@ export default function Page() {
                       height="800"
                     />
                   </div>
-                </Modal>
+                </Modal> */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button
+                      className={`${selectedTheme.pkg.button}`}
+                      variant="outline"
+                      // onClick={openModal}
+                    >
+                      View resume
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>My Personal Resume</DialogTitle>
+                      <DialogDescription>
+                        Looking forward to speaking with you 😊
+                      </DialogDescription>
+                    </DialogHeader>
+                    {/* <div style={{ transform: `scale(${zoomLevel})` }}> */}
+
+                    <iframe
+                      src="/assets/general/Isaac_Yep_Resume.pdf"
+                      width="100%"
+                      height="600rem"
+                    />
+                    {/* </div> */}
+                    <DialogFooter>
+                      <Link
+                        href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
+                        target="_blank"
+                      >
+                        👉{" "}
+                        <em>
+                          View resume&apos;s{" "}
+                          <Image
+                            src="/assets/general/latex_dark.svg"
+                            width={43}
+                            height={43}
+                            className="inline"
+                            alt="LaTeX logo"
+                          />{" "}
+                          source
+                        </em>
+                      </Link>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
                 {/* View Resume LaTeX */}
                 <div className={`flex items-end`}>
                   <Button

@@ -8,6 +8,12 @@ import Link from "next/link";
 // params
 const altText = "LinkedIn Profile Badge";
 
+/* README
+
+The linkedin badge is a bit of a mess, but basically, if you could trim a high-quality png of the dark & light badges, then I think we're done here.
+Ref: https://www.linkedin.com/badges/profile/create?vanityname=anthonybench&preferredlocale=en_US&trk=public_profile-settings_badge
+*/
+
 /*
   strategy = 
   - beforeInteractive

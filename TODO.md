@@ -1,6 +1,4 @@
 ## PRE-REWRITE
-- replace react-modal with shadcn's dialog
-
 - clsx isn't as great as i thought:
   - clsx for 'active navlink highlight colors' only works for dracula/default
   - selected navlink has static styles, can't figure out how to inject variables/string-interpolation
@@ -28,5 +26,6 @@
   - *sleepyboy 'something went wrong' asset
 - evolve app/blogs/[slug]/not-found.tsx:
   - *sleepyboy 'post not found' asset
+- resume modal should also close via escape key
 - dockerize
 - port to aws ecs
