@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 // react
 import React from "react";
-// 3rd party
-import Modal from "react-modal";
 // 1st party
 import EmailSender from "@/app/_components/email-sender";
 import { Separator } from "@/app/_components/separator";
