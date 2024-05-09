@@ -1,6 +1,4 @@
 ## PRE-REWRITE
-- replace react-modal with shadcn's dialog
-
 - clsx isn't as great as i thought:
   - clsx for 'active navlink highlight colors' only works for dracula/default
   - selected navlink has static styles, can't figure out how to inject variables/string-interpolation
@@ -18,6 +16,7 @@
 - make it so media in a posts's carousel is automatically taken from it's corresponding public/assets/posts/\<date\> folder, so as to remove the relevant metadata field
 
 - pre-commit/husky run prettier
+- refactor/break-out complex views & components
 - any remaining warnings
 
 
@@ -28,5 +27,6 @@
   - *sleepyboy 'something went wrong' asset
 - evolve app/blogs/[slug]/not-found.tsx:
   - *sleepyboy 'post not found' asset
+- resume modal should also close via escape key
 - dockerize
 - port to aws ecs

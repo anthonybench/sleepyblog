@@ -1,3 +1,7 @@
+```sh
+ls -logF app/_components/*.tsx
+```
+
 ## SleepyBoy
 - header.tsx
 - modal.tsx
@@ -21,3 +25,4 @@
 - scroll-area.tsx
 - select.tsx
 - separator.tsx
+- dialog.tsx
