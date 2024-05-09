@@ -167,36 +167,11 @@ export default function Page() {
               </div>
               {/* View Resume */}
               <div className={`flex justify-around px-5`}>
-                {/* <div className={`flex justify-center`}> */}
-                {/* <Button
-                    className={`${selectedTheme.pkg.button}`}
-                    variant="outline"
-                    onClick={openModal}
-                  >
-                    View resume
-                  </Button> */}
-                {/* </div> */}
-                {/* <Modal
-                  isOpen={modalIsOpen}
-                  // onAfterOpen={afterOpenModal}
-                  onRequestClose={closeModal}
-                  style={customStyles}
-                  contentLabel="Example Modal"
-                >
-                  <div style={{ transform: `scale(${zoomLevel})` }}>
-                    <iframe
-                      src="/assets/general/Isaac_Yep_Resume.pdf"
-                      width="100%"
-                      height="800"
-                    />
-                  </div>
-                </Modal> */}
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
                       className={`${selectedTheme.pkg.button}`}
                       variant="outline"
-                      // onClick={openModal}
                     >
                       View resume
                     </Button>
@@ -208,14 +183,11 @@ export default function Page() {
                         Looking forward to speaking with you 😊
                       </DialogDescription>
                     </DialogHeader>
-                    {/* <div style={{ transform: `scale(${zoomLevel})` }}> */}
-
                     <iframe
                       src="/assets/general/Isaac_Yep_Resume.pdf"
                       width="100%"
                       height="600rem"
                     />
-                    {/* </div> */}
                     <DialogFooter>
                       <Link
                         href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
