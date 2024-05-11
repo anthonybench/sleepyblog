@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# ./stub_post.sh
+# ./_scripts/stub_post.sh
 
 POST_DATE=2024-05-10;
 
