@@ -1,8 +1,4 @@
 ## PRE-REWRITE
-- clsx isn't as great as i thought:
-  - clsx for 'active navlink highlight colors' only works for dracula/default
-  - selected navlink has static styles, can't figure out how to inject variables/string-interpolation
-
 - move images to imgur (maybe video too?)
 
 - replace last-updated-date.ts with github api call
