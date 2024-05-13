@@ -21,6 +21,7 @@ export type Theme = {
   pkg: {
     frame: string;
     navLink: string;
+    navLinkSelected: string;
     content: string;
     cardButton: string;
     button: string;
