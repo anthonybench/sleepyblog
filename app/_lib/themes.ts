@@ -42,7 +42,8 @@ export const themes: Theme[] = [
     pkg: {
       frame: "bg-[#20222C]",
       navLink:
-        "bg-[#20222C] border-[#d3b6fc] hover:bg-[#BC93F9] text-[#BC93F9] hover:text-black",
+        "bg-[#20222C] border-[#d3b6fc] hover:bg-[#e9dafe] text-[#BC93F9] hover:text-[#6916e0]",
+      navLinkSelected: "text-black bg-[#BC93F9]",
       content: "text-[#F8F8F3] bg-[#282A36]",
       cardButton:
         "bg-[#20222C] border-[#d3b6fc] hover:bg-[#BC93F9] text-[#BC93F9]",
@@ -70,6 +71,7 @@ export const themes: Theme[] = [
       frame: "bg-[#F1F5F9]",
       navLink:
         "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#020817] text-[#020817] hover:text-white",
+      navLinkSelected: "bg-sky-100 text-blue-600",
       content: "text-[#0F172A] bg-[#FFFFFF]",
       cardButton:
         "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#D1D5DB] text-[#020817]",
