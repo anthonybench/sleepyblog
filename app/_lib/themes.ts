@@ -70,8 +70,8 @@ export const themes: Theme[] = [
     pkg: {
       frame: "bg-[#F1F5F9]",
       navLink:
-        "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#020817] text-[#020817] hover:text-white",
-      navLinkSelected: "bg-sky-100 text-blue-600",
+        "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#D1D5DB] text-[#020817] hover:text-[#5298B4]",
+      navLinkSelected: "bg-[#ABABAB] text-white",
       content: "text-[#0F172A] bg-[#FFFFFF]",
       cardButton:
         "bg-[#F1F5F9] border-[#0F172A] hover:bg-[#D1D5DB] text-[#020817]",
