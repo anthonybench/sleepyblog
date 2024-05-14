@@ -1,5 +1,5 @@
 ```sh
-ls -logF app/_components/*.tsx
+ls -1 app/_components/*.tsx
 ```
 
 ## SleepyBoy
