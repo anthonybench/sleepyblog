@@ -6,6 +6,9 @@
 
 - email not sending in prod
 
+- first post button
+- next/previous post buttons
+
 - mobile/responsiveness
 
 - date is both in filename and in metadata header, try to use filename so as to remove metadata field
@@ -14,6 +17,7 @@
 - pre-commit/husky run prettier
 - refactor/break-out complex views & components
 - any remaining warnings
+- doc tags
 
 
 ## POST-REWRITE
