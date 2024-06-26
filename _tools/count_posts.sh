@@ -2,6 +2,5 @@
 
 # ./_tools/count_posts.sh
 
-echo "# of posts: $(ls -1 _posts | wc -l | tr -d '[:blank:]')"
-
+echo "$(ls -1 _posts | wc -l | tr -d '[:blank:]') posts found"
 exit 0

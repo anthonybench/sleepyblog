@@ -2,20 +2,17 @@
 import os
 from sys import argv, exit
 import re
+from typing import List
 
 # ./_tools/print_post_media.py yyyy-mm-dd
 
-def checkFormat(date_string):
-  """
-  This function checks if a string matches the yyyy-mm-dd format.
-  """
+def checkFormat(date_string:str):
+  '''checks if a string matches the yyyy-mm-dd format'''
   pattern = r"^\d{4}-\d{2}-\d{2}$"
   return bool(re.match(pattern, date_string))
 
-def getFilenames(directory):
-  """
-  This function reads the filenames in a directory and returns them as a list.
-  """
+def getFilenames(directory:str) -> List[str]:
+  '''reads the filenames in a directory and returns them as a list'''
   filenames = []
   for filename in os.listdir(directory):
     # Check if it's a file (not a directory) using os.path.isfile
@@ -23,14 +20,12 @@ def getFilenames(directory):
       filenames.append(filename)
   return filenames
 
-def printFormattedContents(directory):
-  """
-  This function reads the filenames, formats them, and prints them.
-  """
+def printFormattedContents(directory:str) -> None:
+  '''reads the filenames, formats them, prints them'''
   filenames = getFilenames(directory)
   if filenames:
     formatted_filenames = [f'"{filename}"' for filename in filenames]
-    print(f"[ {', '.join(formatted_filenames)} ]")
+    print(f"[{', '.join(formatted_filenames)}]")
   else:
     print("No files found in the directory.")
 

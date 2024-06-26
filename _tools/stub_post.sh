@@ -21,5 +21,6 @@ mkdir public/assets/posts/$POST_DATE
 cp _templates/_posts/$PATTERN_READABLE.md _posts/${POST_DATE}.md
 echo "Post ${POST_DATE} stubbed."
 code _posts/${POST_DATE}.md
+echo "Go add photos to public/assets/posts/${POST_DATE}"
 
 exit 0
