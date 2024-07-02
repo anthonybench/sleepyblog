@@ -1,8 +1,4 @@
 ## BEFORE SHARING
-- replace last-updated-date.ts with github api call
-  - https://docs.github.com/en/rest/branches/branches?apiVersion=2022-11-28
-- pre-commit/husky run prettier
-
 - move images to imgur (maybe video too?)
 - first post button
 - next/previous post buttons
