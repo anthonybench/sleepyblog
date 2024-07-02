@@ -22,12 +22,14 @@ def shellExec(command: str, shell: str = "/bin/bash") -> Dict[str, any] | str:
         return f"Error: {result.stderr}"
 
 
+# get list of dirty files before affecting change
 try:
     old_dirty_list: List[str] = shellExec("git diff --name-only").split("\n")[:-1]
 except Exception as e:
     print(f"Error getting git status for {__file__}\n{e}")
     exit(1)
 
+# run formatters
 try:
     shellExec("black _tools/")
     shellExec("prettier -w /Users/sleepyboy/Desktop/Repos/Me/sleepyblog")
@@ -35,6 +37,7 @@ except Exception as e:
     print(f"Error getting git status for {__file__}\n{e}")
     exit(1)
 
+# stage only files affected by this script
 try:
     new_dirty_list: List[str] = shellExec("git diff --name-only").split("\n")[:-1]
     files_to_stage = set(new_dirty_list) - set(old_dirty_list)
@@ -43,3 +46,5 @@ try:
 except Exception as e:
     print(f"Error getting git status for {__file__}\n{e}")
     exit(1)
+
+exit(0)

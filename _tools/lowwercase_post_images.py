@@ -23,6 +23,7 @@ def rename_to_lowercase(directory: str):
         print(f"Renamed {filename} to {new_filename}")
 
 
+# rename asset filenames & extensions to lowercase
 if len(argv) > 1 and checkFormat(argv[1]):
     rename_to_lowercase(f"public/assets/posts/{argv[1]}")
     exit(0)

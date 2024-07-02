@@ -6,6 +6,8 @@ import subprocess
 import json
 from typing import Dict, List
 from sys import exit
+from zoneinfo import ZoneInfo
+from datetime import datetime
 
 
 def shellExec(command: str, shell: str = "/bin/bash") -> Dict[str, any] | str:
@@ -22,28 +24,23 @@ def shellExec(command: str, shell: str = "/bin/bash") -> Dict[str, any] | str:
         return f"Error: {result.stderr}"
 
 
+# get current date string
+try:
+    last_updated_date = datetime.now(ZoneInfo("America/Los_Angeles")).strftime(
+        "%Y-%m-%d"
+    )
+except Exception as e:
+    print(f"Error getting current date\n{e}")
+    exit(1)
+
+# get list of dirty files before affecting change
 try:
     old_dirty_list: List[str] = shellExec("git diff --name-only").split("\n")[:-1]
 except Exception as e:
     print(f"Error getting git status for {__file__}\n{e}")
     exit(1)
 
-try:
-    response = shellExec(
-        f"""
-  curl -L \
-    -H "Accept: application/vnd.github+json" \
-    -H "Authorization: Bearer $GH_TOKEN" \
-    -H "X-GitHub-Api-Version: 2022-11-28" \
-    https://api.github.com/repos/anthonybench/sleepyblog/branches/main
-  """
-    )
-    response = json.loads(response)
-    last_updated_date = response["commit"]["commit"]["committer"]["date"].split("T")[0]
-except Exception as e:
-    print(f"Error calling github api\n{e}")
-    exit(1)
-
+# updated last-updated-date.ts file
 try:
     with open("app/last-updated-date.ts", "w") as f:
         f.write(
@@ -54,6 +51,7 @@ except Exception as e:
     print(f"Error modifying app/last-updated-date.ts file\n{e}")
     exit(1)
 
+# stage only files affected by this script
 try:
     new_dirty_list: List[str] = shellExec("git diff --name-only").split("\n")[:-1]
     files_to_stage = set(new_dirty_list) - set(old_dirty_list)

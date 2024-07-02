@@ -33,6 +33,7 @@ def printFormattedContents(directory: str) -> None:
         print("No files found in the directory.")
 
 
+# print format to copy/paste into post metadata field
 if len(argv) > 1 and checkFormat(argv[1]):
     printFormattedContents(f"public/assets/posts/{argv[1]}")
     exit(0)
