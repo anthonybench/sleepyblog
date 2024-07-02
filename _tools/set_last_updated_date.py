@@ -48,7 +48,7 @@ except Exception as e:
 
 try:
   new_dirty_list:List[str] = shellExec('git diff --name-only').split('\n')[:-1]
-  files_to_stage = set(old_dirty_list) - set(new_dirty_list)
+  files_to_stage = set(new_dirty_list) - set(old_dirty_list)
   print(f"git add {' '.join(files_to_stage)}")
   shellExec(f"git add {' '.join(files_to_stage)}")
 except Exception as e:

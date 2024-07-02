@@ -1,2 +1,2 @@
 // yyyy-mm-dd
-export const lastUpdatedDate: string = "2024-04-29";
+export const lastUpdatedDate: string = "2024-06-26";
