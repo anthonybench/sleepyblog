@@ -1,7 +1,5 @@
 ## BEFORE SHARING
 - move images to imgur (maybe video too?)
-- replace last-updated-date.ts with github api call
-  - https://docs.github.com/en/rest/branches/branches?apiVersion=2022-11-28
 - first post button
 - next/previous post buttons
 - email not sending in prod
@@ -12,7 +10,6 @@
 - mobile/responsiveness
 - date is both in filename and in metadata header, try to use filename so as to remove metadata field
 - make it so media in a posts's carousel is automatically taken from it's corresponding public/assets/posts/\<date\> folder, so as to remove the relevant metadata field
-- pre-commit/husky run prettier
 - refactor/break-out complex views & components
 - any remaining warnings
 - doc tags

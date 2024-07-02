@@ -1,0 +1,6 @@
+# export HUSKY=0 # Disables all Git hooks
+# unset HUSKY # Re-enables hooks
+
+prettier -w /Users/sleepyboy/Desktop/Repos/Me/sleepyblog
+
+./_tools/set_last_updated_date.py
