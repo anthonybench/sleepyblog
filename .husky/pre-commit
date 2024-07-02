@@ -2,4 +2,4 @@
 # unset HUSKY # Re-enables hooks
 
 ./_tools/set_last_updated_date.py
-./_tools/formatters.py
+./_tools/run_formatters.py
