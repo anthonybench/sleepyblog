@@ -1,7 +1,9 @@
 ## BEFORE SHARING
 - move images to imgur (maybe video too?)
+
 - first post button
 - next/previous post buttons
+
 - email not sending in prod
 - refactor theme interface
 - evolve readme
