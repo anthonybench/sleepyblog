@@ -10,11 +10,11 @@ import { dateFormatter } from "@/app/_lib/utils";
 
 // params
 export const metadata: Metadata = {
-  title: {
-    template: "Blog Post | %s",
-    default: "Blog Post",
-  },
-  description: "A blog most sleepy",
+  title: "SleepyBlog",
+  description: "Blog Post",
+  applicationName: "SleepyBlog",
+  creator: "Isaac Yep",
+  authors: [{ name: "Isaac Yep" }],
   metadataBase: new URL("http://sleepyblog.org"),
 };
 
