@@ -1,16 +1,10 @@
-// "use client"; // because TODO
-//───────────────────────────┐
-//         Imports           │
-//───────────────────────────┘
 // next
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 // import {  } from "@/app/_components/TODO";
 
-//───────────────────────────┐
-//         Params            │
-//───────────────────────────┘
+// params
 export const metadata: Metadata = {
   title: {
     template: "%s | TODO",
@@ -20,17 +14,20 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://TODO"),
 };
 
-//───────────────────────────┐
-//          View             │
-//───────────────────────────┘
+// view
 export default async function Page() {
   return (
-    <Image
-      src="https://i.imgur.com/YVznnbN.png" // relative to public, starts with '/'
-      width={100} // width & height must have an aspect ratio identical to source image
-      height={100}
-      className="inline"
-      alt="TODO"
-    />
+    <div>
+      <Image
+        src={`https://i.imgur.com/pnXnwRK.jpg`}
+        width={3024}
+        height={4032}
+        alt="Post Image"
+      />
+      <video controls width={3024} height={4032} preload="metadata">
+        <source src={`https://i.imgur.com/n9TgKNN.mp4`} />
+        Your browser does not support the html video element.
+      </video>
+    </div>
   );
 }
