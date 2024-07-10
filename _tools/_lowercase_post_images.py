@@ -3,7 +3,7 @@ import os
 import re
 from sys import argv
 
-# ./_tools/lowwercase_post_images.py yyyy-mm-dd
+# ./_tools/_lowercase_post_images.py yyyy-mm-dd
 
 
 def checkFormat(date_string):
@@ -19,8 +19,11 @@ def rename_to_lowercase(directory: str):
         new_filename = filename.lower()
         new_path = os.path.join(directory, new_filename)
 
-        os.rename(old_path, new_path)
-        print(f"Renamed {filename} to {new_filename}")
+        if not filename == new_filename:
+            os.rename(old_path, new_path)
+            print(f"Renamed {filename} to {new_filename}")
+        else:
+            print(f"{filename} already lowercase")
 
 
 # rename asset filenames & extensions to lowercase

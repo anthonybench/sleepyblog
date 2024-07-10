@@ -4,7 +4,7 @@ from sys import argv, exit
 import re
 from typing import List
 
-# ./_tools/print_post_media.py yyyy-mm-dd
+# ./_tools/_print_post_media.py yyyy-mm-dd
 
 
 def checkFormat(date_string: str):

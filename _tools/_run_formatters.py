@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 
-# ./_tools/set_last_updated_date.py
+# ./_tools/_run_formatters.py
 
 import subprocess
 import json
 from typing import Dict, List
 from sys import exit
-from zoneinfo import ZoneInfo
-from datetime import datetime
 
 
 def shellExec(command: str, shell: str = "/bin/bash") -> Dict[str, any] | str:
@@ -24,15 +22,6 @@ def shellExec(command: str, shell: str = "/bin/bash") -> Dict[str, any] | str:
         return f"Error: {result.stderr}"
 
 
-# get current date string
-try:
-    last_updated_date = datetime.now(ZoneInfo("America/Los_Angeles")).strftime(
-        "%Y-%m-%d"
-    )
-except Exception as e:
-    print(f"Error getting current date\n{e}")
-    exit(1)
-
 # get list of dirty files before affecting change
 try:
     old_dirty_list: List[str] = shellExec("git diff --name-only").split("\n")[:-1]
@@ -40,24 +29,20 @@ except Exception as e:
     print(f"Error getting git status for {__file__}\n{e}")
     exit(1)
 
-# updated last-updated-date.ts file
+# run formatters
 try:
-    with open("app/last-updated-date.ts", "w") as f:
-        f.write(
-            f"""// yyyy-mm-dd
-export const lastUpdatedDate: string = "{last_updated_date}";"""
-        )
+    shellExec("black _tools/")
+    shellExec("prettier -w /Users/sleepyboy/Desktop/Repos/Me/sleepyblog")
 except Exception as e:
-    print(f"Error modifying app/last-updated-date.ts file\n{e}")
+    print(f"Error getting git status for {__file__}\n{e}")
     exit(1)
 
 # stage only files affected by this script
 try:
     new_dirty_list: List[str] = shellExec("git diff --name-only").split("\n")[:-1]
     files_to_stage = set(new_dirty_list) - set(old_dirty_list)
-    consequential_command = f"git add {' '.join(files_to_stage)}"
-    print(consequential_command)
-    shellExec(consequential_command)
+    print(f"git add {' '.join(files_to_stage)}")
+    shellExec(f"git add {' '.join(files_to_stage)}")
 except Exception as e:
     print(f"Error getting git status for {__file__}\n{e}")
     exit(1)

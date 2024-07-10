@@ -1,5 +1,5 @@
 ## BEFORE SHARING
-- move images to imgur (maybe video too?)
+- migrate media hosting to imgur
 
 - first post button
 - next/previous post buttons
