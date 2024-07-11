@@ -36,6 +36,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# dingus
-_templates/*
+# personal
+__templates
 notes.txt
+media_staging

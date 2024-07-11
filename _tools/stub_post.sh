@@ -17,11 +17,10 @@ else
   exit 1
 fi
 
-mkdir public/assets/posts/$POST_DATE
-cp _templates/_posts/$PATTERN_READABLE.md _posts/${POST_DATE}.md
+cp _templates/post/$PATTERN_READABLE.md _posts/${POST_DATE}.md
 echo "Post ${POST_DATE} stubbed."
 code _posts/${POST_DATE}.md
-echo "Go add photos to public/assets/posts/${POST_DATE}"
+echo "Go add photos to media_staging (png, jpg, mp4)"
 echo "There are now $(/count_posts.sh) posts."
 
 exit 0
