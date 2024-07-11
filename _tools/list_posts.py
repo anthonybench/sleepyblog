@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from os import path, getenv, listdir
+from os import listdir
 
 # ./_tools/list_posts.py
 
