@@ -3,7 +3,7 @@ import os
 import re
 from sys import argv
 
-# ./_tools/_lowercase_post_images.py
+# ./_tools/_lowercase_post_media.py
 
 
 def rename_to_lowercase(directory: str):
