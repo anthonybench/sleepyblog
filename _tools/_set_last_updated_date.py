@@ -3,7 +3,6 @@
 # ./_tools/_set_last_updated_date.py
 
 import subprocess
-import json
 from typing import Dict, List
 from sys import exit
 from zoneinfo import ZoneInfo

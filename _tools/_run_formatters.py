@@ -3,7 +3,6 @@
 # ./_tools/_run_formatters.py
 
 import subprocess
-import json
 from typing import Dict, List
 from sys import exit
 

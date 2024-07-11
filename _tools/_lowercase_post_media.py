@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 import os
-import re
-from sys import argv
 
 # ./_tools/_lowercase_post_media.py
 
