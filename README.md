@@ -12,6 +12,8 @@ SleepyBlog serves as a convenient place to host my resume, document my land deve
 
 [✨***Check out SleepyBlog***✨](https://sleepyblog.org)
 
+Currently, you can search for posts by title or date (case insensitive). In the future, there will also be tags for better organization.
+
 <br />
 
 ### **Table of Contents** 📖

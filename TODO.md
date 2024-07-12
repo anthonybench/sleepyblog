@@ -1,12 +1,9 @@
 ## BEFORE SHARING
-- migrate media hosting to imgur
-
 - first post button
 - next/previous post buttons
 
 - email not sending in prod
 
-- evolve readme
 
 ## REWRITE
 - mobile/responsiveness
@@ -15,7 +12,7 @@
 - refactor/break-out complex views & components
 - refactor theme interface
 - any remaining warnings
-- doc tags
+- doc tags in metadata blocks for better searching & organization
 - accessability
 - evolve app/error.tsx:
   - *sleepyboy 'something went wrong' asset
