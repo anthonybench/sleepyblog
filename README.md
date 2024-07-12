@@ -4,9 +4,13 @@ _a blog most sleepy._
 
 <br />
 
-## **Welcome to sleepyblog 👋**
+## **Welcome to SleepyBlog 👋**
 
-A web app for personal & career utility.
+A web app for personal utility, both career and professional.
+
+SleepyBlog serves as a convenient place to host my resume, document my land development journey with my partner Jean, a gallery for projects, and any other personal whimsies.
+
+[✨***Check out SleepyBlog***✨](https://sleepyblog.org)
 
 <br />
 
@@ -18,7 +22,7 @@ A web app for personal & career utility.
 - [**Get Started**](#get-started-)
 - [Usage](#usage-)
 - [Technologies](#technologies-)
-- [Contribute](#Contribute-)
+- [Connect](#connect-)
 - [Acknowledgements](#acknowledgements-)
 - [License/Stats/Author](#license-stats-author-)
 
@@ -28,15 +32,23 @@ A web app for personal & career utility.
 
 <hr>
 
-This app is hosted on vercel, with hostname/dns/ssl provided by namecheap.
-Later, it will be dockerized and migrated to aws via terraform.
+This app is hosted on vercel, with namecheap as it's dns provider. \
+Later, its design will be overhauled, dockerized, and migrated to the cloud.
 
 As it stands, this app is simple:
 ```sh
 npm i
+pip install -r requirements.txt
 npm run dev
 npm build
 ```
+
+Git hooks are maintained via husky, which is further explained in the [usage section](#usage-), and can be installed with:
+```sh
+npx husky init
+```
+
+Vercel's ci/cd via GitHub app connection automatically rebuilds pushes to the `main` branch into production. Only the repository owner can force push.
 
 <br />
 
@@ -45,9 +57,10 @@ npm build
 <hr>
 
 The core anatomy is as such:
-| **Path Glob** | Description |
+| Path Glob | Description |
 | --- | --- |
-| `posts/*` | blog posts |
+| `_posts/*` | blog posts |
+| `_tools/*` | tools to support workflow & maintenance |
 | `app/_components/*` | react components  |
 | `app/_lib/*` | typescript & css utilities, themes and other global objects |
 | `app/about/*` | resume & connect page |
@@ -55,13 +68,9 @@ The core anatomy is as such:
 | `app/software/*` | software gallery |
 | `app/tutoring/*` | tutoring interface |
 | `app/posts/*` | blog post view |
-| `public/assets/posts/*` | images and other files for posts |
 | `public/assets/general/*` | images and other files for the rest of sleepyblog |
 
-Style and tailwind class order is handled with:
-```sh
-prettier -w ./
-```
+As for git hooks, file `.husky/pre-commit` will be run before a commit, and is both for formatting and setting the last updated date displayed in the side-nav footer.
 
 <br />
 
@@ -78,14 +87,24 @@ prettier -w ./
 - [Tailwind](https://tailwindcss.com/docs/grid-auto-flow)
 - [shadcn](https://ui.shadcn.com/docs/components)
 - [Vercel](https://nextjs.org/docs/deployment)
+- [imgur-python](https://faustocarrera.github.io/imgur-python/)
+- [husky](https://typicode.github.io/husky/)
+- [prettier](https://www.npmjs.com/package/prettier)
+- [black](https://github.com/psf/black)
 
 <br />
 
-## **Contribute 🤝**
+## **Connect 🤝**
 
 <hr>
 
-If you like colors and have a theme idea, submit a PR!
+Though I'm not much for conventional social media, feel free to connect with me where ever I've resigned to exist!
+- [LinkedIn](https://linkedin.com/in/anthonybench)
+- [DuoLingo](https://duolingo.com/profile/thesleepyboy)
+- [MonkeyType](https://monkeytype.com/profile/boysleepy)
+- [GitHub](https://github.com/anthonybench)
+- [PyPI](https://pypi.org/user/sleepyboy)
+- [Docker](https://hub.docker.com/u/sleepyboy)
 
 <br />
 
@@ -93,8 +112,8 @@ If you like colors and have a theme idea, submit a PR!
 
 <hr>
 
-A lifetime of thanks to my partner Jean, who supports me greatly. \
-Another to my parents, Jeannie & Victor.
+A lifetime of thanks to my partner Jean, who never stops loving and supporting me. \
+Another to my parents, Victor Yep & Jeannie Bench.
 
 <br />
 
