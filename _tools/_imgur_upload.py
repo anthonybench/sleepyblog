@@ -20,6 +20,7 @@ from imgur_python import Imgur
 from sys import exit
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from pprint import pprint
 
 asset_dir = "./media_staging"
 #
@@ -36,7 +37,8 @@ imgur_client = Imgur(
         "token_type": "bearer",
     }
 )
-image_ids = {}
+images = {}  # id: link
+
 
 for i, file in enumerate(asset_paths):
     ext = file.split(".")[-1]
@@ -46,14 +48,14 @@ for i, file in enumerate(asset_paths):
         f"sleepyblog image {i+1}/{len(asset_paths)} for {today}",
     )
     image_id = image["response"]["data"]["id"]
-    image_ids[image_id] = ext
+    images[image_id] = image["response"]["data"]["link"]
 
-album = imgur_client.album_create(
-    list(image_ids.keys()), album_name, album_name, "public"
-)
+album = imgur_client.album_create(list(images.keys()), album_name, album_name, "public")
 album_id = album["response"]["data"]["id"]
 response = imgur_client.gallery_album(album_id, album_name, 0, "")
 
 print(f"{'─'*5}")
-print([f"https://i.imgur.com/{iid}.{ext}" for iid, ext in image_ids.items()])
+print([link for link in list(images.values())])
 print(f"{'─'*5}")
+
+exit(0)

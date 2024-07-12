@@ -1,7 +1,7 @@
 ---
 title: "<title>"
 excerpt: "TODO"
-media: ["", "", "", "", ""] # jpg, png, mov, mp4
+media: ["", "", "", "", ""] # imgur links: jpg, png, mp4
 date: "2024-mm-dd" # yyyy-mm-dd (same as file name)
 ---
 

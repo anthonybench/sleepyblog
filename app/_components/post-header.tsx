@@ -19,12 +19,14 @@ import {
 type Props = {
   title: string;
   media: string[];
-  mediaPrefix: string;
+  // mediaPrefix: string;
   formattedDate: string;
 };
 
 const isImage = (path: string): boolean => {
-  const substrings = [".jpg", ".jpeg", ".png", ".gif", ".svg"]; // .heic not supported by next yet
+  // .heic not supported by next
+  // .mov not supported by imgur
+  const substrings = [".jpg", ".jpeg", ".png", ".gif", ".svg"];
   return substrings.some((substring) => path.toLowerCase().includes(substring));
 };
 
@@ -32,7 +34,7 @@ const isImage = (path: string): boolean => {
 export function PostHeader({
   title,
   media,
-  mediaPrefix,
+  // mediaPrefix,
   formattedDate,
 }: Props) {
   const plugin = React.useRef(
@@ -52,14 +54,17 @@ export function PostHeader({
           }}
         >
           <CarouselContent>
-            {media.map((fileName, index) => (
+            {media.map((imgurLink, index) => (
               <CarouselItem key={index}>
                 <div
                   className={`flex h-full items-center justify-center bg-slate-600`}
                 >
-                  {isImage(`${mediaPrefix}/${fileName}`) ? (
+                  {/* 🚧🚧🚧
+                      - remove media_prefix
+                  */}
+                  {isImage(imgurLink) ? (
                     <Image
-                      src={`${mediaPrefix}/${fileName}`}
+                      src={imgurLink}
                       width={3024}
                       height={4032}
                       alt="Post Image"
@@ -71,10 +76,11 @@ export function PostHeader({
                       height={4032}
                       preload="metadata"
                     >
-                      <source src={`${mediaPrefix}/${fileName}`} />
+                      <source src={imgurLink} />
                       Your browser does not support the html video element.
                     </video>
                   )}
+                  {/* 🚧🚧🚧 */}
                 </div>
               </CarouselItem>
             ))}
