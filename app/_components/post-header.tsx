@@ -19,7 +19,6 @@ import {
 type Props = {
   title: string;
   media: string[];
-  // mediaPrefix: string;
   formattedDate: string;
 };
 
@@ -31,12 +30,7 @@ const isImage = (path: string): boolean => {
 };
 
 // view
-export function PostHeader({
-  title,
-  media,
-  // mediaPrefix,
-  formattedDate,
-}: Props) {
+export function PostHeader({ title, media, formattedDate }: Props) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
@@ -59,9 +53,6 @@ export function PostHeader({
                 <div
                   className={`flex h-full items-center justify-center bg-slate-600`}
                 >
-                  {/* 🚧🚧🚧
-                      - remove media_prefix
-                  */}
                   {isImage(imgurLink) ? (
                     <Image
                       src={imgurLink}
@@ -80,7 +71,6 @@ export function PostHeader({
                       Your browser does not support the html video element.
                     </video>
                   )}
-                  {/* 🚧🚧🚧 */}
                 </div>
               </CarouselItem>
             ))}

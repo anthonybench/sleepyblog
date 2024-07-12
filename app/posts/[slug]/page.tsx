@@ -30,7 +30,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <PostHeader
         title={post.title}
         media={post.media}
-        // mediaPrefix={`/assets/posts/${post.date}`}
         formattedDate={dateFormatter(post.date)}
       />
       <PostBody content={content} />
