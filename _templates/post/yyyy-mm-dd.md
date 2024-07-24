@@ -1,5 +1,5 @@
 ---
-title: "<title>"
+title: "TODO"
 excerpt: "TODO"
 media: ["", "", "", "", ""] # imgur links: jpg, png, mp4
 date: "2024-mm-dd" # yyyy-mm-dd (same as file name)
