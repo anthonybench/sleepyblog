@@ -1,6 +1,6 @@
 "use server";
 import nodemailer from "nodemailer";
-import { emailSignature } from "./emailsignature";
+import { emailSignature } from "@/app/_lib/emailsignature";
 import fs from "fs";
 
 const emailSubject = "Isaac Yep; Resume";
@@ -37,8 +37,12 @@ export const sendResumeEmail = async (to: string) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error(`Error sending email; error=${error}`);
+      console.log(`Error sending email; error=${error}`);
     } else {
       console.info(
+        `Email sent; response_info=${info.response}", recipient=${to}`,
+      );
+      console.log(
         `Email sent; response_info=${info.response}", recipient=${to}`,
       );
     }
