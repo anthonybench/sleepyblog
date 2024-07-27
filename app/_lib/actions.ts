@@ -34,7 +34,7 @@ export const sendResumeEmail = async (to: string) => {
     ],
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  return await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error(`Error sending email; error=${error}`);
       console.log(`Error sending email; error=${error}`);
