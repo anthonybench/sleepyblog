@@ -6,7 +6,8 @@ import React from "react";
 import { getFilteredPosts } from "@/app/_lib/posts";
 import { PostPreview } from "@/app/_components/post-preview";
 import Search from "@/app/_components/search";
-import { dateFormatter } from "./_lib/utils";
+import { dateFormatter } from "@/app/_lib/utils";
+import { FirstRandomButtonCluster } from "@/app/_components/first-random-button-cluster";
 
 // params
 export const metadata: Metadata = {
@@ -30,9 +31,10 @@ export default function Home({
   const posts = getFilteredPosts(query);
   return (
     <div className={``}>
-      <div className={`pb-10`}>
+      <div className={``}>
         <Search placeholder="Search by date or title..." />
       </div>
+      <FirstRandomButtonCluster />
       {posts.map((post) => (
         <div key={post.slug} className={`pb-5`}>
           <PostPreview

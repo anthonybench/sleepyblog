@@ -5,7 +5,7 @@ import Link from "next/link";
 // 3rd party
 import { HomeIcon } from "@heroicons/react/24/outline";
 // 1st party
-import markdownStyles from "./post-styles.module.css";
+import markdownStyles from "@/app/_components/post-styles.module.css";
 import { Button } from "@/app/_components/button";
 import { ThemeContext } from "@/app/_lib/themes";
 
@@ -26,8 +26,18 @@ export function PostBody({ content }: Props) {
               dangerouslySetInnerHTML={{ __html: content }}
             />
           </div>
-          <div className="mx-auto max-w-sm">
-            <Link href="/" className="flex justify-center">
+          <div className="mx-auto flex max-w-sm justify-center">
+            {/* 🚧 previous button; if previous date exists */}
+            <Link href="/" className="">
+              <Button
+                variant="outline"
+                className={`${selectedTheme.pkg.button}`}
+              >
+                <span>← Prev</span>
+              </Button>
+            </Link>
+            {/* 🚧 */}
+            <Link href="/" className="">
               <Button
                 variant="outline"
                 className={`${selectedTheme.pkg.button}`}
@@ -36,6 +46,16 @@ export function PostBody({ content }: Props) {
                 <span>Return Home</span>
               </Button>
             </Link>
+            {/* 🚧 next button; if next date exists */}
+            <Link href="/" className="">
+              <Button
+                variant="outline"
+                className={`${selectedTheme.pkg.button}`}
+              >
+                <span>Next →</span>
+              </Button>
+            </Link>
+            {/* 🚧 */}
           </div>
         </>
       )}

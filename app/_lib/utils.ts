@@ -40,3 +40,31 @@ export function dateFormatter(dateString: string) {
 export function getThemeByName(name: string) {
   return themes.filter((item) => item._name === name)[0];
 }
+
+export function getRandomPost() {
+  /*
+    ISSUE:
+      - can't use the fs module in a client component
+      - must be some other way to fetch a list of slugs...
+      - hard-coded list for now
+      - idea; refactor getPostSlugs() as a server action
+    const slugs = getPostSlugs();
+  */
+  const slugs = [
+    "2024-06-24",
+    "2024-04-14",
+    "2024-05-10",
+    "2024-07-24",
+    "2024-03-10",
+    "2024-03-20",
+    "2024-02-29",
+    "2024-05-13",
+    "2024-05-28",
+    "2024-07-08",
+  ];
+  const randomSlug = slugs[Math.floor(Math.random() * slugs.length)].replace(
+    /\.md$/,
+    "",
+  );
+  return `/posts/${randomSlug}`;
+}

@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "@/app/_components/card";
 import { ThemeContext } from "@/app/_lib/themes";
-import { SelectGroup } from "@radix-ui/react-select";
 
 // params
 type Props = {

@@ -1,18 +1,17 @@
-## BEFORE SHARING
-- first post button
-- next/previous post buttons
+## CRITICAL ISSUES
+- next-post & previous-post buttons logic
 
 - email not sending in prod
 
 
 ## REWRITE
+- get all posts server action
 - mobile/responsiveness
 - date is both in filename and in metadata header, try to use filename so as to remove metadata field
-- make it so media in a posts's carousel is automatically taken from it's corresponding public/assets/posts/\<date\> folder, so as to remove the relevant metadata field
 - refactor/break-out complex views & components
 - refactor theme interface
 - any remaining warnings
-- doc tags in metadata blocks for better searching & organization
+- tag field in metadata blocks for better organization
 - accessability
 - evolve app/error.tsx:
   - *sleepyboy 'something went wrong' asset
