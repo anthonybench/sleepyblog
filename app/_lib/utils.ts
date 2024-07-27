@@ -1,6 +1,27 @@
+/*
+  ISSUE:
+    - can't use the fs module in a client component
+    - must be some other way to fetch a list of slugs...
+    - hard-coded list for now
+    - idea; refactor getPostSlugs() as a server action
+*/
+
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { themes } from "@/app/_lib/themes";
+
+const slugs = [
+  "2024-02-29",
+  "2024-03-10",
+  "2024-03-20",
+  "2024-04-14",
+  "2024-05-10",
+  "2024-05-13",
+  "2024-05-28",
+  "2024-06-24",
+  "2024-07-08",
+  "2024-07-24",
+];
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -41,27 +62,25 @@ export function getThemeByName(name: string) {
   return themes.filter((item) => item._name === name)[0];
 }
 
+export function getNextPost(date: string) {
+  const index = slugs.indexOf(date);
+  if (index == slugs.length - 1) {
+    return "none";
+  } else {
+    return `/posts/${slugs[index + 1].replace(/\.md$/, "")}`;
+  }
+}
+
+export function getPrevPost(date: string) {
+  const index = slugs.indexOf(date);
+  if (index == 0) {
+    return "none";
+  } else {
+    return `/posts/${slugs[index - 1].replace(/\.md$/, "")}`;
+  }
+}
+
 export function getRandomPost() {
-  /*
-    ISSUE:
-      - can't use the fs module in a client component
-      - must be some other way to fetch a list of slugs...
-      - hard-coded list for now
-      - idea; refactor getPostSlugs() as a server action
-    const slugs = getPostSlugs();
-  */
-  const slugs = [
-    "2024-06-24",
-    "2024-04-14",
-    "2024-05-10",
-    "2024-07-24",
-    "2024-03-10",
-    "2024-03-20",
-    "2024-02-29",
-    "2024-05-13",
-    "2024-05-28",
-    "2024-07-08",
-  ];
   const randomSlug = slugs[Math.floor(Math.random() * slugs.length)].replace(
     /\.md$/,
     "",

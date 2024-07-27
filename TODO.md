@@ -1,13 +1,9 @@
 ## CRITICAL ISSUES
-- next-post & previous-post buttons logic
-
-- email not sending in prod
-
+- some functions in _lib/utils should be refactored to use server-actions
+- date is both in filename and in metadata header, try to use filename so as to remove metadata field
 
 ## REWRITE
-- get all posts server action
 - mobile/responsiveness
-- date is both in filename and in metadata header, try to use filename so as to remove metadata field
 - refactor/break-out complex views & components
 - refactor theme interface
 - any remaining warnings

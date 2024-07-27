@@ -8,14 +8,18 @@ import { HomeIcon } from "@heroicons/react/24/outline";
 import markdownStyles from "@/app/_components/post-styles.module.css";
 import { Button } from "@/app/_components/button";
 import { ThemeContext } from "@/app/_lib/themes";
+import { getNextPost, getPrevPost } from "@/app/_lib/utils";
 
 // params
 type Props = {
+  date: string;
   content: string;
 };
 
 // view
-export function PostBody({ content }: Props) {
+export function PostBody({ date, content }: Props) {
+  const nextPost = getNextPost(date);
+  const prevPost = getPrevPost(date);
   return (
     <ThemeContext.Consumer>
       {(selectedTheme) => (
@@ -27,8 +31,7 @@ export function PostBody({ content }: Props) {
             />
           </div>
           <div className="mx-auto flex max-w-sm justify-center">
-            {/* 🚧 previous button; if previous date exists */}
-            <Link href="/" className="">
+            <Link href={prevPost} hidden={prevPost == "none" ? true : false}>
               <Button
                 variant="outline"
                 className={`${selectedTheme.pkg.button}`}
@@ -36,7 +39,6 @@ export function PostBody({ content }: Props) {
                 <span>← Prev</span>
               </Button>
             </Link>
-            {/* 🚧 */}
             <Link href="/" className="">
               <Button
                 variant="outline"
@@ -46,8 +48,7 @@ export function PostBody({ content }: Props) {
                 <span>Return Home</span>
               </Button>
             </Link>
-            {/* 🚧 next button; if next date exists */}
-            <Link href="/" className="">
+            <Link href={nextPost} hidden={nextPost == "none" ? true : false}>
               <Button
                 variant="outline"
                 className={`${selectedTheme.pkg.button}`}
@@ -55,7 +56,6 @@ export function PostBody({ content }: Props) {
                 <span>Next →</span>
               </Button>
             </Link>
-            {/* 🚧 */}
           </div>
         </>
       )}

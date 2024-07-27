@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         media={post.media}
         formattedDate={dateFormatter(post.date)}
       />
-      <PostBody content={content} />
+      <PostBody date={post.date} content={content} />
     </article>
   );
 }

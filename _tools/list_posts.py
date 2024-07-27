@@ -5,6 +5,10 @@ from os import listdir
 # ./_tools/list_posts.py
 
 post_dir = "_posts"
+sort = True
 
-for post in [f for f in listdir(post_dir)]:
+files = listdir(post_dir)
+if sort:
+    files.sort()
+for post in [f for f in files]:
     print(post.split(".")[0])

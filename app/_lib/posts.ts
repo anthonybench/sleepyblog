@@ -1,3 +1,7 @@
+/*
+  ❗ because this uses the fs module, you can't reference this file in client-side code
+*/
+
 import { Post } from "@/app/_lib/schemas";
 import fs from "fs";
 import matter from "gray-matter";
