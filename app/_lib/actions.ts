@@ -36,9 +36,11 @@ export const sendResumeEmail = async (to: string) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error("Error sending email: ", error);
+      console.error(`Error sending email; error=${error}`);
     } else {
-      console.log("Email sent: ", info.response);
+      console.info(
+        `Email sent; response_info=${info.response}", recipient=${to}`,
+      );
     }
   });
 };
