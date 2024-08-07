@@ -1,7 +1,6 @@
 "use server";
 import nodemailer from "nodemailer";
 import { emailSignature } from "@/app/_lib/emailsignature";
-import fs from "fs";
 
 const emailSubject = "Isaac Yep; Resume";
 
@@ -28,41 +27,15 @@ export const sendResumeEmail = async (to: string) => {
     attachments: [
       {
         filename: "Isaac_Yep_Resume.pdf",
-        // path: "public/assets/general/Isaac_Yep_Resume.pdf",
         href: "https://drive.google.com/file/d/1fbPFcrU4HxJncU1LTybBC_la_CTTdn1v/view?usp=sharing",
-        // content: fs.createReadStream('public/assets/general/resume.pdf')
       },
     ],
   };
 
-  // 🚧🚧🚧 await 🚧🚧🚧
-  // 👉 https://www.reddit.com/r/node/comments/z4bozj/how_to_await_nodemailer_sendmail/
   try {
     return await transporter.sendMail(mailOptions);
   } catch (err) {
     console.error(`Error sending email; error=${err}`);
     console.error(`Error sending email; error=${err}`);
   }
-  // return await transporter.sendMail(mailOptions, (error, info) => {
-  //   if (error) {
-  //     console.error(`Error sending email; error=${error}`);
-  //     console.log(`Error sending email; error=${error}`);
-  //   } else {
-  //     console.info(
-  //       `Email sent; response_info=${info.response}", recipient=${to}`,
-  //     );
-  //     console.log(
-  //       `Email sent; response_info=${info.response}", recipient=${to}`,
-  //     );
-  //   }
-  // });
 };
-
-/*
-try {
-    return await transporter.sendMail(mailOptions)
-} catch(err) {
-   console.log(err)
-   return err
-}
-*/
