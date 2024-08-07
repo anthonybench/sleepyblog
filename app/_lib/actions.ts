@@ -34,17 +34,34 @@ export const sendResumeEmail = async (to: string) => {
     ],
   };
 
-  return transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(`Error sending email; error=${error}`);
-      console.log(`Error sending email; error=${error}`);
-    } else {
-      console.info(
-        `Email sent; response_info=${info.response}", recipient=${to}`,
-      );
-      console.log(
-        `Email sent; response_info=${info.response}", recipient=${to}`,
-      );
-    }
-  });
+  // 🚧🚧🚧 await 🚧🚧🚧
+  // 👉 https://www.reddit.com/r/node/comments/z4bozj/how_to_await_nodemailer_sendmail/
+  try {
+    return await transporter.sendMail(mailOptions);
+  } catch (err) {
+    console.error(`Error sending email; error=${err}`);
+    console.error(`Error sending email; error=${err}`);
+  }
+  // return await transporter.sendMail(mailOptions, (error, info) => {
+  //   if (error) {
+  //     console.error(`Error sending email; error=${error}`);
+  //     console.log(`Error sending email; error=${error}`);
+  //   } else {
+  //     console.info(
+  //       `Email sent; response_info=${info.response}", recipient=${to}`,
+  //     );
+  //     console.log(
+  //       `Email sent; response_info=${info.response}", recipient=${to}`,
+  //     );
+  //   }
+  // });
 };
+
+/*
+try {
+    return await transporter.sendMail(mailOptions)
+} catch(err) {
+   console.log(err)
+   return err
+}
+*/
