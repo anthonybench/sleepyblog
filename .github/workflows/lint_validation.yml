@@ -72,5 +72,5 @@ jobs:
       - name: Lint JS/TS
         id: lint-js-ts
         uses: creyD/prettier_action@v4.3
-        # with:
-        # prettier_options: --write **/*.{js,md}
+        with:
+          prettier_options: ""
