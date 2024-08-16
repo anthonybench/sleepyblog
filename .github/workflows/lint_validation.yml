@@ -1,0 +1,74 @@
+# Free Tier:
+#   Public repos only, limited monthly compute time
+#
+# Hierarchy:
+#   `workflows` (files) contain `jobs` which themselves contain `steps`
+#
+# Overview:
+#   - workflow files must be named `.github/workflows/*.[yml|yaml]
+#   - jobs contain 1 or more steps
+#   - steps are either custom-authored, or a reference to a defined community action
+#
+#   `on:` contains list of triggers
+#   `jobs:` contains list of jobs, which are lists of actions
+#
+# References:
+#   syntax   │ https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+#   basics   │ https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#create-an-example-workflow
+#   env vars │ https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
+
+name: lint_validation
+run-name: ${{github.actor}} running lint_validation
+
+#───────────────────────────┐
+#  Triggers                 │
+#───────────────────────────┘
+on:
+  push:
+    branches: [main]
+    paths: [folder/**, other_folder/*.py]
+  pull_request:
+    branches: [main]
+    paths: [yet_another_folder/**]
+  # schedule:
+  #   - cron: '30 5 * * 1,3'
+  #   - cron: '30 5 * * 2,4'
+
+#───────────────────────────┐
+#  Config                   │
+#───────────────────────────┘
+defaults:
+  run:
+    shell: bash
+    working-directory: ./
+
+#───────────────────────────┐
+#  Actions                  │
+#───────────────────────────┘
+jobs:
+  lint_validation:
+    name: Lint Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v3
+
+      - name: Fetch Deps
+        id: fetch-deps
+        run: |
+          pip install -r ./requirements.txt
+
+      - name: Lint Python Format
+        id: lint-python-format
+        run: |
+          black ./ --check
+
+      - name: Lint Python Docstrings
+        id: lint-python-docstrings
+        run: |
+          interrogate ./ -vv --fail-under=100
+
+      - name: Lint JS/TS
+        id: lint-js-ts
+        run: prettier .
