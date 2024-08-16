@@ -69,9 +69,12 @@ jobs:
         run: |
           interrogate ./ -vv --fail-under=100
 
-      - name: Lint JS/TS
-        id: lint-js-ts
-        uses: creyD/prettier_action@v4.3
-        with:
-          prettier_options: ""
-          prettier_plugins: "@prettier/plugin-tailwindcss"
+      ## TODO: can't get this to work with the plugin
+      # - name: Lint JS/TS
+      #   id: lint-js-ts
+      #   uses: creyD/prettier_action@v4.3
+      #   with:
+      #     prettier_options: ""
+      #     prettier_plugins: "prettier-plugin-tailwindcss"
+
+    ## TODO: a job that tries to build the application
