@@ -74,4 +74,4 @@ jobs:
         uses: creyD/prettier_action@v4.3
         with:
           prettier_options: ""
-          prettier_plugins: "prettier-plugin-tailwindcss"
+          prettier_plugins: "@prettier/plugin-tailwindcss"
