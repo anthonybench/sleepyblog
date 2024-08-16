@@ -26,10 +26,10 @@ run-name: ${{github.actor}} running lint_validation
 on:
   push:
     branches: [main]
-    paths: [./**]
+    # paths: [./**]
   pull_request:
     branches: [main]
-    paths: [./**]
+    # paths: [./**]
   # schedule:
   #   - cron: '30 5 * * 1,3'
   #   - cron: '30 5 * * 2,4'
