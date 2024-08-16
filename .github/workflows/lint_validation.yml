@@ -71,4 +71,4 @@ jobs:
 
       - name: Lint JS/TS
         id: lint-js-ts
-        run: prettier .
+        run: prettier ./
