@@ -27,7 +27,9 @@ export const sendResumeEmail = async (to: string) => {
     attachments: [
       {
         filename: "Isaac_Yep_Resume.pdf",
-        href: "https://drive.google.com/file/d/1fbPFcrU4HxJncU1LTybBC_la_CTTdn1v/view?usp=sharing",
+        // path: "public/assets/general/Isaac_Yep_Resume.pdf",
+        href: "https://drive.google.com/file/d/1fbPFcrU4HxJncU1LTybBC_la_CTTdn1v",
+        // content: fs.createReadStream('public/assets/general/resume.pdf')
       },
     ],
   };
