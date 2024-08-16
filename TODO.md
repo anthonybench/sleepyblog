@@ -1,6 +1,7 @@
 ## CRITICAL ISSUES
 - some functions in _lib/utils should be refactored to use server-actions
 - date is both in filename and in metadata header, try to use filename so as to remove metadata field
+- finish gh-actions workflows
 
 ## REWRITE
 - mobile/responsiveness
