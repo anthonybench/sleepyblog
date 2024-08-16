@@ -1,1 +1,3 @@
 imgur-python
+black
+interrogate
