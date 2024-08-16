@@ -1,11 +1,19 @@
 #!/usr/bin/env python
+
+"""README
+Changes filenames in target_dir to lowercase equivalent.
+
+Usage:
+    ./_tools/_lowercase_post_media.py
+"""
+
 import os
 
-# ./_tools/_lowercase_post_media.py
+target_dir = "./media_staging"
 
 
 def rename_to_lowercase(directory: str):
-    """renames all"""
+    """renames all files to lowercase equivalent"""
     for filename in os.listdir(directory):
         old_path = os.path.join(directory, filename)
         new_filename = filename.lower()
@@ -18,5 +26,5 @@ def rename_to_lowercase(directory: str):
             print(f"{filename} already lowercase")
 
 
-rename_to_lowercase("./media_staging")
+rename_to_lowercase(target_dir)
 exit(0)

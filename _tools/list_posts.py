@@ -1,8 +1,14 @@
 #!/usr/bin/env python
 
+"""README
+Simply prints posts (contents of _posts/) line by line, without the file extension
+
+Usage:
+    ./_tools/list_posts.py
+"""
+
 from os import listdir
 
-# ./_tools/list_posts.py
 
 post_dir = "_posts"
 sort = True

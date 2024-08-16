@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
-# ./_tools/_set_last_updated_date.py
+"""README
+All this just to automatically set the last updated date statically to avoid infinite api calls triggered by users, yeesh.
+
+Usage:
+    ./_tools/_set_last_updated_date.py
+"""
 
 import subprocess
 from typing import Dict, List

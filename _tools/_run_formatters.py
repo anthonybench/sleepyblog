@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
-# ./_tools/_run_formatters.py
+"""README
+Runs formatting tools to overwrite files to enforce formatting at the pre-commit level.
+
+Usage:
+    ./_tools/_run_formatters.py
+"""
+
 
 import subprocess
 from typing import Dict, List
