@@ -25,21 +25,6 @@ import {
 import { ThemeContext } from "../_lib/themes";
 
 // params
-const customStyles = {
-  // resume modal styles
-  content: {
-    top: "40px",
-    left: "40px",
-    right: "40px",
-    bottom: "40px",
-    border: "1px solid #ccc",
-    background: "#fff",
-    overflow: "auto",
-    borderRadius: "3rem",
-    outline: "none",
-    padding: "2px",
-  },
-};
 const socialLinks = [
   {
     id: 1,
@@ -74,19 +59,9 @@ function replaceQuestionMark(str: string, replacement: string): string {
   const trimmedReplacement = replacement.trim();
   return `${str.slice(0, questionMarkIndex)}${trimmedReplacement}${str.slice(questionMarkIndex + 1)}`;
 }
-// let zoomLevel: number = 1;
 
 // view
 export default function Page() {
-  // const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
-  // function closeModal() {
-  //   setIsOpen(false);
-  // }
-
   return (
     <ThemeContext.Consumer>
       {(selectedTheme) => (
@@ -182,8 +157,7 @@ export default function Page() {
                       </DialogDescription>
                     </DialogHeader>
                     <iframe
-                      // src="https://drive.google.com/file/d/1fbPFcrU4HxJncU1LTybBC_la_CTTdn1v/view?usp=sharing" //TODO: doesn't work, but i want it to...
-                      src="/assets/general/Isaac_Yep_Resume.pdf"
+                      src="https://sleepysoft-global-fileserver.s3.us-west-2.amazonaws.com/Isaac_Yep_Resume.pdf"
                       width="100%"
                       height="600rem"
                     />
