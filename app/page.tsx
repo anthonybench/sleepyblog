@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://sleepyblog.org",
     title: "SleepyBlog",
-    description: "My Personal & Professional Site.",
+    description: "My personal & professional site.",
     siteName: "SleepyBlog",
     images: [
       {
-        url: "public/assets/general/sleepyboy_technologist_dark.png",
+        url: "https://i.imgur.com/ZHnNGeO.png",
       },
     ],
   },
