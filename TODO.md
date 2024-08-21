@@ -13,7 +13,5 @@
 
 ## REWRITE
 - this time, with mobile-first approach
-
-## AFTER REWRITE
 - dockerize
 - port to aws ecs
