@@ -5,10 +5,22 @@
 - tag field in post metadata for better organization (and show tag value as chip in post-preview)
 - finish gh-actions workflows (see .github/workflows/lint_validation.yml)
 
+## TUTORING
+- sales pitch paragraph
+  - link to /about
+- showcase degrees
+- relevant experience paragraphs in a 2-column grid
+
+## FURNITURE
+- infinite-scrolling paginated gallery grid
+
+## SOFTWARE
+- use same mechanism as posts
+
 ## REWRITE
 - this time, with mobile-first approach
 - dockerize
-- port to aws ecs
+- port to aws `ecs` or `app runner`
 
 ## NON-CRITICAL ISSUES
 - some remaining warnings
