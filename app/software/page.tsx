@@ -11,13 +11,25 @@ export const metadata: Metadata = {
   creator: "Isaac Yep",
   authors: [{ name: "Isaac Yep" }],
   metadataBase: new URL("http://sleepyblog.org"),
+  openGraph: {
+    type: "website",
+    url: "https://sleepyblog.org",
+    title: "SleepyBlog",
+    description: "My personal & professional site; software projects showcase",
+    siteName: "SleepyBlog",
+    images: [
+      {
+        url: "https://i.imgur.com/ZHnNGeO.png",
+      },
+    ],
+  },
 };
 
 // view
 export default function Page() {
   return (
     <>
-      <h3>Coming Soon: my software projects gallery...</h3>
+      <h3>Coming Soon: my software projects showcase...</h3>
       <UnderConstruction />
     </>
   );

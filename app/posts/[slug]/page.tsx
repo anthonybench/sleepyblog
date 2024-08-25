@@ -16,6 +16,18 @@ export const metadata: Metadata = {
   creator: "Isaac Yep",
   authors: [{ name: "Isaac Yep" }],
   metadataBase: new URL("http://sleepyblog.org"),
+  openGraph: {
+    type: "website",
+    url: "https://sleepyblog.org",
+    title: "SleepyBlog",
+    description: "My personal & professional site; blog post",
+    siteName: "SleepyBlog",
+    images: [
+      {
+        url: "https://i.imgur.com/ZHnNGeO.png",
+      },
+    ],
+  },
 };
 
 // view
