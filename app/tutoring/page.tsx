@@ -30,7 +30,22 @@ export default function Page() {
   return (
     <>
       <h3>Coming Soon: my tutoring services...</h3>
-      <UnderConstruction />
+
+      {/* TODO:
+        - sales pitch paragraph
+          - link to /about
+        - showcase degrees
+        - relevant experience paragraphs in a 2-column grid
+      */}
+
+      <p>
+        TODO: sales pitch paragraph, including{" "}
+        <a href="/about">take a peek at my resume if you're curious</a>
+      </p>
+
+      <p>TODO: a list of degrees</p>
+
+      {/* <UnderConstruction /> */}
     </>
   );
 }
