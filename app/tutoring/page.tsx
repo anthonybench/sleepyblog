@@ -40,7 +40,7 @@ export default function Page() {
 
       <p>
         TODO: sales pitch paragraph, including{" "}
-        <a href="/about">take a peek at my resume if you're curious</a>
+        <a href="/about">take a peek at my resume if you&apos;re curious</a>
       </p>
 
       <p>TODO: a list of degrees</p>
