@@ -60,4 +60,6 @@ jobs:
       #     prettier_options: ""
       #     prettier_plugins: "prettier-plugin-tailwindcss"
 
+    ## TODO: `npm run lint` should be ran
+
     ## TODO: a job that tries to build the application

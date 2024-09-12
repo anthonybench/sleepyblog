@@ -38,12 +38,12 @@ export default function Page() {
         - relevant experience paragraphs in a 2-column grid
       */}
 
-      <p>
+      {/* <p>
         TODO: sales pitch paragraph, including{" "}
         <a href="/about">take a peek at my resume if you&apos;re curious</a>
       </p>
 
-      <p>TODO: a list of degrees</p>
+      <p>TODO: a list of degrees</p> */}
 
       {/* <UnderConstruction /> */}
     </>
