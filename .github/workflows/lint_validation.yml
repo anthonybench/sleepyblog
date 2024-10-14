@@ -31,17 +31,18 @@ defaults:
 jobs:
   lint_validation:
     name: Lint Validation
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Fetch Deps
-        id: fetch-deps
+      - name: Install Deps
+        id: install-deps
         run: |
-          sudo apt install python Python3.11.6
-          pip install -r ./requirements.txt
+          sudo apt install
+          sudo apt upgrade
+          pip3 install -r ./requirements.txt
 
       - name: Lint Python Format
         id: lint-python-format
