@@ -6,6 +6,8 @@
 
 rm media_staging/.ds_store
 
+echo "removed .ds_store (or maybe it already wasn't there 🤷)"
+
 export IMGUR_CLIENT_ID=$IMGUR_CLIENT_ID
 export IMGUR_ACCESS_TOKEN=$IMGUR_ACCESS_TOKEN
 ./_tools/_imgur_upload.py
