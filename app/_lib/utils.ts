@@ -26,6 +26,7 @@ const slugs = [
   "2024-09-24",
   "2024-10-13",
   "2024-11-04",
+  "2024-11-13",
 ];
 
 export function cn(...inputs: ClassValue[]) {
