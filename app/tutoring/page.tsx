@@ -45,7 +45,7 @@ export default function Page() {
 
       <p>TODO: a list of degrees</p> */}
 
-      {/* <UnderConstruction /> */}
+      <UnderConstruction />
     </>
   );
 }
