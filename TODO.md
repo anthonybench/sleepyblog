@@ -4,6 +4,7 @@
 - tag field in post metadata for better organization (and show tag value as chip in post-preview)
 - finish gh-actions workflows (see .github/workflows/lint_validation.yml)
 - **refactor theme interface (save for last)
+- migrate from imgur to s3 (fuck imgur)
 
 ## TUTORING
 - sales pitch paragraph
