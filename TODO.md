@@ -5,6 +5,8 @@
 - finish gh-actions workflows (see .github/workflows/lint_validation.yml)
 - **refactor theme interface (save for last)
 - migrate from imgur to s3 (fuck imgur)
+- resume stuffs at the bottom of `about/` needs a layout overhaul
+- `first post` and `random post` buttons need padding between
 
 ## TUTORING
 - sales pitch paragraph
@@ -17,11 +19,15 @@
 
 ## SOFTWARE
 - use same mechanism as posts
+  - lightbot
+  - weatherbot
+  - powerjira
+  - countdown-timers
 
 ## REWRITE
-- this time, with mobile-first approach
+- this time, make it look good on iphone/tablet/desktop
 - dockerize
-- port to aws `ecs` or `app runner`
+- port to aws `ecs`
 
 ## NON-CRITICAL ISSUES
 - some remaining warnings
