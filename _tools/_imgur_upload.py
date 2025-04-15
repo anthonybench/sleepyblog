@@ -50,7 +50,12 @@ for i, file in enumerate(asset_paths):
     image_id = image["response"]["data"]["id"]
     images[image_id] = image["response"]["data"]["link"]
 
-album = imgur_client.album_create(list(images.keys()), album_name, album_name, "public")
+try:
+    image_keys = list(images.keys())
+    album = imgur_client.album_create(image_keys, album_name, album_name, "public")
+except Exception as e:
+    print(f"Error creating album: {e}\n\t{image_keys=}\n\t{album_name=}")
+    exit(1)
 album_id = album["response"]["data"]["id"]
 response = imgur_client.gallery_album(album_id, album_name, 0, "")
 
