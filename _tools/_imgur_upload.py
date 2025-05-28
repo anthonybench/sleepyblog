@@ -21,6 +21,7 @@ from sys import exit
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from pprint import pprint
+from time import sleep
 
 asset_dir = "./media_staging"
 #
@@ -52,6 +53,7 @@ for i, file in enumerate(asset_paths):
 
 try:
     image_keys = list(images.keys())
+    sleep(10)
     album = imgur_client.album_create(image_keys, album_name, album_name, "public")
 except Exception as e:
     print(f"Error creating album: {e}\n\t{image_keys=}\n\t{album_name=}")
