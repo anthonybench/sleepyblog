@@ -56,7 +56,9 @@ try:
     sleep(10)
     album = imgur_client.album_create(image_keys, album_name, album_name, "public")
 except Exception as e:
-    print(f"Error creating album: {e}\n\t{image_keys=}\n\t{album_name=}")
+    # print(f"Error creating album: {e}\n\t{image_keys=}\n\t{album_name=}")
+    print("Album `{album_name}` not created, because who knows 🤷‍♀️")
+    print([f"https://i.imgur.com/{i}.jpg" for i in image_keys])
     exit(1)
 album_id = album["response"]["data"]["id"]
 response = imgur_client.gallery_album(album_id, album_name, 0, "")
