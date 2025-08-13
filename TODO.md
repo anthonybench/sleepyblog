@@ -3,7 +3,7 @@
 ## General
 
 - refactor python tools for style consistency
-- overhaul opengraph
+- overhaul opengraph image
 - implement interrogate for `_tools/*.py docstrings`
 
 ## Dockerize
