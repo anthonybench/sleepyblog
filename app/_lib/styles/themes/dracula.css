@@ -1,0 +1,19 @@
+:root[data-theme="dracula"] {
+    --bg-primary: #282a36;
+    --bg-secondary: #44475a;
+    --bg-tertiary: #6272a4;
+    --text-primary: #f8f8f2;
+    --text-secondary: #6272a4;
+    --text-muted: #44475a;
+    --accent-primary: #bd93f9;
+    --accent-secondary: #ff79c6;
+    --accent-tertiary: #8be9fd;
+    --border: #44475a;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --content-border: rgba(189, 147, 249, 0.3);
+
+    --chip-land-development: #8be9fd;
+    --chip-software-development: #bd93f9;
+    --chip-build-things: #ffb86c;
+    --chip-rant: #ff79c6;
+}

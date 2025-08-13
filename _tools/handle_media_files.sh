@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# ./_tools/handle_media_files.sh <yyyy-mm-dd>
+# ./_tools/handle_media_files.sh
 
 ./_tools/_lowercase_post_media.py
 

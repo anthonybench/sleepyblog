@@ -1,0 +1,23 @@
+[data-theme="mist"] {
+    --bg-primary: #fafbfc;
+    --bg-secondary: #f1f3f5;
+    --bg-tertiary: #e9ecef;
+
+    --text-primary: #343a40;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --text-tertiary: #adb5bd;
+
+    --accent-primary: #4dabf7;
+    --accent-secondary: #74c0fc;
+    --accent-tertiary: #339af0;
+
+    --content-border: #4dabf7;
+    --border: #e9ecef;
+    --shadow: rgba(77, 171, 247, 0.16);
+
+    --chip-land-development: #4dabf7;
+    --chip-software-development: #845ec2;
+    --chip-build-things: #ff9f43;
+    --chip-rant: #ff6b6b;
+}

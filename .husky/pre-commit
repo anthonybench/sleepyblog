@@ -1,5 +1,0 @@
-# export HUSKY=0 # Disables all Git hooks
-# unset HUSKY # Re-enables hooks
-
-./_tools/_set_last_updated_date.py
-./_tools/_run_formatters.py
