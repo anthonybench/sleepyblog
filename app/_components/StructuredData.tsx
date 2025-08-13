@@ -1,6 +1,6 @@
 import type { JSX } from "react";
-import { dataConfig } from "../_lib/utils/dataConfig";
-import type { Post } from "../_lib/types/post";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
+import type { Post } from "@/app/_lib/types/post";
 
 interface StructuredDataProps {
     type: "website" | "article" | "profile";

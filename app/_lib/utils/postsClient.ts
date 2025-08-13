@@ -1,4 +1,4 @@
-import { type Post, type PostType } from "../types/post";
+import { type Post, type PostType } from "@/app/_lib/types/post";
 
 /**
  * Client-side utilities for fetching posts from the API

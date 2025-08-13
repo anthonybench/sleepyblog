@@ -4,10 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { JSX } from "react";
-import { useTheme } from "../_lib/utils/themeContext";
-import { dataConfig } from "../_lib/utils/dataConfig";
-import ResumeModal from "../_components/ResumeModal";
-import StructuredData from "../_components/StructuredData";
+import { useTheme } from "@/app/_lib/utils/themeContext";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
+import ResumeModal from "@/app/_components/ResumeModal";
+import StructuredData from "@/app/_components/StructuredData";
 
 /**
  * About page showcasing profile, bio, skills, and social links

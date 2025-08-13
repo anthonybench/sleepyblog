@@ -36,7 +36,7 @@ export const themes: Theme[] = [
     },
 ];
 
-import { dataConfig } from "../utils/dataConfig";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
 
 /**
  * Get default theme based on configuration

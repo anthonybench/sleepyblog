@@ -5,7 +5,7 @@ import {
     getPostsByType,
     getFirstPost,
     getRandomPost,
-} from "../../_lib/utils/posts";
+} from "@/app/_lib/utils/posts";
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);

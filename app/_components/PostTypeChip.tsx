@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { type PostType, postTypeDisplayNames, postTypeClasses } from "../_lib/types/post";
+import { type PostType, postTypeDisplayNames, postTypeClasses } from "@/app/_lib/types/post";
 
 interface PostTypeChipProps {
     type: PostType;

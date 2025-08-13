@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, type ReactNode, type JSX } from "react";
-import Header from "./Header";
-import SideNav from "./SideNav";
+import Header from "@/app/_components/header";
+import SideNav from "@/app/_components/SideNav";
 
 interface ResponsiveLayoutProps {
     children: ReactNode;

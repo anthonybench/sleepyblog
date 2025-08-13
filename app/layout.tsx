@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { fontVariables } from "./_lib/fonts";
-import { ThemeProvider } from "./_lib/utils/themeContext";
-import ResponsiveLayout from "./_components/ResponsiveLayout";
-import StructuredData from "./_components/StructuredData";
-import { dataConfig } from "./_lib/utils/dataConfig";
-import "./_lib/styles/main.css";
+import { fontVariables } from "@/app/_lib/fonts";
+import { ThemeProvider } from "@/app/_lib/utils/themeContext";
+import ResponsiveLayout from "@/app/_components/ResponsiveLayout";
+import StructuredData from "@/app/_components/StructuredData";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
+import "@/app/_lib/styles/main.css";
 
 export const metadata: Metadata = {
     title: {

@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 import type { JSX } from "react";
 import type { Metadata } from "next";
-import { getPostBySlug, getPostNavigation } from "../../_lib/utils/posts";
-import MediaGallery from "../../_components/MediaGallery";
-import PostTypeChip from "../../_components/PostTypeChip";
-import PostNavigation from "../../_components/PostNavigation";
-import StructuredData from "../../_components/StructuredData";
-import { dataConfig } from "../../_lib/utils/dataConfig";
-import { renderMarkdownToHtml } from "../../_lib/utils/markdown";
-import { postTypeDisplayNames } from "../../_lib/types/post";
+import { getPostBySlug, getPostNavigation } from "@/app/_lib/utils/posts";
+import MediaGallery from "@/app/_components/MediaGallery";
+import PostTypeChip from "@/app/_components/PostTypeChip";
+import PostNavigation from "@/app/_components/PostNavigation";
+import StructuredData from "@/app/_components/StructuredData";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
+import { renderMarkdownToHtml } from "@/app/_lib/utils/markdown";
+import { postTypeDisplayNames } from "@/app/_lib/types/post";
 
 interface PostPageProps {
     params: Promise<{

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { JSX } from "react";
-import { type Post } from "../_lib/types/post";
+import { type Post } from "@/app/_lib/types/post";
 
 interface PostNavigationProps {
     previous: Post | null;

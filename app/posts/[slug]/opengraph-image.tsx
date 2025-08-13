@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
-import { getPostBySlug } from "../../_lib/utils/posts";
-import { dataConfig } from "../../_lib/utils/dataConfig";
-import { postTypeDisplayNames, type PostType } from "../../_lib/types/post";
+import { getPostBySlug } from "@/app/_lib/utils/posts";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
+import { postTypeDisplayNames, type PostType } from "@/app/_lib/types/post";
 
 // Image metadata
 export const alt = "Blog Post";
