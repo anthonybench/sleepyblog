@@ -1,0 +1,23 @@
+[data-theme="sunset"] {
+    --bg-primary: #1a1625;
+    --bg-secondary: #2d1b3d;
+    --bg-tertiary: #3d2a4a;
+
+    --text-primary: #f4e6d7;
+    --text-secondary: #d4af9a;
+    --text-muted: #b8956a;
+    --text-tertiary: #b8956a;
+
+    --accent-primary: #ff6b35;
+    --accent-secondary: #f7931e;
+    --accent-tertiary: #c73e1d;
+
+    --content-border: #ff6b35;
+    --border: #3d2a4a;
+    --shadow: rgba(255, 107, 53, 0.3);
+
+    --chip-land-development: #74c0fc;
+    --chip-software-development: #ff6b35;
+    --chip-build-things: #f7931e;
+    --chip-rant: #c73e1d;
+}

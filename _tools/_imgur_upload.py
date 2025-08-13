@@ -2,6 +2,8 @@
 
 """README
 
+Uploads all images in `_media_staging` to imgur. Executed by other tools.
+
 Env Vars:
   - IMGUR_CLIENT_ID :: imgur app client id
   - IMGUR_ACCESS_TOKEN :: imgur app access token
@@ -23,7 +25,7 @@ from zoneinfo import ZoneInfo
 from pprint import pprint
 from time import sleep
 
-asset_dir = "./media_staging"
+asset_dir = "./_media_staging"
 #
 asset_paths = [f"{asset_dir}/{f}" for f in listdir(asset_dir)]
 client_id = getenv("IMGUR_CLIENT_ID")
@@ -55,13 +57,13 @@ try:
     image_keys = list(images.keys())
     sleep(10)
     album = imgur_client.album_create(image_keys, album_name, album_name, "public")
+    album_id = album["response"]["data"]["id"]
+    response = imgur_client.gallery_album(album_id, album_name, 0, "")
 except Exception as e:
     # print(f"Error creating album: {e}\n\t{image_keys=}\n\t{album_name=}")
     print("Album `{album_name}` not created, because who knows 🤷‍♀️")
     print([f"https://i.imgur.com/{i}.jpg" for i in image_keys])
     exit(1)
-album_id = album["response"]["data"]["id"]
-response = imgur_client.gallery_album(album_id, album_name, 0, "")
 
 print(f"{'─'*5}")
 print([link for link in list(images.values())])

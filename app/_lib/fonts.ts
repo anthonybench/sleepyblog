@@ -1,10 +1,24 @@
 import { JetBrains_Mono, Comfortaa } from "next/font/google";
 
-export const jetbrains_mono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+/**
+ * JetBrains Mono font for code blocks and technical content
+ */
+export const jetBrainsMono = JetBrains_Mono({
+    variable: "--font-jetbrains-mono",
+    subsets: ["latin"],
+    display: "swap",
 });
+
+/**
+ * Comfortaa font for headings and decorative text
+ */
 export const comfortaa = Comfortaa({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+    variable: "--font-comfortaa",
+    subsets: ["latin"],
+    display: "swap",
 });
+
+/**
+ * Array of all font variables for easy CSS class application
+ */
+export const fontVariables = [jetBrainsMono.variable, comfortaa.variable].join(" ");

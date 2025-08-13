@@ -1,66 +1,29 @@
-"use client";
-
-// next
 import Link from "next/link";
-// 1st party
-import { comfortaa } from "@/app/_lib/fonts";
-import "@/app/_lib/utils.css";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/app/_components/select";
-import { ThemeContext, themes } from "@/app/_lib/themes";
-import { Theme } from "@/app/_lib/schemas";
+import type { JSX } from "react";
+import ThemeSelector from "./ThemeSelector";
+import HamburgerMenu from "./HamburgerMenu";
 
-// params
-const title = `SleepyBlog`;
-interface ThemeProps {
-  selectedTheme: Theme;
-  onThemeChange: (newTheme: string) => void;
+interface HeaderProps {
+    is_mobile_menu_open: boolean;
+    onMobileMenuToggle: () => void;
 }
 
-// view
-export default function Header({ selectedTheme, onThemeChange }: ThemeProps) {
-  return (
-    <ThemeContext.Consumer>
-      {(selectedTheme) => (
-        <header
-          className={`m-0 flex h-full items-end justify-between px-3 pr-5`}
-        >
-          <Link href="/" className={`${comfortaa.className}`}>
-            <h1 className={`text-6xl ${selectedTheme.txt.title}`}>{title}</h1>
-          </Link>
-
-          <div className={`w-1/6`}>
-            <Select
-              onValueChange={onThemeChange}
-              defaultValue={themes[0]._name}
-            >
-              <SelectTrigger className={`${selectedTheme.pkg.themePicker}`}>
-                <SelectValue placeholder="Dracula" />
-              </SelectTrigger>
-              <SelectContent
-                defaultChecked
-                className={`${selectedTheme.txt.subtitle} ${selectedTheme.pkg.frame}`}
-              >
-                <SelectGroup defaultValue={themes[0]._name}>
-                  <SelectLabel>✨Theme✨</SelectLabel>
-                  {themes.map((theme) => (
-                    <SelectItem key={theme._name} value={theme._name}>
-                      {theme._name}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
+/**
+ * Header component containing hamburger menu, title/home link and theme selector
+ */
+export default function Header({
+    is_mobile_menu_open,
+    onMobileMenuToggle,
+}: HeaderProps): JSX.Element {
+    return (
+        <header className="header">
+            <div className="header-left">
+                <HamburgerMenu is_open={is_mobile_menu_open} onToggle={onMobileMenuToggle} />
+                <Link href="/" className="header-title">
+                    <h1 className="text-2xl md:text-4xl lg:text-6xl">SleepyBlog</h1>
+                </Link>
+            </div>
+            <ThemeSelector />
         </header>
-      )}
-    </ThemeContext.Consumer>
-  );
+    );
 }

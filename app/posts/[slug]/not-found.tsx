@@ -1,21 +1,28 @@
-// next
+import type { JSX } from "react";
 import Link from "next/link";
-// 3rd party
-import { FaceFrownIcon } from "@heroicons/react/24/outline";
 
-// params
-export default function NotFound() {
-  return (
-    <main className="flex h-full flex-col items-center justify-center gap-2">
-      <FaceFrownIcon className="w-10 text-gray-400" />
-      <h2 className="text-xl font-semibold">404 Not Found</h2>
-      <p>The blog post does not exist...</p>
-      <Link
-        href="/"
-        className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-sm text-white transition-colors hover:bg-blue-400"
-      >
-        Return home
-      </Link>
-    </main>
-  );
+/**
+ * Not found page for blog posts that don't exist
+ */
+export default function BlogPostNotFound(): JSX.Element {
+    return (
+        <article className="post-page">
+            <header className="post-header">
+                <h1 className="post-title">Post Not Found</h1>
+            </header>
+            <div className="no-posts">
+                The post you are looking for does not exist, was removed, or the URL is incorrect.
+            </div>
+            <nav className="post-navigation">
+                <div className="nav-buttons">
+                    <Link href="/" className="nav-button">
+                        ← Back to Home
+                    </Link>
+                    <Link href="/" className="nav-button">
+                        Browse Posts
+                    </Link>
+                </div>
+            </nav>
+        </article>
+    );
 }

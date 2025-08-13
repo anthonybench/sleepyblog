@@ -1,214 +1,164 @@
 "use client";
 
-// next
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-// react
-import React from "react";
-// 1st party
-import EmailSender from "@/app/_components/email-sender";
-import { Separator } from "@/app/_components/separator";
-import { Button } from "@/app/_components/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/app/_components/dialog";
-import {
-  LinkedInBadgeLight,
-  LinkedInBadgeDark,
-} from "@/app/_components/linkedin-badge";
-import { ThemeContext } from "../_lib/themes";
+import type { JSX } from "react";
+import { useTheme } from "../_lib/utils/themeContext";
+import { dataConfig } from "../_lib/utils/dataConfig";
+import ResumeModal from "../_components/ResumeModal";
+import StructuredData from "../_components/StructuredData";
 
-// params
-const socialLinks = [
-  {
-    id: 1,
-    linkUrl: "github.com/anthonybench",
-    imgSource: "github_?.png", // ? will be substituted with light or dark, per theme context
-    imgAlt: "follow me on github",
-  },
-  {
-    id: 2,
-    linkUrl: "duolingo.com/profile/thesleepyboy",
-    imgSource: "duolingo.svg",
-    imgAlt: "follow me on duolingo",
-  },
-  {
-    id: 4,
-    linkUrl: "pypi.org/user/sleepyboy",
-    imgSource: "pypi.png",
-    imgAlt: "view my pypi projects",
-  },
-  {
-    id: 5,
-    linkUrl: "hub.docker.com/u/sleepyboy",
-    imgSource: "docker.png",
-    imgAlt: "view my dockerhub projects",
-  },
-];
-function replaceQuestionMark(str: string, replacement: string): string {
-  const questionMarkIndex = str.indexOf("?");
-  if (questionMarkIndex === -1) {
-    return str;
-  }
-  const trimmedReplacement = replacement.trim();
-  return `${str.slice(0, questionMarkIndex)}${trimmedReplacement}${str.slice(questionMarkIndex + 1)}`;
-}
+/**
+ * About page showcasing profile, bio, skills, and social links
+ */
+export default function AboutPage(): JSX.Element {
+    const { current_theme } = useTheme();
+    const image_path = current_theme.type === "dark" ? "/dark" : "/light";
+    const [is_resume_modal_open, setIsResumeModalOpen] = useState(false);
 
-// view
-export default function Page() {
-  return (
-    <ThemeContext.Consumer>
-      {(selectedTheme) => (
-        <div className={`flex flex-col leading-7`}>
-          {/* Blurb */}
-          <p>
-            Hi, I&apos;m Isaac 👋
-            <br />
-            I live at the intersection of dev-ops & data.
-            <br />
-            I deeply admire simplicity.
-            <br />
-            An Alaskan who loves the pacific northwest.
-            <br />
-            Passionate woodworker, skateboarder, and shredder of beat saber.
-            <br />
-            <br />
-            Life long engineer, professional kid.
-          </p>
+    const scaleFactor = 1.35;
 
-          {/* Social Links */}
-          <div className={`pt-15 flex justify-start py-5`}>
-            <div className="pb-4">
-              <div className="flex">
-                <span className="flex">
-                  {/* Linkedin Badge */}
-                  <div className={`${selectedTheme._light ? "" : "hidden"}`}>
-                    <LinkedInBadgeLight />
-                  </div>
-                  <div className={`${selectedTheme._light ? "hidden" : ""}`}>
-                    <LinkedInBadgeDark />
-                  </div>
-                  {/* Small Links */}
-                  <Separator
-                    className={`mr-5 ${selectedTheme.pkg.separator} `}
-                    orientation="vertical"
-                  />
-                  <div className="flex flex-col justify-center space-y-3 text-sm">
-                    {socialLinks.map((link) => {
-                      return (
-                        <span className="" key={link.id}>
-                          {link.id !== 1 && (
-                            <Separator
-                              className={`mb-3 ${selectedTheme.pkg.separator}`}
-                            />
-                          )}
-                          <Link
-                            href={`https://${link.linkUrl}`}
-                            target="_blank"
-                          >
+    return (
+        <>
+            <StructuredData type="profile" />
+            <div className="about-page">
+                {/* Hero Section */}
+                <section className="about-hero">
+                    <div className="about-profile">
+                        <div className="profile-image-container">
                             <Image
-                              src={`/assets/general/${link.imgSource.includes("?") ? replaceQuestionMark(link.imgSource, `${selectedTheme._light ? "dark" : "light"}`) : link.imgSource}`}
-                              width={40}
-                              height={40}
-                              alt={link.imgAlt}
+                                src={`/static/portrait.png`}
+                                alt="Isaac Yep - SleepyBoy Technologist"
+                                width={200}
+                                height={200}
+                                priority
+                                className="profile-image"
                             />
-                          </Link>
-                        </span>
-                      );
-                    })}
-                  </div>
-                </span>
-              </div>
-            </div>
-          </div>
+                        </div>
+                        <div className="profile-info">
+                            <h1 className="profile-name">Isaac Yep</h1>
+                            <p className="profile-title">Human who builds things</p>
+                            <button
+                                className="resume-button"
+                                onClick={() => setIsResumeModalOpen(true)}
+                                type="button"
+                            >
+                                View Resume
+                            </button>
+                        </div>
+                    </div>
+                </section>
 
-          {/* Resume */}
-          <div className={`grow`}>
-            <div className="mb-4">
-              <Separator className={`${selectedTheme.pkg.separator}`} />
+                {/* Bio Section */}
+                <section className="about-bio">
+                    <h2>Hi, I&apos;m Isaac 👋</h2>
+                    <div className="bio-content">
+                        <p>
+                            I live at the intersection of dev-ops & data.
+                            <br />
+                            I deeply admire simplicity.
+                            <br />
+                            An Alaskan who loves the pacific northwest.
+                            <br />
+                            Passionate woodworker, skateboarder, and shredder of beat saber.
+                            <br />
+                            <br />
+                            Life long engineer, professional kid.
+                        </p>
+                    </div>
+                </section>
+
+                {/* Social Links Section */}
+                <section className="about-social">
+                    <h2>Connect With Me</h2>
+
+                    <div className="social-section">
+                        {/* Special LinkedIn Badge */}
+                        <div className="linkedin-badge-container">
+                            <Link
+                                href={dataConfig.linkedin_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="linkedin-badge"
+                            >
+                                <Image
+                                    src={`${image_path}/linkedin_badge.png`}
+                                    alt="Connect with Isaac Yep on LinkedIn"
+                                    width={284 * scaleFactor}
+                                    height={244 * scaleFactor}
+                                    className="linkedin-badge-image"
+                                />
+                            </Link>
+                        </div>
+
+                        {/* Other Social Links */}
+                        <div className="social-links">
+                            <Link
+                                href={dataConfig.github_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="social-link"
+                            >
+                                <Image
+                                    src={`${image_path}/github.png`}
+                                    alt="GitHub"
+                                    width={40}
+                                    height={40}
+                                />
+                                <span>GitHub</span>
+                            </Link>
+
+                            <Link
+                                href={dataConfig.pypi_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="social-link"
+                            >
+                                <Image src="/static/pypi.png" alt="PyPI" width={40} height={40} />
+                                <span>PyPI</span>
+                            </Link>
+
+                            <Link
+                                href={dataConfig.dockerhub_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="social-link"
+                            >
+                                <Image
+                                    src="/static/docker.png"
+                                    alt="Docker Hub"
+                                    width={40}
+                                    height={40}
+                                />
+                                <span>Docker Hub</span>
+                            </Link>
+
+                            <Link
+                                href={dataConfig.duolingo_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="social-link"
+                            >
+                                <Image
+                                    src="/static/duolingo.svg"
+                                    alt="Duolingo"
+                                    width={40}
+                                    height={40}
+                                />
+                                <span>Duolingo</span>
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Resume Modal */}
+                <ResumeModal
+                    is_open={is_resume_modal_open}
+                    onClose={() => setIsResumeModalOpen(false)}
+                    resume_url={dataConfig.resume_url}
+                />
             </div>
-            <div className="">
-              {/* Send Resume */}
-              <div className="flex justify-center pt-5">
-                <EmailSender />
-              </div>
-              {/* View Resume */}
-              <div className={`flex justify-around px-5`}>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button
-                      className={`${selectedTheme.pkg.button}`}
-                      variant="outline"
-                    >
-                      View resume
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle>My Personal Resume</DialogTitle>
-                      <DialogDescription>
-                        Looking forward to speaking with you 😊
-                      </DialogDescription>
-                    </DialogHeader>
-                    <iframe
-                      src="https://sleepysoft-global-fileserver.s3.us-west-2.amazonaws.com/Isaac_Yep_Resume.pdf"
-                      width="100%"
-                      height="600rem"
-                    />
-                    <DialogFooter>
-                      <Link
-                        href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
-                        target="_blank"
-                      >
-                        👉{" "}
-                        <em>
-                          View resume&apos;s{" "}
-                          <Image
-                            src="/assets/general/latex_dark.svg"
-                            width={43}
-                            height={43}
-                            className="inline"
-                            alt="LaTeX logo"
-                          />{" "}
-                          source
-                        </em>
-                      </Link>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-                {/* View Resume LaTeX */}
-                <div className={`flex items-end`}>
-                  <Button
-                    className={`${selectedTheme.pkg.button}`}
-                    variant="outline"
-                  >
-                    <Link
-                      href="https://github.com/anthonybench/resume/blob/main/FormatDetails.cls"
-                      target="_blank"
-                    >
-                      View resume&apos;s{" "}
-                      <Image
-                        src={`/assets/general/latex_${selectedTheme._light ? "dark" : "light"}.svg`}
-                        width={43}
-                        height={43}
-                        className="inline"
-                        alt="LaTeX logo"
-                      />{" "}
-                      source
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </ThemeContext.Consumer>
-  );
+        </>
+    );
 }

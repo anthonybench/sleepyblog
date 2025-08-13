@@ -1,29 +1,31 @@
-// next
 import type { Metadata } from "next";
+import { dataConfig } from "../_lib/utils/dataConfig";
 
-// params
 export const metadata: Metadata = {
-  title: "SleepyBlog",
-  description: "About the Author",
-  applicationName: "SleepyBlog",
-  creator: "Isaac Yep",
-  authors: [{ name: "Isaac Yep" }],
-  metadataBase: new URL("http://sleepyblog.org"),
-  openGraph: {
-    type: "website",
-    url: "https://sleepyblog.org",
-    title: "SleepyBlog",
-    description: "My personal & professional site; about me.",
-    siteName: "SleepyBlog",
-    images: [
-      {
-        url: "https://i.imgur.com/ZHnNGeO.png",
-      },
-    ],
-  },
+    title: "About",
+    description: `Learn more about ${dataConfig.author_name} - ${dataConfig.author_bio}`,
+    keywords: [...dataConfig.keywords, "about", "profile", "biography"],
+    alternates: {
+        canonical: "/about",
+    },
+    openGraph: {
+        type: "profile",
+        locale: "en_US",
+        url: `${dataConfig.site_url}/about`,
+        title: `About ${dataConfig.author_name}`,
+        description: dataConfig.author_bio,
+        siteName: dataConfig.site_name,
+        images: [
+            {
+                url: dataConfig.author_image,
+                width: 400,
+                height: 400,
+                alt: `${dataConfig.author_name} - Profile Photo`,
+            },
+        ],
+    },
 };
 
-// view
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default function AboutLayout({ children }: { children: React.ReactNode }) {
+    return <>{children}</>;
 }

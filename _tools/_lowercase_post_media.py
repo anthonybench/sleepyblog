@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """README
-Changes filenames in target_dir to lowercase equivalent.
+Changes filenames in target_dir to lowercase equivalent. Executed my other tools.
 
 Usage:
     ./_tools/_lowercase_post_media.py
@@ -9,7 +9,7 @@ Usage:
 
 import os
 
-target_dir = "./media_staging"
+target_dir = "./_media_staging"
 
 
 def rename_to_lowercase(directory: str):
