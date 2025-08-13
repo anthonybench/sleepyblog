@@ -176,22 +176,11 @@ export default async function OpenGraphImage({ params }: OpenGraphImageProps): P
 }
 ```
 
-### Favicon Generation (`app/icon.tsx`)
+### Favicon (`app/favicon.ico`)
 
-Dynamic favicon generation:
+This project uses a static favicon. Place your icon at `app/favicon.ico`. Next.js will automatically serve it at `/favicon.ico` and use it across pages.
 
-```typescript
-export default function Icon(): ImageResponse {
-  return new ImageResponse(
-    (
-      <div style={{ backgroundColor: '#282a36', borderRadius: '6px' }}>
-        <div style={{ color: '#bd93f9', fontSize: '20px' }}>S</div>
-      </div>
-    ),
-    { width: 32, height: 32 }
-  );
-}
-```
+Note: Dynamic icon components like `app/icon.tsx` and `app/apple-icon.tsx` are not used here. If you want Apple touch icons, add static PNGs such as `app/apple-touch-icon.png` (recommended 180×180) instead.
 
 ## Structured Data (JSON-LD)
 
