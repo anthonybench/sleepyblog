@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect, type JSX } from "react";
 import { SunIcon, MoonIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useTheme } from "../_lib/utils/themeContext";
-import { themes, type Theme } from "../_lib/types/theme";
+import { useTheme } from "@/app/_lib/utils/themeContext";
+import { themes, type Theme } from "@/app/_lib/types/theme";
 
 /**
  * Theme selector dropdown component with moon/sun icons

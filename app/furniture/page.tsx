@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { UnderConstruction } from "../_components/UnderConstruction";
+import { UnderConstruction } from "@/app/_components/UnderConstruction";
 
 /**
  * TODO

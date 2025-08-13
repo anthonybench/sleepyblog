@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getPostBySlug } from "../../../_lib/utils/posts";
+import { getPostBySlug } from "@/app/_lib/utils/posts";
 
 export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
     try {

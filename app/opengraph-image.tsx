@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { dataConfig } from "./_lib/utils/dataConfig";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
 
 // Image metadata
 export const alt = `${dataConfig.site_name} - ${dataConfig.site_description}`;

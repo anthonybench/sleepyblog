@@ -1,7 +1,7 @@
 "use client";
 
 import type { JSX, ChangeEvent } from "react";
-import { type PostType, postTypeDisplayNames } from "../_lib/types/post";
+import { type PostType, postTypeDisplayNames } from "@/app/_lib/types/post";
 
 interface PostTypeFilterProps {
     selectedType: PostType | "all";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { dataConfig } from "../_lib/utils/dataConfig";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
 
 export const metadata: Metadata = {
     title: "About",

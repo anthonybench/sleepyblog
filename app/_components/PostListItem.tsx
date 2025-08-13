@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { JSX } from "react";
-import { type Post } from "../_lib/types/post";
-import PostTypeChip from "./PostTypeChip";
+import { type Post } from "@/app/_lib/types/post";
+import PostTypeChip from "@/app/_components/PostTypeChip";
 
 interface PostListItemProps {
     post: Post;

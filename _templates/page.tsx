@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { JSX } from "react";
 import Image from "next/image";
 import Link from "next/link";
-// import { useTheme } from "../_lib/utils/themeContext";
+// import { useTheme } from "@/app/_lib/utils/themeContext";
 
 export const metadata: Metadata = {
     title: "Page Title - SleepyBlog",

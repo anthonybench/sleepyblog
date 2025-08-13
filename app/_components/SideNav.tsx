@@ -3,8 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { JSX } from "react";
-import { useTheme } from "../_lib/utils/themeContext";
-import { dataConfig } from "../_lib/utils/dataConfig";
+import { useTheme } from "@/app/_lib/utils/themeContext";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
 import {
     HomeIcon,
     IdentificationIcon,

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { JSX } from "react";
-import ThemeSelector from "./ThemeSelector";
-import HamburgerMenu from "./HamburgerMenu";
+import ThemeSelector from "@/app/_components/ThemeSelector";
+import HamburgerMenu from "@/app/_components/HamburgerMenu";
 
 interface HeaderProps {
     is_mobile_menu_open: boolean;

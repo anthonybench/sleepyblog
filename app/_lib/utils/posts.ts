@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { type Post, type PostType } from "../types/post";
+import { type Post, type PostType } from "@/app/_lib/types/post";
 
 /**
  * Get all posts from the _posts directory

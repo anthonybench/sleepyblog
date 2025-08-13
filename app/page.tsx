@@ -2,11 +2,16 @@
 
 import { useState, useEffect, type JSX } from "react";
 import { useRouter } from "next/navigation";
-import { type Post, type PostType } from "./_lib/types/post";
-import { getAllPosts, searchPosts, getFirstPost, getRandomPost } from "./_lib/utils/postsClient";
-import PostSearchBar from "./_components/PostSearchBar";
-import PostTypeFilter from "./_components/PostTypeFilter";
-import PostListItem from "./_components/PostListItem";
+import { type Post, type PostType } from "@/app/_lib/types/post";
+import {
+    getAllPosts,
+    searchPosts,
+    getFirstPost,
+    getRandomPost,
+} from "@/app/_lib/utils/postsClient";
+import PostSearchBar from "@/app/_components/PostSearchBar";
+import PostTypeFilter from "@/app/_components/PostTypeFilter";
+import PostListItem from "@/app/_components/PostListItem";
 
 /**
  * Home page with blog post listing, search, and filters
