@@ -51,6 +51,19 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                         {dataConfig.site_name}
                     </div>
 
+                    <img
+                        src="/dark/sleepyboy_technologist.png"
+                        alt="SleepyBoy Technologist"
+                        style={{
+                            width: "120px",
+                            height: "120px",
+                            borderRadius: "50%",
+                            marginBottom: "30px",
+                            border: "3px solid #bd93f9",
+                            boxShadow: "0 8px 20px rgba(189, 147, 249, 0.3)",
+                        }}
+                    />
+
                     <div
                         style={{
                             display: "flex",
