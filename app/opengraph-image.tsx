@@ -21,10 +21,7 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    backgroundColor: "#282a36",
-                    backgroundImage:
-                        "linear-gradient(45deg, #282a36 25%, #44475a 25%, #44475a 50%, #282a36 50%, #282a36 75%, #44475a 75%)",
-                    backgroundSize: "60px 60px",
+                    background: "linear-gradient(135deg, #282a36 0%, #44475a 25%, #6272a4 50%, #bd93f9 75%, #ff79c6 100%)",
                 }}
             >
                 <div
@@ -68,18 +65,7 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                         {dataConfig.site_description}
                     </div>
 
-                    <div
-                        style={{
-                            display: "flex",
-                            fontSize: "24px",
-                            color: "#50fa7b",
-                            marginTop: "40px",
-                            textAlign: "center",
-                            fontFamily: "system-ui, -apple-system, sans-serif",
-                        }}
-                    >
-                        by {dataConfig.author_name}
-                    </div>
+
                 </div>
             </div>
         ),
