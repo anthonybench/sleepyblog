@@ -3,8 +3,8 @@
 ## General
 
 - refactor python tools for style consistency
-- overhaul opengraph image
 - implement interrogate for `_tools/*.py docstrings`
+- on mobile, type filter and search bar should span container
 
 ## Dockerize
 
