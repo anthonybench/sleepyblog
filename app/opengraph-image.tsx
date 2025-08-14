@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { dataConfig } from "@/app/_lib/utils/dataConfig";
+import Image from "next/image";
 
 // Image metadata
 export const alt = `${dataConfig.site_name} - ${dataConfig.site_description}`;
@@ -23,7 +24,7 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                     justifyContent: "center",
                     backgroundColor: "#282a36",
                     backgroundImage:
-                        "linear-gradient(45deg, #282a36 25%, #44475a 25%, #44475a 50%, #282a36 50%, #282a36 75%, #44475a 75%)",
+                        "radial-gradient(ellipse at top left, #4a287d 0%, #2e1a4d 50%, #1a1a1a 100%)",
                     backgroundSize: "60px 60px",
                 }}
             >
@@ -40,7 +41,7 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                         border: "3px solid #bd93f9",
                     }}
                 >
-                    <div
+                    {/* <div
                         style={{
                             display: "flex",
                             fontSize: "72px",
@@ -52,7 +53,15 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                         }}
                     >
                         {dataConfig.site_name}
-                    </div>
+                    </div> */}
+                    <Image
+                        src={`${image_path}/sleepyboy_technologist.png`}
+                        alt="SleepyBoy Technologist Logo"
+                        width={1000}
+                        height={1000}
+                        priority
+                        className=""
+                    />
 
                     <div
                         style={{
@@ -66,19 +75,6 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                         }}
                     >
                         {dataConfig.site_description}
-                    </div>
-
-                    <div
-                        style={{
-                            display: "flex",
-                            fontSize: "24px",
-                            color: "#50fa7b",
-                            marginTop: "40px",
-                            textAlign: "center",
-                            fontFamily: "system-ui, -apple-system, sans-serif",
-                        }}
-                    >
-                        by {dataConfig.author_name}
                     </div>
                 </div>
             </div>

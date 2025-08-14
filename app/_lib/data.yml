@@ -22,13 +22,15 @@ dockerhub_url: "https://hub.docker.com/u/sleepyboy"
 # default theme
 #   - dracula
 #   - overcast
+#   - sunset
+#   - mist
 default_theme: "dracula"
 
 # site metadata
 site_name: "SleepyBlog"
-site_description: "My personal blog, showcasing software, furniture, and land development."
+site_description: "A blog most sleepy."
 site_url: "https://sleepyblog.org"
 author_name: "Isaac Yep"
 author_bio: "Lifelong engineer, professional kid."
 author_image: "/dark/sleepyboy_technologist.png"
-keywords: ["blog", "software development", "land development", "building", "technology"]
+keywords: ["blog", "software development", "land development", "building", "technology", "homestead", "furniture"]

@@ -48,8 +48,8 @@ export default async function OpenGraphImage({
         );
     }
 
-    const postTypeDisplay = postTypeDisplayNames[post.type];
-    const typeColor = postTypeColors[post.type];
+    // const postTypeDisplay = postTypeDisplayNames[post.type];
+    // const typeColor = postTypeColors[post.type];
 
     return new ImageResponse(
         (
@@ -84,7 +84,7 @@ export default async function OpenGraphImage({
                     }}
                 >
                     {/* Post type chip */}
-                    <div
+                    {/* <div
                         style={{
                             fontSize: "24px",
                             color: typeColor,
@@ -97,7 +97,7 @@ export default async function OpenGraphImage({
                         }}
                     >
                         {postTypeDisplay}
-                    </div>
+                    </div> */}
 
                     {/* Post title */}
                     <div
@@ -164,9 +164,9 @@ export default async function OpenGraphImage({
     );
 }
 
-const postTypeColors: Record<PostType, string> = {
-    "land-development": "#50fa7b",
-    "software-development": "#8be9fd",
-    "build-things": "#ffb86c",
-    rant: "#ff5555",
-};
+// const postTypeColors: Record<PostType, string> = {
+//     "land-development": "#50fa7b",
+//     "software-development": "#8be9fd",
+//     "build-things": "#ffb86c",
+//     rant: "#ff5555",
+// };

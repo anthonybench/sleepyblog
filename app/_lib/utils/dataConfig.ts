@@ -35,10 +35,10 @@ export const dataConfig: DataConfig = {
   default_theme: "dracula",
   last_updated: "Aug 13, 2025",
   site_name: "SleepyBlog",
-  site_description: "My personal blog, showcasing software, furniture, and land development.",
+  site_description: "A blog most sleepy.",
   site_url: "https://sleepyblog.org",
   author_name: "Isaac Yep",
   author_bio: "Lifelong engineer, professional kid.",
   author_image: "/dark/sleepyboy_technologist.png",
-  keywords: ["blog","software development","land development","building","technology"]
+  keywords: ["blog","software development","land development","building","technology","homestead","furniture"]
 };
