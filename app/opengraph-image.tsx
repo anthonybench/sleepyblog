@@ -52,7 +52,7 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                     </div>
 
                     <img
-                        src="/dark/sleepyboy_technologist.png"
+                        src={`${dataConfig.site_url}${dataConfig.author_image}`}
                         alt="SleepyBoy Technologist"
                         style={{
                             width: "120px",
