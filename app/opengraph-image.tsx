@@ -21,7 +21,8 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    background: "linear-gradient(135deg, #282a36 0%, #44475a 25%, #6272a4 50%, #bd93f9 75%, #ff79c6 100%)",
+                    background:
+                        "linear-gradient(135deg, #282a36 0%, #44475a 25%, #6272a4 50%, #bd93f9 75%, #ff79c6 100%)",
                 }}
             >
                 <div
@@ -77,8 +78,6 @@ export default async function OpenGraphImage(): Promise<ImageResponse> {
                     >
                         {dataConfig.site_description}
                     </div>
-
-
                 </div>
             </div>
         ),

@@ -4,7 +4,7 @@
 
 ./_tools/_lowercase_post_media.py
 
-rm media_staging/.ds_store
+rm _media_staging/.ds_store
 
 echo "removed .ds_store (or maybe it already wasn't there 🤷)"
 
