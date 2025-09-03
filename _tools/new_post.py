@@ -124,7 +124,6 @@ def create_new_post(date_override: str = None, post_type: str = None) -> bool:
         )
 
         content = f"""
-[cyan]{post_date}[/cyan]
 {type_info}• File: [cyan]{new_post_path.relative_to(project_root)}[/cyan]
 • Template: [dim]{template_path.relative_to(project_root)}[/dim]
 
@@ -138,8 +137,9 @@ def create_new_post(date_override: str = None, post_type: str = None) -> bool:
 
         console.print()
         console.print(
-            Panel.fit(title, subtitle=content.strip(), border_style="bright_green")
+            Panel.fit(title, subtitle="[cyan]{post_date}[/cyan]".strip(), border_style="bright_green")
         )
+        print(content.strip())
         console.print()
 
         subprocess.run(
