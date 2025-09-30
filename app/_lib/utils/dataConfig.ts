@@ -33,7 +33,7 @@ export const dataConfig: DataConfig = {
   pypi_url: "https://pypi.org/user/sleepyboy",
   dockerhub_url: "https://hub.docker.com/u/sleepyboy",
   default_theme: "dracula",
-  last_updated: "Aug 17, 2025",
+  last_updated: "Sep 3, 2025",
   site_name: "SleepyBlog",
   site_description: "A blog most sleepy.",
   site_url: "https://sleepyblog.org",
