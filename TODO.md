@@ -2,6 +2,7 @@
 
 ## General
 
+- configure as a proper 'progressive web app' (see `_docs/pwa.md`gs)
 - refactor python tools for style consistency
     - change all tools to python tools, and add a `params.yml` file for things like `_media_staging/`
 - overhaul `app/about/opengraph-image.tsx`
@@ -25,6 +26,7 @@
 - grid of images with optional captions
 
 ## ❄️ Cold
+
 - implement interrogate for `_tools/*.py docstrings`
 - google search console: ownership verification
     - `metadata.verification.google` in `app/layout.tsx`

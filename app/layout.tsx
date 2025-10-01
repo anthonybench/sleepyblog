@@ -56,6 +56,16 @@ export const metadata: Metadata = {
     verification: {
         google: "TODO",
     },
+    manifest: "/manifest.json",
+    appleWebApp: {
+        capable: true,
+        statusBarStyle: "default",
+        title: dataConfig.site_name,
+    },
+    icons: {
+        icon: "/favicon.ico",
+        apple: "/apple-touch-icon.png",
+    },
 };
 
 export default function RootLayout({
