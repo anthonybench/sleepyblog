@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { fontVariables } from "@/app/_lib/fonts";
 import { ThemeProvider } from "@/app/_lib/utils/themeContext";
 import ResponsiveLayout from "@/app/_components/ResponsiveLayout";
@@ -82,6 +83,7 @@ export default function RootLayout({
                 <ThemeProvider>
                     <ResponsiveLayout>{children}</ResponsiveLayout>
                 </ThemeProvider>
+                <Analytics />
             </body>
         </html>
     );
