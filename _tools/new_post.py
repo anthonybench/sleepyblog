@@ -124,20 +124,20 @@ def create_new_post(date_override: str = None, post_type: str = None) -> bool:
         )
 
         content = f"""
-{type_info}• File: [cyan]{new_post_path.relative_to(project_root)}[/cyan]
-• Template: [dim]{template_path.relative_to(project_root)}[/dim]
+{type_info}• File: {new_post_path.relative_to(project_root)}
+• Template: {template_path.relative_to(project_root)}
 
-[bold bright_yellow]Next Steps:[/bold bright_yellow]
+Next Steps:
 {next_steps}
 
-[bold bright_blue]Quick Commands:[/bold bright_blue]
-• Open in editor: [cyan]code {new_post_path.relative_to(project_root)}[/cyan]
-• View posts: [cyan]./_tools/help.py[/cyan]
+Quick Commands:
+• Open in editor: code {new_post_path.relative_to(project_root)}
+• View posts: ./_tools/help.py
         """
 
         console.print()
         console.print(
-            Panel.fit(title, subtitle="[cyan]{post_date}[/cyan]".strip(), border_style="bright_green")
+            Panel.fit(title, subtitle=f"[cyan]{post_date}[/cyan]".strip(), border_style="bright_green")
         )
         print(content.strip())
         console.print()
