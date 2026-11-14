@@ -8,6 +8,7 @@ export default function SoftwarePage(): JSX.Element {
     return (
         <>
             <h3>Coming Soon: my software projects showcase...</h3>
+            <p>testing</p>
             <UnderConstruction />
         </>
     );
