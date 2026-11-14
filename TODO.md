@@ -2,11 +2,11 @@
 
 ## General
 
-- configure as a proper 'progressive web app' (see `_docs/pwa.md`gs)
-- refactor python tools for style consistency
-    - change all tools to python tools, and add a `params.yml` file for things like `_media_staging/`
+- change all `_tools/*` to python tools, and add a `params.yml` file for things like `_media_staging/`
+  - refactor python tools for style consistency
 - overhaul `app/about/opengraph-image.tsx`
-- on mobile, type filter and search bar should span container
+- on mobile, type filter and search bar should span container (it should have the same width as the 'First Post' and 'Random Post' buttons)
+    - also on mobile, those buttons should be a bit smaller
 
 ## Dockerize
 
