@@ -16,6 +16,12 @@
     --border: #e9ecef;
     --shadow: rgba(77, 171, 247, 0.16);
 
+    /* Frame: cool blue haze from the top corners over a pale fade */
+    --frame-gradient:
+        radial-gradient(ellipse 60% 70% at 0% 0%, rgba(77, 171, 247, 0.14), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 100% 0%, rgba(116, 192, 252, 0.1), transparent 70%),
+        linear-gradient(160deg, #f5f7f9 0%, #e8ecf0 100%);
+
     --chip-land-development: #4dabf7;
     --chip-software-development: #845ec2;
     --chip-build-things: #ff9f43;

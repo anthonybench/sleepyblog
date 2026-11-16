@@ -1,200 +1,141 @@
 #!/usr/bin/env python
-"""SleepyBlog Project Help Tool
+"""Show project stats, the post-and-deploy workflow, and the available tools and docs.
 
-Prints useful information about the project.
+Tool descriptions come from the first line of each tool's module docstring, and doc
+titles from each doc's first heading, so this never needs editing when a tool or doc
+is added.
 
 Usage:
     ./_tools/help.py
 """
 
-import os
+import ast
 import sys
 from pathlib import Path
+
 from rich.console import Console
-from rich.table import Table
 from rich.panel import Panel
-from rich.text import Text
-from rich.layout import Layout
-from rich.columns import Columns
+from rich.table import Table
+
+console = Console()
+
+WORKFLOW_STEPS = [
+    ("1. Stub a post", "./_tools/new_post.py --type <type>"),
+    (
+        "2. Add photos",
+        "Put them in _media_staging/, run ./_tools/handle_media_files.py, and paste "
+        "the printed [cyan]media:[/cyan] line into the post's frontmatter.",
+    ),
+    ("3. Write & preview", "npm run dev → http://localhost:3000"),
+    ("4. Check", "./_tools/format.py && ./_tools/build.py"),
+    (
+        "5. Publish",
+        "Commit and push. Vercel deploys every push on its own: a branch push gets a "
+        "preview URL, and main goes to production. There is no CI, so step 4 is the "
+        "only check before deploying.",
+    ),
+]
 
 
 def get_project_root() -> Path:
-    """Get the project root directory"""
-    return Path(__file__).parent.parent
+    """Return the repository root directory."""
+    return Path(__file__).resolve().parent.parent
 
 
-def count_files_in_directory(directory: Path, extension: str = None) -> int:
-    """Count files in a directory with optional extension filter"""
-    if not directory.exists():
-        return 0
-
-    if extension:
-        return len(list(directory.glob(f"*.{extension}")))
-    else:
-        return len([f for f in directory.iterdir() if f.is_file()])
+def count_files(directory: Path, pattern: str) -> int:
+    """Count the files in a directory that match a glob pattern."""
+    return len(list(directory.glob(pattern))) if directory.is_dir() else 0
 
 
-def get_component_count(project_root: Path) -> int:
-    """Count React components in _components directory"""
-    components_dir = project_root / "app" / "_components"
-    return count_files_in_directory(components_dir, "tsx")
+def get_tool_summary(tool_path: Path) -> str:
+    """Return the first line of a Python tool's module docstring."""
+    docstring = ast.get_docstring(ast.parse(tool_path.read_text(encoding="utf-8")))
+    return docstring.splitlines()[0] if docstring else "No description"
 
 
-def get_theme_count(project_root: Path) -> int:
-    """Count theme files in themes directory"""
-    themes_dir = project_root / "app" / "_lib" / "styles" / "themes"
-    return count_files_in_directory(themes_dir, "css")
+def get_doc_title(doc_path: Path) -> str:
+    """Return a markdown doc's first `# ` heading, or a dash if it has none."""
+    in_code_block = False
+    for line in doc_path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("```"):
+            in_code_block = not in_code_block
+        elif not in_code_block and line.startswith("# "):
+            return line[2:].strip()
+    return "—"
 
 
-def get_post_count(project_root: Path) -> int:
-    """Count markdown posts in _posts directory"""
-    posts_dir = project_root / "_posts"
-    return count_files_in_directory(posts_dir, "md")
+def build_workflow_panel() -> Panel:
+    """Build a panel listing the steps from new post to deployment."""
+    grid = Table.grid(padding=(0, 2))
+    grid.add_column(style="bold", no_wrap=True)
+    grid.add_column()
+    for step, instructions in WORKFLOW_STEPS:
+        grid.add_row(step, instructions)
+    return Panel(grid, title="🚀 Post & Deploy Workflow", border_style="bright_blue")
 
 
-def get_tools_info(project_root: Path) -> list:
-    """Get information about tools in _tools directory"""
-    tools_dir = project_root / "_tools"
-    tools = []
+def build_counts_table(project_root: Path) -> Table:
+    """Build a table of component, theme, and post counts."""
+    table = Table(title="📊 Project Overview", header_style="bold magenta")
+    table.add_column("Category", style="cyan")
+    table.add_column("Count", justify="right", style="green")
+    table.add_column("Location", style="dim")
 
-    if not tools_dir.exists():
-        return tools
-
-    tool_descriptions = {
-        "build.sh": "Build the project (lint, build, and optimize)",
-        "format.sh": "Format code files using prettier",
-        "help.py": "Display project overview and help information",
-        "new_post.py": "Create a new blog post from template with current date",
-        "handle_media_files.sh": "Handle media files in _media_staging directory",
-    }
-
-    for tool_file in tools_dir.iterdir():
-        if tool_file.is_file() and not tool_file.name.startswith("."):
-            name = tool_file.name
-            description = tool_descriptions.get(name, "No description available")
-            tools.append((name, description))
-
-    return sorted(tools)
-
-
-def get_docs_info(project_root: Path) -> list:
-    """Get information about documentation in _docs directory"""
-    docs_dir = project_root / "_docs"
-    docs = []
-
-    if not docs_dir.exists():
-        return docs
-
-    doc_descriptions = {
-        "stock_readme.md": "Standard README template and project information",
-        "data_configuration.md": "Guide for adding and using configuration data in data.yml",
-        "theme_system.md": "Complete guide to adding and customizing themes",
-        "fonts_and_typography.md": "How to add fonts and manage typography",
-        "post_rendering_system.md": "How posts are processed from markdown to HTML",
-        "metadata_management.md": "Complete SEO and metadata management guide",
-        "deployment.md": "Complete guide for development setup and production deployment",
-        "initial_spec.md": "Original project specification and requirements",
-    }
-
-    for doc_file in docs_dir.iterdir():
-        if doc_file.is_file() and not doc_file.name.startswith("."):
-            name = doc_file.name
-            description = doc_descriptions.get(name, "Documentation file")
-            docs.append((name, description))
-
-    return sorted(docs)
-
-
-def create_counts_table(
-    component_count: int, theme_count: int, post_count: int
-) -> Table:
-    """Create a table showing file counts"""
-    table = Table(
-        title="📊 Project Overview", show_header=True, header_style="bold magenta"
-    )
-    table.add_column("Category", style="cyan", width=20)
-    table.add_column("Count", justify="right", style="green", width=10)
-    table.add_column("Location", style="dim", width=30)
-
-    table.add_row("Components", str(component_count), "app/_components/")
-    table.add_row("Themes", str(theme_count), "app/_lib/styles/themes/")
-    table.add_row("Posts", str(post_count), "_posts/")
-
+    for category, location, pattern in [
+        ("Components", "app/_components", "*.tsx"),
+        ("Themes", "app/_lib/styles/themes", "*.css"),
+        ("Posts", "_posts", "*.md"),
+    ]:
+        count = count_files(project_root / location, pattern)
+        table.add_row(category, str(count), f"{location}/")
     return table
 
 
-def create_tools_table(tools: list) -> Table:
-    """Create a table showing available tools"""
-    table = Table(
-        title="🔧 Available Tools", show_header=True, header_style="bold blue"
-    )
-    table.add_column("Tool", style="yellow", width=20)
-    table.add_column("Description", style="white", width=50)
+def build_tools_table(tools_dir: Path) -> Table:
+    """Build a table of the public tools in `_tools/` and what they do."""
+    table = Table(title="🔧 Tools", header_style="bold blue")
+    table.add_column("Tool", style="yellow", no_wrap=True)
+    table.add_column("Description")
 
-    for tool_name, description in tools:
-        table.add_row(f"./_tools/{tool_name}", description)
-
+    for tool_path in sorted(tools_dir.glob("*.py")):
+        if not tool_path.name.startswith("_"):
+            table.add_row(f"./_tools/{tool_path.name}", get_tool_summary(tool_path))
     return table
 
 
-def create_docs_table(docs: list) -> Table:
-    """Create a table showing available documentation"""
-    table = Table(
-        title="📚 Available Documentation", show_header=True, header_style="bold green"
-    )
-    table.add_column("Document", style="cyan", width=20)
-    table.add_column("Description", style="white", width=50)
+def build_docs_table(docs_dir: Path) -> Table:
+    """Build a table of the docs in `_docs/` and what they cover."""
+    table = Table(title="📚 Docs (_docs/)", header_style="bold green")
+    table.add_column("Doc", style="cyan", no_wrap=True)
+    table.add_column("Title")
 
-    for doc_name, description in docs:
-        table.add_row(doc_name, description)
-
+    for doc_path in sorted(docs_dir.glob("*.md")):
+        table.add_row(doc_path.name, get_doc_title(doc_path))
     return table
 
 
-def main():
-    """Main function to display project help information"""
-    console = Console()
+def main() -> None:
+    """Print the project overview."""
     project_root = get_project_root()
 
-    # Print header
-    title = Text("SleepyBlog Project Helper", style="bold bright_white")
-    subtitle = Text("📝", style="dim")
-
     console.print()
-    console.print(Panel.fit(title, subtitle=subtitle, border_style="bright_blue"))
-    console.print()
-
-    # Get counts
-    component_count = get_component_count(project_root)
-    theme_count = get_theme_count(project_root)
-    post_count = get_post_count(project_root)
-
-    # Get tools and docs info
-    tools = get_tools_info(project_root)
-    docs = get_docs_info(project_root)
-
-    # Display counts table
-    console.print(create_counts_table(component_count, theme_count, post_count))
-    console.print()
-
-    # Display tools table
-    if tools:
-        console.print(create_tools_table(tools))
+    console.print(
+        Panel.fit("[bold bright_white]SleepyBlog Project Helper 📝[/bold bright_white]")
+    )
+    for section in [
+        build_counts_table(project_root),
+        build_workflow_panel(),
+        build_tools_table(project_root / "_tools"),
+        build_docs_table(project_root / "_docs"),
+    ]:
         console.print()
-
-    # Display docs table
-    if docs:
-        console.print(create_docs_table(docs))
-        console.print()
+        console.print(section)
+    console.print()
 
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n👋 Goodbye!")
-        sys.exit(0)
-    except Exception as e:
-        console = Console()
-        console.print(f"[red]Error: {e}[/red]")
-        sys.exit(1)
+        console.print("\n[dim]👋 Cancelled.[/dim]")
+        sys.exit(130)

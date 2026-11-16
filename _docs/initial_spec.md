@@ -11,7 +11,6 @@
     - page.tsx // new route template
 - _tools/ # various tools i can run manually, only put things here when specifically instructed to
     - *.py
-    - *.sh
 - app/
     - _components/
         - *.tsx

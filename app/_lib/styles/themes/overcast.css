@@ -12,6 +12,12 @@
     --shadow: rgba(0, 0, 0, 0.1);
     --content-border: rgba(92, 107, 192, 0.2);
 
+    /* Frame: soft indigo light from the top corners over a pale gray fade */
+    --frame-gradient:
+        radial-gradient(ellipse 60% 70% at 0% 0%, rgba(92, 107, 192, 0.14), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 100% 0%, rgba(121, 134, 203, 0.1), transparent 70%),
+        linear-gradient(160deg, #e8e8ec 0%, #d8d8de 100%);
+
     --chip-land-development: #4fc3f7;
     --chip-software-development: #5c6bc0;
     --chip-build-things: #ff9800;

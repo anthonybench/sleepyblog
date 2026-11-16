@@ -1,3 +1,4 @@
-imgur-python
 black
+imgur-python
+rich
 # interrogate
