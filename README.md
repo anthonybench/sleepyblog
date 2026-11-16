@@ -11,7 +11,7 @@ This is a rewrite of my original shot at this, primarily refining UI details and
 
 SleepyBlog serves as a convenient place to host my resume, document my land development journey with my partner Jean, a gallery for projects, and any other personal whimsies.
 
-[✨**_Check out SleepyBlog_**✨](https://sleepyblog.org)
+[✨***Check out SleepyBlog***✨](https://sleepyblog.org)
 
 <br />
 

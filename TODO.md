@@ -6,18 +6,18 @@
 
 - change all `_tools/*` to python tools
 - refactor python tools for style and consistency
-  - all functions have docstrings and type hinting. if the functions is "obvious" or simple in nature, it should have a one line docstring that succinctly states what it does, but if more complex than that, the best practices full function docstring format
-  - run black (as demonstrated in `_tools/format.sh`, which also please scrutinize if my black call has un-needed flags in it)
-  - make sure the `_tools/help.py` tool and the documentation are all correct, in light of the fact that now there is no github action or automation anymore, and I simply commit to main then redeploy in vercel manually
+    - all functions have docstrings and type hinting. if the functions is "obvious" or simple in nature, it should have a one line docstring that succinctly states what it does, but if more complex than that, the best practices full function docstring format
+    - run black (as demonstrated in `_tools/format.sh`, which also please scrutinize if my black call has un-needed flags in it)
+    - make sure the `_tools/help.py` tool and the documentation are all correct, in light of the fact that now there is no github action or automation anymore, and I simply commit to main then redeploy in vercel manually
 - give color themes some kind of texture or gradient on the "conjoined header side-nav frame thing"
-  - or maybe just give the color themes a little more depth, they feel a little flat as of now
+    - or maybe just give the color themes a little more depth, they feel a little flat as of now
 
 ## PHASE 2
 
 #### Tooling
 
 - my current photos workflow is annoying; maybe write tooling than what i currently have. I want to shove my photos for a post in `_media_staging/` and run some script and just have all the photos uploaded in an organized manner, and linked in the stubbed post
-  - actually in general, my post workflow i think could be improved. it is outlined in `_ephemeral/notes.md`. Read that and look at my tooling and offer a suggestion.
+    - actually in general, my post workflow i think could be improved. it is outlined in `_ephemeral/notes.md`. Read that and look at my tooling and offer a suggestion.
 
 ### Route; /
 
@@ -51,5 +51,5 @@
 ### investigate these before executing
 
 - google search console: ownership verification
-  - `metadata.verification.google` in `app/layout.tsx`
+    - `metadata.verification.google` in `app/layout.tsx`
 - could my app be re-written and optimized without nextjs? I have this hosted on vercel within a free tier so there's no real motivation to minimize the footprint of the app, but would be good just to know
