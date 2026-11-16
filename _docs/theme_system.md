@@ -54,6 +54,11 @@ Create a new CSS file in `app/_lib/styles/themes/`:
     --border: #3d2a4a;
     --shadow: rgba(255, 107, 53, 0.3);
 
+    /* Frame (sidenav + header) background, layered over --bg-secondary */
+    --frame-gradient:
+        radial-gradient(ellipse 70% 55% at 0% 100%, rgba(255, 107, 53, 0.3), transparent 70%),
+        linear-gradient(180deg, #2a1a3c 0%, #3b2040 100%);
+
     /* Post Type Chip Colors */
     --chip-land-development: #74c0fc;
     --chip-software-development: #ff6b35;
@@ -151,7 +156,10 @@ Every theme must define these CSS custom properties:
 --content-border: #color; /* Main content borders */
 --border: #color; /* General borders */
 --shadow: rgba(r, g, b, a); /* Box shadows */
+--frame-gradient: <gradient list>; /* Optional: sidenav + header background */
 ```
+
+`--frame-gradient` is one or more comma-separated gradients drawn over `--bg-secondary` on the sidenav and header. Both are fixed to the viewport, so positions like `at 0% 0%` refer to the corners of the window, and the gradient flows continuously from the header into the sidenav. A shared film-grain texture (`--frame-grain` in `main.css`) is drawn on top for every theme. If a theme leaves `--frame-gradient` out, the frame is plain `--bg-secondary` with grain.
 
 #### Post Type Chip Colors
 

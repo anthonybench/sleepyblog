@@ -1,258 +1,130 @@
 #!/usr/bin/env python
-"""SleepyBlog New Post Generator
+"""Create a new blog post from the template and open it in VS Code.
 
-Creates a new blog post stub using the current date and the template file.
+Copies `_templates/yyyy-mm-dd.md` to `_posts/<date>.md`, using today's date unless one
+is given, and fills in the post type when `--type` is passed.
 
 Usage:
-    ./_tools/new_post.py
+    ./_tools/new_post.py                          # today's date
+    ./_tools/new_post.py 2025-01-20               # a specific date
+    ./_tools/new_post.py --type land-development  # pre-fill the post type
 """
 
-import os
-import sys
-import shutil
 import argparse
 import re
+import shutil
+import subprocess
+import sys
 from datetime import datetime
 from pathlib import Path
+
 from rich.console import Console
 from rich.panel import Panel
-from rich.text import Text
-import subprocess
+
+console = Console()
+
+# keep in sync with `PostType` in app/_lib/types/post.ts
+POST_TYPES = ["land-development", "software-development", "build-things", "rant"]
 
 
 def get_project_root() -> Path:
-    """Get the project root directory"""
-    return Path(__file__).parent.parent
+    """Return the repository root directory."""
+    return Path(__file__).resolve().parent.parent
 
 
-def get_current_date_slug() -> str:
-    """Get current date in YYYY-MM-DD format"""
-    return datetime.now().strftime("%Y-%m-%d")
-
-
-def get_valid_post_types() -> list[str]:
-    """Get list of valid post types"""
-    return ["land-development", "software-development", "build-things", "rant"]
-
-
-def validate_post_type(post_type: str) -> bool:
-    """Validate if the post type is valid"""
-    return post_type in get_valid_post_types()
-
-
-def create_new_post(date_override: str = None, post_type: str = None) -> bool:
-    """
-    Create a new post from template
-
-    Args:
-        date_override: Optional date string in YYYY-MM-DD format
-        post_type: Optional post type (land-development, software-development, build-things, rant)
-
-    Returns:
-        bool: True if successful, False otherwise
-    """
-    console = Console()
-    project_root = get_project_root()
-
-    # Use provided date or current date
-    post_date = date_override if date_override else get_current_date_slug()
-
-    # Validate date format
+def parse_date(value: str) -> str:
+    """Validate a YYYY-MM-DD date string for argparse."""
     try:
-        datetime.strptime(post_date, "%Y-%m-%d")
+        datetime.strptime(value, "%Y-%m-%d")
     except ValueError:
-        console.print(
-            f"[red]Error: Invalid date format '{post_date}'. Use YYYY-MM-DD format.[/red]"
-        )
-        return False
-
-    # Validate post type if provided
-    if post_type and not validate_post_type(post_type):
-        valid_types = ", ".join(get_valid_post_types())
-        console.print(
-            f"[red]Error: Invalid post type '{post_type}'. Valid types are: {valid_types}[/red]"
-        )
-        return False
-
-    # Define paths
-    template_path = project_root / "_templates" / "yyyy-mm-dd.md"
-    posts_dir = project_root / "_posts"
-    new_post_path = posts_dir / f"{post_date}.md"
-
-    # Check if template exists
-    if not template_path.exists():
-        console.print(f"[red]Error: Template file not found at {template_path}[/red]")
-        return False
-
-    # Check if post already exists
-    if new_post_path.exists():
-        console.print(f"[yellow]Warning: Post {post_date}.md already exists![/yellow]")
-        overwrite = (
-            console.input("Do you want to overwrite it? [y/N]: ").lower().strip()
-        )
-        if overwrite not in ["y", "yes"]:
-            console.print("[dim]Operation cancelled.[/dim]")
-            return False
-
-    # Create posts directory if it doesn't exist
-    posts_dir.mkdir(exist_ok=True)
-
-    try:
-        # Copy template to new post
-        shutil.copy2(template_path, new_post_path)
-
-        # If post type is provided, replace the TYPE placeholder in the file
-        if post_type:
-            with open(new_post_path, "r", encoding="utf-8") as file:
-                content = file.read()
-
-            # Replace the TYPE placeholder with the actual post type
-            content = re.sub(
-                r'^type: "TYPE"', f'type: "{post_type}"', content, flags=re.MULTILINE
-            )
-
-            with open(new_post_path, "w", encoding="utf-8") as file:
-                file.write(content)
-
-        # Success message
-        title = Text("✅ New Post Created!", style="bold bright_green")
-        type_info = f"• Type: [cyan]{post_type}[/cyan]\n" if post_type else ""
-        next_steps = (
-            "1. Edit the post file to add your content\n2. Update the frontmatter (title, media)\n3. Write your post content in markdown"
-            if post_type
-            else "1. Edit the post file to add your content\n2. Update the frontmatter (title, media, type)\n3. Write your post content in markdown"
-        )
-
-        content = f"""
-{type_info}• File: {new_post_path.relative_to(project_root)}
-• Template: {template_path.relative_to(project_root)}
-
-Next Steps:
-{next_steps}
-
-Quick Commands:
-• Open in editor: code {new_post_path.relative_to(project_root)}
-• View posts: ./_tools/help.py
-        """
-
-        console.print()
-        console.print(
-            Panel.fit(title, subtitle=f"[cyan]{post_date}[/cyan]".strip(), border_style="bright_green")
-        )
-        print(content.strip())
-        console.print()
-
-        subprocess.run(
-            f"code {new_post_path.relative_to(project_root)}",
-            shell=True,
-            capture_output=False,
-            text=True,
-            executable="/bin/zsh",
-        )
-
-        return True
-
-    except Exception as e:
-        console.print(f"[red]Error creating post: {e}[/red]")
-        return False
+        raise argparse.ArgumentTypeError(f"'{value}' is not a YYYY-MM-DD date")
+    return value
 
 
-def main():
-    """Main function"""
-    console = Console()
-
-    # Set up argument parser
+def parse_args() -> argparse.Namespace:
+    """Parse the command-line arguments."""
     parser = argparse.ArgumentParser(
-        description="Create a new blog post from template",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog=f"""
-Examples:
-  {sys.argv[0]}                           Create post with today's date
-  {sys.argv[0]} 2025-01-20               Create post with specific date
-  {sys.argv[0]} --type software-development  Create post with specific type
-  {sys.argv[0]} 2025-01-20 --type rant   Create post with date and type
-
-Valid post types: {', '.join(get_valid_post_types())}
-        """,
+        description="Create a new blog post from _templates/yyyy-mm-dd.md.",
     )
-
     parser.add_argument(
         "date",
         nargs="?",
-        help="Date for the post in YYYY-MM-DD format (defaults to today)",
+        type=parse_date,
+        default=datetime.now().strftime("%Y-%m-%d"),
+        help="post date in YYYY-MM-DD format (default: today)",
     )
     parser.add_argument(
         "--type",
         "-t",
-        choices=get_valid_post_types(),
-        help="Post type (pre-fills the type field in frontmatter)",
+        choices=POST_TYPES,
+        help="pre-fill the post type in the frontmatter",
     )
+    return parser.parse_args()
 
-    # Parse arguments
-    try:
-        args = parser.parse_args()
-    except SystemExit:
+
+def create_post(post_path: Path, template_path: Path, post_type: str | None) -> None:
+    """Write a new post from the template, filling in the post type if one is given.
+
+    Args:
+        post_path: Where to write the new post.
+        template_path: The post template to copy.
+        post_type: Replaces the template's `TYPE` placeholder; left as-is if None.
+    """
+    content = template_path.read_text(encoding="utf-8")
+    if post_type:
+        content = re.sub(
+            r'^type: "TYPE"', f'type: "{post_type}"', content, count=1, flags=re.M
+        )
+    post_path.parent.mkdir(exist_ok=True)
+    post_path.write_text(content, encoding="utf-8")
+
+
+def open_in_editor(path: Path) -> None:
+    """Open a file in VS Code, if its `code` command is installed."""
+    if shutil.which("code") is None:
+        console.print("[dim]`code` isn't on PATH, so open the post yourself.[/dim]")
         return
+    subprocess.run(["code", str(path)], check=False)
 
-    # Print header
-    title = Text("SleepyBlog New Post Generator", style="bold bright_white")
-    subtitle = Text("📝 Stub new post", style="dim")
 
-    console.print()
-    console.print(Panel.fit(title, subtitle=subtitle, border_style="bright_blue"))
-    console.print()
+def main() -> None:
+    """Create the post, print next steps, and open it in VS Code."""
+    args = parse_args()
+    project_root = get_project_root()
+    template_path = project_root / "_templates" / "yyyy-mm-dd.md"
+    post_path = project_root / "_posts" / f"{args.date}.md"
+    relative_post_path = post_path.relative_to(project_root)
 
-    # Create the post
-    success = create_new_post(args.date, args.type)
-
-    if not success:
+    if not template_path.exists():
+        console.print(f"[red]✗ Template not found at {template_path}[/red]")
         sys.exit(1)
 
+    if post_path.exists():
+        answer = console.input(
+            f"[yellow]{relative_post_path} already exists. Overwrite it? [y/N]: [/yellow]"
+        )
+        if answer.strip().lower() not in ("y", "yes"):
+            console.print("[dim]Cancelled.[/dim]")
+            return
 
-def show_help():
-    """Show help information (kept for backward compatibility)"""
-    console = Console()
+    create_post(post_path, template_path, args.type)
 
-    help_text = f"""
-[bold bright_yellow]SleepyBlog New Post Generator[/bold bright_yellow]
-
-[bold]Usage:[/bold]
-  [cyan]./_tools/new_post.py[/cyan]                           Create post with today's date
-  [cyan]./_tools/new_post.py 2025-01-20[/cyan]               Create post with specific date
-  [cyan]./_tools/new_post.py --type software-development[/cyan] Create post with specific type
-  [cyan]./_tools/new_post.py 2025-01-20 --type rant[/cyan]   Create post with date and type
-  [cyan]./_tools/new_post.py --help[/cyan]                   Show detailed help message
-
-[bold]Description:[/bold]
-Creates a new blog post by copying the template file [cyan]_templates/yyyy-mm-dd.md[/cyan]
-to [cyan]_posts/YYYY-MM-DD.md[/cyan] with the current or specified date and optional type.
-
-[bold]Examples:[/bold]
-  [cyan]./_tools/new_post.py[/cyan]                        → Creates _posts/2025-01-19.md
-  [cyan]./_tools/new_post.py 2025-12-25[/cyan]            → Creates _posts/2025-12-25.md  
-  [cyan]./_tools/new_post.py --type build-things[/cyan]   → Creates post with type pre-filled
-
-[bold]Valid Post Types:[/bold]
-{', '.join([f'[cyan]{t}[/cyan]' for t in get_valid_post_types()])}
-
-[bold]Notes:[/bold]
-• Date format must be YYYY-MM-DD
-• Will prompt before overwriting existing posts
-• Template file must exist in _templates/yyyy-mm-dd.md
-• Post type will replace "TYPE" placeholder in template
-    """
-
-    console.print(Panel(help_text.strip(), title="Help", border_style="bright_yellow"))
+    fill_in = "title, media" if args.type else "title, media, type"
+    console.print(
+        Panel.fit(
+            f"[bold]{relative_post_path}[/bold]\n\n"
+            f"Next: fill in the frontmatter ({fill_in}), then write the post.\n"
+            "Photos: put them in _media_staging/ and run ./_tools/handle_media_files.py",
+            title="✅ New post created",
+            border_style="bright_green",
+        )
+    )
+    open_in_editor(post_path)
 
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        console = Console()
-        console.print("\n[dim]👋 Goodbye![/dim]")
-        sys.exit(0)
-    except Exception as e:
-        console = Console()
-        console.print(f"[red]Unexpected error: {e}[/red]")
-        sys.exit(1)
+        console.print("\n[dim]👋 Cancelled.[/dim]")
+        sys.exit(130)

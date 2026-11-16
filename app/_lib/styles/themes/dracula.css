@@ -12,6 +12,12 @@
     --shadow: rgba(0, 0, 0, 0.3);
     --content-border: rgba(189, 147, 249, 0.3);
 
+    /* Frame: violet glow in the top-left corner, pink at the far end of the header */
+    --frame-gradient:
+        radial-gradient(ellipse 60% 70% at 0% 0%, rgba(189, 147, 249, 0.22), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 100% 0%, rgba(255, 121, 198, 0.12), transparent 70%),
+        linear-gradient(160deg, #4a4d62 0%, #3a3c4e 100%);
+
     --chip-land-development: #8be9fd;
     --chip-software-development: #bd93f9;
     --chip-build-things: #ffb86c;

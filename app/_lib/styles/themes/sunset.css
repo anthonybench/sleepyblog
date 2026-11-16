@@ -16,6 +16,12 @@
     --border: #3d2a4a;
     --shadow: rgba(255, 107, 53, 0.3);
 
+    /* Frame: dusk purple overhead, an orange sun setting at the bottom of the sidenav */
+    --frame-gradient:
+        radial-gradient(ellipse 70% 55% at 0% 100%, rgba(255, 107, 53, 0.3), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 100% 0%, rgba(247, 147, 30, 0.12), transparent 70%),
+        linear-gradient(180deg, #2a1a3c 0%, #3b2040 100%);
+
     --chip-land-development: #74c0fc;
     --chip-software-development: #ff6b35;
     --chip-build-things: #f7931e;
