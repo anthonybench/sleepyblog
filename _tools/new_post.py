@@ -79,6 +79,17 @@ def create_post(post_path: Path, template_path: Path, post_type: str | None) -> 
     post_path.write_text(content, encoding="utf-8")
 
 
+def count_staged_media(staging_dir: Path) -> int:
+    """Count the non-hidden files waiting in `_media_staging/`."""
+    if not staging_dir.is_dir():
+        return 0
+    return sum(
+        1
+        for path in staging_dir.iterdir()
+        if path.is_file() and not path.name.startswith(".")
+    )
+
+
 def open_in_editor(path: Path) -> None:
     """Open a file in VS Code, if its `code` command is installed."""
     if shutil.which("code") is None:
@@ -101,7 +112,7 @@ def main() -> None:
 
     if post_path.exists():
         answer = console.input(
-            f"[yellow]{relative_post_path} already exists. Overwrite it? [y/N]: [/yellow]"
+            f"[yellow]{relative_post_path} already exists. Overwrite it? \\[y/N]: [/yellow]"
         )
         if answer.strip().lower() not in ("y", "yes"):
             console.print("[dim]Cancelled.[/dim]")
@@ -109,16 +120,22 @@ def main() -> None:
 
     create_post(post_path, template_path, args.type)
 
-    fill_in = "title, media" if args.type else "title, media, type"
+    fill_in = "title" if args.type else "title, type"
     console.print(
         Panel.fit(
             f"[bold]{relative_post_path}[/bold]\n\n"
             f"Next: fill in the frontmatter ({fill_in}), then write the post.\n"
-            "Photos: put them in _media_staging/ and run ./_tools/handle_media_files.py",
+            "Photos: drop them in _media_staging/ and run ./_tools/add_media.py",
             title="✅ New post created",
             border_style="bright_green",
         )
     )
+    staged_count = count_staged_media(project_root / "_media_staging")
+    if staged_count:
+        console.print(
+            f"📸 {staged_count} file(s) are waiting in _media_staging/. "
+            "Run ./_tools/add_media.py to add them to this post."
+        )
     open_in_editor(post_path)
 
 

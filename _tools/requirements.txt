@@ -1,4 +1,7 @@
 black
 imgur-python
+pillow
+pillow-heif
+pyyaml
 rich
 # interrogate
