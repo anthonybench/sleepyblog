@@ -76,5 +76,5 @@ if __name__ == "__main__":
 
 - `new_post.py`: argument parsing with argparse, file templating
 - `build.py` / `format.py`: running external commands and reporting failures
-- `handle_media_files.py`: env vars and calling an external API
+- `add_media.py`: env vars, image processing with Pillow, calling an external API, editing frontmatter
 - `help.py`: rich tables and reading other files' docstrings

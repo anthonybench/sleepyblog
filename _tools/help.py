@@ -23,16 +23,17 @@ WORKFLOW_STEPS = [
     ("1. Stub a post", "./_tools/new_post.py --type <type>"),
     (
         "2. Add photos",
-        "Put them in _media_staging/, run ./_tools/handle_media_files.py, and paste "
-        "the printed [cyan]media:[/cyan] line into the post's frontmatter.",
+        "Drop them in _media_staging/ and run ./_tools/add_media.py. It uploads them "
+        "and adds the links to the newest post's [cyan]media:[/cyan] list.",
     ),
     ("3. Write & preview", "npm run dev → http://localhost:3000"),
-    ("4. Check", "./_tools/format.py && ./_tools/build.py"),
+    ("4. Format", "./_tools/format.py"),
     (
         "5. Publish",
-        "Commit and push. Vercel deploys every push on its own: a branch push gets a "
-        "preview URL, and main goes to production. There is no CI, so step 4 is the "
-        "only check before deploying.",
+        "./_tools/publish.py builds, then commits and pushes everything once you "
+        "confirm. Vercel deploys every push on its own: main goes to production, any "
+        "other branch gets a preview URL. There is no CI; the build check in "
+        "publish.py is the only one.",
     ),
 ]
 

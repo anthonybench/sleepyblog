@@ -20,11 +20,35 @@ function isVideoUrl(url: string): boolean {
 }
 
 /**
+ * Matches a direct imgur photo link: https://i.imgur.com/<id>.<ext>
+ * GIFs are left out because imgur's resized copies of them don't animate.
+ */
+const IMGUR_IMAGE_URL = /^(https:\/\/i\.imgur\.com\/[A-Za-z0-9]+)(\.(?:jpe?g|png))$/i;
+
+/**
+ * Returns imgur's 1024px resized copy of an imgur image ("h" suffix), which is far
+ * smaller than the original phone photo; other URLs are returned unchanged.
+ */
+function getThumbnailUrl(url: string): string {
+    return url.replace(IMGUR_IMAGE_URL, "$1h$2");
+}
+
+/**
  * Individual media item component (image or video)
  */
 function MediaItem({ url, index }: MediaItemProps): JSX.Element {
     const [hasError, setHasError] = useState(false);
+    const [imageSrc, setImageSrc] = useState(getThumbnailUrl(url));
     const isVideo = isVideoUrl(url);
+
+    // If the resized copy fails to load, fall back to the original before giving up
+    const handleImageError = (): void => {
+        if (imageSrc !== url) {
+            setImageSrc(url);
+        } else {
+            setHasError(true);
+        }
+    };
 
     if (hasError) {
         return (
@@ -52,15 +76,18 @@ function MediaItem({ url, index }: MediaItemProps): JSX.Element {
 
     return (
         <div className="media-item image-item">
-            <Image
-                src={url}
-                alt={`Media ${index + 1}`}
-                width={400}
-                height={300}
-                className="media-image"
-                onError={() => setHasError(true)}
-                unoptimized // For external URLs
-            />
+            {/* Thumbnail shows the resized copy; clicking opens the full-size original */}
+            <a href={url} target="_blank" rel="noopener noreferrer">
+                <Image
+                    src={imageSrc}
+                    alt={`Media ${index + 1}`}
+                    width={400}
+                    height={300}
+                    className="media-image"
+                    onError={handleImageError}
+                    unoptimized // For external URLs
+                />
+            </a>
         </div>
     );
 }
