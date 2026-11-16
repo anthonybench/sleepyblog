@@ -1,15 +1,22 @@
-import { ImageResponse } from "next/og";
+import type { ImageResponse } from "next/og";
 import { getPostBySlug } from "@/app/_lib/utils/posts";
 import { dataConfig } from "@/app/_lib/utils/dataConfig";
 import { postTypeDisplayNames, type PostType } from "@/app/_lib/types/post";
+import { OG_CONTENT_TYPE, OG_SIZE, ogColors, ogText, renderOgImage } from "@/app/_lib/og";
 
-// Image metadata
 export const alt = "Blog Post";
-export const size = {
-    width: 1200,
-    height: 630,
+export const size = OG_SIZE;
+export const contentType = OG_CONTENT_TYPE;
+
+/** Card border and chip color for each post type (Dracula palette) */
+const postTypeColors: Record<PostType, string> = {
+    "land-development": "#50fa7b",
+    "software-development": "#8be9fd",
+    "build-things": "#ffb86c",
+    rant: "#ff5555",
 };
-export const contentType = "image/png";
+
+const MAX_EXCERPT_LENGTH = 100;
 
 interface OpenGraphImageProps {
     params: Promise<{
@@ -17,7 +24,23 @@ interface OpenGraphImageProps {
     }>;
 }
 
-// Image generation
+/**
+ * Format a yyyy-mm-dd post date as e.g. "November 19, 2025". The date is built from
+ * its parts so it can't shift a day in timezones behind UTC.
+ */
+function formatPostDate(post_date: string): string {
+    const [year, month, day] = post_date.split("-").map(Number);
+    return new Date(year, month - 1, day).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+}
+
+/**
+ * Open Graph image for a post: type chip, title, excerpt, and date, in a card bordered
+ * with the post type's color.
+ */
 export default async function OpenGraphImage({
     params,
 }: OpenGraphImageProps): Promise<ImageResponse> {
@@ -25,144 +48,71 @@ export default async function OpenGraphImage({
     const post = getPostBySlug(slug);
 
     if (!post) {
-        // Fallback image for non-existent posts
-        return new ImageResponse(
-            <div
-                style={{
-                    height: "100%",
-                    width: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#282a36",
-                    color: "#f8f8f2",
-                    fontSize: "48px",
-                    fontFamily: "system-ui, -apple-system, sans-serif",
-                }}
-            >
+        return renderOgImage(
+            <div style={{ ...ogText, fontSize: "48px", color: ogColors.foreground }}>
                 Post Not Found
             </div>,
-            { ...size },
         );
     }
 
-    const postTypeDisplay = postTypeDisplayNames[post.type];
     const typeColor = postTypeColors[post.type];
+    const excerpt =
+        post.excerpt.length > MAX_EXCERPT_LENGTH
+            ? `${post.excerpt.substring(0, MAX_EXCERPT_LENGTH)}...`
+            : post.excerpt;
 
-    return new ImageResponse(
-        <div
-            style={{
-                height: "100%",
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#282a36",
-                backgroundImage:
-                    "linear-gradient(45deg, #282a36 25%, #44475a 25%, #44475a 50%, #282a36 50%, #282a36 75%, #44475a 75%)",
-                backgroundSize: "40px 40px",
-                padding: "60px",
-            }}
-        >
+    return renderOgImage(
+        <>
             <div
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#282a36",
-                    borderRadius: "24px",
-                    padding: "60px",
-                    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.5)",
-                    border: `3px solid ${typeColor}`,
-                    maxWidth: "1000px",
-                    textAlign: "center",
+                    ...ogText,
+                    fontSize: "24px",
+                    fontWeight: "600",
+                    color: typeColor,
+                    backgroundColor: `${typeColor}20`,
+                    padding: "12px 24px",
+                    borderRadius: "20px",
+                    marginBottom: "30px",
                 }}
             >
-                {/* Post type chip */}
-                <div
-                    style={{
-                        fontSize: "24px",
-                        color: typeColor,
-                        backgroundColor: `${typeColor}20`,
-                        padding: "12px 24px",
-                        borderRadius: "20px",
-                        marginBottom: "30px",
-                        fontFamily: "system-ui, -apple-system, sans-serif",
-                        fontWeight: "600",
-                    }}
-                >
-                    {postTypeDisplay}
-                </div>
-
-                {/* Post title */}
-                <div
-                    style={{
-                        fontSize: post.title.length > 50 ? "48px" : "56px",
-                        fontWeight: "900",
-                        color: "#f8f8f2",
-                        marginBottom: "20px",
-                        textAlign: "center",
-                        fontFamily: "system-ui, -apple-system, sans-serif",
-                        lineHeight: "1.2",
-                        maxWidth: "900px",
-                    }}
-                >
-                    {post.title}
-                </div>
-
-                {/* Post excerpt */}
-                {post.excerpt && (
-                    <div
-                        style={{
-                            fontSize: "28px",
-                            color: "#6272a4",
-                            textAlign: "center",
-                            maxWidth: "800px",
-                            lineHeight: "1.4",
-                            fontFamily: "system-ui, -apple-system, sans-serif",
-                            marginBottom: "30px",
-                        }}
-                    >
-                        {post.excerpt.length > 100
-                            ? `${post.excerpt.substring(0, 100)}...`
-                            : post.excerpt}
-                    </div>
-                )}
-
-                {/* Site name and date */}
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "20px",
-                        fontSize: "20px",
-                        color: "#50fa7b",
-                        fontFamily: "system-ui, -apple-system, sans-serif",
-                    }}
-                >
-                    <span>{dataConfig.site_name}</span>
-                    <span style={{ color: "#6272a4" }}>•</span>
-                    <span>
-                        {new Date(post.post_date).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })}
-                    </span>
-                </div>
+                {postTypeDisplayNames[post.type]}
             </div>
-        </div>,
-        {
-            ...size,
-        },
+
+            <div
+                style={{
+                    ...ogText,
+                    fontSize: post.title.length > 50 ? "48px" : "64px",
+                    fontWeight: "900",
+                    color: ogColors.foreground,
+                    lineHeight: "1.2",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    marginBottom: "20px",
+                }}
+            >
+                {post.title}
+            </div>
+
+            {excerpt && (
+                <div
+                    style={{
+                        ...ogText,
+                        fontSize: "28px",
+                        color: ogColors.comment,
+                        lineHeight: "1.4",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        marginBottom: "30px",
+                    }}
+                >
+                    {excerpt}
+                </div>
+            )}
+
+            <div style={{ ...ogText, fontSize: "24px", color: ogColors.pink }}>
+                {`${dataConfig.site_name} · ${formatPostDate(post.post_date)}`}
+            </div>
+        </>,
+        { accent: typeColor, cardStyle: { maxWidth: "1000px" } },
     );
 }
-
-const postTypeColors: Record<PostType, string> = {
-    "land-development": "#50fa7b",
-    "software-development": "#8be9fd",
-    "build-things": "#ffb86c",
-    rant: "#ff5555",
-};

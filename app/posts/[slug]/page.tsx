@@ -34,8 +34,9 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
     const postTypeDisplay = postTypeDisplayNames[post.type];
     const fullTitle = `${post.title} - ${postTypeDisplay}`;
 
-    // Use first image from media as OG image, fallback to default
-    const ogImage = post.media && post.media.length > 0 ? post.media[0] : "/og-image.png";
+    // Link previews use the post's first photo. Setting images here overrides
+    // ./opengraph-image.tsx, so posts without photos fall back to that generated card.
+    const firstPhoto = post.media.find((url) => !/\.(mp4|webm|ogg|mov|avi)$/i.test(url));
 
     // Format date for structured data
     const [year, month, day] = post.post_date.split("-").map(Number);
@@ -65,14 +66,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
             authors: [dataConfig.author_name],
             section: postTypeDisplay,
             tags: [post.type, postTypeDisplay.toLowerCase()],
-            images: [
-                {
-                    url: ogImage,
-                    width: 1200,
-                    height: 630,
-                    alt: post.title,
-                },
-            ],
+            ...(firstPhoto && { images: [{ url: firstPhoto, alt: post.title }] }),
         },
 
         other: {
