@@ -89,14 +89,14 @@ export default function HomePage(): JSX.Element {
                 <div className="navigation-buttons">
                     <button
                         onClick={handleFirstPost}
-                        className="nav-button first-post-button"
+                        className="home-nav-button first-post-button"
                         disabled={allPosts.length === 0}
                     >
                         First Post
                     </button>
                     <button
                         onClick={handleRandomPost}
-                        className="nav-button random-post-button"
+                        className="home-nav-button random-post-button"
                         disabled={allPosts.length === 0}
                     >
                         Random Post 🎲

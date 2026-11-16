@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { JSX } from "react";
+import type { CSSProperties, JSX } from "react";
 import { useTheme } from "@/app/_lib/utils/themeContext";
 import { dataConfig } from "@/app/_lib/utils/dataConfig";
 import ResumeModal from "@/app/_components/ResumeModal";
@@ -17,7 +17,12 @@ export default function AboutPage(): JSX.Element {
     const image_path = current_theme.type === "dark" ? "/dark" : "/light";
     const [is_resume_modal_open, setIsResumeModalOpen] = useState(false);
 
-    const scaleFactor = 1.35;
+    const socialLinks = [
+        { label: "GitHub", href: dataConfig.github_url, icon: `${image_path}/github.png` },
+        { label: "PyPI", href: dataConfig.pypi_url, icon: "/static/pypi.png" },
+        { label: "Docker Hub", href: dataConfig.dockerhub_url, icon: "/static/docker.png" },
+        { label: "Duolingo", href: dataConfig.duolingo_url, icon: "/static/duolingo.svg" },
+    ];
 
     return (
         <>
@@ -38,7 +43,7 @@ export default function AboutPage(): JSX.Element {
                         </div>
                         <div className="profile-info">
                             <h1 className="profile-name">Isaac Yep</h1>
-                            <p className="profile-title">Human who builds things</p>
+                            <p className="profile-title">I&apos;m compelled to build things</p>
                             <button
                                 className="resume-button"
                                 onClick={() => setIsResumeModalOpen(true)}
@@ -73,7 +78,11 @@ export default function AboutPage(): JSX.Element {
                 <section className="about-social">
                     <h2>Connect With Me</h2>
 
-                    <div className="social-section">
+                    {/* --social-link-count lets the CSS size the badge to match the cards */}
+                    <div
+                        className="social-section"
+                        style={{ "--social-link-count": socialLinks.length } as CSSProperties}
+                    >
                         {/* Special LinkedIn Badge */}
                         <div className="linkedin-badge-container">
                             <Link
@@ -85,8 +94,8 @@ export default function AboutPage(): JSX.Element {
                                 <Image
                                     src={`${image_path}/linkedin_badge.png`}
                                     alt="Connect with Isaac Yep on LinkedIn"
-                                    width={284 * scaleFactor}
-                                    height={244 * scaleFactor}
+                                    width={590}
+                                    height={474}
                                     className="linkedin-badge-image"
                                 />
                             </Link>
@@ -94,60 +103,23 @@ export default function AboutPage(): JSX.Element {
 
                         {/* Other Social Links */}
                         <div className="social-links">
-                            <Link
-                                href={dataConfig.github_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-link"
-                            >
-                                <Image
-                                    src={`${image_path}/github.png`}
-                                    alt="GitHub"
-                                    width={40}
-                                    height={40}
-                                />
-                                <span>GitHub</span>
-                            </Link>
-
-                            <Link
-                                href={dataConfig.pypi_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-link"
-                            >
-                                <Image src="/static/pypi.png" alt="PyPI" width={40} height={40} />
-                                <span>PyPI</span>
-                            </Link>
-
-                            <Link
-                                href={dataConfig.dockerhub_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-link"
-                            >
-                                <Image
-                                    src="/static/docker.png"
-                                    alt="Docker Hub"
-                                    width={40}
-                                    height={40}
-                                />
-                                <span>Docker Hub</span>
-                            </Link>
-
-                            <Link
-                                href={dataConfig.duolingo_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-link"
-                            >
-                                <Image
-                                    src="/static/duolingo.svg"
-                                    alt="Duolingo"
-                                    width={40}
-                                    height={40}
-                                />
-                                <span>Duolingo</span>
-                            </Link>
+                            {socialLinks.map((link) => (
+                                <Link
+                                    key={link.label}
+                                    href={link.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="social-link"
+                                >
+                                    <Image
+                                        src={link.icon}
+                                        alt={link.label}
+                                        width={40}
+                                        height={40}
+                                    />
+                                    <span>{link.label}</span>
+                                </Link>
+                            ))}
                         </div>
                     </div>
                 </section>

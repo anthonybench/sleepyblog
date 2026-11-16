@@ -15,14 +15,7 @@ export const metadata: Metadata = {
         title: `About ${dataConfig.author_name}`,
         description: dataConfig.author_bio,
         siteName: dataConfig.site_name,
-        images: [
-            {
-                url: dataConfig.author_image,
-                width: 400,
-                height: 400,
-                alt: `${dataConfig.author_name} - Profile Photo`,
-            },
-        ],
+        // the image comes from ./opengraph-image.tsx, which overrides any set here
     },
 };
 
