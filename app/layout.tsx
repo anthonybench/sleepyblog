@@ -33,14 +33,7 @@ export const metadata: Metadata = {
         title: dataConfig.site_name,
         description: dataConfig.site_description,
         siteName: dataConfig.site_name,
-        images: [
-            {
-                url: "/og-image.png",
-                width: 1200,
-                height: 630,
-                alt: `${dataConfig.site_name} - ${dataConfig.site_description}`,
-            },
-        ],
+        // the image comes from ./opengraph-image.tsx
     },
 
     robots: {
