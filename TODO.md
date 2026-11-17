@@ -2,22 +2,36 @@
 
 ## Hot
 
-### /software
-- add https://anthonybench.github.io/ :: "SleepyLinkTree" my github pages where i prototype color themes. it was where i developed my style for theme selection, and also where i got to experiment with the "bento grid" layout
-
 ### /furniture
-- Time to implement the furniture page! I want this page to be a photo gallery of wood working projects. Tell me a cool way to do this that's reliable, and not too complex, and should i continue hosting my images on imgur for this? I don't want to pay for anything. I want the process of adding a new image to have tooling so that it's simple to do if i haven't done it in a while, and also a doc in `_docs/`
+
+A simple photo gallery of woodworking projects. Photos only, each with an optional caption. No per-piece pages or modals.
+
+- Pick a layout to try (masonry, justified rows, polaroid scatter, filmstrip, ...); prototype two or three and keep the one that's fun to browse
+- Store the gallery as a list of `{ url, caption? }` entries, e.g. `_furniture/gallery.yml`
+- Host photos on imgur, uploaded with `add_media.py` (add a furniture target that appends to the list and asks for a caption)
+- Do one real imgur upload end to end first; `add_media.py` has only been tested against a fake client since the rewrite
+- Replace the "Coming Soon" stub in `app/furniture/page.tsx`
+- Remove `/furniture` from `Disallow` in `app/robots.txt` and add it to `app/sitemap.ts`
+- Write `_docs/furniture_gallery.md`
 
 ## Cold
 
 ### Dockerize
 
-- write as a docker container that I could run on any web server
-- write documentation on how to upload to dockerhub, but put it in `_ephemeral/` so it doesn't get tracked by git
-- implement interrogate for `_tools/*.py docstrings`
+- Build a Docker image from Next.js's standalone output (`output: "standalone"`) that runs anywhere with `docker run -p 3000:3000`
+- Notes on publishing it to Docker Hub, kept in `_ephemeral/`
 
-### investigate these before executing
+### Docstring coverage
 
-- google search console: ownership verification
-    - `metadata.verification.google` in `app/layout.tsx`
-- could my app be re-written and optimized without nextjs? I have this hosted on vercel within a free tier so there's no real motivation to minimize the footprint of the app, but would be good just to know
+- Add `interrogate` to `_tools/requirements.txt` (replacing the `# interrogate` placeholder) and have `build.py` fail below 100% coverage in `_tools/`
+
+### Upgrade to Next.js 16
+
+- Clears the remaining `npm audit` advisories (postcss and sharp bundled with Next 15); Vercel may eventually refuse to build a vulnerable version
+- Bump `next` and `eslint-config-next` together, then check the build and OG images
+
+### Google Search Console
+
+- `app/layout.tsx` sets `verification: { google: "TODO" }`, which puts a junk meta tag on every page
+- If ever wanted: verify sleepyblog.org with a DNS TXT record instead, delete the `verification` block, and submit `/sitemap.xml`
+- Only worth it if posts become indexable; `app/robots.txt` currently has `Disallow: /posts/*`
