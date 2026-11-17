@@ -82,7 +82,7 @@ Add the import to `app/_lib/styles/main.css`:
 
 ### Step 3: Register Theme in TypeScript
 
-Update `app/_lib/types/theme.ts`:
+Add it to the `themes` list in `app/_lib/types/theme.ts`. The list's order is the dropdown's order (existing entries abbreviated here):
 
 ```typescript
 export const themes: Theme[] = [
@@ -173,7 +173,10 @@ Every theme must define these CSS custom properties:
 --border: #color; /* General borders */
 --shadow: rgba(r, g, b, a); /* Box shadows */
 --frame-gradient: <gradient list>; /* Optional: sidenav + header background */
+--text-on-accent: #color; /* Optional: text on accent-colored buttons, default white */
 ```
+
+Set `--text-on-accent` when the accents are too pale for white text (Monokai's yellow, Dream's pink).
 
 `--frame-gradient` is one or more comma-separated gradients drawn over `--bg-secondary` on the sidenav and header. Both are fixed to the viewport, so positions like `at 0% 0%` refer to the corners of the window, and the gradient flows continuously from the header into the sidenav. A shared film-grain texture (`--frame-grain` in `main.css`) is drawn on top for every theme. If a theme leaves `--frame-gradient` out, the frame is plain `--bg-secondary` with grain.
 

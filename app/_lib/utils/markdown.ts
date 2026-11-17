@@ -17,6 +17,14 @@ const CODE_THEMES: PrettyCodeOptions["theme"] = {
     overcast: "github-light",
     sunset: "vesper",
     mist: "catppuccin-latte",
+    nord: "nord",
+    monokai: "monokai",
+    ocean: "material-theme-ocean",
+    "solarized-dark": "solarized-dark",
+    "day-one": "one-light",
+    gruvbox: "gruvbox-light-hard",
+    "solarized-light": "solarized-light",
+    dream: "rose-pine-dawn",
 };
 
 /**

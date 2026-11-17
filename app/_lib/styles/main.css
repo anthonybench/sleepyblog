@@ -4,6 +4,14 @@
 @import "./themes/overcast.css";
 @import "./themes/sunset.css";
 @import "./themes/mist.css";
+@import "./themes/nord.css";
+@import "./themes/monokai.css";
+@import "./themes/ocean.css";
+@import "./themes/solarized-dark.css";
+@import "./themes/day-one.css";
+@import "./themes/gruvbox.css";
+@import "./themes/solarized-light.css";
+@import "./themes/dream.css";
 
 /*
  * JetBrains Mono's box-drawing characters (╭ ─ ┬ │ ...), used by terminal-table output
@@ -267,6 +275,7 @@ body {
 
 .theme-name {
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .theme-icon {
@@ -298,14 +307,17 @@ body {
 .theme-dropdown {
     position: absolute;
     top: calc(100% + 0.25rem);
-    left: 0;
     right: 0;
+    min-width: 100%; /* at least as wide as the button, wider for long names */
+    width: max-content;
     background-color: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 6px;
     box-shadow: 0 4px 12px var(--shadow);
     z-index: 1000;
-    overflow: hidden;
+    /* twelve themes: scroll rather than run off short screens */
+    max-height: min(28rem, calc(100dvh - 5rem));
+    overflow-y: auto;
 }
 
 .theme-option {
@@ -330,11 +342,11 @@ body {
 
 .theme-option.selected {
     background-color: var(--accent-primary);
-    color: white;
+    color: var(--text-on-accent, white);
 }
 
 .theme-option.selected .theme-icon {
-    color: white;
+    color: var(--text-on-accent, white);
 }
 
 .theme-option:not(.selected) .theme-icon {
@@ -458,6 +470,11 @@ body {
 
     .theme-name {
         font-size: 0.8rem;
+    }
+
+    /* long names ("Solarized Light") wrap in the button rather than overflow the header */
+    .theme-selector-button .theme-name {
+        white-space: normal;
     }
 
     .theme-option {
@@ -600,7 +617,7 @@ body {
 
 .resume-button {
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    color: white;
+    color: var(--text-on-accent, white);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
@@ -1132,7 +1149,7 @@ body {
 
 .random-post-button {
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    color: white;
+    color: var(--text-on-accent, white);
     border-color: transparent;
 }
 
@@ -1143,7 +1160,7 @@ body {
 
 .first-post-button {
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    color: white;
+    color: var(--text-on-accent, white);
     border-color: transparent;
 }
 
@@ -1666,6 +1683,54 @@ body {
     color: var(--shiki-mist);
     font-style: var(--shiki-mist-font-style);
     font-weight: var(--shiki-mist-font-weight);
+}
+
+:root[data-theme="nord"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-nord);
+    font-style: var(--shiki-nord-font-style);
+    font-weight: var(--shiki-nord-font-weight);
+}
+
+:root[data-theme="monokai"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-monokai);
+    font-style: var(--shiki-monokai-font-style);
+    font-weight: var(--shiki-monokai-font-weight);
+}
+
+:root[data-theme="ocean"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-ocean);
+    font-style: var(--shiki-ocean-font-style);
+    font-weight: var(--shiki-ocean-font-weight);
+}
+
+:root[data-theme="solarized-dark"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-solarized-dark);
+    font-style: var(--shiki-solarized-dark-font-style);
+    font-weight: var(--shiki-solarized-dark-font-weight);
+}
+
+:root[data-theme="day-one"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-day-one);
+    font-style: var(--shiki-day-one-font-style);
+    font-weight: var(--shiki-day-one-font-weight);
+}
+
+:root[data-theme="gruvbox"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-gruvbox);
+    font-style: var(--shiki-gruvbox-font-style);
+    font-weight: var(--shiki-gruvbox-font-weight);
+}
+
+:root[data-theme="solarized-light"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-solarized-light);
+    font-style: var(--shiki-solarized-light-font-style);
+    font-weight: var(--shiki-solarized-light-font-weight);
+}
+
+:root[data-theme="dream"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-dream);
+    font-style: var(--shiki-dream-font-style);
+    font-weight: var(--shiki-dream-font-weight);
 }
 
 /* ===================== Software: /software and /software/<slug> ===================== */

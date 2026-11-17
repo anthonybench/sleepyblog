@@ -354,14 +354,22 @@ JavaScript is sent to the browser. Put the language after the opening fence:
 Each site theme has a matching code theme, set in `CODE_THEMES` in
 `app/_lib/utils/markdown.ts`:
 
-| Site theme | Code theme         |
-| ---------- | ------------------ |
-| dracula    | `dracula`          |
-| overcast   | `github-light`     |
-| sunset     | `vesper`           |
-| mist       | `catppuccin-latte` |
+| Site theme      | Code theme             |
+| --------------- | ---------------------- |
+| dracula         | `dracula`              |
+| overcast        | `github-light`         |
+| sunset          | `vesper`               |
+| mist            | `catppuccin-latte`     |
+| nord            | `nord`                 |
+| monokai         | `monokai`              |
+| ocean           | `material-theme-ocean` |
+| solarized-dark  | `solarized-dark`       |
+| day-one         | `one-light`            |
+| gruvbox         | `gruvbox-light-hard`   |
+| solarized-light | `solarized-light`      |
+| dream           | `rose-pine-dawn`       |
 
-Every token gets all four colors as CSS variables (`--shiki-dracula`,
+Every token gets every theme's color as a CSS variable (`--shiki-dracula`,
 `--shiki-overcast`, ...), and `main.css` applies the set for the active
 `[data-theme]`, so switching themes recolors code instantly. The code block background
 comes from the site theme (`keepBackground: false`). **When adding a site theme**, add

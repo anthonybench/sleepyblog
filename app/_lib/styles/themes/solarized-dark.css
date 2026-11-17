@@ -1,0 +1,25 @@
+:root[data-theme="solarized-dark"] {
+    --bg-primary: #002b36;
+    --bg-secondary: #073642;
+    --bg-tertiary: #0b4250;
+    --text-primary: #93a1a1;
+    --text-secondary: #586e75;
+    --text-muted: #1d4a55;
+    --accent-primary: #268bd2;
+    --accent-secondary: #859900;
+    --accent-tertiary: #2aa198;
+    --border: #073642;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --content-border: rgba(38, 139, 210, 0.3);
+
+    /* Frame: Solarized base03/base02, a blue glow and a hint of green */
+    --frame-gradient:
+        radial-gradient(ellipse 60% 70% at 0% 0%, rgba(38, 139, 210, 0.22), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 100% 0%, rgba(133, 153, 0, 0.12), transparent 70%),
+        linear-gradient(160deg, #0a3c49 0%, #05303b 100%);
+
+    --chip-land-development: #2aa198;
+    --chip-software-development: #6c71c4;
+    --chip-build-things: #cb4b16;
+    --chip-rant: #d33682;
+}
