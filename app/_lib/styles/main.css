@@ -5,6 +5,23 @@
 @import "./themes/sunset.css";
 @import "./themes/mist.css";
 
+/*
+ * JetBrains Mono's box-drawing characters (╭ ─ ┬ │ ...), used by terminal-table output
+ * in code blocks. next/font only loads the "latin" subset, which doesn't include them,
+ * so they'd fall back to another font with a different width and the tables would
+ * misalign. This file holds only U+2500-259F (2.7 KB, from Google Fonts, OFL license),
+ * and browsers download it only on pages that use those characters. List it FIRST in a
+ * font-family: next/font's "JetBrains Mono Fallback" covers every character, so
+ * anything after it is never reached. Its unicode-range keeps it to box characters.
+ */
+@font-face {
+    font-family: "JetBrains Mono Box Drawing";
+    src: url("/fonts/jetbrains-mono-box-drawing.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+    unicode-range: U+2500-259F;
+}
+
 /* Base styles */
 * {
     box-sizing: border-box;
@@ -1445,7 +1462,7 @@ body {
     color: var(--accent-primary);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
-    font-family: var(--font-jetbrains-mono), monospace;
+    font-family: "JetBrains Mono Box Drawing", var(--font-jetbrains-mono), monospace;
     font-size: 0.875em;
     border: 1px solid var(--content-border);
 }
@@ -1620,6 +1637,11 @@ body {
 
 .post-content figure[data-rehype-pretty-code-figure] pre {
     margin: 0;
+}
+
+/* Terminal output (```console): tighter lines so box-drawing table borders connect */
+.post-content code[data-language="console"] {
+    line-height: 1.32;
 }
 
 [data-rehype-pretty-code-figure] code span {
