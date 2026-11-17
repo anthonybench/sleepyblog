@@ -306,7 +306,7 @@ In the post page, markdown is rendered server-side and injected as HTML:
 
 ```typescript
 // app/posts/[slug]/page.tsx
-import { renderMarkdownToHtml } from "../../_lib/utils/markdown";
+import { renderMarkdownToHtml } from "@/app/_lib/utils/markdown";
 
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
@@ -545,31 +545,11 @@ export default function PrevNextNavigation({ previous, next, noun }) {
 }
 ```
 
-## Performance Optimizations
+## Performance
 
-### Build-Time Processing
-
-Posts are processed at build time for static generation:
-
-- File system reads happen during build
-- Markdown parsing is done once
-- Search indices can be pre-built
-
-### Caching Strategy
-
-The system implements several caching layers:
-
-- Next.js automatically caches API routes
-- Static generation for post pages
-- Client-side caching of post lists
-
-### Image Optimization
-
-Media gallery images are optimized:
-
-- Next.js Image component for local images
-- Lazy loading for external images
-- Responsive image sizing
+- **Post pages are static.** `generateStaticParams` in `app/posts/[slug]/page.tsx` builds every post at build time, so Markdown parsing and syntax highlighting never run on request. Their link preview images are built the same way.
+- **The home page list is fetched in the browser.** `app/page.tsx` is a client component that loads posts from `/api/posts` (via `postsClient.ts`) and filters them as you type.
+- **Gallery images load smaller copies.** For imgur photos (`https://i.imgur.com/<id>.jpg|png`), `MediaGallery` loads imgur's 1024px version (the `h` suffix) and falls back to the original if that fails. Images are `unoptimized`, since they're external.
 
 ## Error Handling
 
@@ -595,9 +575,8 @@ export function getPostBySlug(slug: string): Post | null {
 
 Invalid frontmatter or content is handled:
 
-- Default values for missing fields
-- Graceful degradation for parsing errors
-- Validation of required fields
+- Missing fields get defaults: `title` becomes "Untitled", `media` an empty list, and `type` "rant"
+- A post that fails to parse is logged and left out rather than breaking the build
 
 ### API Error Handling
 

@@ -30,9 +30,9 @@ SleepyBlog uses a CSS custom properties (variables) based theme system that allo
 Create a new CSS file in `app/_lib/styles/themes/`:
 
 ```css
-/* app/_lib/styles/themes/sunset.css */
+/* app/_lib/styles/themes/ember.css */
 
-[data-theme="sunset"] {
+[data-theme="ember"] {
     /* Background Colors */
     --bg-primary: #1a1625;
     --bg-secondary: #2d1b3d;
@@ -75,8 +75,9 @@ Add the import to `app/_lib/styles/main.css`:
 /* Import all theme files */
 @import "./themes/dracula.css";
 @import "./themes/overcast.css";
+@import "./themes/sunset.css";
 @import "./themes/mist.css";
-@import "./themes/sunset.css"; /* Add your new theme */
+@import "./themes/ember.css"; /* Add your new theme */
 ```
 
 ### Step 3: Register Theme in TypeScript
@@ -105,6 +106,11 @@ export const themes: Theme[] = [
         alias: "mist",
         type: "light",
     },
+    {
+        display_name: "Ember",
+        alias: "ember",
+        type: "dark",
+    },
 ];
 ```
 
@@ -113,10 +119,10 @@ export const themes: Theme[] = [
 Code blocks in posts and project pages are colored per site theme. Add your theme's alias to `CODE_THEMES` in `app/_lib/utils/markdown.ts` with any [Shiki theme](https://shiki.style/themes) name, and add a matching rule next to the others near the end of `main.css`:
 
 ```css
-:root[data-theme="sunset"] [data-rehype-pretty-code-figure] code span {
-    color: var(--shiki-sunset);
-    font-style: var(--shiki-sunset-font-style);
-    font-weight: var(--shiki-sunset-font-weight);
+:root[data-theme="ember"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-ember);
+    font-style: var(--shiki-ember-font-style);
+    font-weight: var(--shiki-ember-font-weight);
 }
 ```
 
@@ -126,14 +132,10 @@ Without it, code in your theme falls back to Dracula's colors. See [Post Renderi
 
 1. Start the development server: `npm run dev`
 2. Use the theme selector in the top-right corner
-3. Select your new "Sunset" theme
+3. Select your new "Ember" theme
 4. Verify all UI elements look correct, including a code block and the /software cards
 
 ## CSS Variable Reference
-
-### Current Theme Structure (v2024)
-
-The theme system has been simplified to include only actively used CSS custom properties. Previous versions included additional variables that were not used in the codebase.
 
 ### Required Variables
 
@@ -224,11 +226,11 @@ Then use in components:
 
 ```typescript
 import Image from 'next/image';
-import { useTheme } from '../_lib/utils/themeContext';
+import { useTheme } from '@/app/_lib/utils/themeContext';
 
 export default function Logo() {
-  const { currentTheme } = useTheme();
-  const imagePath = `/public/${currentTheme.type}/logo.png`;
+  const { current_theme } = useTheme();
+  const imagePath = `/${current_theme.type}/logo.png`; // public/ is served from /
 
   return <Image src={imagePath} alt="Logo" width={100} height={50} />;
 }
@@ -239,13 +241,13 @@ export default function Logo() {
 You can apply theme-specific styles in components:
 
 ```typescript
-import { useTheme } from '../_lib/utils/themeContext';
+import { useTheme } from '@/app/_lib/utils/themeContext';
 
 export default function MyComponent() {
-  const { currentTheme } = useTheme();
+  const { current_theme } = useTheme();
 
   return (
-    <div className={`my-component ${currentTheme.type === 'dark' ? 'dark-specific' : 'light-specific'}`}>
+    <div className={`my-component ${current_theme.type === 'dark' ? 'dark-specific' : 'light-specific'}`}>
       Content
     </div>
   );
@@ -351,7 +353,7 @@ Set the default theme in `app/_lib/data.yml`:
 default_theme: "sunset" # Use your theme's alias
 ```
 
-The system will automatically use this theme on first visit and fall back to it if the user's saved theme is no longer available.
+The system will automatically use this theme on first visit and fall back to it if the user's saved theme is no longer available. `app/layout.tsx` also renders `<html data-theme="dracula">` so the first paint has colors; change that too, or a different default flashes Dracula before loading.
 
 ## Troubleshooting
 
@@ -427,6 +429,10 @@ Here's a complete example of creating an accessibility-focused high contrast the
 ```css
 @import "./themes/high-contrast.css";
 ```
+
+### 4. Pick a Code Theme
+
+Add `"high-contrast"` to `CODE_THEMES` and its rule in `main.css`, as in [Step 4](#step-4-pick-a-code-highlighting-theme) above.
 
 This creates a theme optimized for users with visual impairments, featuring maximum contrast and bright accent colors for better visibility.
 

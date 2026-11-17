@@ -1,5 +1,5 @@
 import type { ImageResponse } from "next/og";
-import { getPostBySlug } from "@/app/_lib/utils/posts";
+import { getAllPosts, getPostBySlug } from "@/app/_lib/utils/posts";
 import { dataConfig } from "@/app/_lib/utils/dataConfig";
 import { postTypeDisplayNames, type PostType } from "@/app/_lib/types/post";
 import { OG_CONTENT_TYPE, OG_SIZE, ogColors, ogText, renderOgImage } from "@/app/_lib/og";
@@ -17,6 +17,12 @@ const postTypeColors: Record<PostType, string> = {
 };
 
 const MAX_EXCERPT_LENGTH = 100;
+
+// Built ahead of time, one per post. The image route isn't bundled with _posts/,
+// so rendering it on request would always come out "Post Not Found".
+export function generateStaticParams(): { slug: string }[] {
+    return getAllPosts().map((post) => ({ slug: post.slug }));
+}
 
 interface OpenGraphImageProps {
     params: Promise<{

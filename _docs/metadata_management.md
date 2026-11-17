@@ -4,7 +4,7 @@ This guide explains how to manage and customize metadata in SleepyBlog for optim
 
 ## Overview
 
-SleepyBlog implements comprehensive metadata management using Next.js 13+ best practices, including:
+SleepyBlog implements comprehensive metadata management using the Next.js App Router metadata API, including:
 
 - **Static & Dynamic Metadata**: Configured per page and route
 - **OpenGraph Images**: Auto-generated social sharing images
@@ -19,13 +19,13 @@ SleepyBlog implements comprehensive metadata management using Next.js 13+ best p
 All metadata originates from `app/_lib/data.yml`:
 
 ```yaml
-# Site Metadata
+# site metadata
 site_name: "SleepyBlog"
-site_description: "Personal blog covering software development, land development, building projects, and occasional rants"
-site_url: "https://sleepyblog.com"
+site_description: "A blog most sleepy."
+site_url: "https://sleepyblog.org"
 author_name: "Isaac Yep"
-author_bio: "Software developer, land developer, and maker building things that matter"
-author_image: "/light/sleepyboy_technologist.png"
+author_bio: "Lifelong engineer, professional kid."
+author_image: "/dark/sleepyboy_technologist.png"
 keywords: ["blog", "software development", "land development", "building", "technology"]
 ```
 
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         title: dataConfig.site_name,
         description: dataConfig.site_description,
         siteName: dataConfig.site_name,
-        images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+        // the image comes from ./opengraph-image.tsx
     },
 
     // Search Engine Directives
@@ -78,8 +78,13 @@ export const metadata: Metadata = {
             "max-snippet": -1,
         },
     },
+    verification: {
+        google: "TODO", // placeholder; see TODO.md (Google Search Console)
+    },
 };
 ```
+
+`robots` here is the per-page meta tag. Which paths crawlers may visit is decided by `app/robots.txt` (see [Sitemap and robots.txt](#sitemap-and-robotstxt)).
 
 ### Dynamic Post Metadata (`app/posts/[slug]/page.tsx`)
 
@@ -110,77 +115,76 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
             publishedTime: new Date(post.post_date).toISOString(),
             authors: [dataConfig.author_name],
             section: postTypeDisplay,
-            images: [{ url: post.media[0] || "/og-image.png" }],
+            // first photo in media, if any; otherwise ./opengraph-image.tsx is used
+            ...(firstPhoto && { images: [{ url: firstPhoto, alt: post.title }] }),
         },
     };
 }
 ```
 
-### Static Page Metadata (`app/about/page.tsx`)
+Project pages (`app/software/[slug]/page.tsx`) do the same with the project's name and tagline, and always use their generated preview image.
 
-Static pages can export metadata directly:
+### Static Page Metadata (`app/about/layout.tsx`)
+
+Server pages export `metadata` directly (e.g. `app/software/page.tsx`). `app/about/page.tsx` is a client component, which can't, so its metadata lives in `app/about/layout.tsx`:
 
 ```typescript
 export const metadata: Metadata = {
     title: "About",
-    description: `Learn more about ${dataConfig.author_name}`,
+    description: `Learn more about ${dataConfig.author_name} - ${dataConfig.author_bio}`,
     openGraph: {
         type: "profile",
         title: `About ${dataConfig.author_name}`,
-        images: [{ url: dataConfig.author_image }],
+        description: dataConfig.author_bio,
+        // the image comes from ./opengraph-image.tsx
     },
 };
 ```
 
 ## OpenGraph Image Generation
 
-SleepyBlog automatically generates OpenGraph images using Next.js's `ImageResponse` API.
+Link preview images (1200×630) are generated with Next.js's `ImageResponse`. Every route draws its card through the shared `renderOgImage` helper in `app/_lib/og.tsx`, which provides the striped Dracula frame, the card, the colors (`ogColors`), and the size and content type exports.
 
-### Site-wide Image (`app/opengraph-image.tsx`)
+| Route                                     | Shows                                                    |
+| ----------------------------------------- | -------------------------------------------------------- |
+| `app/opengraph-image.tsx`                 | Site name, logo, description (the default for all pages) |
+| `app/about/opengraph-image.tsx`           | Portrait beside the name and bio                         |
+| `app/posts/[slug]/opengraph-image.tsx`    | Post type chip, title, excerpt, date                     |
+| `app/software/[slug]/opengraph-image.tsx` | Install command, name, tagline, URL                      |
 
-```typescript
-export default async function OpenGraphImage(): Promise<ImageResponse> {
-  return new ImageResponse(
-    (
-      <div style={{ /* Dracula-themed design */ }}>
-        <div>{dataConfig.site_name}</div>
-        <div>{dataConfig.site_description}</div>
-        <div>by {dataConfig.author_name}</div>
-      </div>
-    ),
-    { width: 1200, height: 630 }
-  );
+```tsx
+// app/posts/[slug]/opengraph-image.tsx (simplified)
+export function generateStaticParams(): { slug: string }[] {
+    return getAllPosts().map((post) => ({ slug: post.slug }));
+}
+
+export default async function OpenGraphImage({ params }) {
+    const post = getPostBySlug((await params).slug);
+    return renderOgImage(
+        <>
+            <div>{postTypeDisplayNames[post.type]}</div>
+            <div>{post.title}</div>
+            <div>{post.excerpt}</div>
+        </>,
+        { accent: postTypeColors[post.type] },
+    );
 }
 ```
 
-### Dynamic Post Images (`app/posts/[slug]/opengraph-image.tsx`)
+**The `[slug]` image routes must keep `generateStaticParams`.** It makes them render at build time. Rendered on request instead, they'd run on Vercel without `_posts/` or `_projects/` bundled and come out "Not Found".
 
-Each post generates a custom OpenGraph image:
+Posts with photos use their first photo as the preview instead (set in `generateMetadata`), so the generated post card only shows up for posts without photos.
 
-```typescript
-export default async function OpenGraphImage({ params }: OpenGraphImageProps): Promise<ImageResponse> {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+### Icons and Manifest
 
-  return new ImageResponse(
-    (
-      <div style={{ /* Post-specific design */ }}>
-        <div>{postTypeDisplayNames[post.type]}</div>
-        <div>{post.title}</div>
-        <div>{post.excerpt}</div>
-        <div>{dataConfig.site_name} • {formatDate(post.post_date)}</div>
-      </div>
-    ),
-    { width: 1200, height: 630 }
-  );
-}
-```
+The icons are static files: `app/favicon.ico` and `app/apple-touch-icon.png` (180×180), referenced from `icons` in the root layout's metadata. `app/manifest.json` is the web app manifest and uses `public/icon-192.png` and `public/icon-512.png`.
 
-### Favicon (`app/favicon.ico`)
+## Sitemap and robots.txt
 
-This project uses a static favicon. Place your icon at `app/favicon.ico`. Next.js will automatically serve it at `/favicon.ico` and use it across pages.
+- `app/robots.txt` decides what crawlers may visit. It currently blocks `/test`, `/furniture`, and all posts (`/posts/*`), and allows `/about` and `/software`.
+- `app/sitemap.ts` generates `/sitemap.xml`: the home page, `/about`, `/software`, and each project page.
 
-Note: Dynamic icon components like `app/icon.tsx` and `app/apple-icon.tsx` are not used here. If you want Apple touch icons, add static PNGs such as `app/apple-touch-icon.png` (recommended 180×180) instead.
+Keep the two in step: when a section is opened to crawlers in `robots.txt`, add its pages to `sitemap.ts`.
 
 ## Structured Data (JSON-LD)
 
@@ -194,7 +198,7 @@ The `StructuredData` component generates rich snippets for search engines.
     "@type": "WebSite",
     "name": "SleepyBlog",
     "description": "Personal blog covering...",
-    "url": "https://sleepyblog.com",
+    "url": "https://sleepyblog.org",
     "author": {
         "@type": "Person",
         "name": "Isaac Yep",
@@ -202,7 +206,11 @@ The `StructuredData` component generates rich snippets for search engines.
     },
     "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://sleepyblog.com/?search={search_term_string}"
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://sleepyblog.org/?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
     }
 }
 ```
@@ -217,12 +225,12 @@ The `StructuredData` component generates rich snippets for search engines.
     "description": "Post excerpt",
     "datePublished": "2025-01-19T00:00:00.000Z",
     "author": { "@type": "Person", "name": "Isaac Yep" },
-    "articleSection": "Software Development",
-    "keywords": ["software-development", "blog"],
+    "articleSection": "software-development",
+    "keywords": ["software-development", "blog", "..."],
     "isPartOf": {
         "@type": "Blog",
         "name": "SleepyBlog",
-        "url": "https://sleepyblog.com"
+        "url": "https://sleepyblog.org"
     }
 }
 ```
@@ -234,7 +242,7 @@ The `StructuredData` component generates rich snippets for search engines.
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Isaac Yep",
-    "description": "Software developer, land developer...",
+    "description": "Lifelong engineer, professional kid.",
     "sameAs": [
         "https://github.com/anthonybench",
         "https://linkedin.com/in/anthonybench",
@@ -242,7 +250,7 @@ The `StructuredData` component generates rich snippets for search engines.
         "https://pypi.org/user/sleepyboy",
         "https://hub.docker.com/u/sleepyboy"
     ],
-    "knowsAbout": ["software development", "land development"]
+    "knowsAbout": ["blog", "software development", "land development", "building", "technology"]
 }
 ```
 
@@ -332,7 +340,7 @@ Create metadata for new pages:
 ```typescript
 // app/your-page/page.tsx
 import type { Metadata } from "next";
-import { dataConfig } from "../_lib/utils/dataConfig";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
 
 export const metadata: Metadata = {
     title: "Your Page Title",
@@ -478,9 +486,7 @@ open http://localhost:3000/opengraph-image
 
 ### 1. Image Generation
 
-- OpenGraph images are generated at build time
-- Use caching for frequently accessed images
-- Optimize image generation code for performance
+- All OpenGraph images are generated at build time, so none are rendered on request
 
 ### 2. Structured Data
 
@@ -496,22 +502,7 @@ open http://localhost:3000/opengraph-image
 
 ## Advanced Customization
 
-### 1. Theme-Aware Metadata
-
-```typescript
-// Use theme data in metadata
-const { currentTheme } = useTheme();
-const themeColor = currentTheme.type === "dark" ? "#282a36" : "#ffffff";
-
-export const metadata: Metadata = {
-    themeColor,
-    other: {
-        "color-scheme": currentTheme.type,
-    },
-};
-```
-
-### 2. Internationalization
+### 1. Internationalization
 
 ```typescript
 // Multi-language metadata
@@ -525,7 +516,7 @@ export const metadata: Metadata = {
 };
 ```
 
-### 3. Custom Robots Directives
+### 2. Custom Robots Directives
 
 ```typescript
 export const metadata: Metadata = {

@@ -17,10 +17,23 @@ SleepyBlog uses a flexible font system built on CSS custom properties and Next.j
 
 ### Current Font Setup
 
-The default setup includes:
+| Font                       | Loaded by                             | Used for                                                       |
+| -------------------------- | ------------------------------------- | -------------------------------------------------------------- |
+| JetBrains Mono             | `next/font/google` in `fonts.ts`      | Everything by default (`body`), code, labels                   |
+| Comfortaa                  | `next/font/google` in `fonts.ts`      | The header title, post titles in the list, about-page headings |
+| JetBrains Mono Box Drawing | `@font-face` at the top of `main.css` | Box-drawing characters (`╭ ─ │ ...`) in code blocks            |
 
-- **JetBrains Mono**: Monospace font for code, labels, and technical elements
-- **System Fonts**: Fallback fonts for optimal performance
+They're exposed as `--font-jetbrains-mono` and `--font-comfortaa`; `main.css` uses them directly, e.g. `font-family: var(--font-comfortaa), sans-serif;`.
+
+### Box-Drawing Characters in Code Blocks
+
+`next/font` only loads JetBrains Mono's `latin` subset, which doesn't include box-drawing characters (U+2500–259F), so terminal-style tables in code blocks would fall back to another font and misalign. `public/fonts/jetbrains-mono-box-drawing.woff2` (2.7 KB) holds just those characters, and `.post-content code` lists it **first**:
+
+```css
+font-family: "JetBrains Mono Box Drawing", var(--font-jetbrains-mono), monospace;
+```
+
+It has to come first: next/font's generated "JetBrains Mono Fallback" font covers every character, so nothing after `var(--font-jetbrains-mono)` is ever reached. Its `unicode-range` keeps it to box characters, and browsers download it only on pages that use them.
 
 ## Adding New Fonts
 
@@ -29,13 +42,19 @@ The default setup includes:
 Edit `app/_lib/fonts.ts` to add your new font:
 
 ```typescript
-import { JetBrains_Mono, Inter, Playfair_Display } from "next/font/google";
+import { JetBrains_Mono, Comfortaa, Inter, Playfair_Display } from "next/font/google";
 
-// Existing font
-const jetbrainsMono = JetBrains_Mono({
+// Existing fonts
+export const jetBrainsMono = JetBrains_Mono({
+    variable: "--font-jetbrains-mono",
     subsets: ["latin"],
     display: "swap",
-    variable: "--font-jetbrains-mono",
+});
+
+export const comfortaa = Comfortaa({
+    variable: "--font-comfortaa",
+    subsets: ["latin"],
+    display: "swap",
 });
 
 // Add new fonts
@@ -53,7 +72,8 @@ const playfairDisplay = Playfair_Display({
 
 // Export font variables
 export const fontVariables = [
-    jetbrainsMono.variable,
+    jetBrainsMono.variable,
+    comfortaa.variable,
     inter.variable, // Add new font variables
     playfairDisplay.variable,
 ].join(" ");
@@ -61,9 +81,10 @@ export const fontVariables = [
 
 ### Step 2: Add CSS Custom Properties
 
-The font variables are automatically available as CSS custom properties:
+`app/layout.tsx` puts `fontVariables` on `<body>`, so the variables are available as CSS custom properties everywhere:
 
 - `--font-jetbrains-mono`
+- `--font-comfortaa`
 - `--font-inter`
 - `--font-playfair-display`
 
@@ -102,14 +123,12 @@ pre,
 
 ### Step 4: Use in Components
 
-You can also use fonts directly in components:
+The variables are already set on `<body>`, so components can use them directly:
 
 ```typescript
-import { fontVariables } from '../_lib/fonts';
-
 export default function MyComponent() {
   return (
-    <div className={`${fontVariables} my-component`}>
+    <div className="my-component">
       <h1 style={{ fontFamily: 'var(--font-playfair-display)' }}>
         Elegant Heading
       </h1>
@@ -148,12 +167,12 @@ import localFont from "next/font/local";
 const customFont = localFont({
     src: [
         {
-            path: "../public/fonts/CustomFont-Regular.woff2",
+            path: "../../public/fonts/CustomFont-Regular.woff2",
             weight: "400",
             style: "normal",
         },
         {
-            path: "../public/fonts/CustomFont-Bold.woff2",
+            path: "../../public/fonts/CustomFont-Bold.woff2",
             weight: "700",
             style: "normal",
         },
@@ -334,41 +353,9 @@ p {
 
 ## Font Loading Optimization
 
-### Preload Critical Fonts
+### Preloading
 
-Add font preloading to `app/layout.tsx`:
-
-```typescript
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'SleepyBlog',
-  description: 'A personal blog',
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <head>
-        <link
-          rel="preload"
-          href="/_next/static/media/inter-latin-400.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body className={fontVariables}>
-        {children}
-      </body>
-    </html>
-  );
-}
-```
+`next/font` self-hosts the font files and adds the `<link rel="preload">` tags itself, so no manual preloading is needed. Fonts loaded with a plain `@font-face` in CSS (like the box-drawing font) aren't preloaded, which is fine for small, rarely used ones.
 
 ### Font Display Strategy
 
@@ -522,7 +509,7 @@ Here's a complete example of adding the Poppins font family:
 ```typescript
 import { JetBrains_Mono, Poppins } from "next/font/google";
 
-const jetbrainsMono = JetBrains_Mono({
+const jetBrainsMono = JetBrains_Mono({
     subsets: ["latin"],
     display: "swap",
     variable: "--font-jetbrains-mono",
@@ -535,7 +522,7 @@ const poppins = Poppins({
     variable: "--font-poppins",
 });
 
-export const fontVariables = [jetbrainsMono.variable, poppins.variable].join(" ");
+export const fontVariables = [jetBrainsMono.variable, poppins.variable].join(" ");
 ```
 
 ### 2. Update CSS
