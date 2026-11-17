@@ -34,6 +34,46 @@ export const themes: Theme[] = [
         alias: "mist",
         type: "light",
     },
+    {
+        display_name: "Nord",
+        alias: "nord",
+        type: "dark",
+    },
+    {
+        display_name: "Monokai",
+        alias: "monokai",
+        type: "dark",
+    },
+    {
+        display_name: "Ocean",
+        alias: "ocean",
+        type: "dark",
+    },
+    {
+        display_name: "Solarized Dark",
+        alias: "solarized-dark",
+        type: "dark",
+    },
+    {
+        display_name: "Day One",
+        alias: "day-one",
+        type: "light",
+    },
+    {
+        display_name: "Gruvbox",
+        alias: "gruvbox",
+        type: "light",
+    },
+    {
+        display_name: "Solarized Light",
+        alias: "solarized-light",
+        type: "light",
+    },
+    {
+        display_name: "Dream",
+        alias: "dream",
+        type: "light",
+    },
 ];
 
 import { dataConfig } from "@/app/_lib/utils/dataConfig";
