@@ -220,7 +220,11 @@ def build_project_file(frontmatter: dict, template_path: Path, install: str) -> 
     template = template_path.read_text(encoding="utf-8")
     body = FRONTMATTER.sub("", template, count=1).lstrip("\n")
     header = yaml.dump(
-        frontmatter, Dumper=FrontmatterDumper, sort_keys=False, allow_unicode=True
+        frontmatter,
+        Dumper=FrontmatterDumper,
+        sort_keys=False,
+        allow_unicode=True,
+        width=float("inf"),  # keep long taglines on one line
     )
     return f"---\n{header}---\n\n{body.replace('INSTALL', install)}"
 
