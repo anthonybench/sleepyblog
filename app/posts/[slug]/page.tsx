@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import type { JSX } from "react";
 import type { Metadata } from "next";
-import { getPostBySlug, getPostNavigation } from "@/app/_lib/utils/posts";
+import { getAllPosts, getPostBySlug, getPostNavigation } from "@/app/_lib/utils/posts";
 import MediaGallery from "@/app/_components/MediaGallery";
 import PostTypeChip from "@/app/_components/PostTypeChip";
-import PostNavigation from "@/app/_components/PostNavigation";
+import PrevNextNavigation from "@/app/_components/PrevNextNavigation";
 import StructuredData from "@/app/_components/StructuredData";
 import { dataConfig } from "@/app/_lib/utils/dataConfig";
 import { renderMarkdownToHtml } from "@/app/_lib/utils/markdown";
@@ -14,6 +14,14 @@ interface PostPageProps {
     params: Promise<{
         slug: string;
     }>;
+}
+
+/**
+ * Build every post page ahead of time, so posts load as static HTML and code
+ * highlighting never runs on request.
+ */
+export function generateStaticParams(): { slug: string }[] {
+    return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
 /**
@@ -133,7 +141,13 @@ export default async function PostPage({ params }: PostPageProps): Promise<JSX.E
                 </div>
 
                 {/* Post Navigation */}
-                <PostNavigation previous={previous} next={next} />
+                <PrevNextNavigation
+                    previous={
+                        previous && { href: `/posts/${previous.slug}`, title: previous.title }
+                    }
+                    next={next && { href: `/posts/${next.slug}`, title: next.title }}
+                    noun="post"
+                />
             </article>
         </>
     );

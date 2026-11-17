@@ -108,12 +108,26 @@ export const themes: Theme[] = [
 ];
 ```
 
-### Step 4: Test Your Theme
+### Step 4: Pick a Code Highlighting Theme
+
+Code blocks in posts and project pages are colored per site theme. Add your theme's alias to `CODE_THEMES` in `app/_lib/utils/markdown.ts` with any [Shiki theme](https://shiki.style/themes) name, and add a matching rule next to the others near the end of `main.css`:
+
+```css
+:root[data-theme="sunset"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-sunset);
+    font-style: var(--shiki-sunset-font-style);
+    font-weight: var(--shiki-sunset-font-weight);
+}
+```
+
+Without it, code in your theme falls back to Dracula's colors. See [Post Rendering System](post_rendering_system.md#syntax-highlighting).
+
+### Step 5: Test Your Theme
 
 1. Start the development server: `npm run dev`
 2. Use the theme selector in the top-right corner
 3. Select your new "Sunset" theme
-4. Verify all UI elements look correct
+4. Verify all UI elements look correct, including a code block and the /software cards
 
 ## CSS Variable Reference
 

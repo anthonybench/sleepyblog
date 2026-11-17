@@ -24,6 +24,9 @@ npm run dev    # http://localhost:3000
 | `npm run lint`            | Run ESLint                                                |
 | `npm run config:generate` | Regenerate `dataConfig.ts` from `data.yml`                |
 | `./_tools/build.py`       | Lint and build, the pre-push check                        |
+| `./_tools/new_post.py`    | Start a new post (asks for the date, type, and title)     |
+| `./_tools/new_project.py` | Add a /software project (asks for everything)             |
+| `./_tools/add_media.py`   | Upload staged photos to imgur and link them to a page     |
 | `./_tools/publish.py`     | Build, then commit and push everything (asks first)       |
 | `./_tools/format.py`      | Format Python with black, and TS/TSX/CSS/MD with prettier |
 | `./_tools/help.py`        | Show the post workflow, tools, and docs                   |
@@ -51,7 +54,7 @@ Vercel runs `npm run build`, which includes the `data.yml` config step, so the V
 ### Publishing a Change
 
 1. Run `./_tools/format.py`.
-2. Run `./_tools/publish.py` (or `-m "message"`). It runs `build.py` and stops if the build fails, since nothing else checks your code before Vercel builds it. Then it shows the changes and, once you confirm, commits everything and pushes the current branch.
+2. Run `./_tools/publish.py`. It runs `build.py` and stops if the build fails, since nothing else checks your code before Vercel builds it. Then it shows the changes, asks for a commit message (or pass `-m "message"`), and once you confirm, commits everything and pushes the current branch.
     - For bigger changes, push a branch, open a PR into `main`, and check the preview deployment before merging.
     - For a new post, committing straight to `main` is fine.
 3. Watch the deployment in the Vercel dashboard. To redeploy without a new commit, open the deployment and choose **Redeploy**.

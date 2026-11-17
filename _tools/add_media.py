@@ -1,28 +1,30 @@
 #!/usr/bin/env python
-"""Upload the photos in `_media_staging/` to imgur and add them to a post's frontmatter.
+"""Upload the photos in `_media_staging/` to imgur and add them to a post or project.
 
-Drop a post's photos (and videos) into `_media_staging/`, then run this. It:
+Drop the photos (and videos) into `_media_staging/`, then run this. It asks where they
+go (the newest post, another post, or a /software project), then:
     1. Fixes each photo's rotation, strips its metadata (including GPS location), and
        shrinks it to at most 2560px on the long edge as a JPEG. iPhone HEIC photos
        are converted too. GIFs and videos are uploaded as-is.
     2. Uploads everything to imgur in the order the photos were taken.
-    3. Groups the uploads into one hidden (link-only) imgur album named after the post.
-    4. Appends the links to the post's `media:` list.
-    5. Moves the originals to `_media_staging/uploaded/<post>/`, so nothing is ever
+    3. Groups the uploads into one hidden (link-only) imgur album named after the page.
+    4. Appends the links to the post's or project's `media:` list.
+    5. Moves the originals to `_media_staging/uploaded/<slug>/`, so nothing is ever
        uploaded twice.
 
-It uses the newest post in `_posts/` unless you name one, and asks before uploading.
-If an upload fails partway, the files that made it are still added to the post, and
-re-running uploads the rest.
+Naming a post or project on the command line skips the question. It always shows the
+plan and asks before uploading. If an upload fails partway, the files that made it are
+still added, and re-running uploads the rest.
 
 Env vars (set them in your shell profile):
     IMGUR_CLIENT_ID     imgur app client id
     IMGUR_ACCESS_TOKEN  imgur app access token
 
 Usage:
-    ./_tools/add_media.py               # add staged media to the newest post
-    ./_tools/add_media.py 2025-11-19    # add it to a specific post
-    ./_tools/add_media.py --dry-run     # process the photos and show the plan only
+    ./_tools/add_media.py                       # asks where the media goes
+    ./_tools/add_media.py 2025-11-19            # a specific post
+    ./_tools/add_media.py --project sleepyconvert  # a /software project
+    ./_tools/add_media.py --dry-run             # process the photos, show the plan only
 
 References:
     - imgur-python: https://github.com/faustocarrera/imgur-python
@@ -44,7 +46,10 @@ from imgur_python import Imgur
 from PIL import Image, ImageOps
 from pillow_heif import register_heif_opener
 from rich.console import Console
+from rich.markup import escape
 from rich.table import Table
+
+from _prompts import choose, confirm
 
 register_heif_opener()
 console = Console()
@@ -64,6 +69,21 @@ FRONTMATTER = re.compile(r"\A---\n(.*?)\n---\n", re.DOTALL)
 MEDIA_FIELD = re.compile(r"^media:.*(?:\n[ \t-].*)*", re.MULTILINE)
 
 
+# how many recent posts "another post" lists
+RECENT_POST_COUNT = 10
+
+
+@dataclass
+class Target:
+    """The post or project the media is being added to."""
+
+    path: Path
+    slug: str
+    title: str
+    kind: str  # "post" or "project"
+    site_path: str  # e.g. /posts/2025-11-19 or /software/sleepyconvert
+
+
 @dataclass
 class StagedFile:
     """A file from `_media_staging/` and the processed copy of it to upload."""
@@ -81,12 +101,18 @@ def get_project_root() -> Path:
 def parse_args() -> argparse.Namespace:
     """Parse the command-line arguments."""
     parser = argparse.ArgumentParser(
-        description="Upload _media_staging/ to imgur and add it to a post's media list.",
+        description="Upload _media_staging/ to imgur and add it to a post or project.",
     )
-    parser.add_argument(
+    target = parser.add_mutually_exclusive_group()
+    target.add_argument(
         "post",
         nargs="?",
-        help="post to add media to, as YYYY-MM-DD (default: the newest post)",
+        help="post to add media to, as YYYY-MM-DD (asked for if not given)",
+    )
+    target.add_argument(
+        "--project",
+        "-p",
+        help="/software project to add media to, by slug (e.g. sleepyconvert)",
     )
     parser.add_argument(
         "--dry-run",
@@ -96,20 +122,70 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def find_post(posts_dir: Path, slug: str | None) -> Path:
-    """Return the post with the given slug, or the newest post, exiting if missing."""
-    if slug:
-        post_path = posts_dir / f"{slug}.md"
-        if not post_path.exists():
-            console.print(f"[red]✗ No post at {post_path}[/red]")
-            sys.exit(1)
-        return post_path
+def load_target(path: Path, kind: str) -> Target:
+    """Build a Target from a post or project file."""
+    frontmatter = read_frontmatter(path)
+    title = str(frontmatter.get("title" if kind == "post" else "name") or "")
+    if title in ("", "TITLE"):
+        title = path.stem
+    site_section = "posts" if kind == "post" else "software"
+    return Target(
+        path=path,
+        slug=path.stem,
+        title=title,
+        kind=kind,
+        site_path=f"/{site_section}/{path.stem}",
+    )
 
-    posts = sorted(posts_dir.glob("*.md"))
-    if not posts:
-        console.print("[red]✗ No posts yet. Run ./_tools/new_post.py first.[/red]")
+
+def require_file(path: Path, kind: str) -> Path:
+    """Return path, exiting with a message if it doesn't exist."""
+    if not path.exists():
+        console.print(f"[red]✗ No {kind} at {path}[/red]")
         sys.exit(1)
-    return posts[-1]
+    return path
+
+
+def ask_target(posts_dir: Path, projects_dir: Path) -> Target:
+    """Ask whether the media goes to the newest post, another post, or a project.
+
+    Args:
+        posts_dir: The `_posts/` directory.
+        projects_dir: The `_projects/` directory.
+
+    Returns:
+        The chosen post or project.
+    """
+    posts = sorted(posts_dir.glob("*.md"), reverse=True)
+    projects = sorted(projects_dir.glob("*.md")) if projects_dir.is_dir() else []
+    if not posts and not projects:
+        console.print("[red]✗ No posts or projects yet. Create one first.[/red]")
+        sys.exit(1)
+
+    options = []
+    if posts:
+        newest = load_target(posts[0], "post")
+        options.append(
+            ("newest", f"The newest post: {newest.slug} ({escape(newest.title)})")
+        )
+        options.append(("post", "Another post"))
+    if projects:
+        options.append(("project", "A /software project"))
+    where = choose("[bold]Where do these go?[/bold]", options)
+
+    if where == "newest":
+        return newest
+    if where == "post":
+        recent = [load_target(path, "post") for path in posts[:RECENT_POST_COUNT]]
+        console.print()
+        path = choose(
+            "[bold]Which post?[/bold] (the latest few; pass a date for older ones)",
+            [(post.path, f"{post.slug}  {escape(post.title)}") for post in recent],
+        )
+        return load_target(path, "post")
+    options = [(path, path.stem) for path in projects]
+    console.print()
+    return load_target(choose("[bold]Which project?[/bold]", options), "project")
 
 
 def read_frontmatter(post_path: Path) -> dict:
@@ -252,7 +328,7 @@ def create_album(client: Imgur, image_ids: list[str], title: str, url: str) -> N
 
 
 def append_post_media(post_path: Path, links: list[str]) -> None:
-    """Add links to the end of a post's `media:` list, rewriting it as one line.
+    """Add links to the end of a post's or project's `media:` list, as one line.
 
     Only the `media:` field is rewritten; the rest of the post is left as it was. If
     the frontmatter has no `media:` field, one is added at the end of it.
@@ -301,16 +377,23 @@ def main() -> None:
         console.print("[yellow]Nothing to upload: _media_staging/ is empty.[/yellow]")
         return
 
-    post_path = find_post(project_root / "_posts", args.post)
-    slug = post_path.stem
-    post_title = str(read_frontmatter(post_path).get("title") or "")
-    if post_title in ("", "TITLE"):
-        post_title = slug
+    posts_dir = project_root / "_posts"
+    projects_dir = project_root / "_projects"
+    if args.project:
+        path = require_file(projects_dir / f"{args.project}.md", "project")
+        target = load_target(path, "project")
+    elif args.post:
+        target = load_target(
+            require_file(posts_dir / f"{args.post}.md", "post"), "post"
+        )
+    else:
+        target = ask_target(posts_dir, projects_dir)
+    relative_path = target.path.relative_to(project_root)
     client = None if args.dry_run else get_imgur_client()
 
     console.print(
-        f"\n📸 {len(files)} file(s) for [bold]_posts/{post_path.name}[/bold] "
-        f"({post_title})\n"
+        f"\n📸 {len(files)} file(s) for [bold]{relative_path}[/bold] "
+        f"({escape(target.title)})\n"
     )
 
     with tempfile.TemporaryDirectory() as work_dir:
@@ -323,8 +406,7 @@ def main() -> None:
         if args.dry_run:
             console.print("\n[dim]Dry run: nothing was uploaded or changed.[/dim]")
             return
-        answer = console.input("\nUpload these and add them to the post? \\[Y/n]: ")
-        if answer.strip().lower() not in ("", "y", "yes"):
+        if not confirm(f"\nUpload these and add them to the {target.kind}?", True):
             console.print("[dim]Cancelled.[/dim]")
             return
 
@@ -338,8 +420,8 @@ def main() -> None:
                 data = upload_file(
                     client,
                     file.upload,
-                    f"{post_title} ({index}/{len(staged)})",
-                    f"SleepyBlog post {slug}",
+                    f"{target.title} ({index}/{len(staged)})",
+                    f"SleepyBlog {target.kind} {target.slug}",
                 )
                 uploaded.append((file, data))
         except (Exception, KeyboardInterrupt) as error:
@@ -353,25 +435,25 @@ def main() -> None:
     site_url = yaml.safe_load(
         (project_root / "app" / "_lib" / "data.yml").read_text(encoding="utf-8")
     )["site_url"]
-    album_title = f"SleepyBlog {slug}: {post_title}"
+    album_title = f"SleepyBlog {target.slug}: {target.title}"
     try:
         with console.status("Creating album..."):
             create_album(
                 client,
                 [data["id"] for _, data in uploaded],
                 album_title,
-                f"{site_url}/posts/{slug}",
+                f"{site_url}{target.site_path}",
             )
         console.print(f"📁 Created hidden album [bold]{album_title}[/bold]")
     except Exception as error:  # the uploads still worked, so keep going
         console.print(f"[yellow]⚠️  Album wasn't created: {error}[/yellow]")
 
-    append_post_media(post_path, [data["link"] for _, data in uploaded])
-    archive_dir = staging_dir / "uploaded" / slug
+    append_post_media(target.path, [data["link"] for _, data in uploaded])
+    archive_dir = staging_dir / "uploaded" / target.slug
     archive_originals([file.original for file, _ in uploaded], archive_dir)
 
     console.print(
-        f"[green]✅ Added {len(uploaded)} link(s) to _posts/{post_path.name}. "
+        f"[green]✅ Added {len(uploaded)} link(s) to {relative_path}. "
         f"Originals moved to {archive_dir.relative_to(project_root)}/[/green]"
     )
     if failed:

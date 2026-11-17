@@ -55,6 +55,9 @@ body {
 
 .main-content {
     flex: 1;
+    /* let it shrink below its widest content, so a long code line scrolls inside its
+       block instead of widening the whole page */
+    min-width: 0;
     margin-left: 250px;
     display: flex;
     flex-direction: column;
@@ -1603,5 +1606,464 @@ body {
 
     .nav-next {
         text-align: left;
+    }
+}
+
+/*
+ * Syntax-highlighted code blocks (rehype-pretty-code, see app/_lib/utils/markdown.ts).
+ * Every token carries one color per site theme as --shiki-<theme>; these rules pick the
+ * set for the active theme. Dracula is also the fallback before a theme is applied.
+ */
+.post-content figure[data-rehype-pretty-code-figure] {
+    margin: 1.5rem 0;
+}
+
+.post-content figure[data-rehype-pretty-code-figure] pre {
+    margin: 0;
+}
+
+[data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-dracula);
+    font-style: var(--shiki-dracula-font-style);
+    font-weight: var(--shiki-dracula-font-weight);
+}
+
+:root[data-theme="overcast"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-overcast);
+    font-style: var(--shiki-overcast-font-style);
+    font-weight: var(--shiki-overcast-font-weight);
+}
+
+:root[data-theme="sunset"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-sunset);
+    font-style: var(--shiki-sunset-font-style);
+    font-weight: var(--shiki-sunset-font-weight);
+}
+
+:root[data-theme="mist"] [data-rehype-pretty-code-figure] code span {
+    color: var(--shiki-mist);
+    font-style: var(--shiki-mist-font-style);
+    font-weight: var(--shiki-mist-font-weight);
+}
+
+/* ===================== Software: /software and /software/<slug> ===================== */
+
+.terminal-prompt {
+    color: var(--accent-primary);
+    font-weight: 700;
+}
+
+.software-header {
+    margin-bottom: 2rem;
+}
+
+.software-header h1 {
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.software-header p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Menu card: a small terminal window */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--content-border);
+    border-radius: 10px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 8px 20px -14px var(--shadow);
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.project-card:hover,
+.project-card:focus-visible {
+    outline: none;
+    transform: translateY(-4px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 16px 32px -14px color-mix(in srgb, var(--accent-primary) 60%, transparent);
+}
+
+.project-card--featured {
+    grid-column: 1 / -1;
+}
+
+.project-card-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.875rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--content-border);
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.terminal-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ff5f57;
+}
+
+.terminal-dots span:nth-child(2) {
+    background-color: #febc2e;
+}
+
+.terminal-dots span:nth-child(3) {
+    background-color: #28c840;
+}
+
+.project-card-path {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.project-card-featured {
+    margin-left: auto;
+    color: var(--accent-secondary);
+    white-space: nowrap;
+}
+
+.project-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    flex: 1;
+    padding: 1.25rem;
+}
+
+.project-card-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.project-card-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.project-card-tagline {
+    flex: 1;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.project-card-command {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    background-color: var(--bg-secondary);
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.1em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background-color: var(--accent-primary);
+    opacity: 0;
+}
+
+.project-card:hover .terminal-cursor,
+.project-card:focus-visible .terminal-cursor {
+    animation: terminal-blink 1s steps(1) infinite;
+}
+
+@keyframes terminal-blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.project-card--featured .project-card-body {
+    padding: 1.75rem;
+}
+
+.project-card--featured .project-card-name {
+    font-size: 1.75rem;
+}
+
+.project-card--featured .project-card-tagline {
+    font-size: 1.1rem;
+}
+
+/* Tech chips, on cards and project pages */
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.project-tech li {
+    padding: 0.15rem 0.5rem;
+    border: 1px solid var(--content-border);
+    border-radius: 4px;
+    background-color: color-mix(in srgb, var(--accent-primary) 12%, transparent);
+    color: var(--text-primary);
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.7rem;
+}
+
+/* Status badge */
+.project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-secondary);
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.project-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-secondary);
+}
+
+.project-status--active .project-status-dot {
+    background-color: #40c057;
+    box-shadow: 0 0 6px #40c057;
+}
+
+.project-status--maintained .project-status-dot {
+    background-color: var(--accent-primary);
+}
+
+.project-status--wip .project-status-dot {
+    background-color: #fab005;
+}
+
+/* Project page */
+.project-back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.project-back:hover {
+    color: var(--accent-primary);
+}
+
+.project-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.project-header .post-meta {
+    margin-bottom: 0;
+}
+
+.project-tagline {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.copy-command {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 100%;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    border: 2px solid var(--content-border);
+    border-radius: 8px;
+    background-color: var(--bg-secondary);
+}
+
+.copy-command code {
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.copy-command button {
+    flex-shrink: 0;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--content-border);
+    border-radius: 6px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.copy-command button:hover {
+    border-color: var(--accent-primary);
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.project-links a:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.project-links img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* List markers for posts and project pages (Tailwind's reset removes them) */
+.post-content ul,
+.post-content ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.post-content ul {
+    list-style: disc;
+}
+
+.post-content ul ul {
+    list-style: circle;
+    margin: 0.25rem 0;
+}
+
+.post-content ol {
+    list-style: decimal;
+}
+
+.post-content li {
+    margin: 0.4rem 0;
+}
+
+.post-content li::marker {
+    color: var(--accent-primary);
+}
+
+/* Markdown tables */
+.post-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.post-content th,
+.post-content td {
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--content-border);
+    text-align: left;
+}
+
+.post-content th {
+    background-color: var(--bg-secondary);
+    font-weight: 700;
+}
+
+@media (max-width: 767px) {
+    .software-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .project-card--featured .project-card-body {
+        padding: 1.25rem;
+    }
+
+    .project-card--featured .project-card-name {
+        font-size: 1.4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .project-links a {
+        transition: none;
+    }
+
+    .project-card:hover,
+    .project-card:focus-visible,
+    .project-links a:hover {
+        transform: none;
+    }
+
+    .project-card:hover .terminal-cursor,
+    .project-card:focus-visible .terminal-cursor {
+        animation: none;
+        opacity: 1;
     }
 }
