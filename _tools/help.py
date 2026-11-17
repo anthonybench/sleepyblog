@@ -20,11 +20,16 @@ from rich.table import Table
 console = Console()
 
 WORKFLOW_STEPS = [
-    ("1. Stub a post", "./_tools/new_post.py --type <type>"),
+    (
+        "1. Stub a post",
+        "./_tools/new_post.py asks for the date, type, and title. "
+        "(For /software, ./_tools/new_project.py instead.)",
+    ),
     (
         "2. Add photos",
-        "Drop them in _media_staging/ and run ./_tools/add_media.py. It uploads them "
-        "and adds the links to the newest post's [cyan]media:[/cyan] list.",
+        "Drop them in _media_staging/ and run ./_tools/add_media.py. It asks which "
+        "post or project they're for, uploads them, and adds the links to its "
+        "[cyan]media:[/cyan] list.",
     ),
     ("3. Write & preview", "npm run dev → http://localhost:3000"),
     ("4. Format", "./_tools/format.py"),
@@ -76,7 +81,7 @@ def build_workflow_panel() -> Panel:
 
 
 def build_counts_table(project_root: Path) -> Table:
-    """Build a table of component, theme, and post counts."""
+    """Build a table of component, theme, post, and project counts."""
     table = Table(title="📊 Project Overview", header_style="bold magenta")
     table.add_column("Category", style="cyan")
     table.add_column("Count", justify="right", style="green")
@@ -86,6 +91,7 @@ def build_counts_table(project_root: Path) -> Table:
         ("Components", "app/_components", "*.tsx"),
         ("Themes", "app/_lib/styles/themes", "*.css"),
         ("Posts", "_posts", "*.md"),
+        ("Projects", "_projects", "*.md"),
     ]:
         count = count_files(project_root / location, pattern)
         table.add_row(category, str(count), f"{location}/")

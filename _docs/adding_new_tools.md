@@ -23,6 +23,13 @@ pip install -r _tools/requirements.txt
     - Anything more involved gets a Google-style docstring with `Args:` and `Returns:` sections.
 - **Paths:** resolve everything from `get_project_root()` so a tool works from any directory.
 - **Output:** use a module-level `rich` `Console`. Print errors in red and exit non-zero.
+- **Ask, don't require flags.** Tools that need input work as wizards: anything not passed on the command line is asked for, with a sensible default where there is one, so a tool is easy to use after months away. Flags stay as shortcuts. Use the shared helpers in `_tools/_prompts.py`:
+    - `ask(label, default=None, required=True, validate=None)`: a line of text; `validate` returns an error message or `None`
+    - `choose(label, [(value, description), ...], default=1)`: a numbered menu
+    - `confirm(label, default=False)`: yes/no
+
+    Import them with `from _prompts import ask, choose, confirm` (Python puts the script's own directory on the import path). rich shows defaults in parentheses, so phrase hints without them, e.g. `"Menu position, 1 to 5"`.
+
 - **Formatting:** run `./_tools/format.py`, which runs black with its defaults.
 
 ## Template
@@ -74,7 +81,8 @@ if __name__ == "__main__":
 
 ## Examples
 
-- `new_post.py`: argument parsing with argparse, file templating
+- `new_post.py`: a short wizard where every question can also be passed as a flag, file templating
+- `new_project.py`: a longer wizard (looping menus, validation, a summary before writing), writing YAML frontmatter
 - `build.py` / `format.py`: running external commands and reporting failures
-- `add_media.py`: env vars, image processing with Pillow, calling an external API, editing frontmatter
+- `add_media.py`: env vars, image processing with Pillow, calling an external API, editing frontmatter, picking a target from a menu
 - `help.py`: rich tables and reading other files' docstrings

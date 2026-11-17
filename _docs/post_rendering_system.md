@@ -19,7 +19,7 @@ gray-matter
     ↓ (Data Structure)
 Post Interface (TypeScript)
     ↓ (Server Rendering)
-app/posts/[slug]/page.tsx → remark-parse + remark-gfm → remark-rehype → rehype-raw → rehype-stringify
+app/posts/[slug]/page.tsx → remark-parse + remark-gfm → remark-rehype → rehype-raw → rehype-pretty-code → rehype-stringify
     ↓ (HTML Output)
 Rendered HTML in Browser
 ```
@@ -263,7 +263,11 @@ export default async function PostPage({ params }: PostPageProps) {
         <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
       </div>
 
-      <PostNavigation previous={previous} next={next} />
+      <PrevNextNavigation
+        previous={previous && { href: `/posts/${previous.slug}`, title: previous.title }}
+        next={next && { href: `/posts/${next.slug}`, title: next.title }}
+        noun="post"
+      />
     </article>
   );
 }
@@ -283,6 +287,7 @@ import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeStringify from "rehype-stringify";
+import rehypePrettyCode from "rehype-pretty-code";
 
 export async function renderMarkdownToHtml(content: string): Promise<string> {
     const file = await unified()
@@ -290,6 +295,7 @@ export async function renderMarkdownToHtml(content: string): Promise<string> {
         .use(remarkGfm)
         .use(remarkRehype, { allowDangerousHtml: true })
         .use(rehypeRaw)
+        .use(rehypePrettyCode, { theme: CODE_THEMES, keepBackground: false })
         .use(rehypeStringify)
         .process(content);
     return String(file);
@@ -324,19 +330,43 @@ export default async function PostPage({ params }: PostPageProps) {
 
 Core Markdown and GitHub-Flavored Markdown (via `remark-gfm`):
 
-| Feature             | Example                         |
-| ------------------- | ------------------------------- | --- | --- | ------------------------ |
-| Headings            | `# H1`, `## H2`, `### H3`       |
-| Bold/Italic         | `**bold**`, `*italic*`          |
-| Inline code         | `` `code` ``                    |
-| Code fences         | ` `ts\nconsole.log("hi")\n` `   |
-| Blockquotes         | `> quoted text`                 |
-| Links               | `[text](https://example.com)`   |
-| Tables (GFM)        | `                               | a   | b   | ` with header separators |
-| Strikethrough (GFM) | `~~deprecated~~`                |
-| Task lists (GFM)    | `- [x] done` / `- [ ] todo`     |
-| Autolink literals   | `https://example.com`           |
-| Raw HTML            | `<span class="x">custom</span>` |
+| Feature             | Example                                          |
+| ------------------- | ------------------------------------------------ |
+| Headings            | `# H1`, `## H2`, `### H3`                        |
+| Bold/Italic         | `**bold**`, `*italic*`                           |
+| Inline code         | `` `code` ``                                     |
+| Code fences         | a ` ```python ` block (syntax-highlighted)       |
+| Blockquotes         | `> quoted text`                                  |
+| Links               | `[text](https://example.com)`                    |
+| Tables (GFM)        | `\| a \| b \|` rows with a `\| --- \|` separator |
+| Strikethrough (GFM) | `~~deprecated~~`                                 |
+| Task lists (GFM)    | `- [x] done` / `- [ ] todo`                      |
+| Autolink literals   | `https://example.com`                            |
+| Raw HTML            | `<span class="x">custom</span>`                  |
+
+### Syntax Highlighting
+
+Fenced code blocks are highlighted by [rehype-pretty-code](https://rehype-pretty.pages.dev/)
+(which uses [Shiki](https://shiki.style/)) when the page is rendered, so no highlighting
+JavaScript is sent to the browser. Put the language after the opening fence:
+` ```python `, ` ```sh `, ` ```yaml `, ` ```tsx `, ` ```console ` (shell sessions), etc.
+
+Each site theme has a matching code theme, set in `CODE_THEMES` in
+`app/_lib/utils/markdown.ts`:
+
+| Site theme | Code theme         |
+| ---------- | ------------------ |
+| dracula    | `dracula`          |
+| overcast   | `github-light`     |
+| sunset     | `vesper`           |
+| mist       | `catppuccin-latte` |
+
+Every token gets all four colors as CSS variables (`--shiki-dracula`,
+`--shiki-overcast`, ...), and `main.css` applies the set for the active
+`[data-theme]`, so switching themes recolors code instantly. The code block background
+comes from the site theme (`keepBackground: false`). **When adding a site theme**, add
+it to `CODE_THEMES` (any [Shiki theme](https://shiki.style/themes) name) and add a
+matching `[data-theme="..."]` rule next to the others in `main.css`.
 
 ## Media Gallery System
 
@@ -485,13 +515,13 @@ export function getPostNavigation(current_slug: string) {
 Navigation is rendered at the bottom of posts:
 
 ```typescript
-// app/_components/PostNavigation.tsx
-export default function PostNavigation({ previous, next }) {
+// app/_components/PrevNextNavigation.tsx (shared with /software project pages)
+export default function PrevNextNavigation({ previous, next, noun }) {
   return (
     <nav className="post-navigation">
       <div className="nav-buttons">
         {previous && (
-          <Link href={`/posts/${previous.slug}`} className="nav-button">
+          <Link href={previous.href} className="nav-button">
             <span className="nav-arrow">◀</span>
             <div className="nav-content">
               <span className="nav-label">Previous</span>
@@ -501,7 +531,7 @@ export default function PostNavigation({ previous, next }) {
         )}
 
         {next && (
-          <Link href={`/posts/${next.slug}`} className="nav-button">
+          <Link href={next.href} className="nav-button">
             <div className="nav-content">
               <span className="nav-label">Next</span>
               <span className="nav-title">{next.title}</span>
