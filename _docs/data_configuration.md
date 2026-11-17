@@ -85,7 +85,7 @@ This will update `app/_lib/utils/dataConfig.ts` with your new configuration.
 ### Import the Configuration
 
 ```typescript
-import { dataConfig } from "../_lib/utils/dataConfig";
+import { dataConfig } from "@/app/_lib/utils/dataConfig";
 ```
 
 ### Use in Components
@@ -262,7 +262,7 @@ You can create different configurations for different environments by checking e
 ### Build Failures
 
 1. Check the console output from `loadConfig.js`
-2. Ensure all required dependencies are installed (`js-yaml`, `https`)
+2. Ensure dependencies are installed (`npm install`; the script needs `js-yaml`)
 3. Verify GitHub URL is accessible if using dynamic data
 
 ## Example: Adding a Feature Flag System
@@ -307,7 +307,7 @@ export const dataConfig: DataConfig = {
 ### 3. Use in Components
 
 ```typescript
-import { dataConfig } from '../_lib/utils/dataConfig';
+import { dataConfig } from '@/app/_lib/utils/dataConfig';
 
 export default function PostPage() {
   return (

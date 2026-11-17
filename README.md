@@ -11,7 +11,7 @@ This is a rewrite of my original shot at this, primarily refining UI details and
 
 SleepyBlog serves as a convenient place to host my resume, document my land development journey with my partner Jean, a gallery for projects, and any other personal whimsies.
 
-[✨***Check out SleepyBlog***✨](https://sleepyblog.org)
+[✨ **_Check out SleepyBlog_** ✨](https://sleepyblog.org)
 
 <br />
 
@@ -23,6 +23,8 @@ SleepyBlog serves as a convenient place to host my resume, document my land deve
 - [Color Theming](_docs/theme_system.md)
 - [Post Rendering System](_docs/post_rendering_system.md)
 - [Metadata Management](_docs/metadata_management.md)
+- [Software Projects](_docs/software_projects.md)
+- [Adding New Tools](_docs/adding_new_tools.md)
 
 More can be found in `_docs/` 🤓
 
@@ -31,17 +33,18 @@ More can be found in `_docs/` 🤓
 ## **Technologies 🧰**
 
 - [Next.js 15](https://nextjs.org/docs)
-- [Tailwind](https://tailwindcss.com/docs/grid-auto-flow)
+- [Tailwind CSS 4](https://tailwindcss.com/docs)
 - [gray-matter](https://www.npmjs.com/package/gray-matter)
-- [remark](https://github.com/remarkjs/remark-html)
-- [Vercel](https://nextjs.org/docs/deployment)
+- [unified](https://unifiedjs.com) (remark + rehype)
+- [rehype-pretty-code](https://rehype-pretty.pages.dev) + [Shiki](https://shiki.style)
+- [Vercel](https://vercel.com/docs)
 - [namecheap](https://www.namecheap.com/)
 
 <br />
 
 ## **Connect 🤝**
 
-Though I'm not much for conventional social media, feel free to connect with me where ever I've resigned to exist!
+Though I'm not much for conventional social media, feel free to connect with me wherever I've resigned to exist!
 
 - [LinkedIn](https://linkedin.com/in/anthonybench)
 - [DuoLingo](https://duolingo.com/profile/thesleepyboy)
@@ -55,7 +58,7 @@ Though I'm not much for conventional social media, feel free to connect with me 
 ## **Acknowledgements 💙**
 
 Thanks to my loving partner Jean for buying land and developing it with me. I couldn't have done any of this without her. \
-And as well, to every mentor that has encouraged me to siphon knowledge form them.
+And as well, to every mentor that has encouraged me to siphon knowledge from them.
 
 <br />
 
@@ -70,10 +73,9 @@ And as well, to every mentor that has encouraged me to siphon knowledge form the
 ![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/anthonybench/sleepyblog/react)
 ![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/anthonybench/sleepyblog/js-yaml)
 ![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/anthonybench/sleepyblog/gray-matter)
-![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/anthonybench/sleepyblog/remark)
+![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/anthonybench/sleepyblog/remark-parse)
 ![GitHub License](https://img.shields.io/github/license/anthonybench/sleepyblog)
 ![GitHub top language](https://img.shields.io/github/languages/top/anthonybench/sleepyblog)
-![GitHub License](https://img.shields.io/github/license/anthonybench/sleepyblog)
 
 <!-- / -->
 
@@ -81,4 +83,4 @@ See [License](LICENSE) for the full license text.
 
 This project was authored by _Isaac Yep_.
 
-[Back to Table of Contents](#table-of-contents-)
+[Back to top](#sleepyblog)
