@@ -1,0 +1,25 @@
+:root[data-theme="ocean"] {
+    --bg-primary: #0a1128;
+    --bg-secondary: #14213d;
+    --bg-tertiary: #1f3157;
+    --text-primary: #e0f2f7;
+    --text-secondary: #64b5f6;
+    --text-muted: #2a3d63;
+    --accent-primary: #42a5f5;
+    --accent-secondary: #5cb85c;
+    --accent-tertiary: #64b5f6;
+    --border: #14213d;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --content-border: rgba(66, 165, 245, 0.3);
+
+    /* Frame: deep water, light from the surface in blue and a little coral green */
+    --frame-gradient:
+        radial-gradient(ellipse 60% 70% at 0% 0%, rgba(66, 165, 245, 0.22), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 100% 0%, rgba(92, 184, 92, 0.12), transparent 70%),
+        linear-gradient(160deg, #18284a 0%, #111c34 100%);
+
+    --chip-land-development: #5cb85c;
+    --chip-software-development: #42a5f5;
+    --chip-build-things: #ffb74d;
+    --chip-rant: #ef5350;
+}

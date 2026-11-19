@@ -1,0 +1,26 @@
+:root[data-theme="monokai"] {
+    --bg-primary: #272822;
+    --bg-secondary: #3e3d32;
+    --bg-tertiary: #49483e;
+    --text-primary: #f8f8f2;
+    --text-secondary: #75715e;
+    --text-muted: #49483e;
+    --accent-primary: #f0e68c;
+    --accent-secondary: #a6e22e;
+    --accent-tertiary: #66d9ef;
+    --text-on-accent: #272822;
+    --border: #3e3d32;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --content-border: rgba(240, 230, 140, 0.3);
+
+    /* Frame: warm charcoal, a yellow glow in the corner and green at the far end */
+    --frame-gradient:
+        radial-gradient(ellipse 60% 70% at 0% 0%, rgba(240, 230, 140, 0.22), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 100% 0%, rgba(166, 226, 46, 0.12), transparent 70%),
+        linear-gradient(160deg, #424136 0%, #33332a 100%);
+
+    --chip-land-development: #66d9ef;
+    --chip-software-development: #ae81ff;
+    --chip-build-things: #fd971f;
+    --chip-rant: #f92672;
+}
