@@ -20,17 +20,18 @@ function isVideoUrl(url: string): boolean {
 }
 
 /**
- * Matches a direct imgur photo link: https://i.imgur.com/<id>.<ext>
- * GIFs are left out because imgur's resized copies of them don't animate.
+ * Matches a photo on the site's media host: https://media.sleepyblog.org/<id>.<ext>
+ * GIFs and videos have no resized copy.
  */
-const IMGUR_IMAGE_URL = /^(https:\/\/i\.imgur\.com\/[A-Za-z0-9]+)(\.(?:jpe?g|png))$/i;
+const MEDIA_IMAGE_URL = /^(https:\/\/media\.sleepyblog\.org\/[A-Za-z0-9]+)(\.(?:jpe?g|png))$/i;
 
 /**
- * Returns imgur's 1024px resized copy of an imgur image ("h" suffix), which is far
- * smaller than the original phone photo; other URLs are returned unchanged.
+ * Returns the 1024px resized copy of a media-host photo ("h" suffix, made by
+ * `add_media.py`), which is far smaller than the original; other URLs are returned
+ * unchanged.
  */
 function getThumbnailUrl(url: string): string {
-    return url.replace(IMGUR_IMAGE_URL, "$1h$2");
+    return url.replace(MEDIA_IMAGE_URL, "$1h$2");
 }
 
 /**

@@ -1,5 +1,5 @@
 black
-imgur-python
+boto3
 pillow
 pillow-heif
 pyyaml
