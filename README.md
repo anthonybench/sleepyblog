@@ -38,7 +38,7 @@ More can be found in `_docs/` 🤓
 - [unified](https://unifiedjs.com) (remark + rehype)
 - [rehype-pretty-code](https://rehype-pretty.pages.dev) + [Shiki](https://shiki.style)
 - [Vercel](https://vercel.com/docs)
-- [namecheap](https://www.namecheap.com/)
+- [Cloudflare](https://www.cloudflare.com/) (domain, DNS, and R2 media storage)
 
 <br />
 
@@ -64,7 +64,7 @@ And as well, to every mentor that has encouraged me to siphon knowledge from the
 
 ## **License, Stats, Author 📜**
 
-<img align="right" alt="example image tag" src="https://i.imgur.com/ZHnNGeO.png" width="200" />
+<img align="right" alt="example image tag" src="https://media.sleepyblog.org/ZHnNGeO.png" width="200" />
 
 <!-- badge cluster -->
 

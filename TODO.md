@@ -8,8 +8,7 @@ A simple photo gallery of woodworking projects. Photos only, each with an option
 
 - Pick a layout to try (masonry, justified rows, polaroid scatter, filmstrip, ...); prototype two or three and keep the one that's fun to browse
 - Store the gallery as a list of `{ url, caption? }` entries, e.g. `_furniture/gallery.yml`
-- Host photos on imgur, uploaded with `add_media.py` (add a furniture target that appends to the list and asks for a caption)
-- Do one real imgur upload end to end first; `add_media.py` has only been tested against a fake client since the rewrite
+- Host photos on R2 (media.sleepyblog.org), uploaded with `add_media.py` (add a furniture target that appends to the list and asks for a caption)
 - Replace the "Coming Soon" stub in `app/furniture/page.tsx`
 - Remove `/furniture` from `Disallow` in `app/robots.txt` and add it to `app/sitemap.ts`
 - Write `_docs/furniture_gallery.md`

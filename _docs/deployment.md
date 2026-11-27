@@ -26,7 +26,7 @@ npm run dev    # http://localhost:3000
 | `./_tools/build.py`       | Lint and build, the pre-push check                        |
 | `./_tools/new_post.py`    | Start a new post (asks for the date, type, and title)     |
 | `./_tools/new_project.py` | Add a /software project (asks for everything)             |
-| `./_tools/add_media.py`   | Upload staged photos to imgur and link them to a page     |
+| `./_tools/add_media.py`   | Upload staged photos to R2 and link them to a page        |
 | `./_tools/publish.py`     | Build, then commit and push everything (asks first)       |
 | `./_tools/format.py`      | Format Python with black, and TS/TSX/CSS/MD with prettier |
 | `./_tools/help.py`        | Show the post workflow, tools, and docs                   |
@@ -36,8 +36,10 @@ npm run dev    # http://localhost:3000
 Only the photo upload tool needs any. Set them in your shell profile (not `.env.local`, which the Python tools don't read):
 
 ```bash
-export IMGUR_CLIENT_ID=...
-export IMGUR_ACCESS_TOKEN=...
+export R2_ACCOUNT_ID=...          # Cloudflare account id (R2 overview page)
+export R2_ACCESS_KEY_ID=...       # from an R2 API token (Object Read & Write)
+export R2_SECRET_ACCESS_KEY=...
+export R2_BUCKET=sleepyblog-media
 ```
 
 ## How Deployment Works
@@ -71,4 +73,7 @@ Vercel runs `npm run build`, which includes the `data.yml` config step, so the V
 
 ## Domain
 
-The domain is registered with [Namecheap](https://www.namecheap.com) and points at Vercel. Vercel issues the SSL certificate automatically. DNS settings are under the project's **Settings → Domains** in Vercel.
+The domain, its DNS, and the media storage are all on [Cloudflare](https://dash.cloudflare.com). Vercel issues the site's SSL certificate automatically.
+
+- **DNS** (Cloudflare → `sleepyblog.org` → DNS): `A sleepyblog.org → 76.76.21.21` and `CNAME www → cname.vercel-dns.com`, both **DNS only** (grey cloud). Vercel advises against Cloudflare's proxy in front of it. Vercel's side is under the project's **Settings → Domains**.
+- **Media** (Cloudflare → R2 → `sleepyblog-media`): every photo and video, served at `https://media.sleepyblog.org/<id>.<ext>`. Photos also have a 1024px copy at `<id>h.<ext>`, which post galleries load as the thumbnail. `add_media.py` makes both. The free tier covers 10 GB, and serving files costs nothing.

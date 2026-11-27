@@ -26,7 +26,7 @@ The wizard asks for:
 It writes `_projects/<slug>.md` and opens it in VS Code. Then:
 
 1. **Write the body.** The template stubs out three sections: _Why it exists_, _What it does_, and _Quick start_. Write it to make someone want to try the project.
-2. **Screenshots (optional).** Drop them in `_media_staging/` and run `./_tools/add_media.py --project <slug>` (or run it with no arguments and pick the project). It uploads to imgur and adds the links to the project's `media:` list, the same way it does for posts.
+2. **Screenshots (optional).** Drop them in `_media_staging/` and run `./_tools/add_media.py --project <slug>` (or run it with no arguments and pick the project). It uploads to R2 and adds the links to the project's `media:` list, the same way it does for posts.
 3. **Preview** with `npm run dev` at <http://localhost:3000/software>.
 4. **Publish** with `./_tools/publish.py`.
 
