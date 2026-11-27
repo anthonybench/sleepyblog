@@ -29,7 +29,7 @@ WORKFLOW_STEPS = [
         "2. Add photos",
         "Drop them in _media_staging/ and run ./_tools/add_media.py. It asks which "
         "post or project they're for, uploads them, and adds the links to its "
-        "[cyan]media:[/cyan] list.",
+        "[cyan]media:[/cyan] list. (For /furniture: ./_tools/add_media.py --furniture.)",
     ),
     ("3. Write & preview", "npm run dev → http://localhost:3000"),
     ("4. Format", "./_tools/format.py"),

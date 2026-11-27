@@ -24,6 +24,7 @@ SleepyBlog serves as a convenient place to host my resume, document my land deve
 - [Post Rendering System](_docs/post_rendering_system.md)
 - [Metadata Management](_docs/metadata_management.md)
 - [Software Projects](_docs/software_projects.md)
+- [Furniture Gallery](_docs/furniture_gallery.md)
 - [Adding New Tools](_docs/adding_new_tools.md)
 
 More can be found in `_docs/` 🤓

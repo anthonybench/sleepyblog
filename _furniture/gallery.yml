@@ -1,0 +1,14 @@
+# The /furniture gallery. Docs: _docs/furniture_gallery.md
+#
+# Add photos with `./_tools/add_media.py --furniture`, which uploads them and appends
+# entries here. Each category shows its photos in the order listed: featured ones full
+# width at the top, then the rest in columns. Edit, reorder, or delete entries freely.
+#
+# - url: https://media.sleepyblog.org/AbCd1234.jpg   # full-size photo on R2
+#   width: 1920                                      # pixel size of that photo
+#   height: 2560
+#   category: tables   # tables | seating | shelving | cabinetry | trim | not-furniture
+#   caption: Walnut coffee table                     # optional
+#   featured: true                                   # optional
+
+photos: []

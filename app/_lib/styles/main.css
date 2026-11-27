@@ -2154,3 +2154,140 @@ body {
         opacity: 1;
     }
 }
+
+/* ===================== Furniture: /furniture gallery ===================== */
+.furniture-header {
+    margin-bottom: 1.5rem;
+}
+.furniture-header h1 {
+    margin-bottom: 0.25rem;
+}
+.furniture-header p {
+    color: var(--text-secondary);
+}
+/* Category tabs: underlined like file-folder tabs */
+.furniture-categories {
+    display: flex;
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid var(--border);
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* fade the right edge so a cut-off tab reads as "scroll for more" */
+    mask-image: linear-gradient(to right, black calc(100% - 1.5rem), transparent);
+}
+@media (min-width: 700px) {
+    .furniture-categories {
+        mask-image: none;
+    }
+}
+.furniture-categories button {
+    flex: none;
+    margin-bottom: -2px;
+    padding: 0.55rem 0.9rem;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: none;
+    color: var(--text-secondary);
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+.furniture-categories button:hover {
+    color: var(--text-primary);
+}
+.furniture-categories button.selected {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+    font-weight: 700;
+}
+
+.furniture-view {
+    animation: furniture-fade 0.3s ease;
+}
+@keyframes furniture-fade {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+}
+
+.furniture-page img,
+.furniture-page figure > a {
+    display: block;
+}
+
+/* ---------- Masonry: columns, natural heights, caption under the photo ---------- */
+.furniture-masonry {
+    columns: 3 240px;
+    column-gap: 1rem;
+}
+.furniture-masonry figure {
+    break-inside: avoid;
+    margin: 0 0 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    box-shadow: 0 2px 10px var(--shadow);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+.furniture-masonry figure:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px var(--shadow);
+}
+.furniture-masonry img {
+    width: 100%;
+    height: auto;
+}
+.furniture-masonry figcaption {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+/* Featured: full-width cards stacked above the masonry, height capped, blurred fill */
+.furniture-featured {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+.furniture-featured figure {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    box-shadow:
+        0 0 0 2px var(--content-border),
+        0 4px 16px var(--shadow);
+}
+.furniture-featured-frame {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+.furniture-featured-backdrop {
+    position: absolute;
+    inset: -40px;
+    background-size: cover;
+    background-position: center;
+    filter: blur(28px) brightness(0.7);
+}
+.furniture-featured img {
+    position: relative;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(65vh, 600px);
+}
+.furniture-featured figcaption {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    color: var(--text-primary);
+}

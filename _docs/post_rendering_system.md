@@ -49,9 +49,9 @@ Each post file starts with YAML frontmatter containing metadata:
 title: "Your Post Title"
 media:
     [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-        "https://example.com/video.mp4",
+        "https://media.sleepyblog.org/AbCd1234.jpg",
+        "https://media.sleepyblog.org/EfGh5678.jpg",
+        "https://media.sleepyblog.org/IjKl9012.mp4",
     ]
 type: "software-development"
 ---
@@ -557,7 +557,7 @@ export default function PrevNextNavigation({ previous, next, noun }) {
 
 - **Post pages are static.** `generateStaticParams` in `app/posts/[slug]/page.tsx` builds every post at build time, so Markdown parsing and syntax highlighting never run on request. Their link preview images are built the same way.
 - **The home page list is fetched in the browser.** `app/page.tsx` is a client component that loads posts from `/api/posts` (via `postsClient.ts`) and filters them as you type.
-- **Gallery images load smaller copies.** For photos on the media host (`https://media.sleepyblog.org/<id>.jpg|png`), `MediaGallery` loads the 1024px copy (`<id>h.jpg`, made by `add_media.py`) and falls back to the original if that fails. Images are `unoptimized`, since they're external.
+- **Gallery images load smaller copies.** For photos on the media host (`https://media.sleepyblog.org/<id>.jpg|png`), `MediaGallery` loads the 1024px copy (`<id>h.jpg`, made by `add_media.py`; see `getThumbnailUrl()` in `app/_lib/utils/media.ts`) and falls back to the original if that fails. Images are `unoptimized`, since they're external.
 
 ## Error Handling
 
