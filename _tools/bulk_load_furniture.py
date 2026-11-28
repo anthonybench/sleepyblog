@@ -16,8 +16,8 @@ Ctrl+C in the terminal stops it once the queued uploads finish.
 Needs the R2 env vars (see add_media.py) and macOS `sips` for CR2 files.
 
 Usage:
-    ./_tools/sort_furniture.py              # opens http://localhost:8765
-    ./_tools/sort_furniture.py --dry-run    # renames and deletes, but skips the upload and gallery.yml
+    ./_tools/bulk_load_furniture.py              # opens http://localhost:8765
+    ./_tools/bulk_load_furniture.py --dry-run    # renames and deletes, but skips the upload and gallery.yml
 """
 
 import sys
@@ -64,7 +64,7 @@ PROJECT_ROOT = get_project_root()
 STAGING_DIR = PROJECT_ROOT / "_media_staging"
 ARCHIVE_DIR = STAGING_DIR / "uploaded" / "furniture"
 GALLERY_PATH = PROJECT_ROOT / FURNITURE_GALLERY
-WORK_DIR = Path(tempfile.mkdtemp(prefix="sort_furniture_"))
+WORK_DIR = Path(tempfile.mkdtemp(prefix="bulk_load_furniture_"))
 
 jobs: "queue.Queue[dict]" = queue.Queue()
 job_log: list[dict] = []  # every kept photo and its upload state, in order
@@ -279,7 +279,7 @@ PAGE = r"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sort Furniture</title>
+<title>Bulk Load Furniture</title>
 <style>
   :root { --bg:#16181c; --panel:#1f2228; --line:#2e323a; --text:#e6e6e6; --dim:#9aa0aa;
           --accent:#d9a25f; --danger:#e0605a; --ok:#6cc58a; }

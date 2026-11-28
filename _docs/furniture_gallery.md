@@ -32,7 +32,7 @@ How the `/furniture` photo gallery works, and how to add, change, or remove phot
 
 The R2 env vars need to be set first (see [Deployment](deployment.md#environment-variables)).
 
-For a big batch, `./_tools/sort_furniture.py` does the same in a browser, one photo at a time: keep or delete it, rename it (saved as `.jpg`, converting CR2/HEIC/PNG), and set its category, caption, and featured flag. Each kept photo uploads in the background while you sort the next.
+For a big batch, `./_tools/bulk_load_furniture.py` does the same in a browser, one photo at a time: keep or delete it, rename it (saved as `.jpg`, converting CR2/HEIC/PNG), and set its category, caption, and featured flag. Each kept photo uploads in the background while you sort the next.
 
 ## The Gallery File
 
@@ -64,6 +64,8 @@ photos:
 A mistake in the file (a missing field or a misspelled category) **fails the build** with a message naming the entry, rather than quietly hiding the photo.
 
 ### Common Edits
+
+To review every photo one at a time in a browser and change its category, caption, or featured flag, run `./_tools/organize_furniture.py`. It keeps the file sorted by category (`--sort` just sorts it). Or edit the file by hand:
 
 - **Reorder:** move entries up or down. Within a category, photos show in file order: the featured ones first, then the rest.
 - **Change a caption, category, or featured flag:** edit the field.
