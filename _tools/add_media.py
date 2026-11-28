@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-"""Upload the photos in `_media_staging/` to R2 and add them to a post or project.
+"""Upload the photos in `_media_staging/` to R2 and add them to a page.
 
 Drop the photos (and videos) into `_media_staging/`, then run this. It asks where they
-go (the newest post, another post, or a /software project), then:
+go (the newest post, another post, a /software project, or the /furniture gallery),
+then:
     1. Fixes each photo's rotation, strips its metadata (including GPS location), and
        shrinks it to at most 2560px on the long edge as a JPEG. iPhone HEIC photos
        are converted too. GIFs and videos are uploaded as-is.
@@ -10,7 +11,9 @@ go (the newest post, another post, or a /software project), then:
        the order the photos were taken. Each file gets a random name, and each photo
        also gets a 1024px copy with an "h" suffix (`<id>.jpg` + `<id>h.jpg`), which
        the post gallery loads as its thumbnail.
-    3. Appends the links to the post's or project's `media:` list.
+    3. Appends the links to the post's or project's `media:` list. For /furniture, it
+       first asks each photo's category, caption, and whether it's featured, then
+       appends entries to `_furniture/gallery.yml` (photos only; videos are skipped).
     4. Moves the originals to `_media_staging/uploaded/<slug>/`, so nothing is ever
        uploaded twice.
 
@@ -28,6 +31,7 @@ Usage:
     ./_tools/add_media.py                       # asks where the media goes
     ./_tools/add_media.py 2025-11-19            # a specific post
     ./_tools/add_media.py --project sleepyconvert  # a /software project
+    ./_tools/add_media.py --furniture           # the /furniture gallery
     ./_tools/add_media.py --dry-run             # process the photos, show the plan only
 
 References:
@@ -35,12 +39,14 @@ References:
 """
 
 import argparse
+import json
 import mimetypes
 import os
 import re
 import secrets
 import shutil
 import string
+import subprocess
 import sys
 import tempfile
 from dataclasses import dataclass
@@ -55,14 +61,14 @@ from rich.console import Console
 from rich.markup import escape
 from rich.table import Table
 
-from _prompts import choose, confirm
+from _prompts import ask, choose, confirm
 
 register_heif_opener()
 console = Console()
 
 MEDIA_BASE_URL = "https://media.sleepyblog.org"
 MAX_PHOTO_EDGE_PX = 2560
-# the gallery thumbnail; keep in sync with MEDIA_IMAGE_URL in MediaGallery.tsx
+# the gallery thumbnail; keep in sync with MEDIA_IMAGE_URL in app/_lib/utils/media.ts
 THUMBNAIL_EDGE_PX = 1024
 JPEG_QUALITY = 85
 # a file's name never changes once uploaded, so browsers can cache it forever
@@ -83,6 +89,18 @@ MEDIA_FIELD = re.compile(r"^media:.*(?:\n[ \t-].*)*", re.MULTILINE)
 # how many recent posts "another post" lists
 RECENT_POST_COUNT = 10
 
+# the /furniture tabs; keep in sync with furnitureCategories in app/_lib/types/furniture.ts
+FURNITURE_CATEGORIES = [
+    "tables",
+    "shelving",
+    "cabinetry",
+    "trim",
+    "seating",
+    "not-furniture",
+]
+FURNITURE_GALLERY = Path("_furniture") / "gallery.yml"
+PHOTOS_FIELD = re.compile(r"^photos:.*$", re.MULTILINE)
+
 
 @dataclass
 class Target:
@@ -91,7 +109,7 @@ class Target:
     path: Path
     slug: str
     title: str
-    kind: str  # "post" or "project"
+    kind: str  # "post", "project", or "furniture"
 
 
 @dataclass
@@ -102,6 +120,15 @@ class StagedFile:
     upload: Path
     thumbnail: Path | None  # the 1024px copy, for photos only
     taken_at: str  # EXIF "YYYY:MM:DD HH:MM:SS", or "" when unknown
+
+
+@dataclass
+class FurnitureDetails:
+    """What the /furniture gallery shows for one photo."""
+
+    category: str
+    caption: str  # "" for none
+    featured: bool
 
 
 def get_project_root() -> Path:
@@ -125,6 +152,12 @@ def parse_args() -> argparse.Namespace:
         "-p",
         help="/software project to add media to, by slug (e.g. sleepyconvert)",
     )
+    target.add_argument(
+        "--furniture",
+        "-f",
+        action="store_true",
+        help="add photos to the /furniture gallery (_furniture/gallery.yml)",
+    )
     parser.add_argument(
         "--dry-run",
         action="store_true",
@@ -144,6 +177,16 @@ def load_target(path: Path, kind: str) -> Target:
         slug=path.stem,
         title=title,
         kind=kind,
+    )
+
+
+def furniture_target(project_root: Path) -> Target:
+    """Build the Target for the /furniture gallery."""
+    return Target(
+        path=require_file(project_root / FURNITURE_GALLERY, "gallery file"),
+        slug="furniture",
+        title="the /furniture gallery",
+        kind="furniture",
     )
 
 
@@ -167,9 +210,6 @@ def ask_target(posts_dir: Path, projects_dir: Path) -> Target:
     """
     posts = sorted(posts_dir.glob("*.md"), reverse=True)
     projects = sorted(projects_dir.glob("*.md")) if projects_dir.is_dir() else []
-    if not posts and not projects:
-        console.print("[red]✗ No posts or projects yet. Create one first.[/red]")
-        sys.exit(1)
 
     options = []
     if posts:
@@ -180,8 +220,11 @@ def ask_target(posts_dir: Path, projects_dir: Path) -> Target:
         options.append(("post", "Another post"))
     if projects:
         options.append(("project", "A /software project"))
+    options.append(("furniture", "The /furniture gallery"))
     where = choose("[bold]Where do these go?[/bold]", options)
 
+    if where == "furniture":
+        return furniture_target(posts_dir.parent)
     if where == "newest":
         return newest
     if where == "post":
@@ -399,6 +442,82 @@ def append_post_media(post_path: Path, links: list[str]) -> None:
     )
 
 
+def ask_furniture_details(staged: list[StagedFile]) -> list[FurnitureDetails]:
+    """Ask each photo's category, caption, and whether it's featured.
+
+    Offers to open the photos in Preview first (macOS), in the same order as the
+    questions, since camera filenames don't say much.
+
+    Args:
+        staged: The processed photos, in upload order.
+
+    Returns:
+        One FurnitureDetails per photo, in the same order.
+    """
+    if sys.platform == "darwin" and confirm("\nOpen the photos in Preview?", True):
+        subprocess.run(["open", "-a", "Preview", *[str(f.thumbnail) for f in staged]])
+
+    details = []
+    category_options = [(category, category) for category in FURNITURE_CATEGORIES]
+    last_category = 1
+    for index, file in enumerate(staged, start=1):
+        taken = f", taken {file.taken_at}" if file.taken_at else ""
+        console.print(
+            f"\n[bold]Photo {index}/{len(staged)}[/bold]: "
+            f"{escape(file.original.name)}{taken}"
+        )
+        category = choose("Category?", category_options, default=last_category)
+        last_category = FURNITURE_CATEGORIES.index(category) + 1
+        caption = ask("Caption (Enter for none)", required=False)
+        featured = confirm("Featured (full width at the top)?", False)
+        details.append(FurnitureDetails(category, caption, featured))
+    return details
+
+
+def append_furniture_photos(
+    gallery_path: Path, photos: list[tuple[StagedFile, str, FurnitureDetails]]
+) -> None:
+    """Append entries to the end of `_furniture/gallery.yml`'s `photos:` list.
+
+    The file is appended to as text, so its comments and hand edits are kept.
+
+    Args:
+        gallery_path: The gallery file.
+        photos: Each uploaded photo, its URL, and what to show with it.
+    """
+    text = gallery_path.read_text(encoding="utf-8")
+    before = len((yaml.safe_load(text) or {}).get("photos") or [])
+    if PHOTOS_FIELD.search(text):
+        # `photos: []` (empty) becomes a block list; a block list is left as it was
+        text = PHOTOS_FIELD.sub("photos:", text, count=1)
+    else:
+        text += "\nphotos:"
+    lines = []
+    for file, url, details in photos:
+        with Image.open(file.upload) as image:
+            width, height = image.size
+        lines += [
+            f"  - url: {url}",
+            f"    width: {width}",
+            f"    height: {height}",
+            f"    category: {details.category}",
+        ]
+        if details.caption:
+            # a JSON string is a valid YAML double-quoted string
+            lines.append(f"    caption: {json.dumps(details.caption, ensure_ascii=False)}")
+        if details.featured:
+            lines.append("    featured: true")
+    text = text.rstrip("\n") + "\n" + "\n".join(lines) + "\n"
+
+    after = len((yaml.safe_load(text) or {}).get("photos") or [])
+    if after != before + len(photos):
+        raise RuntimeError(
+            f"{gallery_path.name} didn't parse as expected after appending; "
+            "check that `photos:` is the last section of the file"
+        )
+    gallery_path.write_text(text, encoding="utf-8")
+
+
 def archive_originals(files: list[Path], archive_dir: Path) -> None:
     """Move uploaded originals out of the staging directory, never overwriting."""
     archive_dir.mkdir(parents=True, exist_ok=True)
@@ -412,7 +531,7 @@ def archive_originals(files: list[Path], archive_dir: Path) -> None:
 
 
 def main() -> None:
-    """Process, upload, and attach the staged media to a post."""
+    """Process, upload, and attach the staged media to a page."""
     args = parse_args()
     project_root = get_project_root()
     staging_dir = project_root / "_media_staging"
@@ -425,7 +544,9 @@ def main() -> None:
 
     posts_dir = project_root / "_posts"
     projects_dir = project_root / "_projects"
-    if args.project:
+    if args.furniture:
+        target = furniture_target(project_root)
+    elif args.project:
         path = require_file(projects_dir / f"{args.project}.md", "project")
         target = load_target(path, "project")
     elif args.post:
@@ -436,6 +557,16 @@ def main() -> None:
         target = ask_target(posts_dir, projects_dir)
     relative_path = target.path.relative_to(project_root)
     bucket = None if args.dry_run else get_bucket()
+
+    if target.kind == "furniture":
+        skipped = [f for f in files if f.suffix.lower() in PASSTHROUGH_EXTENSIONS]
+        for file in skipped:
+            console.print(
+                f"[yellow]⚠️  Skipping {file.name}: /furniture takes photos only[/yellow]"
+            )
+        files = [f for f in files if f not in skipped]
+        if not files:
+            return
 
     console.print(
         f"\n📸 {len(files)} file(s) for [bold]{relative_path}[/bold] "
@@ -452,9 +583,12 @@ def main() -> None:
         if args.dry_run:
             console.print("\n[dim]Dry run: nothing was uploaded or changed.[/dim]")
             return
-        if not confirm(f"\nUpload these and add them to the {target.kind}?", True):
+        if not confirm(f"\nUpload these and add them to {target.title}?", True):
             console.print("[dim]Cancelled.[/dim]")
             return
+        details = (
+            ask_furniture_details(staged) if target.kind == "furniture" else None
+        )
 
         uploaded: list[tuple[StagedFile, str]] = []
         failed = False
@@ -469,10 +603,17 @@ def main() -> None:
             console.print(f"[red]✗ Upload stopped: {error or 'cancelled'}[/red]")
             failed = True
 
-    if not uploaded:
-        sys.exit(1)
+        if not uploaded:
+            sys.exit(1)
+        # inside the `with`: the furniture entries read sizes from the processed photos
+        if details is not None:
+            append_furniture_photos(
+                target.path,
+                [(f, url, details[staged.index(f)]) for f, url in uploaded],
+            )
+        else:
+            append_post_media(target.path, [url for _, url in uploaded])
 
-    append_post_media(target.path, [url for _, url in uploaded])
     archive_dir = staging_dir / "uploaded" / target.slug
     archive_originals([file.original for file, _ in uploaded], archive_dir)
 

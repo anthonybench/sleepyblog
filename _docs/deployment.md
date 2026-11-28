@@ -73,7 +73,8 @@ Vercel runs `npm run build`, which includes the `data.yml` config step, so the V
 
 ## Domain
 
-The domain, its DNS, and the media storage are all on [Cloudflare](https://dash.cloudflare.com). Vercel issues the site's SSL certificate automatically.
+The domain registration, its DNS, and the media storage are all on [Cloudflare](https://dash.cloudflare.com), so it's the only account besides Vercel and GitHub. Vercel issues the site's SSL certificate automatically.
 
+- **Registration** (Cloudflare → Domain Registration): `sleepyblog.org` is registered through Cloudflare Registrar at cost, about $11/yr, and renews automatically. Paid through Mar 11, 2028.
 - **DNS** (Cloudflare → `sleepyblog.org` → DNS): `A sleepyblog.org → 76.76.21.21` and `CNAME www → cname.vercel-dns.com`, both **DNS only** (grey cloud). Vercel advises against Cloudflare's proxy in front of it. Vercel's side is under the project's **Settings → Domains**.
-- **Media** (Cloudflare → R2 → `sleepyblog-media`): every photo and video, served at `https://media.sleepyblog.org/<id>.<ext>`. Photos also have a 1024px copy at `<id>h.<ext>`, which post galleries load as the thumbnail. `add_media.py` makes both. The free tier covers 10 GB, and serving files costs nothing.
+- **Media** (Cloudflare → R2 → `sleepyblog-media`): every photo and video, served at `https://media.sleepyblog.org/<id>.<ext>`. Photos also have a 1024px copy at `<id>h.<ext>`, which post galleries and `/furniture` load as thumbnails. `add_media.py` makes both (see [Furniture Gallery](furniture_gallery.md) for the `/furniture` side). The free tier covers 10 GB, and serving files costs nothing.

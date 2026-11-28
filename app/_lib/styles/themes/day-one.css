@@ -1,0 +1,25 @@
+:root[data-theme="day-one"] {
+    --bg-primary: #fafafa;
+    --bg-secondary: #f0f0f1;
+    --bg-tertiary: #e5e5e6;
+    --text-primary: #383a42;
+    --text-secondary: #a0a1a7;
+    --text-muted: #c2c3c7;
+    --accent-primary: #4078f2;
+    --accent-secondary: #a626a4;
+    --accent-tertiary: #50a14f;
+    --border: #e5e5e6;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --content-border: rgba(64, 120, 242, 0.25);
+
+    /* Frame: One Light's paper white with a blue and magenta tint */
+    --frame-gradient:
+        radial-gradient(ellipse 60% 70% at 0% 0%, rgba(64, 120, 242, 0.16), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 100% 0%, rgba(166, 38, 164, 0.1), transparent 70%),
+        linear-gradient(160deg, #f2f2f3 0%, #e4e4e6 100%);
+
+    --chip-land-development: #0184bc;
+    --chip-software-development: #a626a4;
+    --chip-build-things: #c18401;
+    --chip-rant: #e45649;
+}

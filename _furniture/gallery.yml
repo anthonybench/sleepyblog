@@ -1,0 +1,818 @@
+# The /furniture gallery. Docs: _docs/furniture_gallery.md
+#
+# Add photos with `./_tools/add_media.py --furniture`, which uploads them and appends
+# entries here. Each category shows its photos in the order listed: featured ones full
+# width at the top, then the rest in columns. Edit, reorder, or delete entries freely.
+#
+# - url: https://media.sleepyblog.org/AbCd1234.jpg   # full-size photo on R2
+#   width: 1920                                      # pixel size of that photo
+#   height: 2560
+#   category: tables   # tables | seating | shelving | cabinetry | trim | not-furniture
+#   caption: Walnut coffee table                     # optional
+#   featured: true                                   # optional
+
+photos:
+  - url: https://media.sleepyblog.org/Vo3AqlCj.jpg
+    width: 1707
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/78WI5ugV.jpg
+    width: 1707
+    height: 2560
+    category: cabinetry
+    caption: "a sloppy attempt at rustic, never again"
+  - url: https://media.sleepyblog.org/FhAh4vUW.jpg
+    width: 2560
+    height: 1707
+    category: cabinetry
+    caption: "i later refined my wood burn signature, that was way too long"
+  - url: https://media.sleepyblog.org/94vuaiuV.jpg
+    width: 1707
+    height: 2560
+    category: shelving
+    caption: "ugly as sin, but used only the worst scraps"
+  - url: https://media.sleepyblog.org/NVTfXROy.jpg
+    width: 1707
+    height: 2560
+    category: shelving
+    caption: "ugly as sin, but made only with pine scraps"
+  - url: https://media.sleepyblog.org/f3lYdeaz.jpg
+    width: 1707
+    height: 2560
+    category: shelving
+    caption: "ugly as sin, but used only pine scrap"
+  - url: https://media.sleepyblog.org/DNp5J74x.jpg
+    width: 1707
+    height: 2560
+    category: tables
+    caption: "a project to test bar top self leveling finish, self leveling my ass"
+  - url: https://media.sleepyblog.org/93dZbhYS.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "burned cramer's rule on the lid of a box, amusing"
+  - url: https://media.sleepyblog.org/NOJv8lcJ.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "broke boy furniture, but i could try the concept of graduating curves for visual exposure"
+  - url: https://media.sleepyblog.org/Ykqdzjqk.jpg
+    width: 1707
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/Pd9xH0L5.jpg
+    width: 1707
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/eVTgJauQ.jpg
+    width: 2560
+    height: 1707
+    category: not-furniture
+    caption: "don't mix PT and produce 💀"
+  - url: https://media.sleepyblog.org/sGz7o9Nk.jpg
+    width: 1707
+    height: 2560
+    category: seating
+    caption: "a lazy concept test of skate decks as seating"
+  - url: https://media.sleepyblog.org/2AS0ZNWz.jpg
+    width: 2560
+    height: 1707
+    category: tables
+    caption: "testing a paint + waterproof seal on 1/2\" ply, lasted several Alaskan winters"
+  - url: https://media.sleepyblog.org/oGAxHCah.jpg
+    width: 2560
+    height: 1707
+    category: trim
+    caption: "plywood photo backing concept test"
+  - url: https://media.sleepyblog.org/cKgnq8yX.jpg
+    width: 2560
+    height: 1707
+    category: trim
+    caption: "plywood photo backing concept test"
+  - url: https://media.sleepyblog.org/fkDWfWWk.jpg
+    width: 2560
+    height: 1920
+    category: shelving
+    caption: "staining my first attempt at a glass inlay shelf top"
+  - url: https://media.sleepyblog.org/iuILn0ys.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/TxlGRuIp.jpg
+    width: 1696
+    height: 2560
+    category: shelving
+    caption: "another attempt at cabin rustic"
+  - url: https://media.sleepyblog.org/2DlYJHVW.jpg
+    width: 2560
+    height: 1696
+    category: cabinetry
+    caption: "wood burning signature inside a cabinet door for my nephew"
+  - url: https://media.sleepyblog.org/ZRjKk9RI.jpg
+    width: 1920
+    height: 2560
+    category: tables
+    caption: "the frame for my attempt at a kneeling table"
+  - url: https://media.sleepyblog.org/tTRXi5BA.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/h7et29zc.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/cy7vK91k.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/ikvo44uw.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/NOYnKCCe.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "first attempt at dado-ing a slide lid with plywood,"
+  - url: https://media.sleepyblog.org/3uqVgRbE.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/rtKcyCRL.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/ergCv4D7.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "practice flushing in simple hinges"
+  - url: https://media.sleepyblog.org/ca6qtMAP.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/fGaSnXDf.jpg
+    width: 1920
+    height: 2560
+    category: trim
+    caption: "found this antler on a hike"
+  - url: https://media.sleepyblog.org/wro5Xt2H.jpg
+    width: 1920
+    height: 2560
+    category: seating
+    caption: "base for a kneeling table bench, my plan was to affix 8lb carpet pad"
+  - url: https://media.sleepyblog.org/HvZhnq3k.jpg
+    width: 1920
+    height: 2560
+    category: seating
+  - url: https://media.sleepyblog.org/IpRulvqw.jpg
+    width: 1920
+    height: 2560
+    category: tables
+    caption: "the finished result of a kneeling table i made for a small apartment"
+  - url: https://media.sleepyblog.org/TkQWBnCv.jpg
+    width: 1920
+    height: 2560
+    category: tables
+    caption: "the finished result of a kneeling table i made for a small apartment"
+  - url: https://media.sleepyblog.org/mZHLwvoG.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "tried a hand at sushi trays....no i never actually ate sushi off them shut up"
+    featured: true
+  - url: https://media.sleepyblog.org/vo8GuoXa.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "a test concept for a \"remote bucket\", because i always lost my remotes in my bed"
+  - url: https://media.sleepyblog.org/SoTMLiJA.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "it had a felt liner to make it quieter"
+  - url: https://media.sleepyblog.org/jTGjFQ7Q.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "trying a new concept for corner-posted boxes and flush lids"
+  - url: https://media.sleepyblog.org/NAiAHVKv.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+  - url: https://media.sleepyblog.org/t2B9wwLk.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "i tried felting the insides and the lid, still not sure how to do this cleanly 🤔"
+    featured: true
+  - url: https://media.sleepyblog.org/YztUpBqp.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "trying a new concept for corner-posted boxes and flush lids"
+    featured: true
+  - url: https://media.sleepyblog.org/vAL5trO1.jpg
+    width: 2560
+    height: 1920
+    category: shelving
+    caption: "skateboard truck skiis for a shelving abomination i tried"
+  - url: https://media.sleepyblog.org/56Gyb1bA.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "this thing was for my sister, to slide in front of a treadmill and allow for shelving, very weird concept"
+    featured: true
+  - url: https://media.sleepyblog.org/RFvhfb5K.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/Umb311tp.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/NtdYE2Ma.jpg
+    width: 2560
+    height: 1920
+    category: shelving
+    caption: "a large nightstand with space to fit a specific electric \"fireplace\", this traveled with me for several apartments, as annoying as it was to move i loved this thing"
+  - url: https://media.sleepyblog.org/PDNAU7ji.jpg
+    width: 2560
+    height: 1920
+    category: shelving
+  - url: https://media.sleepyblog.org/42XvyjOw.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/AzX93pWj.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/cdhydbLX.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    featured: true
+  - url: https://media.sleepyblog.org/uO7yebPa.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "at attempt at a business card stand cut from a single piece"
+  - url: https://media.sleepyblog.org/aDqaxwhA.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "something to keep the ink at the tips of the whiteboard markers, i use to tutor at a math lab, those red markers dry up too fast"
+  - url: https://media.sleepyblog.org/q4VlFIUH.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/h1J1LvXI.jpg
+    width: 1920
+    height: 2560
+    category: trim
+    caption: "two tone picture frame"
+  - url: https://media.sleepyblog.org/h9pFcHqH.jpg
+    width: 1920
+    height: 2560
+    category: trim
+  - url: https://media.sleepyblog.org/l2p6bxlE.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "still use and love this thing, the trapezoid made for interesting challenges at the seams"
+    featured: true
+  - url: https://media.sleepyblog.org/WvcmTCWz.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/ox6mbBXA.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "tried my and at designing gears and scrolling them out of pine, very time consuming"
+  - url: https://media.sleepyblog.org/1gasYqpj.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "table saw sled for cutting circles, to do near perfect circular shelving"
+  - url: https://media.sleepyblog.org/KxoF3ZGb.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "a board to test gear mating"
+  - url: https://media.sleepyblog.org/kjYwkbmT.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "tried my hand at skate ramps, figured a double-halfpipe would be fun (thanks for the help Evan!)"
+  - url: https://media.sleepyblog.org/JiHph6yS.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+  - url: https://media.sleepyblog.org/1Lt40VHv.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    featured: true
+  - url: https://media.sleepyblog.org/MkBiubHP.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "did i mention this was time consuming"
+  - url: https://media.sleepyblog.org/eiY5qVkd.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+  - url: https://media.sleepyblog.org/U3IDGGGw.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "flushing skateboard bearings into gears"
+  - url: https://media.sleepyblog.org/cZCl3B7r.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+  - url: https://media.sleepyblog.org/o54KoaSB.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+  - url: https://media.sleepyblog.org/en8c3DTL.jpg
+    width: 1920
+    height: 2560
+    category: trim
+  - url: https://media.sleepyblog.org/Mrz3OFue.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "played with roman profiling"
+  - url: https://media.sleepyblog.org/Ggpxs9yq.jpg
+    width: 2560
+    height: 1920
+    category: trim
+  - url: https://media.sleepyblog.org/RyVZElxC.jpg
+    width: 2560
+    height: 1920
+    category: shelving
+    caption: "i think i left it in that apartment..."
+  - url: https://media.sleepyblog.org/4b03BI7G.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "forgot to mention, this took way too long"
+    featured: true
+  - url: https://media.sleepyblog.org/ApaQvf6V.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+  - url: https://media.sleepyblog.org/YDcxm2SW.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "gear demonstration, the spoked gears were amusing to cut"
+    featured: true
+  - url: https://media.sleepyblog.org/YVzdERx3.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "saw this on youtube and had to try making it"
+    featured: true
+  - url: https://media.sleepyblog.org/xw011Bo1.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "cutting rounds for pulleys"
+  - url: https://media.sleepyblog.org/tbDPmIEk.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "a simple collar to turn crank a drive gear"
+  - url: https://media.sleepyblog.org/R1S2ZZpS.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "scrolling arms for gear mating"
+  - url: https://media.sleepyblog.org/eReNCDxa.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "cored out pucks for pulley belts"
+  - url: https://media.sleepyblog.org/NNynsKAb.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+  - url: https://media.sleepyblog.org/Cps3lw20.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "setting a compound pulley gear"
+  - url: https://media.sleepyblog.org/EhwVIy2t.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "demo gear assembly"
+    featured: true
+  - url: https://media.sleepyblog.org/6wGcRJ0f.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "demo gear assembly, with a goober"
+    featured: true
+  - url: https://media.sleepyblog.org/S4OITIAu.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "this was a weird table saw sled for cutting slots at 45° angles for slatted shudders"
+  - url: https://media.sleepyblog.org/wRjw3Y2g.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "my wood burning lines got cleaner eventually, i think those were the coordinates for my apartment at the time 🤣"
+  - url: https://media.sleepyblog.org/7nnpoNmz.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+    caption: "before finishing"
+  - url: https://media.sleepyblog.org/fgAROdc0.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+  - url: https://media.sleepyblog.org/Jp5lYghO.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+    caption: "my dad called this the mona lisa, this was me trying a louvered cabinet door"
+    featured: true
+  - url: https://media.sleepyblog.org/uDxtjFEh.jpg
+    width: 1920
+    height: 2560
+    category: cabinetry
+  - url: https://media.sleepyblog.org/20vYwaBk.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+  - url: https://media.sleepyblog.org/qYW9nmAf.jpg
+    width: 1920
+    height: 2560
+    category: cabinetry
+  - url: https://media.sleepyblog.org/LtlpqFpi.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+  - url: https://media.sleepyblog.org/eXzjG2JQ.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+  - url: https://media.sleepyblog.org/EW61IY9f.jpg
+    width: 1920
+    height: 2560
+    category: cabinetry
+    caption: "this was for a museum display"
+  - url: https://media.sleepyblog.org/E8nacslV.jpg
+    width: 1920
+    height: 2560
+    category: tables
+    caption: "the table top and back splash, not the cabinets, this was a craft room counter"
+  - url: https://media.sleepyblog.org/kX4Gq2BX.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/0f8uRfxV.jpg
+    width: 2560
+    height: 1920
+    category: tables
+  - url: https://media.sleepyblog.org/s0QSvqIG.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/fRpS1gc5.jpg
+    width: 2560
+    height: 1920
+    category: tables
+    caption: "i found old speaker stands in my parent's crawl space, and figured they'd make good table legs, a friend helped me burn the art, can't remember which one she and i did"
+    featured: true
+  - url: https://media.sleepyblog.org/o1BBsvUD.jpg
+    width: 2560
+    height: 1920
+    category: tables
+  - url: https://media.sleepyblog.org/6VyHArgc.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "made a beefy box-jointed case (pretty heavy honestly) and a giant jenga set as a commission"
+    featured: true
+  - url: https://media.sleepyblog.org/jVV7fjpf.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+  - url: https://media.sleepyblog.org/8bNIT39I.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/rbCKbFpq.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "made a giant jenga set with a box-jointed case (pretty heavy, ugh), a fun commission, but i had to burn \"BOAB\" on every single block, which took some time"
+    featured: true
+  - url: https://media.sleepyblog.org/UhypXLjy.jpg
+    width: 2560
+    height: 1920
+    category: trim
+  - url: https://media.sleepyblog.org/Lpl3ZB0a.jpg
+    width: 2560
+    height: 1920
+    category: trim
+  - url: https://media.sleepyblog.org/7uZNaKlZ.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/WcQ8UjN7.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/AKutfX9B.jpg
+    width: 1920
+    height: 2560
+    category: cabinetry
+    caption: "a plywood kitchen cabinet commission"
+  - url: https://media.sleepyblog.org/uleua1rK.jpg
+    width: 2560
+    height: 1920
+    category: cabinetry
+    caption: "some were left unfinished, can't remember why now"
+  - url: https://media.sleepyblog.org/CteMDbYa.jpg
+    width: 1920
+    height: 2560
+    category: cabinetry
+  - url: https://media.sleepyblog.org/siqbbiHy.jpg
+    width: 1920
+    height: 2560
+    category: cabinetry
+  - url: https://media.sleepyblog.org/WN7S4q9B.jpg
+    width: 1920
+    height: 2560
+    category: tables
+    caption: "half finished kitchen bar"
+  - url: https://media.sleepyblog.org/VZD5umte.jpg
+    width: 1920
+    height: 2560
+    category: cabinetry
+  - url: https://media.sleepyblog.org/gvp308v7.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "an open dresser exploring shape more with shelves that extended beyond the side walls, and shallow dividers"
+    featured: true
+  - url: https://media.sleepyblog.org/6di72OIR.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "an open dresser exploring shape more with shelves that extended beyond the side walls, and shallow dividers"
+  - url: https://media.sleepyblog.org/RO05RkKH.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/xTazZaMm.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "the curved backer was less noticeable than i imaged..."
+  - url: https://media.sleepyblog.org/tfdCIiKO.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "i did the otter's fur weird on this one..."
+  - url: https://media.sleepyblog.org/HJaui338.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/5qO9v65F.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/fjVxhLhZ.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "a friend had a clothing brand 'wonderful' for a time, and i tried making a screen printing screen for him, the screen was hard to keep taut while securing the frame"
+  - url: https://media.sleepyblog.org/p3PDkdH8.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "something to remember my childhood dog, \"joey\", or as i loved calling him \"fat joey\", a really sweet boston terrier"
+  - url: https://media.sleepyblog.org/zTqSBdev.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/NaQSrm5a.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/r37lrinr.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "my sister's late pug 'Fletch'"
+    featured: true
+  - url: https://media.sleepyblog.org/gAoZHJBX.jpg
+    width: 2560
+    height: 1920
+    category: tables
+    caption: "sapele ply with a sapele hardwood border, dowel-jointed."
+    featured: true
+  - url: https://media.sleepyblog.org/PrKfBbF3.jpg
+    width: 2560
+    height: 1920
+    category: tables
+  - url: https://media.sleepyblog.org/90IJgIKC.jpg
+    width: 2560
+    height: 1920
+    category: tables
+  - url: https://media.sleepyblog.org/BHaMYCbs.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/an6ERm7j.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/GT6An5Gv.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/Btx65JdK.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/R0mF7zKM.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/Mg5uofIF.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/GKQ70ykG.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/uEDa6rOo.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/QxmD2k72.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/R5rCOPPU.jpg
+    width: 2560
+    height: 1920
+    category: shelving
+  - url: https://media.sleepyblog.org/w43GZNL6.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "this was for a stand for a projector in an apartment i was living in, very satisfying looking but honestly very impractical"
+  - url: https://media.sleepyblog.org/HGpMTp0f.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/6QosJr9h.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/LBge5wzH.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/cXouIOrY.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "little walnut shelf just to hold an echo...i know i'm extra"
+  - url: https://media.sleepyblog.org/Qx1xexqE.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/OXqQT7i3.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/AjRnAlmt.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "my un-inspirational medal rack for running medals"
+    featured: true
+  - url: https://media.sleepyblog.org/ZuhiCObl.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "my un-inspirational medal rack for hanging running medals"
+    featured: true
+  - url: https://media.sleepyblog.org/QUIfLOvK.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/o8xmubxW.jpg
+    width: 1920
+    height: 2560
+    category: tables
+    caption: "another desk top, all hardwood (eastern ash, sapele border)"
+    featured: true
+  - url: https://media.sleepyblog.org/a64IRPce.jpg
+    width: 2560
+    height: 1920
+    category: tables
+  - url: https://media.sleepyblog.org/Kkn2NxwW.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "western cedar closet shelf"
+  - url: https://media.sleepyblog.org/iSW4D7cc.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/WIom4IVl.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/Z2VSJtQ3.jpg
+    width: 1920
+    height: 2560
+    category: tables
+  - url: https://media.sleepyblog.org/gLfmdpNE.jpg
+    width: 2560
+    height: 1920
+    category: shelving
+  - url: https://media.sleepyblog.org/dsgIl1w5.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/Um6OIpHC.jpg
+    width: 2560
+    height: 1920
+    category: shelving
+    featured: true
+  - url: https://media.sleepyblog.org/5XLkGD43.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    featured: true
+  - url: https://media.sleepyblog.org/gw36RVgb.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/eOJA3Z6T.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/oWs9badL.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+    caption: "dowl-jointed beams and shelf brackets, all made of scrap plywood, made to fit a balcony just right"
+  - url: https://media.sleepyblog.org/3vkfxQgK.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/xve5xtqS.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "something to try cnc rastering"
+  - url: https://media.sleepyblog.org/rj9v9LHD.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+  - url: https://media.sleepyblog.org/MfasSRVz.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+  - url: https://media.sleepyblog.org/TjRewtit.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/jTWK81a2.jpg
+    width: 1920
+    height: 2560
+    category: shelving
+    caption: "in hindsight, i wish i had stained the wood panel behind the glass"
+  - url: https://media.sleepyblog.org/GKu6xe6S.jpg
+    width: 1920
+    height: 2560
+    category: cabinetry
+  - url: https://media.sleepyblog.org/TuNZa6Dl.jpg
+    width: 2560
+    height: 1920
+    category: not-furniture
+    caption: "this took forever"
+  - url: https://media.sleepyblog.org/sdw0vl36.jpg
+    width: 1920
+    height: 2560
+    category: not-furniture
+  - url: https://media.sleepyblog.org/Y15o8PxF.jpg
+    width: 1707
+    height: 2560
+    category: shelving

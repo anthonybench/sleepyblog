@@ -34,7 +34,7 @@ export default function SoftwarePage(): JSX.Element {
                 <h1>
                     <span className="terminal-prompt">$</span> ls ~/projects
                 </h1>
-                <p>Things I&apos;ve built and keep using. Pick one to see what it does.</p>
+                <p>Things I&apos;ve built and keep using. Poke one to check it out.</p>
             </header>
 
             {projects.length > 0 ? (
