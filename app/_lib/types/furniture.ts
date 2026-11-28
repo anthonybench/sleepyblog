@@ -4,10 +4,10 @@
  */
 export const furnitureCategories = [
     "tables",
-    "seating",
     "shelving",
     "cabinetry",
     "trim",
+    "seating",
     "not-furniture",
 ] as const;
 

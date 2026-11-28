@@ -17,7 +17,7 @@ How the `/furniture` photo gallery works, and how to add, change, or remove phot
 
     | Question | Notes                                                                                                  |
     | -------- | ------------------------------------------------------------------------------------------------------ |
-    | Category | `tables`, `seating`, `shelving`, `cabinetry`, `trim`, or `not-furniture`. Defaults to the previous answer |
+    | Category | `tables`, `shelving`, `cabinetry`, `trim`, `seating`, or `not-furniture`. Defaults to the previous answer |
     | Caption  | Optional. Press Enter to leave it out                                                                  |
     | Featured | Featured photos show full width at the top of their category. Save it for your best work             |
 

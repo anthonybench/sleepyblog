@@ -92,10 +92,10 @@ RECENT_POST_COUNT = 10
 # the /furniture tabs; keep in sync with furnitureCategories in app/_lib/types/furniture.ts
 FURNITURE_CATEGORIES = [
     "tables",
-    "seating",
     "shelving",
     "cabinetry",
     "trim",
+    "seating",
     "not-furniture",
 ]
 FURNITURE_GALLERY = Path("_furniture") / "gallery.yml"
