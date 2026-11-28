@@ -30,7 +30,7 @@ export default function FurniturePage(): JSX.Element {
         <div className="furniture-page">
             <header className="furniture-header">
                 <h1>Furniture</h1>
-                <p>Things I&apos;ve built out of (mostly) wood.</p>
+                <p>Things I&apos;ve built out of wood (mostly).</p>
             </header>
             <FurnitureGallery photos={getFurniturePhotos()} />
         </div>

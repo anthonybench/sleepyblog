@@ -32,6 +32,8 @@ How the `/furniture` photo gallery works, and how to add, change, or remove phot
 
 The R2 env vars need to be set first (see [Deployment](deployment.md#environment-variables)).
 
+For a big batch, `./_tools/sort_furniture.py` does the same in a browser, one photo at a time: keep or delete it, rename it (saved as `.jpg`, converting CR2/HEIC/PNG), and set its category, caption, and featured flag. Each kept photo uploads in the background while you sort the next.
+
 ## The Gallery File
 
 Everything the page shows comes from `_furniture/gallery.yml`. The tool only ever appends to it, keeping your comments and edits, so it's safe to edit by hand.

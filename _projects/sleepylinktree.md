@@ -15,7 +15,7 @@ links:
 media: []
 ---
 
-## Why it exists
+## Motivation
 
 A single page for career contacts: one place that points to this blog, LinkedIn, PyPI,
 and GitHub. Small in scope on purpose, which made it the right place to experiment. It's

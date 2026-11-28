@@ -21,7 +21,7 @@ media:
     ]
 ---
 
-## Why it exists
+## Motivation
 
 The next deploy, a lease renewal, a birthday, a vacation: some dates deserve to be on a
 wall. `countdown-timers` is a tiny static web app for a home server that shows them as a

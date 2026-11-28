@@ -15,15 +15,17 @@ links:
 media: []
 ---
 
-## Why it exists
+## Motivation
 
-If you run more than one Databricks workspace (dev, staging, a region or two), the same
+If you run more than one Databricks workspace (dev, staging, any number of production regions), the same
 chore happens over and over: open each workspace, run the same query, click the same
 button, copy the same secret. `sleepybricks` does it once, everywhere, and prints a tidy
 table per workspace.
 
 It authenticates from the `~/.databrickscfg` you already have, so there's nothing new to
 set up. Every command takes a comma-separated list of profiles, like `dev,stg,us`.
+
+> There is an additional config file that the tool stubs automatically for you to customize, and other *sleepy-utils* I've made also use this one config file too, see the PyPI or GitHub pages for more details.
 
 ## What it can do
 
@@ -33,9 +35,14 @@ set up. Every command takes a comma-separated list of profiles, like `dev,stg,us
 - **`grant`**: grant Unity Catalog privileges on a table, schema, or whole catalog
 - **`write-secret` / `create-scope`**: keep secrets in sync everywhere
 - **`put-file` / `propagate-file` / `pull-repo`**: ship notebooks and code to every workspace
+- **`create-workspace-folder`**: create the same folder in each workspace, skipping any that already have it
+- **`dash-links`**: find a dashboard by name and get its published link in each workspace
 - **`groups-audit`**: audit account-level groups and their members
 - **`update-clusters`**: make sure you have a pinned, latest-LTS personal cluster in each one
-- **`--json`** on any command, for piping into other tools
+- **`snippets`**: quick cheat sheets: Databricks path conventions (`paths`), or your configured
+  workspaces and their regions (`workspaces`)
+- **`about`**: print the PyPI and GitHub links, and **`-v`** for the version
+- **`--json`** on any workspace command, for piping into other tools
 
 ## Quick start
 
@@ -44,8 +51,10 @@ uv tool install sleepybricks       # or: pipx install sleepybricks
 databricks configure --token       # once per workspace, if you haven't already
 ```
 
+> Setting an alias like `alias bricks=sleepybricks` is recommended for saving you precious key strokes 😎
+
 ```console
-$ sleepybricks sql -s "select region, count(*) tenants from tenants group by region" dev,stg
+$ bricks sql -s "select region, count(*) tenants from tenants group by region" dev,stg
 
 ─── 👩‍💻 Development (dev) ───
 region     tenants
